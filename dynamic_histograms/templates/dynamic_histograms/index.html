@@ -10,30 +10,17 @@
 	<div class="row-fluid">
         <div class="span8 offset2">
             <div class="page-header center">
-				<h1>The Panama Papers</h1>
+				<h1>Dynamic Histograms</h1>
 			</div>
 				<h2>Introduction</h2>
 				<p>
-					Welcome to my pet project. The world of offshore bank accounts and shell companies is a shadowy one, a world that is largely invisible to the general public, who don't need tax havens to hide their money. Offshore banking is not illegal, but it is often associated with those trying to commit tax fraud and those trying to hide money. Naturally, when I heard that the Panama Papers data was going to be released, I was quite interested in exploring the data. After acessing the searchable database given by ICIJ, I found I wasn't able to explore the data as well as I would have liked to; I couldn't view relationships between groups of people within the same country, or within those using the same country to set up their shell companies, etc. So in my quest find a way to be able to do this and more, I decided to try to create a visualization of the data so that others could explore the data from the leaks as well. Much of the motive behind this project was that I am quite bored with my life/ I needed some achievements, and this project gives me the chance to work with some real data.
+					We are testing how users interpret dynamic histograms as a dataset is slowly being loaded.
 				</p>
 
 				<hr>
 
 				<h2>Data</h2>
-					<h3>ICIJ Data</h3>
-					<p> 
-						The data used for this visualization is stored in a neo4j database that is not associated with the git repository of this project (database file is too big and I'm not sure I would like to use git storage for large files). The neo4j database is loaded using the database that was released by the ICIJ concerning the Panama Papers leak. neo4j is the back end server that returns jsons of queries that are given by the front end in reponse to user activity/input. Ideally, when the user moves the mouse, clicks on someting, or interacts with the visualization in some way, a request is sent to the backend server, which is neo4j in this case, with the appropriate Cypher query, and the relvent data is returned in a json. The json is prepped for use with d3 network graph visualizations, and then the visualization is updated. I hope to do all of this seamlessly, but latency of neo4j may be an issue since it is expected to handle a lot of requests and return the data of those requests in a timely fashion. If latency is an issue, then I will take a look at the visualization and determine what requests are unnecessary in the interest of time.
-					</p>
-
-					<h3>Wikipedia Data</h3>
-					<p>
-						<a href="https://en.wikipedia.org/wiki/Wikipedia:Database_download">Wikipedia</a>'s API is used to get information about an individual or country, if the information is available on Wikipedia. If there is no information about a person or country, then only that person's data is displayed and if it is a country, then only the country and its capital is displayed. Wikipedia is also used in finding related persons to a single person or country. This is because I wanted a way to directly display information about a person or country without needing to go to an external source like Google. Ideally, Wikipedia could also be used to generate graphs of people that are related on Wikipedia, if the related people are in the database.
-					</p>
-
-					<p>
-						An issue I foresee running into in using the Wikipedia API is data consolidation and entity resolution. All the countries and people in the database must be matched to each person and country in the Neo4j database, and there are over a million nodes and edges in the graph database. This will likely take some time and be difficult to make extensible to updates in the Wikipedia data. More research must be done into Wikipedia's API. The application also would need to handle requests to another source, which could be costly in terms of time. 
-					</p>
-
+					<p>The datasets we are looking at are _______ </p>
 				<hr>
 
 				<h2>whoami</h2>
@@ -48,7 +35,7 @@
 
 				<h2>Github</h2>
 				<p>
-					The code for this visualization, minus the neo4j data, is located <a href="https://github.com/steffanigomez323/Panama-Papers-Visualization" target="_blank">here</a>.
+					The code for this visualization is located <a href="https://github.com/steffanigomez323/histograms" target="_blank">here</a>.
 				</p>
 
 				<hr>
