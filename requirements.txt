@@ -7,5 +7,8 @@ ipython==4.0.3
 ipython-genutils==0.1.0
 Jinja2==2.8
 jsonschema==2.4.0
+matplotlib==1.5.1
+numpy==1.11.0
+pandas==0.18.1
 psycopg2>=2.4
 whitenoise==3.1
