@@ -24,9 +24,20 @@ class SampleTaker(object):
     def sample_on_attribute(self, attr, sample=None):
         # if this is the first sample to be taken from the dataset for the initial histogram
         if (sample is None):
-            frame2 = self.frame[attr][:50]
-            sample = frame2[np.isfinite(frame2)]
+            frame = self.frame[attr][:50]
+            sample = frame[np.isfinite(frame)]
+            return pd.DataFrame(sample)
         else:
+            if (attr != sample.columns.values[0]):
+                raise AttributeError('The attribute of the sample does not match the attribute given as an argument.')
             length = len(sample.index)
-        return sample
-        
+            if self.length - length < 50:
+                frame = self.frame[attr][length:(self.length - length)]
+                frame = pd.DataFrame(frame[np.isfinite(frame)])
+                sample = sample.append(frame)
+                return sample
+            else:
+                frame = self.frame[attr][length:(length + 50)]
+                frame = pd.DataFrame(frame[np.isfinite(frame)])
+                sample = sample.append(frame)
+                return sample
