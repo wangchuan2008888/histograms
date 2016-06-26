@@ -24,6 +24,7 @@ class SampleTaker(object):
     def sample_on_attribute(self, attr, sample=None):
         # if this is the first sample to be taken from the dataset for the initial histogram
         if (sample is None):
+            self.frame = self.frame.sort_values(attr, inplace=False, kind='quicksort', na_position='last')
             frame = self.frame[attr][:50]
             sample = frame[np.isfinite(frame)]
             return pd.DataFrame(sample)
