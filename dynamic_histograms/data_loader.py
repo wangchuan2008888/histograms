@@ -25,9 +25,17 @@ class SampleTaker(object):
         # if this is the first sample to be taken from the dataset for the initial histogram
         if (sample is None):
             self.frame = self.frame.sort_values(attr, inplace=False, kind='quicksort', na_position='last')
+            minimum = min(self.frame[attr])
+            maximum = max(self.frame[attr])
+            #frame = self.frame.loc[self.frame[attr] == minimum]
+            #for i in range(int(minimum + 1), int(minimum + 3)):
+            #    frame = frame.append(self.frame.loc[self.frame[attr] == i])
+            #frame = self.frame.loc[self.frame[attr] >= minimum and self.frame[attr] <= (minimum + 2)]
             frame = self.frame[attr][:50]
+            #frame = frame[attr]
             sample = frame[np.isfinite(frame)]
-            return pd.DataFrame(sample)
+            # a list of the sample and the minimum and maximum of the dataset on that attribute
+            return (pd.DataFrame(sample), minimum, maximum)
         else:
             if (attr != sample.columns.values[0]):
                 raise AttributeError('The attribute of the sample does not match the attribute given as an argument.')
@@ -35,10 +43,12 @@ class SampleTaker(object):
             if self.length - length < 50:
                 frame = self.frame[attr][length:(self.length - length)]
                 frame = pd.DataFrame(frame[np.isfinite(frame)])
-                sample = sample.append(frame)
-                return sample
+                #sample = sample.append(frame)
+                #return sample
+                return frame # returns batches of the dataset to the histogram to self-tune
             else:
                 frame = self.frame[attr][length:(length + 50)]
                 frame = pd.DataFrame(frame[np.isfinite(frame)])
-                sample = sample.append(frame)
-                return sample
+                #sample = sample.append(frame)
+                #return sample
+                return frame # returns batches of the dataset to the histogram to self-tune
