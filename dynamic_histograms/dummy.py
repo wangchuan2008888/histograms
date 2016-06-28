@@ -23,14 +23,15 @@ print h.buckets
 print "### FINITO ###"
 h.plot_sf_histogram('mpg')
 
-for i in range(0, h.numbuckets):
-    low = h.buckets[i]['low']
-    high = h.buckets[i]['high']
-    sample = sampletaker.sample_on_attribute('mpg', sample, rangelow=low, rangehigh=high)
-    size = len(sample)
-    h.updateFreq(low, high, size, 0.5)
-    h.plot_sf_histogram('mpg')
+for j in range(0, 5):
+    for i in range(0, h.numbuckets):
+        low = h.buckets[i]['low']
+        high = h.buckets[i]['high']
+        sample = sampletaker.sample_on_attribute('mpg', sample, rangelow=low, rangehigh=high)
+        size = len(sample)
+        h.updateFreq(low, high, size, 0.5)
+        h.plot_sf_histogram('mpg')
 
-h.restructureHist(0.01, 0.1)
-print h.buckets
-h.plot_sf_histogram('mpg')
+    h.restructureHist(0.01, 0.1)
+    print h.buckets
+    h.plot_sf_histogram('mpg')
