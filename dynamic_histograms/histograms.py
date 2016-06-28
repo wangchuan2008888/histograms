@@ -4,12 +4,14 @@ Given samples, it constructs the appropriate histogram from the sample
 Steffani Gomez(smg1)
 '''
 
+from __future__ import division
 import numpy as np
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 from heapq import nlargest
+from operator import itemgetter
 
 class Histogram(object):
 
@@ -57,24 +59,31 @@ class Histogram(object):
 
     # plots a histogram via matplot.pyplot. this is the intial histogram of the self-tuning histogram which is both equi-depth
     # and equi-width (because the intial histogram does not look at the data frequencies)
-    def plot_initial_sf_histogram(self):
-        buckets = []
+    def plot_sf_histogram(self, attr):
+        #buckets = []
+        bins = []
         frequency = []
-        size = 0
+        #size = 0
         for bucket in self.buckets:
-            buckets.append(bucket['low'])
+            bins.append(bucket['low'])
             frequency.append(bucket['frequency'])
-            size = bucket['size']
-        print buckets
-        print frequency
-        print self.min
-        print self.max
-        plt.bar(buckets, frequency, width=size)
+        bins.append(bucket['high'])
+        #plt.bar(buckets, frequency, width=size)
+        #plt.axis([self.minimum - size, self.maximum + size, 0, frequency[0] + (frequency[0] / 2)])
+
+        frequency = np.array(frequency)
+        bins = np.array(bins)
+
+        widths = bins[1:] - bins[:-1]
+
+        plt.bar(bins[:-1], frequency, width=widths)
+
         plt.grid(True)
         axes = plt.gca()
-        #axes.set_xlim([xmin,xmax])
-        axes.set_ylim([0, frequency[0] + (frequency[0] / 2)])
-        #plt.axis([self.minimum - size, self.maximum + size, 0, frequency[0] + (frequency[0] / 2)])
+        axes.set_xlim([0, self.max + widths[0]])
+        axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.xlabel(attr)
+        plt.ylabel('Frequency')
         plt.show()
 
         # add a 'best fit' line
@@ -85,9 +94,6 @@ class Histogram(object):
         #plt.ylabel('Probability')
         #plt.title(r'$\mathrm{Histogram\ of\ IQ:}\ \mu=100,\ \sigma=15$')
         #plt.axis([40, 160, 0, 0.03])
-        #plt.grid(True)
-
-        #plt.show()
 
     '''
     UpdateFreq
@@ -113,40 +119,53 @@ class Histogram(object):
         esterr = act - est
         for i in b:
             frac = float((min(high, self.buckets[i]['high']) - max(low, self.buckets[i]['low']) + 1) / (self.buckets[i]['high'] - self.buckets[i]['low'] + 1))
-            print frac
+            #print frac
             self.buckets[i]['frequency'] = max(self.buckets[i]['frequency'] + (alpha * esterr * frac * (self.buckets[i]['frequency'] / est)), 0)
     
     # the algorithm for restructing histograms 
     # m is a parameter that we call the merge threshold. In most of the experiments, m <= 1% was a suitable choice
     # s is a parameter that we call the split threshold. In the experiments, we used s=10% 
 
+
+    # MAYBE I FIXED EVERYTHING???? INTENSTIVE TESTING REQUIRED
+
     def restructureHist(self, m, s):
-        min = float('inf')
-        index = 0
+        #min = float('inf')
+        #index = 0
         freebuckets = 0
-        buckets = []
+        bucketruns = []
         for b in self.buckets:
-            buckets.append([b])
+            bucketruns.append([b])
         while True:
-            for i in range(0, len(buckets) - 1):
-                localmin = float('inf')
-                for b1 in buckets[i]:
-                    for b2 in buckets[i + 1]:
+            maxfreq = []
+            for i in range(0, len(bucketruns) - 1):
+                localmax = float('-inf')
+                tuple = []
+                for b1 in bucketruns[i]:
+                    for b2 in bucketruns[i + 1]:
                         diff = abs(b2['frequency'] - b1['frequency'])
-                        if diff < localmin:
-                            localmin = diff
+                        if diff > localmax:
+                            localmax = diff
+                            tuple = [localmax, bucketruns[i], bucketruns[i + 1]]
+                maxfreq.append(tuple)
                 #localmin = abs(self.buckets[i + 1]['frequency'] - self.buckets[i]['frequency'])
-                if localmin < min:
-                    min = localmin
-                    index = i
-            if min <= m * self.maxlength:
+
+                #if localmax < min:
+                #    min = localmax
+                #    index = i
+            mintuple = min(maxfreq, key=itemgetter(0))
+            if mintuple[0] <= m * self.maxlength:
+                print "length: " + str(len(bucketruns))
+                #print "index: " + str(min)
                 #mergebuckets(self.buckets[index], self.buckets[index + 1])
-                buckets = self.mergeruns(buckets, buckets[index], buckets[index + 1])
+                bucketruns = self.mergeruns(bucketruns, mintuple[1], mintuple[2])
                 freebuckets += 1
+                #index = 0
             else:
                 break
+        print "done merging (ish)\n"
         
-        k = s * self.numbuckets
+        k = round(s * self.numbuckets)
 
         #while len(highbuckets) < k:
         unmergedbuckets = []
@@ -155,16 +174,16 @@ class Histogram(object):
                 unmergedbuckets.append(b)
         frequencies = [b['frequency'] for b in unmergedbuckets]
         highfrequencies = nlargest(k, frequencies)
-        totalfreq = 0
-        for i in highbuckets:
-            totalfreq += i
+        totalfreq = sum(highfrequencies)
+        #for i in highbuckets:
+        #    totalfreq += i
         highbuckets = []
         for b in self.buckets:
             if b['frequency'] in highfrequencies:
                 highbuckets.append(b)
 
         # merging each run that has more than one bucket in it, meaning those buckets should be merged together
-        for l in buckets:
+        for l in bucketruns:
             if len(l) != 1:
                 for i in range(0, len(l) - 1):
                     self.mergebuckets(l[i], l[i + 1])
@@ -172,13 +191,15 @@ class Histogram(object):
         for b in highbuckets:
             #numsplit = round((b['frequency'] / totalfreq) * freebuckets)
             self.splitbucket(b, freebuckets, totalfreq)
+        
+        self.numbuckets = len(self.buckets)
 
     # splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram
     # numfree - # of free buckets
     # totalfreq - total frequency of the buckets that need to be split
 
     def splitbucket(self, b, numfree, totalfreq):
-        numsplit = round(((b['frequency'] / totalfreq) * freebuckets) + 1) 
+        numsplit = round(((b['frequency'] / totalfreq) * numfree) + 1) 
         size = b['size'] / numsplit
         newbuckets = []
         for bucket in self.buckets:
@@ -207,20 +228,60 @@ class Histogram(object):
     # buckets, b1, and b2 are all lists of buckets
 
     def mergeruns(self, buckets, b1, b2):
+        print "### BUCKET 1 ###"
+        print b1
+        print "### END ###\n"
+        print "### BUCKET 2 ###"
+        print b2
+        print "### END ###\n"
         for b in b1:
             b['merge'] = True
         for b in b2:
             b['merge'] = True
         merged = b1 + b2
+        print "### MERGED ###"
+        print merged
+        print "###END\n"
         newbuckets = []
+        print "### BEFORE ###"
+        print buckets
+        print "### END ###"
+        prev = len(buckets)
+        print "previous length: " + str(prev)
         for b in buckets:
-            if set(b) == set(b2):
+            #if set(b) == set(b2):
+            if self.checkBucketLists(b, b2) == True:
                 pass
-            elif set(b) != set(b1):
+            elif self.checkBucketLists(b, b1) == False:
+            #set(b) != set(b1):
                 newbuckets.append(b)
-            elif set(b) == set(b1):
+            elif self.checkBucketLists(b, b1) == True: 
+            #set(b) == set(b1):
                 newbuckets.append(merged)
+        print "### AFTER ###"
+        print newbuckets
+        print "### END ###"
+        new = len(newbuckets)
+        print "new length: " + str(new)
+        assert new < prev
+        #raise KeyError
         return newbuckets
+
+    # checks if two lists of buckets are the same
+    def checkBucketLists(self, b1, b2):
+        for x in b1:
+            for y in b2:
+                if self.equalBuckets(x, y) == False:
+                    return False
+        return True
+
+
+    # this method checks if two buckets (which are dicts) are the same
+    def equalBuckets(self, b1, b2):
+        if b1['low'] != b2['low'] or b1['high'] != b2['high'] or b1['frequency'] != b2['frequency'] or b1['merge'] != b2['merge'] or b1['size'] != b2['size']:
+            return False
+        else:
+            return True
 
 
 
