@@ -17,10 +17,6 @@ for i in range(0, 10):
     h.updateFreq(low, high, size, 0.5)
     h.plot_sf_histogram('mpg')
 h.restructureHist(0.01, 0.1)
-
-print "### FINAL HISTOGRAM AFTER RESTRUCTURING ###"
-print h.buckets
-print "### FINITO ###"
 h.plot_sf_histogram('mpg')
 
 for j in range(0, 5):
