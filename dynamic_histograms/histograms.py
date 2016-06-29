@@ -103,7 +103,7 @@ class Histogram(object):
             est += self.buckets[i]['frequency']
         esterr = act - est
         for i in b:
-            frac = float((min(high, self.buckets[i]['high']) - max(low, self.buckets[i]['low']) + 1) / (self.buckets[i]['high'] - self.buckets[i]['low'] + 1))
+            frac = (min(high, self.buckets[i]['high']) - max(low, self.buckets[i]['low']) + 1) / (self.buckets[i]['size'] + 1)
             self.buckets[i]['frequency'] = max(self.buckets[i]['frequency'] + (alpha * esterr * frac * (self.buckets[i]['frequency'] / est)), 0)
     
     # the algorithm for restructing histograms 
@@ -178,7 +178,7 @@ class Histogram(object):
                     newb = {
                         'low': low,
                         'high': high,
-                        'frequency': round(b['frequency'] / numsplit),
+                        'frequency': b['frequency'] / numsplit,
                         'size': high - low,
                         'merge': False
                     } 
@@ -189,6 +189,7 @@ class Histogram(object):
                         high = low + size
                     newbuckets.append(newb)
         self.buckets = newbuckets
+        self.numbuckets = len(newbuckets)
 
 
     # buckets, b1, and b2 are all lists of buckets
@@ -265,4 +266,5 @@ class Histogram(object):
             else:
                 buckets.append(bucket)
         self.buckets = buckets
+        self.numbuckets = len(buckets)
             
