@@ -1,7 +1,7 @@
 from __future__ import division
 from django.test import TestCase
 from data_loader import CSVHelper, SampleTaker
-from histograms import Histogram
+from histograms import SF_Histogram
 
 # Create your tests here.
 
@@ -52,7 +52,7 @@ class HistogramTest(TestCase):
         sampletaker = SampleTaker(f)
         s = sampletaker.sample_on_attribute('mpg')
         sample = s[0]
-        h = Histogram(f, s[1], s[2])
+        h = SF_Histogram(f, s[1], s[2])
         h.create_initial_sf_histogram('mpg')
         size = h.buckets[0]['size']
         frequency = h.buckets[0]['frequency']
@@ -67,7 +67,7 @@ class HistogramTest(TestCase):
         sampletaker = SampleTaker(f)
         s = sampletaker.sample_on_attribute('mpg')
         sample = s[0]
-        h = Histogram(f, s[1], s[2])
+        h = SF_Histogram(f, s[1], s[2])
         h.create_initial_sf_histogram('mpg')
         low = h.buckets[0]['low']
         high = h.buckets[0]['high']
@@ -84,7 +84,7 @@ class HistogramTest(TestCase):
         sampletaker = SampleTaker(f)
         s = sampletaker.sample_on_attribute('mpg')
         sample = s[0]
-        h = Histogram(f, s[1], s[2])
+        h = SF_Histogram(f, s[1], s[2])
         h.create_initial_sf_histogram('mpg')
         low = h.buckets[0]['low']
         high = h.buckets[0]['high']
@@ -116,7 +116,7 @@ class HistogramTest(TestCase):
         sampletaker = SampleTaker(f)
         s = sampletaker.sample_on_attribute('mpg')
         sample = s[0]
-        h = Histogram(f, s[1], s[2])
+        h = SF_Histogram(f, s[1], s[2])
         b1 = {
             'high': 1,
             'low': 2,
@@ -141,7 +141,7 @@ class HistogramTest(TestCase):
         sampletaker = SampleTaker(f)
         s = sampletaker.sample_on_attribute('mpg')
         sample = s[0]
-        h = Histogram(f, s[1], s[2])
+        h = SF_Histogram(f, s[1], s[2])
         b1 = {
             'high': 2,
             'low': 1,
@@ -183,7 +183,7 @@ class HistogramTest(TestCase):
         sampletaker = SampleTaker(f)
         s = sampletaker.sample_on_attribute('mpg')
         sample = s[0]
-        h = Histogram(f, s[1], s[2])
+        h = SF_Histogram(f, s[1], s[2])
         b1 = {
             'high': 2,
             'low': 1,
@@ -214,7 +214,7 @@ class HistogramTest(TestCase):
         sampletaker = SampleTaker(f)
         s = sampletaker.sample_on_attribute('mpg')
         sample = s[0]
-        h = Histogram(f, s[1], s[2])
+        h = SF_Histogram(f, s[1], s[2])
         h.create_initial_sf_histogram('mpg')
         bucketruns = []
         for b in h.buckets:

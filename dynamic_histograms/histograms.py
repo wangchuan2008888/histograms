@@ -12,10 +12,13 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 from heapq import nlargest
 from operator import itemgetter
+import csv
+from collections import Counter
+from scipy.stats import chisquare
 
-class Histogram(object):
+class SF_Histogram(object):
 
-    # initializes the class with a default number of four buckets
+    # initializes the class with a default number of 10 buckets
     def __init__(self, frame, min, max):
         self.frame = frame
         self.maxlength = len(self.frame.index)
@@ -268,3 +271,121 @@ class Histogram(object):
         self.buckets = buckets
         self.numbuckets = len(buckets)
             
+
+class DC_Histogram(object):
+
+    # initializes the class with a default number of four buckets
+    def __init__(self, file, numbuckets):
+        self.file = file
+        self.numbuckets = numbuckets
+        buckets = []
+        for i in range(0, self.numbuckets):
+            buckets.append({
+                'low': 0,
+                'high': 0, 
+                'frequency': 0,
+                'size': 0,
+                'merge': False,
+                'unique': 0
+            })
+        self.buckets = buckets
+
+
+    # implements a dynamic compressed histogram while reading the file
+    # in the middle of implementing the chisquare part and figuring out how exactly to distinguish 
+    # between regular and singleton buckets (I'm thinking of just keeping track of how many unique 
+    # values each bucket is representing)
+    def create_dc_histogram(self, attr, alpha):
+         N = 0
+         #n = 0
+         sample = []
+         with open(self.file) as f:
+            reader = csv.reader(f)
+            header = reader.next()
+            for i in range(0, len(header)):
+                header[i] = unicode(header[i], 'utf-8-sig')
+            attr_index = header.index(attr)
+            for row in reader:
+                sample.append(float(row[attr_index]))
+                N += 1
+                #n = len(set(sample))
+                if len(set(sample)) == self.numbuckets:
+                    # sample = map(float, sample)
+                    sorted_sample = sorted(sample, key=float)
+                    buckets = sorted(list(set(sorted_sample)))
+                    c = Counter(sorted_sample)
+                    # print sorted_sample
+                    # print buckets
+                    # print c
+                    for i in range(0, self.numbuckets):
+                        self.buckets[i]['low'] = buckets[i]
+                        if i == self.numbuckets - 1:
+                            self.buckets[i]['high'] = buckets[i] + 1
+                        else:
+                            self.buckets[i]['high'] = buckets[i + 1]
+                        self.buckets[i]['frequency'] = c[buckets[i]]
+                        self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
+                elif len(set(sample)) > self.numbuckets:
+                    sample.append(float(row[attr_index]))
+                    #N = len(set(sample))
+                    N += 1
+                    self.add_datapoint(float(row[attr_index]))
+                    chitest = self.chisquaretest(N)
+                    if chitest[1] < alpha:
+
+
+
+    def chisquaretest(self, N):
+        creg = []
+        for b in self.buckets:
+            if b['frequency'] <= N / self.numbuckets:
+                creg.append(b['frequency'])
+        avg = sum(creg) / len(creg)
+        cavg = []
+        for i in range(0, len(creg)):
+            cavg.append(avg)
+        return chisquare(creg, f_exp=cavg)
+        #print chitest
+                    
+    # this method adds data points to the histograms, adjusting the end bucket partitions if necessary
+    def add_datapoint(self, value):
+        if value < self.buckets[0]['low']:
+            self.buckets[0]['low'] = value
+            self.buckets[0]['frequency'] += 1
+        elif value > self.buckets[self.numbuckets - 1]['high']:
+            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['frequency'] += 1
+        else:
+            for i in range(0, self.numbuckets):
+                if value == self.buckets[i]['low']:
+                    self.buckets[i]['frequency'] += 1
+                elif value > self.buckets[i]['low'] and value < self.buckets[i]['high']:
+                    self.buckets[i]['frequency'] += 1
+
+
+    # plots a histogram via matplot.pyplot
+    def plot_dc_histogram(self, attr):
+        bins = []
+        frequency = []
+        for bucket in self.buckets:
+            bins.append(bucket['low'])
+            frequency.append(bucket['frequency'])
+        bins.append(bucket['high'])
+
+        frequency = np.array(frequency)
+        bins = np.array(bins)
+
+        widths = bins[1:] - bins[:-1]
+
+        plt.bar(bins[:-1], frequency, width=widths)
+
+        plt.grid(True)
+        axes = plt.gca()
+        axes.set_xlim([0, self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.xlabel(attr)
+        plt.ylabel('Frequency')
+        plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
+        plt.show()
+        
+    

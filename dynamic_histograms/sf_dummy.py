@@ -6,7 +6,7 @@ f = csvhelper.dataframe_from_csv('data/cars.csv')
 sampletaker = data_loader.SampleTaker(f)
 s = sampletaker.sample_on_attribute('mpg')
 sample = s[0]
-h = histograms.Histogram(f, s[1], s[2])
+h = histograms.SF_Histogram(f, s[1], s[2])
 h.create_initial_sf_histogram('mpg')
 h.plot_sf_histogram('mpg')
 for i in range(0, 10):
