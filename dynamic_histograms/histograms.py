@@ -71,7 +71,7 @@ class SF_Histogram(object):
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([0, self.max + widths[0]])
+        axes.set_xlim([self.min, self.max + widths[0]])
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
@@ -295,7 +295,7 @@ class DC_Histogram(object):
     # in the middle of implementing the chisquare part and figuring out how exactly to distinguish 
     # between regular and singleton buckets (I'm thinking of just keeping track of how many unique 
     # values each bucket is representing)
-    def create_dc_histogram(self, attr, alpha):
+    def create_dc_histogram(self, attr, alpha, batchsize):
          N = 0
          #n = 0
          sample = []
@@ -333,6 +333,9 @@ class DC_Histogram(object):
                     #sample.append(float(row[attr_index]))
                     #N = len(set(sample))
                     #N += 1
+                    if N % batchsize == 0:
+                        print "number read in: " + str(N)
+                        self.plot_dc_histogram(attr)
                     self.add_datapoint(float(row[attr_index]))
                     chitest = self.chisquaretest(N)
                     if chitest[1] < alpha:
@@ -349,7 +352,7 @@ class DC_Histogram(object):
                             if self.buckets[i]['regular'] == True:
                                 if len(self.buckets[i]['unique']) == 1 and self.buckets[i]['frequency'] > N / self.numbuckets:
                                     self.buckets[i]['regular'] = False
-                        self.print_buckets()
+                        #self.print_buckets()
                         self.plot_dc_histogram(attr)
 
     def redistributeRegulars(self, sample):
@@ -545,7 +548,7 @@ class DC_Histogram(object):
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([0, self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim([self.buckets[0]['low'] * 1.5, self.buckets[self.numbuckets - 1]['high'] * 1.5])
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
