@@ -1,12 +1,12 @@
 import data_loader
-import histograms
+import sf_histogram
 
 csvhelper = data_loader.CSVHelper()
 f = csvhelper.dataframe_from_csv('data/distributions.csv')
 sampletaker = data_loader.SampleTaker(f)
 s = sampletaker.sample_on_attribute('norm')
 sample = s[0]
-h = histograms.SF_Histogram(f, s[1], s[2])
+h = sf_histogram.SF_Histogram(f, s[1], s[2])
 h.create_initial_sf_histogram('norm')
 h.plot_sf_histogram('norm')
 for i in range(0, 10):
