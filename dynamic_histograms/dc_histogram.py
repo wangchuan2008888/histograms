@@ -173,53 +173,53 @@ class DC_Histogram(object):
 
     # redistributes regular buckets to equalize their counts
     # THIS ENTIRE METHOD IS WRONG JUST DO IT SIMPLY FOR NOW AND THEN GET BETTER ON IT ONCE YOU KNOW IT WORKS  
-    def redistributeRegular(self):
-        N = 0
-        beta = 0
-        leftoverunique = []
-        for i in range(0, self.numbuckets):
-            if self.buckets[i]['regular'] == True:
-                beta += 1
-                N += self.buckets[i]['frequency']
-                leftoverunique = list(set(leftoverunique) | set(self.buckets[i]['unique']))
-        equalfreq = N / beta
-        print N, beta
-        leftover = 0
-        low = self.buckets[0]['low']
-        for i in range(0, self.numbuckets):
-            if self.buckets[i]['regular'] == True:
-                perc = equalfreq / self.buckets[i]['frequency']
-                self.buckets[i]['low'] = low
-                self.buckets[i]['size'] *= perc
-                self.buckets[i]['high'] = self.buckets[i]['size'] + self.buckets[i]['low']
-                #if i != self.numbuckets - 1 and self.buckets[i + 1]['regular'] == False and self.buckets[i]['high'] > self.buckets[i + 1]['low']:
-                #    self.buckets[i]['high'] = self.buckets[i + 1]['low']
-                #    self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
-                self.buckets[i]['frequency'] = equalfreq
-                low = self.buckets[i]['high']
-                #print perc
-                if perc < 1:
-                    # we need to shrink bucket
-                    #leftover += self.buckets[i]['size'] - (self.buckets[i]['size'] * perc)
-                    unique = []
-                    for j in range(0, len(leftoverunique)):
-                        if leftoverunique[j] >= self.buckets[i]['low'] and leftoverunique[j] < self.buckets[i]['high']:
-                            unique.append(leftoverunique[j])
-                    self.buckets[i]['unique'] = unique
-                    leftoverunique = list(set(leftoverunique) - set(self.buckets[i]['unique']))
-                elif perc > 1:
-                    # we need to expand bucket
-                    #leftover -= (self.buckets[i]['size'] * perc) - self.buckets[i]['size']
-                    unique = []
-                    for j in range(0, len(leftoverunique)):
-                        if leftoverunique[j] >= self.buckets[i]['low'] and leftoverunique[j] < self.buckets[i]['high']:
-                            unique.append(leftoverunique[j])
-                    self.buckets[i]['unique'] = unique
-                    leftoverunique = list(set(leftoverunique) - set(self.buckets[i]['unique']))
-            else:
-                #self.buckets[i]['low'] = self.buckets[i - 1]['high']
-                low = self.buckets[i]['high']
-                #self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
+    # def redistributeRegular(self):
+    #     N = 0
+    #     beta = 0
+    #     leftoverunique = []
+    #     for i in range(0, self.numbuckets):
+    #         if self.buckets[i]['regular'] == True:
+    #             beta += 1
+    #             N += self.buckets[i]['frequency']
+    #             leftoverunique = list(set(leftoverunique) | set(self.buckets[i]['unique']))
+    #     equalfreq = N / beta
+    #     print N, beta
+    #     leftover = 0
+    #     low = self.buckets[0]['low']
+    #     for i in range(0, self.numbuckets):
+    #         if self.buckets[i]['regular'] == True:
+    #             perc = equalfreq / self.buckets[i]['frequency']
+    #             self.buckets[i]['low'] = low
+    #             self.buckets[i]['size'] *= perc
+    #             self.buckets[i]['high'] = self.buckets[i]['size'] + self.buckets[i]['low']
+    #             #if i != self.numbuckets - 1 and self.buckets[i + 1]['regular'] == False and self.buckets[i]['high'] > self.buckets[i + 1]['low']:
+    #             #    self.buckets[i]['high'] = self.buckets[i + 1]['low']
+    #             #    self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
+    #             self.buckets[i]['frequency'] = equalfreq
+    #             low = self.buckets[i]['high']
+    #             #print perc
+    #             if perc < 1:
+    #                 # we need to shrink bucket
+    #                 #leftover += self.buckets[i]['size'] - (self.buckets[i]['size'] * perc)
+    #                 unique = []
+    #                 for j in range(0, len(leftoverunique)):
+    #                     if leftoverunique[j] >= self.buckets[i]['low'] and leftoverunique[j] < self.buckets[i]['high']:
+    #                         unique.append(leftoverunique[j])
+    #                 self.buckets[i]['unique'] = unique
+    #                 leftoverunique = list(set(leftoverunique) - set(self.buckets[i]['unique']))
+    #             elif perc > 1:
+    #                 # we need to expand bucket
+    #                 #leftover -= (self.buckets[i]['size'] * perc) - self.buckets[i]['size']
+    #                 unique = []
+    #                 for j in range(0, len(leftoverunique)):
+    #                     if leftoverunique[j] >= self.buckets[i]['low'] and leftoverunique[j] < self.buckets[i]['high']:
+    #                         unique.append(leftoverunique[j])
+    #                 self.buckets[i]['unique'] = unique
+    #                 leftoverunique = list(set(leftoverunique) - set(self.buckets[i]['unique']))
+    #         else:
+    #             #self.buckets[i]['low'] = self.buckets[i - 1]['high']
+    #             low = self.buckets[i]['high']
+    #             #self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
                     
     # performs the chi-square statistic test
     def chisquaretest(self, N):
