@@ -11,10 +11,11 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
+from collections import Counter
 
 class DVO_Histogram(object):
 
-    def __init__(self, fil, numbuckets):
+    def __init__(self, file, numbuckets):
         self.file = file
         self.numbuckets = numbuckets
         buckets = []
@@ -28,8 +29,34 @@ class DVO_Histogram(object):
             })
         self.buckets = buckets
 
+    def plot_dvo_histogram(self, attr):
+        bins = []
+        frequency = []
+        for bucket in self.buckets:
+            bins.append(bucket['low'])
+            frequency.append(bucket['leftcounter'])
+            bins.append(bucket['low'] + (bucket['size'] / 2))
+            frequency.append(bucket['rightcounter'])
+        bins.append(bucket['high'])
+
+        frequency = np.array(frequency)
+        bins = np.array(bins)
+
+        widths = bins[1:] - bins[:-1]
+
+        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
+
+        plt.grid(True)
+        axes = plt.gca()
+        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.xlabel(attr)
+        plt.ylabel('Frequency')
+        plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
+        plt.show()
+
     # implements a dynamic v-optimal histogram while reading the file
-    def create_dc_histogram(self, attr, alpha, batchsize):
+    def create_dvo_histogram(self, attr, batchsize):
          N = 0
          sample = []
          with open(self.file) as f:
@@ -54,23 +81,24 @@ class DVO_Histogram(object):
                         self.buckets[i]['leftcounter'] = c[buckets[i]]
                         self.buckets[i]['rightcounter'] = c[buckets[i]]
                         self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
-                        if buckets[i] not in self.buckets[i]['unique']:
-                            self.buckets[i]['unique'].append(buckets[i])
                 elif len(set(sample)) > self.numbuckets:
-                    print "number read in: " + str(N)
                     self.add_datapoint(float(row[attr_index]))
+                    if N % batchsize == 0:
+                        print "number read in: " + str(N)
+                        self.plot_dvo_histogram(attr)
 
     # this method adds data points to the histograms, adjusting the end bucket partitions if necessary
+    # WHAT ABOUT IF THE VALUE IS LESS THAN THE LEFTMOST BUCKET BOUNDARY????
     def add_datapoint(self, value):
-        if value > self.buckets[self.numbuckets]['high']:
+        if value > self.buckets[self.numbuckets - 1]['high']:
             bucket = {
-                'low': self.buckets[self.numbuckets]['high'],
+                'low': self.buckets[self.numbuckets - 1]['high'],
                 'high': value + 1,
                 'leftcounter': 1,
                 'rightcounter': 1,
-                'size': value + 1 - self.buckets[self.numbuckets]['high']
+                'size': value + 1 - self.buckets[self.numbuckets - 1]['high']
             } # borrow one bucket
-            index = self.findBestToMerge()
+            index = self.findBestToMerge()[1]
             self.mergebuckets(self.buckets[index], self.buckets[index + 1])
         else:
             for i in range(0, self.numbuckets):
@@ -79,13 +107,13 @@ class DVO_Histogram(object):
                         self.buckets[i]['leftcounter'] += 1
                     else:
                         self.buckets[i]['rightcounter'] += 1
-            s = self.buckets[self.findBestToSplit()]
-            mindex = self.findBestToMerge()
+            s = self.buckets[self.findBestToSplit()[1]]
+            mindex = self.findBestToMerge()[1]
             if self.bucketError(s) > self.adjacentbucketsError(self.buckets[mindex], self.buckets[mindex + 1]):
                 # split s
                 # merge m and m.next
                 self.splitbucket(s)
-                self.merge(self.buckets[mindex], self.buckets[mindex + 1])
+                self.mergebuckets(self.buckets[mindex], self.buckets[mindex + 1])
 
     # merging two buckets into one bucket in the list of buckets
     def mergebuckets(self, bucket1, bucket2):
@@ -98,7 +126,7 @@ class DVO_Histogram(object):
         }
         buckets = []
         for i in range(0, self.numbuckets):
-            if self.buckets[i]]['low'] < bucket1['low'] or self.buckets[i]['low'] >= bucket2['high']:
+            if self.buckets[i]['low'] < bucket1['low'] or self.buckets[i]['low'] >= bucket2['high']:
                 buckets.append(self.buckets[i])
             elif self.buckets[i]['low'] == bucket1['low']:
                 buckets.append(mergedbucket)
@@ -122,7 +150,7 @@ class DVO_Histogram(object):
         }
         buckets = []
         for i in range(0, self.numbuckets):
-            if self.buckets[i]]['low'] < bucket['low'] or self.buckets[i]['low'] >= bucket['high']:
+            if self.buckets[i]['low'] < bucket['low'] or self.buckets[i]['low'] >= bucket['high']:
                 buckets.append(self.buckets[i])
             else:
                 buckets.append(bucket1)
@@ -161,4 +189,10 @@ class DVO_Histogram(object):
                 maximum = error
                 index = i
         return maximum, index
-    
+
+    def print_buckets(self):
+        for i in range(0, self.numbuckets):
+            print "### bucket " + str(i) + " ###"
+            for k, v in self.buckets[i].iteritems():
+                print k, v
+            print "### END ###"
