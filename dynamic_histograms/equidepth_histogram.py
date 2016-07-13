@@ -11,7 +11,6 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
-from collections import Counter
 
 class Equidepth_Histogram(object):
 
@@ -42,24 +41,25 @@ class Equidepth_Histogram(object):
                 sample.append(float(row[attr_index]))
                 N += 1
                 if len(set(sample)) == self.numbuckets:
-                    self.create_initial_histogram(N, sample, l)
+                    self.create_initial_histogram(N, set(sample), l)
+                    #self.print_buckets()
                     self.plot_histogram(attr)
                 elif len(set(sample)) > self.numbuckets:
                     self.add_datapoint(float(row[attr_index]), N, sample, attr, l)
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
+                        #self.print_buckets()
                         self.plot_histogram(attr)
 
     def create_initial_histogram(self, N, sample, l):
+        sample = list(sample)
         sorted_sample = sorted(sample, key=float)
-        #c = Counter(sorted_sample)
         for i in range(0, self.numbuckets):
             self.buckets[i]['low'] = sorted_sample[i]
             if i == self.numbuckets - 1:
                 self.buckets[i]['high'] = sorted_sample[i] + 1
             else:
                 self.buckets[i]['high'] = sorted_sample[i + 1]
-            #self.buckets[i]['frequency'] = c[sorted_sample[i]]
             self.buckets[i]['frequency'] = N / self.numbuckets
             self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
         self.threshold = (2 + l) * (N / self.numbuckets)
@@ -82,7 +82,7 @@ class Equidepth_Histogram(object):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
                     if self.buckets[i]['frequency'] >= self.threshold:
-                        self.thresholdReached(self.buckets[i], N, sample, attr, l)
+                        self.thresholdReached(self.buckets[i], N, set(sample), attr, l)
 
     def thresholdReached(self, bucket, N, sample, attr, l):
         for i in range(0, self.numbuckets - 1):
@@ -92,9 +92,13 @@ class Equidepth_Histogram(object):
             else:
                 self.computehistogram(sample, N)
                 self.threshold = (2 + l) * (N / self.numbuckets)
+        print "RESTRUCTURING number read in: " + str(N)
+        #self.print_buckets()
         self.plot_histogram(attr)
 
     def computehistogram(self, sample, N):
+        sample = list(sample)
+        sample = sorted(sample, key=float)
         for i in range(0, self.numbuckets):
             self.buckets[i]['low'] = sample[int(round(i * (len(sample) / self.numbuckets)))]
             if i == self.numbuckets - 1:
@@ -165,3 +169,10 @@ class Equidepth_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
         plt.show()
+
+    def print_buckets(self):
+        for i in range(0, self.numbuckets):
+            print "### bucket " + str(i) + " ###"
+            for k, v in self.buckets[i].iteritems():
+                print k, v
+            print "### END ###"
