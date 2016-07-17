@@ -73,26 +73,18 @@ class Control_Histogram(object):
                 elif sorted_sample[j] > self.buckets[i]['high']:
                     break
             low = self.buckets[i]['high']
-
-        #self.threshold = (2 + l) * (N / self.numbuckets)
     
     def add_datapoint(self, value):
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
-            #if self.buckets[0]['frequency'] >= self.threshold:
-                #self.thresholdReached(self.buckets[0], N, sample, attr, l)
         elif value > self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value
             self.buckets[self.numbuckets - 1]['frequency'] += 1
-            #if self.buckets[self.numbuckets - 1]['frequency'] >= self.threshold:
-                #self.thresholdReached(self.buckets[self.numbuckets - 1], N, sample, attr, l)
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
-                    #if self.buckets[i]['frequency'] >= self.threshold:
-                        #self.thresholdReached(self.buckets[i], N, set(sample), attr, l)
 
     def plot_histogram(self, attr):
         bins = []

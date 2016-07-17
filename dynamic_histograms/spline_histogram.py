@@ -12,6 +12,60 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
 from collections import Counter
+import heapq
+
+class PriorityQueueSet(object):
+
+    """
+    Combined priority queue and set data structure.
+
+    Acts like a priority queue, except that its items are guaranteed to be
+    unique. Provides O(1) membership test, O(log N) insertion and O(log N)
+    removal of the smallest item.
+
+    Important: the items of this data structure must be both comparable and
+    hashable (i.e. must implement __cmp__ and __hash__). This is true of
+    Python's built-in objects, but you should implement those methods if you
+    want to use the data structure for custom objects.
+
+
+    from: 
+    """
+
+    def __init__(self, items=[]):
+        """
+        Create a new PriorityQueueSet.
+
+        Arguments:
+            items (list): An initial item list - it can be unsorted and
+                non-unique. The data structure will be created in O(N).
+        """
+        self.set = dict((item, True) for item in items)
+        self.heap = self.set.keys()
+        heapq.heapify(self.heap)
+
+    def has_item(self, item):
+        """Check if ``item`` exists in the queue."""
+        return item in self.set
+
+    def pop_smallest(self):
+        """Remove and return the smallest item from the queue."""
+        smallest = heapq.heappop(self.heap)
+        del self.set[smallest]
+        return smallest
+
+    def add(self, item):
+        """Add ``item`` to the queue if doesn't already exist."""
+        if item not in self.set:
+            self.set[item] = True
+            heapq.heappush(self.heap, item)
+
+    def remove(self, item):
+        """Removes ''item'' from the heap if it exists."""
+        if self.has_item(item):
+            del self.set[item]
+            #self.heap = list(set(self.set.keys()) - set(item))
+            #heapq.heapify(self.heap)
 
 class Spline_Histogram(object):
 
@@ -28,7 +82,191 @@ class Spline_Histogram(object):
                 'ff': 0,
                 'vv': 0,
                 'vf': 0,
-                'f': 0,
-                'v': 0
+                'v': [0, 0, 0]
             })
         self.buckets = buckets
+    
+    def create_histogram(self, attr, batchsize):
+        N = 0
+        sample = []
+        with open(self.file) as f:
+            reader = csv.reader(f)
+            header = reader.next()
+            for i in range(0, len(header)):
+                header[i] = unicode(header[i], 'utf-8-sig')
+            attr_index = header.index(attr)
+            for row in reader:
+                sample.append(float(row[attr_index]))
+                N += 1
+                if len(set(sample)) == self.numbuckets * 2:
+                    self.compute_histogram(list(set(sample)))
+                    self.print_buckets()
+                    self.plot_histogram(attr)
+                elif len(set(sample)) > self.numbuckets * 2:
+                    self.add_datapoint(float(row[attr_index]))
+                    if N % batchsize == 0:
+                        print "number read in: " + str(N)
+                        self.compute_histogram(list(set(sample)))
+                        self.print_buckets()
+                        self.plot_histogram(attr)
+
+    def add_datapoint(self, value):
+        if value < self.buckets[0]['low']:
+            self.buckets[0]['low'] = value
+            self.buckets[0]['frequency'] += 1
+        elif value > self.buckets[self.numbuckets - 1]['high']:
+            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['frequency'] += 1
+        else:
+            for i in range(0, self.numbuckets):
+                if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
+                    self.buckets[i]['frequency'] += 1
+
+
+    def compute_histogram(self, sample):
+        n = len(sample)
+        sample = sorted(sample, key=float)
+        buckets = []
+        c = Counter(sample)
+        # we have an index problem
+        print n
+        for i in range(0, n - 1):
+            #print 2 * i
+            #print 2 * (i + 1)
+            if 2 * (i + 1) == n:
+                sample.append(sample[n - 1] + 1)
+            elif 2 * (i + 1) > n: # to fix the indexing issue
+                break
+            buckets.append({
+                'low': sample[(2 * i)],
+                'high': sample[(2 * (i + 1))],
+                'size': sample[(2 * (i + 1))] - sample[(2 * i)],
+                'frequency': c[sample[(2 * i)]] + c[sample[(2 * i) + 1]],
+                'ff': np.power(c[sample[(2 * i)]], 2) + np.power(c[sample[(2 * i) + 1]], 2),
+                'vv': np.power(sample[(2 * i)], 2) + np.power(sample[(2 * i) + 1], 2),
+                'vf': (c[sample[(2 * i) + 1]] * sample[(2 * i) + 1]) + (c[sample[(2 * i)]] * sample[(2 * i)]),
+                'v': [sample[(2 * i) + 1] + sample[2 * i], (sample[(2 * i) + 1] + sample[2 * i]), c[sample[(2 * i) + 1]] + c[sample[2 * i]]]
+            })
+            if 2 * (i + 1) >= n:
+                break
+        q = PriorityQueueSet()
+        b = {}
+        for i in range(0, len(buckets) - 1):
+            if i < len(buckets) - 1:
+                error = self.spline_error(buckets[i]['low'], buckets[i + 1]['high'], sample, buckets[i], buckets[i + 1])
+                q.add(error)
+                b[error] = [i, i + 1]
+        while len(buckets) > self.numbuckets:
+            minerror = q.pop_smallest()
+            #del b[minerror]
+            if b[minerror][0] > 0:
+                leftbucket = buckets[b[minerror][0] - 1]
+                lefterror = self.spline_error(leftbucket['low'], buckets[b[minerror][0]]['high'], sample, leftbucket, buckets[b[minerror][0]])
+                q.remove(lefterror)
+                del b[lefterror]
+            if b[minerror][1] < len(buckets) - 1:
+                rightbucket = buckets[b[minerror][1] + 1]
+                righterror = self.spline_error(buckets[b[minerror][1]]['low'], rightbucket['high'], sample, buckets[b[minerror][1]], rightbucket)
+                q.remove(righterror)
+                if b.has_key(righterror):
+                    del b[righterror]
+            left = b[minerror][0]
+            right = b[minerror][1]
+            buckets = self.mergebuckets(buckets, buckets[left], buckets[right])
+            print len(buckets)
+            del b[minerror]
+            if left > 0:
+                error = self.spline_error(buckets[left - 1]['low'], buckets[left]['high'], sample, buckets[left - 1], buckets[left])
+                q.add(error)
+                b[error] = [left - 1, left]
+            if right < len(buckets) - 1:
+                error = self.spline_error(buckets[right]['low'], buckets[right + 1]['high'], sample, buckets[right], buckets[right + 1])
+                q.add(error)
+                b[error] = [right, right + 1]
+        print len(buckets)
+        self.buckets = buckets
+
+
+    def mergebuckets(self, buckets, bucket1, bucket2):
+        mergedbucket = {
+            'low': bucket1['low'],
+            'high': bucket2['high'],
+            'size': bucket2['high'] - bucket1['low'],
+            'frequency': bucket1['frequency'] + bucket2['frequency'],
+            'ff': bucket1['ff'] + bucket2['ff'],
+            'vv': bucket1['vv'] + bucket2['vv'],
+            'vf': bucket1['vf'] + bucket2['vf'],
+            'v': [bucket1['v'][0] + bucket2['v'][0], np.average([bucket1['v'][1], bucket2['v'][1]]), np.average([bucket1['v'][2], bucket2['v'][2]])]
+        }
+        #buckets = []
+        b = []
+        for i in range(0, len(buckets)):
+            if buckets[i]['low'] == bucket1['low'] and buckets[i]['high'] == bucket1['high']:
+                b.append(mergedbucket)
+            elif buckets[i]['low'] == bucket2['low'] and buckets[i]['high'] == bucket2['high']:
+                pass
+            else:
+                b.append(buckets[i])
+        #self.buckets = buckets
+        return b
+
+
+    def correlation(self, a, c, sample, bucket1, bucket2):
+        sample = list(set(sample))
+        numerator = 0
+        denominator1 = 0
+        denominator2 = 0
+        avgv = (bucket1['v'][1] + bucket2['v'][1]) / 2
+        avgf = (bucket2['v'][2] + bucket2['v'][2]) / 2
+        c = Counter(sample)
+        for i in range(0, len(sample)):
+            if sample[i] >= a and sample[i] < c:
+                if sample[i] < bucket1['high']:
+                    numerator += (sample[i] - avgv) * (c[sample[i]] * avgf)
+                    denominator1 += np.power(sample[i] - avgv, 2)
+                    denominator2 += np.power(c[sample[i]] - avgf, 2)
+                else:
+                    numerator += (sample[i] - avgv) * (c[sample[i]] * avgf)
+                    denominator1 += np.power(sample[i] - avgv, 2)
+                    denominator2 += np.power(c[sample[i]] - avgf, 2)
+        return numerator / (np.power(denominator1, 0.5) * np.power(denominator2, 0.5))
+
+    def spline_error(self, a, c, sample, bucket1, bucket2):
+        corr = self.correlation(a, c, sample, bucket1, bucket2)
+        error = 1 - np.power(corr, 2)
+        error2 = bucket1['ff'] + bucket2['ff']
+        error2 *= bucket1['frequency'] + bucket2['frequency']
+        error2 += c - a
+        error2 *= np.average([bucket1['v'][2], bucket2['v'][2]])
+        return error * error2
+
+    def plot_histogram(self, attr):
+        bins = []
+        frequency = []
+        for bucket in self.buckets:
+            bins.append(bucket['low'])
+            frequency.append(bucket['frequency'])
+        bins.append(bucket['high'])
+
+        frequency = np.array(frequency)
+        bins = np.array(bins)
+
+        widths = bins[1:] - bins[:-1]
+
+        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
+
+        plt.grid(True)
+        axes = plt.gca()
+        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.xlabel(attr)
+        plt.ylabel('Frequency')
+        plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
+        plt.show()
+
+    def print_buckets(self):
+        for i in range(0, self.numbuckets):
+            print "### bucket " + str(i) + " ###"
+            for k, v in self.buckets[i].iteritems():
+                print k, v
+            print "### END ###"
