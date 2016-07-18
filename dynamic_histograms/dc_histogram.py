@@ -14,11 +14,20 @@ import csv
 from collections import Counter
 from scipy.stats import chisquare
 
-# REQUIRES TESTING
 class DC_Histogram(object):
 
-    # initializes the class with a default number of four buckets
+    """
+    This class models an instance of a dynamically generated compressed histogram, which has at least one equi-depth
+    bucket, with the other buckets being singleton buckets. 
+    """
+
     def __init__(self, file, numbuckets):
+
+        """
+        Initiates an instance of the class with a csv file containing the dataset and the number 
+        of buckets the histogram should have. 
+        """
+
         self.file = file
         self.numbuckets = numbuckets
         buckets = []
@@ -33,14 +42,11 @@ class DC_Histogram(object):
             })
         self.buckets = buckets
 
-
-    # implements a dynamic compressed histogram while reading the file
-    # in the middle of implementing the chisquare part and figuring out how exactly to distinguish 
-    # between regular and singleton buckets (I'm thinking of just keeping track of how many unique 
-    # values each bucket is representing)
     def create_dc_histogram(self, attr, alpha, batchsize):
+        """Reads in data from the file, extending the buckets of the histogram is the values are beyond 
+        it, and checks to see if the probability that the counts in the equi-depth buckets are not uniformly 
+        distributed is statistically significant (less than alpha) and if so, redistributes the regular buckets."""
          N = 0
-         #n = 0
          sample = []
          with open(self.file) as f:
             reader = csv.reader(f)
@@ -51,15 +57,10 @@ class DC_Histogram(object):
             for row in reader:
                 sample.append(float(row[attr_index]))
                 N += 1
-                #n = len(set(sample))
                 if len(set(sample)) == self.numbuckets:
-                    # sample = map(float, sample)
                     sorted_sample = sorted(sample, key=float)
                     buckets = sorted(list(set(sample)), key=float)
                     c = Counter(sorted_sample)
-                    # print sorted_sample
-                    # print buckets
-                    # print c
                     for i in range(0, self.numbuckets):
                         self.buckets[i]['low'] = buckets[i]
                         if i == self.numbuckets - 1:
@@ -73,9 +74,6 @@ class DC_Histogram(object):
                         if self.buckets[i]['regular'] == False and len(self.buckets[i]['unique']) > 1:
                             buckets[i]['regular'] = True
                 elif len(set(sample)) > self.numbuckets:
-                    #sample.append(float(row[attr_index]))
-                    #N = len(set(sample))
-                    #N += 1
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
                         self.plot_dc_histogram(attr)
@@ -84,9 +82,7 @@ class DC_Histogram(object):
                     if chitest[1] < alpha:
                         print chitest
                         print "number of records read: " + str(N)
-                        #self.print_buckets()
                         self.plot_dc_histogram(attr)
-                        #self.print_buckets()
                         for i in range(0, self.numbuckets):
                             if len(self.buckets[i]['unique']) == 1 and self.buckets[i]['frequency'] < N / self.numbuckets:
                                 self.buckets[i]['regular'] = True
@@ -95,10 +91,10 @@ class DC_Histogram(object):
                             if self.buckets[i]['regular'] == True:
                                 if len(self.buckets[i]['unique']) == 1 and self.buckets[i]['frequency'] > N / self.numbuckets:
                                     self.buckets[i]['regular'] = False
-                        #self.print_buckets()
                         self.plot_dc_histogram(attr)
 
     def redistributeRegulars(self, sample):
+        """This method redistributes the regular buckets."""
         N = 0
         beta = 0
         leftoverunique = []
@@ -115,8 +111,6 @@ class DC_Histogram(object):
         sorted_sample = sorted(sample, key=float)
         c = Counter(sorted_sample)
         width = 0
-        #print c
-        #print leftoverunique
         for i in range(0, self.numbuckets):
             if self.buckets[i]['regular'] == True:
                 if len(leftoverunique) == 0:
@@ -128,7 +122,6 @@ class DC_Histogram(object):
                     for j in range(0, len(unique)):
                         if unique[j] >= self.buckets[i]['low'] and unique[j] < self.buckets[i]['high']:
                             self.buckets[i]['unique'].append(unique[j])
-                            #self.buckets[i]['frequency'] += c[unique[j]]
                     low = self.buckets[i]['high']
                 else:
                     unique = []
@@ -152,7 +145,6 @@ class DC_Histogram(object):
                     leftoverunique = sorted(leftoverunique, key=float)
                     low = self.buckets[i]['high']
                     if len(leftoverunique) == 0:
-                        #leftoverunique = unique
                         width = (max(unique) - min(unique)) / (self.numbuckets - i)
                         self.buckets[i]['high'] = self.buckets[i]['low'] + width
                         self.buckets[i]['size'] = width
@@ -161,11 +153,7 @@ class DC_Histogram(object):
                         for j in range(0, len(unique)):
                             if unique[j] >= self.buckets[i]['low'] and unique[j] < self.buckets[i]['high']:
                                 self.buckets[i]['unique'].append(unique[j])
-                                #self.buckets[i]['frequency'] += c[unique[j]]
-                        #low = unique[width]
-                        #unique = [width:]
                         low = self.buckets[i]['high']
-                    #print leftoverunique
             else:
                 self.buckets[i]['low'] = unique[0]
                 self.buckets[i]['high'] = leftoverunique[0]
@@ -221,13 +209,11 @@ class DC_Histogram(object):
     #             low = self.buckets[i]['high']
     #             #self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
                     
-    # performs the chi-square statistic test
     def chisquaretest(self, N):
+        """Performs the chi-square statistic test and returns the p-value and the chi-squared value."""
         creg = []
         for b in self.buckets:
-            #if len(b['unique']) > 1:
             if b['regular'] == True:
-            #if b['frequency'] <= N / self.numbuckets:
                 creg.append(b['frequency'])
         avg = np.mean(creg)
         cavg = []
@@ -235,8 +221,8 @@ class DC_Histogram(object):
             cavg.append(avg)
         return chisquare(creg, f_exp=cavg)
                     
-    # this method adds data points to the histograms, adjusting the end bucket partitions if necessary
     def add_datapoint(self, value):
+        """this method adds data points to the histograms, adjusting the end bucket partitions if necessary."""
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
@@ -273,8 +259,8 @@ class DC_Histogram(object):
                     self.buckets[i]['regular'] = False
 
 
-    # plots a histogram via matplot.pyplot
     def plot_dc_histogram(self, attr):
+        """Plots the histogram."""
         bins = []
         frequency = []
         for bucket in self.buckets:
@@ -299,12 +285,12 @@ class DC_Histogram(object):
         plt.show()
 
     def print_buckets(self):
+        """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""
         high = self.buckets[0]['low']
         for i in range(0, self.numbuckets):
             print "### bucket " + str(i) + " ###"
             for k, v in self.buckets[i].iteritems():
                 print k, v
             print "### END ###"
-            #assert high == self.buckets[i]['low']
             high = self.buckets[i]['high']
          

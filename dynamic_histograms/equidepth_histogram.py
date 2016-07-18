@@ -14,7 +14,17 @@ import csv
 
 class Equidepth_Histogram(object):
 
+    """
+    This class models an instance of an equi-depth histogram, which is a histogram with all the buckets have the same count.
+    """
+
     def __init__(self, f, numbuckets):
+
+        """
+        Initiates an instance of the class with a csv file containing the dataset and the number 
+        of buckets the histogram should have. 
+        """
+
         self.file = f
         self.numbuckets = numbuckets
         buckets = []
@@ -29,6 +39,8 @@ class Equidepth_Histogram(object):
         self.threshold = None
 
     def create_histogram(self, attr, l, batchsize):
+        """l is a tunable parameter (> -1) which influences the upper thresholder of bucket count for all buckets. The appropriate bucket counter is 
+        incremented for every record read in. If a bucket counter reaches threshold, the bucket boundaries are recalculated and the threshold is updated."""
         N = 0
         sample = []
         with open(self.file) as f:
@@ -42,16 +54,15 @@ class Equidepth_Histogram(object):
                 N += 1
                 if len(set(sample)) == self.numbuckets:
                     self.create_initial_histogram(N, set(sample), l)
-                    #self.print_buckets()
                     self.plot_histogram(attr)
                 elif len(set(sample)) > self.numbuckets:
                     self.add_datapoint(float(row[attr_index]), N, sample, attr, l)
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        #self.print_buckets()
                         self.plot_histogram(attr)
 
     def create_initial_histogram(self, N, sample, l):
+        """Creates the initial histogram boundaries from the first n distinct values and sets the threshold along with l (lambda)."""
         sample = list(sample)
         sorted_sample = sorted(sample, key=float)
         for i in range(0, self.numbuckets):
@@ -67,6 +78,7 @@ class Equidepth_Histogram(object):
     # since the pseudocode doesn't mention what to do about values that fall outside of buckets, I extend those bucket
     # boundaries to include values that are not included in the boundary range 
     def add_datapoint(self, value, N, sample, attr, l):
+        """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
@@ -93,7 +105,6 @@ class Equidepth_Histogram(object):
                 self.computehistogram(sample, N)
                 self.threshold = (2 + l) * (N / self.numbuckets)
         print "RESTRUCTURING number read in: " + str(N)
-        #self.print_buckets()
         self.plot_histogram(attr)
 
     def computehistogram(self, sample, N):
@@ -108,6 +119,7 @@ class Equidepth_Histogram(object):
             self.buckets[i]['frequency'] = N / self.numbuckets
 
     def mergebuckets(self, bucket1, bucket2):
+        """Merging two buckets into one bucket in the list of buckets."""
         mergedbucket = {
             'low': bucket1['low'],
             'high': bucket2['high'],
@@ -125,6 +137,7 @@ class Equidepth_Histogram(object):
         self.buckets = buckets
 
     def splitbucket(self, bucket):
+        """Splits a bucket in the list of buckets of the histogram."""
         bucket1 = {
             'low': bucket['low'],
             'high': bucket['size'] / 2 + bucket['low'],
@@ -147,6 +160,7 @@ class Equidepth_Histogram(object):
         self.buckets = buckets
 
     def plot_histogram(self, attr):
+        """Plots the histogram."""
         bins = []
         frequency = []
         for bucket in self.buckets:
@@ -171,6 +185,7 @@ class Equidepth_Histogram(object):
         plt.show()
 
     def print_buckets(self):
+        """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        
         for i in range(0, self.numbuckets):
             print "### bucket " + str(i) + " ###"
             for k, v in self.buckets[i].iteritems():

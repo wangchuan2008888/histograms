@@ -8,6 +8,7 @@ from __future__ import division
 import numpy as np
 import pandas as pd
 import math
+import csv
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 from heapq import nlargest
@@ -16,24 +17,30 @@ from operator import itemgetter
 class SF_Histogram(object):
 
     # initializes the class with a default number of 10 buckets
-    def __init__(self, frame, min, max):
-        self.frame = frame
-        self.maxlength = len(self.frame.index)
-        self.numbuckets = 10
-        buckets = []
-        for i in range(0, self.numbuckets):
-            buckets.append({
-                'low': 0,
-                'high': 0, 
-                'frequency': 0,
-                'size': 0,
-                'merge': False
-            })
-        self.buckets = buckets
-        self.min = min
-        self.max = max
+    # def __init__(self, frame, min, max):
+    #     self.frame = frame
+    #     self.maxlength = len(self.frame.index)
+    #     self.numbuckets = 10
+    #     buckets = []
+    #     for i in range(0, self.numbuckets):
+    #         buckets.append({
+    #             'low': 0,
+    #             'high': 0, 
+    #             'frequency': 0,
+    #             'size': 0,
+    #             'merge': False
+    #         })
+    #     self.buckets = buckets
+    #     self.min = float("inf")
+    #     self.max = float("-inf")
 
     def __init__(self, file, numbuckets):
+
+        """
+        Initiates an instance of the class with a csv file containing the dataset and the number 
+        of buckets the histogram should have. 
+        """
+        
         self.file = file
         self.numbuckets = numbuckets
         buckets = []
@@ -42,14 +49,17 @@ class SF_Histogram(object):
                 'low': 0,
                 'high': 0,
                 'size': 0,
-                'frequency': 0
+                'frequency': 0,
+                'merge': False
             })
+        self.min = float("inf")
+        self.max = float("-inf")
         self.buckets = buckets
 
     # creates the initial histogram from the sample on the atttribute, using only the sample's min and max
     # since the intial self-tuning histogram does not look at the data and assumes a frequency of maximum 
     # observations / # of buckets for each bucket
-    def create_initial_sf_histogram(self, attr):
+    def create_initial_histogram(self, s):
         range = math.ceil(self.max - self.min) # want to make sure we capture the maximum element in the last bucket
         size = math.ceil(range / self.numbuckets)
         low = self.min
@@ -57,14 +67,103 @@ class SF_Histogram(object):
         for bucket in self.buckets:
             bucket['low'] = low
             bucket['high'] = high
-            bucket['frequency'] = round(self.maxlength / self.numbuckets)
+            bucket['frequency'] = round(s / self.numbuckets)
             bucket['size'] = size
             low = high
             high += size
 
+    def create_histogram(self, attr, alpha, m, s, batchsize):
+        """l is a tunable parameter (> -1) which influences the upper thresholder of bucket count for all buckets. The appropriate bucket counter is 
+        incremented for every record read in. If a bucket counter reaches threshold, the bucket boundaries are recalculated and the threshold is updated."""
+        N = 0
+        sample = []
+        with open(self.file) as f:
+            reader = csv.reader(f)
+            header = reader.next()
+            for i in range(0, len(header)):
+                header[i] = unicode(header[i], 'utf-8-sig')
+            attr_index = header.index(attr)
+            for row in reader:
+                sample.append(float(row[attr_index]))
+                if float(row[attr_index]) < self.min:
+                    self.min = float(row[attr_index])
+                if float(row[attr_index]) > self.max:
+                    self.max = float(row[attr_index])
+                N += 1
+                if len(set(sample)) == self.numbuckets:
+                    self.create_initial_histogram(len(set(sample)))
+                    self.plot_histogram(attr)
+                elif len(set(sample)) > self.numbuckets:
+                    #print "number read in: " + str(N)
+                    self.add_datapoint(float(row[attr_index]), sample, alpha)
+                    if N % batchsize == 0:
+                        print "number read in: " + str(N)
+                        self.print_buckets()
+                        print "BEFORE"
+                        self.restructureHist(m, s, len(set(sample)))
+                        self.print_buckets()
+                        self.plot_histogram(attr)
+
+    def sample_on_range(self, sample, rangelow, rangehigh):
+        sample = sorted(sample, key=float)
+        #print rangelow
+        #print rangehigh
+        #print sample
+        s = []
+        for i in range(0, len(sample)):
+            #print i
+            if sample[i] >= rangelow and sample[i] < rangehigh:
+                sample.append(sample[i])
+            if sample[i] >= rangehigh:
+                break
+        return s
+
+    def add_datapoint(self, value, sample, alpha):
+        """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
+        if value < self.buckets[0]['low']:
+            self.buckets[0]['low'] = value
+            self.buckets[0]['frequency'] += 1
+        elif value > self.buckets[self.numbuckets - 1]['high']:
+            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['frequency'] += 1
+        else:
+            for i in range(0, self.numbuckets):
+                if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
+                    self.buckets[i]['frequency'] += 1
+
+
+    # def add_datapoint(self, value, sample, alpha):
+    #     """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
+    #     if value < self.buckets[0]['low']:
+    #         self.buckets[0]['low'] = value
+    #         #self.buckets[0]['frequency'] += 1
+    #         high = self.buckets[0]['high']
+    #         self.buckets[0]['size'] = high - value
+    #         s = self.sample_on_range(sample, rangelow=value, rangehigh=high)
+    #         size = len(s)
+    #         self.updateFreq(value, high, size, alpha)
+    #     elif value > self.buckets[self.numbuckets - 1]['high']:
+    #         self.buckets[self.numbuckets - 1]['high'] = value
+    #         #self.buckets[self.numbuckets - 1]['frequency'] += 1
+    #         low = self.buckets[self.numbuckets - 1]['low']
+    #         self.buckets[self.numbuckets - 1]['size'] = value - low
+    #         s = self.sample_on_range(sample, rangelow=low, rangehigh=value)
+    #         size = len(s)
+    #         self.updateFreq(low, value, size, alpha)
+    #     else:
+    #         for i in range(0, self.numbuckets):
+    #             if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
+    #                 #self.buckets[i]['frequency'] += 1
+    #                 low = self.buckets[i]['low']
+    #                 high = self.buckets[i]['high']
+    #                 s = self.sample_on_range(sample, rangelow=low, rangehigh=high)
+    #                 size = len(s)
+    #                 self.updateFreq(low, high, size, alpha)
+
     # plots a histogram via matplot.pyplot. this is the intial histogram of the self-tuning histogram which is both equi-depth
     # and equi-width (because the intial histogram does not look at the data frequencies)
-    def plot_sf_histogram(self, attr):
+    def plot_histogram(self, attr):
+        """Plots the histogram."""
         bins = []
         frequency = []
         for bucket in self.buckets:
@@ -77,21 +176,17 @@ class SF_Histogram(object):
 
         widths = bins[1:] - bins[:-1]
 
-        plt.bar(bins[:-1], frequency, width=widths)
+        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.min, self.max + widths[0]])
+        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
         plt.show()
 
-        # add a 'best fit' line
-        # y = mlab.normpdf( bins, mu, sigma)
-        #l = plt.plot(bins)
-        #plt.axis([40, 160, 0, 0.03])
 
     '''
     UpdateFreq
@@ -125,7 +220,7 @@ class SF_Histogram(object):
 
     # all seems okay, TESTING IS REQUIRED   
 
-    def restructureHist(self, m, s):
+    def restructureHist(self, m, s, size):
         freebuckets = 0
         bucketruns = []
         for b in self.buckets:
@@ -142,8 +237,11 @@ class SF_Histogram(object):
                             localmax = diff
                             tuple = [localmax, bucketruns[i], bucketruns[i + 1]]
                 maxfreq.append(tuple)
-            mintuple = min(maxfreq, key=itemgetter(0))
-            if mintuple[0] <= m * self.maxlength:
+            if len(maxfreq) > 0:
+                mintuple = min(maxfreq, key=itemgetter(0))
+            else:
+                break
+            if mintuple[0] <= m * size:
                 bucketruns = self.mergeruns(bucketruns, mintuple[1], mintuple[2])
                 freebuckets += 1
             else:
@@ -280,4 +378,12 @@ class SF_Histogram(object):
                 buckets.append(bucket)
         self.buckets = buckets
         self.numbuckets = len(buckets)
+
+    def print_buckets(self):
+        """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        
+        for i in range(0, self.numbuckets):
+            print "### bucket " + str(i) + " ###"
+            for k, v in self.buckets[i].iteritems():
+                print k, v
+            print "### END ###"
             
