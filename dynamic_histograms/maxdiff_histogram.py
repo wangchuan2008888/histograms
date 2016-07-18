@@ -12,7 +12,9 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
 from collections import Counter
+from collections import defaultdict
 import operator
+import itertools
 
 class MaxDiff_Histogram(object):
 
@@ -43,7 +45,6 @@ class MaxDiff_Histogram(object):
                 N += 1
                 if len(set(sample)) == self.numbuckets * 2:
                     self.compute_histogram(list(set(sample)))
-                    break
                     self.print_buckets()
                     self.plot_histogram(attr)
                 elif len(set(sample)) > self.numbuckets:
@@ -55,11 +56,10 @@ class MaxDiff_Histogram(object):
                         self.plot_histogram(attr)
 
     def compute_histogram(self, sample):
-        sample = list(sample)
         sorted_sample = sorted(sample, key=float)
         c = Counter(sorted_sample)
         a = [-1] * (self.numbuckets - 1)
-        bucketarea = {}
+        bucketarea = defaultdict(list)
         for i in range(0, len(sorted_sample) - 2):
             freq = c[sorted_sample[i]]
             spread = sorted_sample[i + 1] - sorted_sample[i]
@@ -67,42 +67,27 @@ class MaxDiff_Histogram(object):
             area1 = (sorted_sample[i + 2] - sorted_sample[i + 1]) * c[sorted_sample[i + 1]]
             delta = abs(area1 - area)
             if self.checkDifference(delta, a):
-                #print "adding " + str(delta)
-                a = self.addArea(delta, a, bucketarea, sorted_sample[i])
-                #a = stats[0]
-                #bucketarea = stats[1]
-        print a
+                stats = self.addArea(delta, a, bucketarea, i)
+                a = stats[0]
+                bucketarea = stats[1]
         self.arrangeBuckets(c, a, bucketarea, sorted_sample)
 
-    def addArea(self, area, a, bucketarea, value):
-        #aprime = []
+    def addArea(self, area, a, bucketarea, index):
         length = len(a)
         for i in range(0, len(a)):
-            if area == a[i]:
-                if bucketarea.has_key(area):
-                    bucketarea[area].append(value)
-                else:
-                    bucketarea[area] = [value]
-                #aprime.append(area)
-                #aprime.append(a[i])
+            if area >= a[i]:
+                bucketarea[area].append(index)
                 a[i:i] = [area]
                 area = -2
-            elif area > a[i]:
-                bucketarea[area] = [value]
-                #aprime.append(area)
-                a[i:i] = [area]
-                area = -2
-                if bucketarea.has_key(a[i]):
-                    del bucketarea[a[i]]
-            #else:  
-                #aprime.append(a[i])
-            #if len(aprime) == len(a):
-            #    break
-        #return aprime, bucketarea
-        #a = sorted(aprime, key=float)
-        # = sorted(aprime, key=float)
-        a = sorted(a, reverse=True)[0:length]
-        return a
+        val = sorted(a, reverse=True)[length:][0]
+        final = sorted(a, reverse=True)[0:length]
+        if bucketarea.has_key(val):
+            if val not in final:
+                del bucketarea[val]
+            else:
+                l = len(bucketarea[val])
+                bucketarea[val] = bucketarea[val][:l - 1]
+        return final, bucketarea
 
     def checkDifference(self, area, a):
         for i in range(0, len(a)):
@@ -112,28 +97,42 @@ class MaxDiff_Histogram(object):
 
     def arrangeBuckets(self, counter, areas, bucketarea, sample):
         boundaries = sorted(bucketarea.items(), key=operator.itemgetter(1))
-        print bucketarea.items()
-        print boundaries
-        #for i in range(0, len(boundaries)):
-        #    self.buckets[i]['low'] = boundaries[i][]
+        low = sample[0]
+        values = bucketarea.values()
+        values = list(itertools.chain(*values))
+        values = sorted(values)
+        for i in range(0, len(values)):
+            self.buckets[i]['low'] = low
+            highindex = values[i]
+            self.buckets[i]['high'] = sample[highindex]
+            self.buckets[i]['size'] = sample[highindex] - low
+            self.buckets[i]['frequency'] = counter[low]
+            low = self.buckets[i]['high']
+        self.buckets[self.numbuckets - 1]['low'] = self.buckets[self.numbuckets - 2]['high']
+        self.buckets[self.numbuckets - 1]['frequency'] = counter[self.buckets[self.numbuckets - 1]['low']]
+        self.buckets[i]['high'] = sample[len(sample) - 1] + 1
+        self.buckets[i]['size'] = sample[len(sample) - 1] + 1 - self.buckets[self.numbuckets - 1]['low']
+        index = 0
+        bucket = self.buckets[index]
+        for i in range(0, len(sample)):
+            if sample[i] >= bucket['high']:
+                index += 1
+                bucket = self.buckets[index]
+            if sample[i] >= bucket['low'] and sample[i] < bucket['high']:
+                bucket['frequency'] += counter[sample[i]]
+
 
     def add_datapoint(self, value):
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
-            #if self.buckets[0]['frequency'] >= self.threshold:
-                #self.thresholdReached(self.buckets[0], N, sample, attr, l)
         elif value > self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value
             self.buckets[self.numbuckets - 1]['frequency'] += 1
-            #if self.buckets[self.numbuckets - 1]['frequency'] >= self.threshold:
-                #self.thresholdReached(self.buckets[self.numbuckets - 1], N, sample, attr, l)
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
-                    #if self.buckets[i]['frequency'] >= self.threshold:
-                        #self.thresholdReached(self.buckets[i], N, set(sample), attr, l)
 
     def plot_histogram(self, attr):
         bins = []
