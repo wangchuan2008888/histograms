@@ -1,8 +1,8 @@
-'''
-Given samples, it constructs the appropriate histogram from the sample
+"""
+Given samples, it constructs a spline histogram from the sample
 
-Steffani Gomez(smg1)
-'''
+Steffani Gomez
+"""
 
 from __future__ import division
 import numpy as np
@@ -30,6 +30,7 @@ class PriorityQueueSet(object):
 
 
     from: 
+    http://stackoverflow.com/questions/407734/a-generic-priority-queue-for-python
     """
 
     def __init__(self, items=[]):
@@ -68,6 +69,13 @@ class PriorityQueueSet(object):
             #heapq.heapify(self.heap)
 
 class Spline_Histogram(object):
+
+    """
+    This creates an instance of a histogram for a dataset. It reads the dataset
+    in batches and computes the approximate histogram, plotting the histogram with 
+    every batch. The histogram approximates the frequency in the buckets with a 
+    linear spline function and chooses the buckets based on 
+    """
 
     def __init__(self, file, numbuckets):
         self.file = file
@@ -128,11 +136,8 @@ class Spline_Histogram(object):
         sample = sorted(sample, key=float)
         buckets = []
         c = Counter(sample)
-        # we have an index problem
         print n
         for i in range(0, n - 1):
-            #print 2 * i
-            #print 2 * (i + 1)
             if 2 * (i + 1) == n:
                 sample.append(sample[n - 1] + 1)
             elif 2 * (i + 1) > n: # to fix the indexing issue
@@ -158,7 +163,6 @@ class Spline_Histogram(object):
                 b[error] = [i, i + 1]
         while len(buckets) > self.numbuckets:
             minerror = q.pop_smallest()
-            #del b[minerror]
             if b[minerror][0] > 0:
                 leftbucket = buckets[b[minerror][0] - 1]
                 lefterror = self.spline_error(leftbucket['low'], buckets[b[minerror][0]]['high'], sample, leftbucket, buckets[b[minerror][0]])
@@ -198,7 +202,6 @@ class Spline_Histogram(object):
             'vf': bucket1['vf'] + bucket2['vf'],
             'v': [bucket1['v'][0] + bucket2['v'][0], np.average([bucket1['v'][1], bucket2['v'][1]]), np.average([bucket1['v'][2], bucket2['v'][2]])]
         }
-        #buckets = []
         b = []
         for i in range(0, len(buckets)):
             if buckets[i]['low'] == bucket1['low'] and buckets[i]['high'] == bucket1['high']:
@@ -207,7 +210,6 @@ class Spline_Histogram(object):
                 pass
             else:
                 b.append(buckets[i])
-        #self.buckets = buckets
         return b
 
 

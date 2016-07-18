@@ -33,6 +33,19 @@ class SF_Histogram(object):
         self.min = min
         self.max = max
 
+    def __init__(self, file, numbuckets):
+        self.file = file
+        self.numbuckets = numbuckets
+        buckets = []
+        for i in range(0, numbuckets):
+            buckets.append({
+                'low': 0,
+                'high': 0,
+                'size': 0,
+                'frequency': 0
+            })
+        self.buckets = buckets
+
     # creates the initial histogram from the sample on the atttribute, using only the sample's min and max
     # since the intial self-tuning histogram does not look at the data and assumes a frequency of maximum 
     # observations / # of buckets for each bucket
