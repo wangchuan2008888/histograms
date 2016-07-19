@@ -1,8 +1,8 @@
-'''
-Given samples, it constructs the appropriate histogram from the sample
+"""
+It constructs a simple dynamic max-diff histogram rom the dataset given.
 
-Steffani Gomez(smg1)
-'''
+Steffani Gomez
+"""
 
 from __future__ import division
 import numpy as np
@@ -18,7 +18,18 @@ import itertools
 
 class MaxDiff_Histogram(object):
 
+    """
+    This class models an instance of a max-diff histogram histogram, which is a histogram that sets boundaries on the
+    numbuckets - 1 largest differences in area between the values.
+    """
+
     def __init__(self, file, numbuckets):
+
+        """
+        Initiates an instance of the class with a csv file containing the dataset and the number 
+        of buckets the histogram should have. 
+        """
+
         self.file = file
         self.numbuckets = numbuckets
         buckets = []
@@ -32,6 +43,8 @@ class MaxDiff_Histogram(object):
         self.buckets = buckets
 
     def create_histogram(self, attr, batchsize):
+        """Reads in records from the file, computing the initial histogram and after each batch by finding numbuckets - 1 
+        largest differences in area between each value in the sample and setting the boundaries in between these values."""
         N = 0
         sample = []
         with open(self.file) as f:
@@ -56,6 +69,8 @@ class MaxDiff_Histogram(object):
                         self.plot_histogram(attr)
 
     def compute_histogram(self, sample):
+        """Computes the histogram boundaries by finding the numbuckets - 1 largest differences in areas 
+        between values in the sample and then arranges the buckets to have the proper frequency."""
         sorted_sample = sorted(sample, key=float)
         c = Counter(sorted_sample)
         a = [-1] * (self.numbuckets - 1)
@@ -73,6 +88,8 @@ class MaxDiff_Histogram(object):
         self.arrangeBuckets(c, a, bucketarea, sorted_sample)
 
     def addArea(self, area, a, bucketarea, index):
+        """Adds the area to the list of areas (a) and the dictionary of areas (bucketarea) and the index 
+        of the value."""
         length = len(a)
         for i in range(0, len(a)):
             if area >= a[i]:
@@ -90,12 +107,15 @@ class MaxDiff_Histogram(object):
         return final, bucketarea
 
     def checkDifference(self, area, a):
+        """Checks whether the area is greater than any of the areas in the list (a)."""
         for i in range(0, len(a)):
             if area >= a[i]:
                 return True
         return False
 
     def arrangeBuckets(self, counter, areas, bucketarea, sample):
+        """Arranges the bucket in order by setting the boundaries in order and calculates the 
+        frequency for each bucket."""
         boundaries = sorted(bucketarea.items(), key=operator.itemgetter(1))
         low = sample[0]
         values = bucketarea.values()
@@ -123,11 +143,12 @@ class MaxDiff_Histogram(object):
 
 
     def add_datapoint(self, value):
+        """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
         elif value > self.buckets[self.numbuckets - 1]['high']:
-            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
         else:
             for i in range(0, self.numbuckets):
@@ -135,6 +156,7 @@ class MaxDiff_Histogram(object):
                     self.buckets[i]['frequency'] += 1
 
     def plot_histogram(self, attr):
+        """Plots the histogram."""
         bins = []
         frequency = []
         for bucket in self.buckets:
@@ -159,6 +181,7 @@ class MaxDiff_Histogram(object):
         plt.show()
 
     def print_buckets(self):
+        """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""
         for i in range(0, self.numbuckets):
             print "### bucket " + str(i) + " ###"
             for k, v in self.buckets[i].iteritems():

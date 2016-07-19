@@ -1,5 +1,5 @@
 """
-Given samples, it constructs a spline histogram from the sample
+It constructs a spline histogram from the dataset given.
 
 Steffani Gomez
 """
@@ -78,6 +78,12 @@ class Spline_Histogram(object):
     """
 
     def __init__(self, file, numbuckets):
+
+        """
+        Initiates an instance of the class with a csv file containing the dataset and the number 
+        of buckets the histogram should have. 
+        """
+
         self.file = file
         self.numbuckets = numbuckets
         buckets = []
@@ -95,6 +101,9 @@ class Spline_Histogram(object):
         self.buckets = buckets
     
     def create_histogram(self, attr, batchsize):
+        """Reads in records from the file, computing the initial histogram and after each batch by using a 
+        greedy merge algorithm that creates N / 2 buckets and continually merges buckets with the smallest 
+        error until there are numbuckets left."""
         N = 0
         sample = []
         with open(self.file) as f:
@@ -119,11 +128,12 @@ class Spline_Histogram(object):
                         self.plot_histogram(attr)
 
     def add_datapoint(self, value):
+        """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
         elif value > self.buckets[self.numbuckets - 1]['high']:
-            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
         else:
             for i in range(0, self.numbuckets):
@@ -132,6 +142,8 @@ class Spline_Histogram(object):
 
 
     def compute_histogram(self, sample):
+        """Computes the histogram using a greedy merge algorithm that creates N / 2 buckets and continually 
+        merges buckets with the smallest error until there are numbuckets left."""
         n = len(sample)
         sample = sorted(sample, key=float)
         buckets = []
@@ -192,6 +204,7 @@ class Spline_Histogram(object):
 
 
     def mergebuckets(self, buckets, bucket1, bucket2):
+        "This merges the two buckets (bucket1, bucket2) in buckets."""
         mergedbucket = {
             'low': bucket1['low'],
             'high': bucket2['high'],
@@ -214,6 +227,7 @@ class Spline_Histogram(object):
 
 
     def correlation(self, a, c, sample, bucket1, bucket2):
+        """Calculates the correlation between two buckets than span the range a-c."""
         sample = list(set(sample))
         numerator = 0
         denominator1 = 0
@@ -234,6 +248,7 @@ class Spline_Histogram(object):
         return numerator / (np.power(denominator1, 0.5) * np.power(denominator2, 0.5))
 
     def spline_error(self, a, c, sample, bucket1, bucket2):
+        """Calculates the spline error between two buckets that span the range a-c."""
         corr = self.correlation(a, c, sample, bucket1, bucket2)
         error = 1 - np.power(corr, 2)
         error2 = bucket1['ff'] + bucket2['ff']
@@ -243,6 +258,7 @@ class Spline_Histogram(object):
         return error * error2
 
     def plot_histogram(self, attr):
+        """Plots the histogram."""
         bins = []
         frequency = []
         for bucket in self.buckets:
@@ -267,6 +283,7 @@ class Spline_Histogram(object):
         plt.show()
 
     def print_buckets(self):
+        """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""
         for i in range(0, self.numbuckets):
             print "### bucket " + str(i) + " ###"
             for k, v in self.buckets[i].iteritems():

@@ -1,8 +1,8 @@
-'''
-Given samples, it constructs the appropriate histogram from the sample
+"""
+It constructs a dynamic compressed histogram from the sample given.
 
-Steffani Gomez(smg1)
-'''
+Steffani Gomez
+"""
 
 from __future__ import division
 import numpy as np
@@ -233,7 +233,7 @@ class DC_Histogram(object):
             if self.buckets[0]['regular'] == False and len(self.buckets[0]['unique']) > 1:
                 self.buckets[0]['regular'] = True
         elif value > self.buckets[self.numbuckets - 1]['high']:
-            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
             if value not in self.buckets[self.numbuckets - 1]['unique']:
                 self.buckets[self.numbuckets - 1]['unique'].append(value)

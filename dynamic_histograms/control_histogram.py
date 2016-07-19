@@ -1,8 +1,8 @@
-'''
-Given samples, it constructs the appropriate histogram from the sample
+"""
+It constructs an equi-width histogram from the dataset given.
 
-Steffani Gomez(smg1)
-'''
+Steffani Gomez
+"""
 
 from __future__ import division
 import numpy as np
@@ -86,7 +86,7 @@ class Control_Histogram(object):
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
         elif value > self.buckets[self.numbuckets - 1]['high']:
-            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
         else:
             for i in range(0, self.numbuckets):

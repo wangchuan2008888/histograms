@@ -1,8 +1,8 @@
-'''
-Given samples, it constructs the appropriate histogram from the sample
+"""
+It constructs a dynamic self-tuning histogram from the dataset given.
 
-Steffani Gomez(smg1)
-'''
+Steffani Gomez
+"""
 
 from __future__ import division
 import numpy as np
@@ -16,23 +16,11 @@ from operator import itemgetter
 
 class SF_Histogram(object):
 
-    # initializes the class with a default number of 10 buckets
-    # def __init__(self, frame, min, max):
-    #     self.frame = frame
-    #     self.maxlength = len(self.frame.index)
-    #     self.numbuckets = 10
-    #     buckets = []
-    #     for i in range(0, self.numbuckets):
-    #         buckets.append({
-    #             'low': 0,
-    #             'high': 0, 
-    #             'frequency': 0,
-    #             'size': 0,
-    #             'merge': False
-    #         })
-    #     self.buckets = buckets
-    #     self.min = float("inf")
-    #     self.max = float("-inf")
+    """
+    This class models an instance of a self-tuning histogram, which is a histogram that updates its 
+    frequencies with every insertion and restructures the histogram according to frequency variation 
+    between the histogram buckets.
+    """
 
     def __init__(self, file, numbuckets):
 
@@ -56,10 +44,12 @@ class SF_Histogram(object):
         self.max = float("-inf")
         self.buckets = buckets
 
-    # creates the initial histogram from the sample on the atttribute, using only the sample's min and max
-    # since the intial self-tuning histogram does not look at the data and assumes a frequency of maximum 
-    # observations / # of buckets for each bucket
+
     def create_initial_histogram(self, s):
+        """Creates the initial histogram from the sample on the atttribute, using only the sample's min and max
+        since the intial self-tuning histogram does not look at the data and assumes a frequency of maximum 
+        observations / # of buckets for each bucket
+        """
         range = math.ceil(self.max - self.min) # want to make sure we capture the maximum element in the last bucket
         size = math.ceil(range / self.numbuckets)
         low = self.min
@@ -73,8 +63,6 @@ class SF_Histogram(object):
             high += size
 
     def create_histogram(self, attr, alpha, m, s, batchsize):
-        """l is a tunable parameter (> -1) which influences the upper thresholder of bucket count for all buckets. The appropriate bucket counter is 
-        incremented for every record read in. If a bucket counter reaches threshold, the bucket boundaries are recalculated and the threshold is updated."""
         N = 0
         sample = []
         with open(self.file) as f:
@@ -94,7 +82,6 @@ class SF_Histogram(object):
                     self.create_initial_histogram(len(set(sample)))
                     self.plot_histogram(attr)
                 elif len(set(sample)) > self.numbuckets:
-                    #print "number read in: " + str(N)
                     self.add_datapoint(float(row[attr_index]), sample, alpha)
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
@@ -105,13 +92,10 @@ class SF_Histogram(object):
                         self.plot_histogram(attr)
 
     def sample_on_range(self, sample, rangelow, rangehigh):
+        """Returns the sample over the range rangelow-rangehigh."""
         sample = sorted(sample, key=float)
-        #print rangelow
-        #print rangehigh
-        #print sample
         s = []
         for i in range(0, len(sample)):
-            #print i
             if sample[i] >= rangelow and sample[i] < rangehigh:
                 sample.append(sample[i])
             if sample[i] >= rangehigh:
@@ -124,7 +108,7 @@ class SF_Histogram(object):
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
         elif value > self.buckets[self.numbuckets - 1]['high']:
-            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
         else:
             for i in range(0, self.numbuckets):
@@ -188,16 +172,14 @@ class SF_Histogram(object):
         plt.show()
 
 
-    '''
-    UpdateFreq
-    Inputs: h, rangelow, rangehigh, act
-    Outputs: h with updated bucket frequencies
-    '''
     # alpha is a dampening factor in the range 0.5 to 1 to make sure that bucket frequencies are not
     # modified too much in response to errors, as this may lead to oversensitive
     # or unstable histograms.
 
     def updateFreq(self, low, high, act, alpha):
+        """Updates the frequency for all the buckets in between the range low-high, using alpha as a 
+        dampening factor in the range 0.5 to 1 to make sure that bucket frequences are not modified 
+        too much in response to errors."""
         b = []
         for i in range(0, self.numbuckets):
             if (self.buckets[i]['low'] < low and self.buckets[i]['high'] > low):
@@ -214,13 +196,10 @@ class SF_Histogram(object):
             frac = (min(high, self.buckets[i]['high']) - max(low, self.buckets[i]['low']) + 1) / (self.buckets[i]['size'] + 1)
             self.buckets[i]['frequency'] = max(self.buckets[i]['frequency'] + (alpha * esterr * frac * (self.buckets[i]['frequency'] / est)), 0)
     
-    # the algorithm for restructing histograms 
-    # m is a parameter that we call the merge threshold. In most of the experiments, m <= 1% was a suitable choice
-    # s is a parameter that we call the split threshold. In the experiments, we used s=10% 
-
-    # all seems okay, TESTING IS REQUIRED   
-
     def restructureHist(self, m, s, size):
+        """the algorithm for restructing histograms. m is a parameter that we call the merge threshold. 
+        In most of the experiments, m <= 1% was a suitable choice. 
+        s is a parameter that we call the split threshold. In the experiments, we used s=10%."""
         freebuckets = 0
         bucketruns = []
         for b in self.buckets:
@@ -271,11 +250,10 @@ class SF_Histogram(object):
         
         self.numbuckets = len(self.buckets)
 
-    # splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram
-    # numfree - # of free buckets
-    # totalfreq - total frequency of the buckets that need to be split
-
     def splitbucket(self, b, numfree, totalfreq):
+        """Splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram.
+        numfree - # of free buckets
+        totalfreq - total frequency of the buckets that need to be split."""
         numsplit = round(((b['frequency'] / totalfreq) * numfree) + 1)
         size = b['size'] / numsplit
         newbuckets = []
@@ -302,10 +280,8 @@ class SF_Histogram(object):
         self.buckets = newbuckets
         self.numbuckets = len(newbuckets)
 
-
-    # buckets, b1, and b2 are all lists of buckets
-
     def mergeruns(self, buckets, b1, b2):
+        """Sets the buckets in b1 and b2 to be merged and merges the lists into one list in buckets."""
         for b in b1:
             b['merge'] = True
         for b in b2:
@@ -324,10 +300,9 @@ class SF_Histogram(object):
         assert new < prev
         return newbuckets
 
-    # checks if two lists of buckets are the same
-    # assuming that the lsits of buckets are in order if they are the same, i.e. b1[0] = b2[0] and so forth 
-    # if they are the same
     def checkBucketLists(self, b1, b2):
+        """Checks if two lists of buckets are the same, assuming that the lists of buckets are in order if 
+        they are the same, i.e. b1[0] = b2[0] and so forth if they are the same."""
         b1length = len(b1)
         b2length = len(b2)
         if b1length != b2length:
@@ -339,16 +314,16 @@ class SF_Histogram(object):
         return True
 
 
-    # this method checks if two buckets (which are dicts) are the same
     def equalBuckets(self, b1, b2):
+        """Checks if two buckets (which are dicts) are the same."""
         if b1['low'] != b2['low'] or b1['high'] != b2['high'] or b1['frequency'] != b2['frequency'] or b1['merge'] != b2['merge'] or b1['size'] != b2['size']:
             return False
         else:
             return True
 
-    # merging all the buckets in bucketrun into one bucket and inserting that bucket where all the previous
-    # unmerged buckets were
     def mergebuckets(self, bucketrun):
+        """Merges all the buckets in bucketrun into one bucket and inserting that bucket where all the previous
+        unmerged buckets were."""
         buckets = []
         totalfreq = 0
         low = bucketrun[0]['low']

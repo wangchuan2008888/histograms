@@ -1,8 +1,8 @@
-'''
-Given samples, it constructs the appropriate histogram from the sample
+"""
+It constructs a dynamic v-optimal histogram from the dataset given.
 
-Steffani Gomez(smg1)
-'''
+Steffani Gomez
+"""
 
 from __future__ import division
 import numpy as np
@@ -12,9 +12,6 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
 from collections import Counter
-
-
-#### HAVE TO DEAL WITH THE LAST BUCKET INCLUDING THE LAST VALUE BUCKET BOUNDARY SHOULD BE LAST VALUE + 1
 
 class DVO_Histogram(object):
 
@@ -104,7 +101,6 @@ class DVO_Histogram(object):
                         print "number read in: " + str(N)
                         self.plot_dvo_histogram(attr)
 
-    # WHAT ABOUT IF THE VALUE IS LESS THAN THE LEFTMOST BUCKET BOUNDARY????
     def add_datapoint(self, value):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
         if value > self.buckets[self.numbuckets - 1]['high']:
@@ -114,6 +110,16 @@ class DVO_Histogram(object):
                 'leftcounter': 1,
                 'rightcounter': 1,
                 'size': value + 1 - self.buckets[self.numbuckets - 1]['high']
+            } # borrow one bucket
+            index = self.findBestToMerge()[1]
+            self.mergebuckets(self.buckets[index], self.buckets[index + 1])
+        elif value < self.buckets[0]['low']:
+            bucket = {
+                'low': value,
+                'high': self.buckets[0]['low'],
+                'leftcounter': 1,
+                'rightcounter': 1,
+                'size': self.buckets[0]['low'] - value
             } # borrow one bucket
             index = self.findBestToMerge()[1]
             self.mergebuckets(self.buckets[index], self.buckets[index + 1])

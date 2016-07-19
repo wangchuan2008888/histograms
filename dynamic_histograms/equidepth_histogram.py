@@ -1,8 +1,8 @@
-'''
-Given samples, it constructs the appropriate histogram from the sample
+"""
+It constructs an equi-depth histogram from the dataset given.
 
-Steffani Gomez(smg1)
-'''
+Steffani Gomez
+"""
 
 from __future__ import division
 import numpy as np
@@ -85,7 +85,7 @@ class Equidepth_Histogram(object):
             if self.buckets[0]['frequency'] >= self.threshold:
                 self.thresholdReached(self.buckets[0], N, sample, attr, l)
         elif value > self.buckets[self.numbuckets - 1]['high']:
-            self.buckets[self.numbuckets - 1]['high'] = value
+            self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
             if self.buckets[self.numbuckets - 1]['frequency'] >= self.threshold:
                 self.thresholdReached(self.buckets[self.numbuckets - 1], N, sample, attr, l)
