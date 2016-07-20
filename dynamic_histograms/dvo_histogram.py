@@ -71,9 +71,9 @@ class DVO_Histogram(object):
         """Reads in data from the file, creating a new bucket if the value is beyond it, choosing the best bucket to merge
         and merging those. Otherise it increments the appropriate bucket count and if the error of splitting a bucket is greater
         than the error of splitting it and merging it, then the best bucket is split and the best buckets are merged."""
-         N = 0
-         sample = []
-         with open(self.file) as f:
+        N = 0
+        sample = []
+        with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
             for i in range(0, len(header)):

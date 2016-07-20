@@ -58,14 +58,14 @@ class MaxDiff_Histogram(object):
                 N += 1
                 if len(set(sample)) == self.numbuckets * 2:
                     self.compute_histogram(list(set(sample)))
-                    self.print_buckets()
+                    #self.print_buckets()
                     self.plot_histogram(attr)
                 elif len(set(sample)) > self.numbuckets:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
                         self.compute_histogram(list(set(sample)))
-                        self.print_buckets()
+                        #self.print_buckets()
                         self.plot_histogram(attr)
 
     def compute_histogram(self, sample):

@@ -85,10 +85,10 @@ class SF_Histogram(object):
                     self.add_datapoint(float(row[attr_index]), sample, alpha)
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.print_buckets()
-                        print "BEFORE"
+                        #self.print_buckets()
+                        #print "BEFORE"
                         self.restructureHist(m, s, len(set(sample)))
-                        self.print_buckets()
+                        #self.print_buckets()
                         self.plot_histogram(attr)
 
     def sample_on_range(self, sample, rangelow, rangehigh):

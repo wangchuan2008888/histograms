@@ -37,7 +37,7 @@ class Control_Histogram(object):
                 'size': 0,
                 'frequency': 0
             })
-        self.buckets = bucketsd
+        self.buckets = buckets
 
     def create_histogram(self, attr, batchsize):
         """Reads through the file and creates the histogram, adding in data points as they are being read."""
@@ -117,6 +117,7 @@ class Control_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
         plt.show()
+        #plt.savefig()
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""

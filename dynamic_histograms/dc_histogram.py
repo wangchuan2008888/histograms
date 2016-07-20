@@ -46,9 +46,9 @@ class DC_Histogram(object):
         """Reads in data from the file, extending the buckets of the histogram is the values are beyond 
         it, and checks to see if the probability that the counts in the equi-depth buckets are not uniformly 
         distributed is statistically significant (less than alpha) and if so, redistributes the regular buckets."""
-         N = 0
-         sample = []
-         with open(self.file) as f:
+        N = 0
+        sample = []
+        with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
             for i in range(0, len(header)):
@@ -80,7 +80,7 @@ class DC_Histogram(object):
                     self.add_datapoint(float(row[attr_index]))
                     chitest = self.chisquaretest(N)
                     if chitest[1] < alpha:
-                        print chitest
+                        #print chitest
                         print "number of records read: " + str(N)
                         self.plot_dc_histogram(attr)
                         for i in range(0, self.numbuckets):
@@ -105,7 +105,7 @@ class DC_Histogram(object):
                 leftoverunique = list(set(leftoverunique) | set(self.buckets[i]['unique']))
         leftoverunique = sorted(leftoverunique, key=float)
         equalfreq = N / beta
-        print N, beta
+        #print N, beta
         leftover = 0
         low = self.buckets[0]['low']
         sorted_sample = sorted(sample, key=float)
