@@ -8,7 +8,7 @@ import dynamic_histograms.spline_histogram
 
 print "### CONTROL HISTOGRAM ###"
 control = dynamic_histograms.control_histogram.Control_Histogram('dynamic_histograms/data/distributions.csv', 500)
-control.create_histogram('chi', batchsize=5000)
+control.create_histogram('norm', batchsize=5000)
 
 print "### DYNAMIC COMPRESSED HISTOGRAM ###"
 dc = dynamic_histograms.dc_histogram.DC_Histogram('dynamic_histograms/data/distributions.csv', 500)
@@ -23,7 +23,8 @@ depth = dynamic_histograms.equidepth_histogram.Equidepth_Histogram('dynamic_hist
 depth.create_histogram('norm', l=0, batchsize=5000)
 
 print "### MAX-DIFF HISTOGRAM ###"
-maxdiff = dynamic_histograms.maxdiff_histogram.MaxDiff_Histogram('dynamic_histograms/data/distributions.csv', 500)maxdiff.create_histogram('norm', batchsize=5000)
+maxdiff = dynamic_histograms.maxdiff_histogram.MaxDiff_Histogram('dynamic_histograms/data/distributions.csv', 500)
+maxdiff.create_histogram('norm', batchsize=5000)
 
 print "### SELF-TUNING HISTOGRAM ###"
 sf = dynamic_histograms.sf_histogram.SF_Histogram('dynamic_histograms/data/distributions.csv', 500)
