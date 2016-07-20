@@ -65,6 +65,8 @@ class PriorityQueueSet(object):
         """Removes ''item'' from the heap if it exists."""
         if self.has_item(item):
             del self.set[item]
+            self.heap = self.set.keys()
+            heapq.heapify(self.heap)
             #self.heap = list(set(self.set.keys()) - set(item))
             #heapq.heapify(self.heap)
 
@@ -124,7 +126,7 @@ class Spline_Histogram(object):
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
                         self.compute_histogram(list(set(sample)))
-                        self.print_buckets()
+                        #self.print_buckets()
                         self.plot_histogram(attr)
 
     def add_datapoint(self, value):
@@ -148,7 +150,7 @@ class Spline_Histogram(object):
         sample = sorted(sample, key=float)
         buckets = []
         c = Counter(sample)
-        print n
+        #print n
         for i in range(0, n - 1):
             if 2 * (i + 1) == n:
                 sample.append(sample[n - 1] + 1)
@@ -176,10 +178,14 @@ class Spline_Histogram(object):
         while len(buckets) > self.numbuckets:
             minerror = q.pop_smallest()
             if b[minerror][0] > 0:
-                leftbucket = buckets[b[minerror][0] - 1]
-                lefterror = self.spline_error(leftbucket['low'], buckets[b[minerror][0]]['high'], sample, leftbucket, buckets[b[minerror][0]])
-                q.remove(lefterror)
-                del b[lefterror]
+                if b[minerror][0] > len(buckets):
+                    print len(buckets), b[minerror][0]
+                else:
+                    leftbucket = buckets[b[minerror][0] - 1]
+                    lefterror = self.spline_error(leftbucket['low'], buckets[b[minerror][0]]['high'], sample, leftbucket, buckets[b[minerror][0]])
+                    q.remove(lefterror)
+                    if b.has_key(lefterror):
+                        del b[lefterror]
             if b[minerror][1] < len(buckets) - 1:
                 rightbucket = buckets[b[minerror][1] + 1]
                 righterror = self.spline_error(buckets[b[minerror][1]]['low'], rightbucket['high'], sample, buckets[b[minerror][1]], rightbucket)
@@ -189,7 +195,7 @@ class Spline_Histogram(object):
             left = b[minerror][0]
             right = b[minerror][1]
             buckets = self.mergebuckets(buckets, buckets[left], buckets[right])
-            print len(buckets)
+            #print len(buckets)
             del b[minerror]
             if left > 0:
                 error = self.spline_error(buckets[left - 1]['low'], buckets[left]['high'], sample, buckets[left - 1], buckets[left])
@@ -199,7 +205,7 @@ class Spline_Histogram(object):
                 error = self.spline_error(buckets[right]['low'], buckets[right + 1]['high'], sample, buckets[right], buckets[right + 1])
                 q.add(error)
                 b[error] = [right, right + 1]
-        print len(buckets)
+        #print len(buckets)
         self.buckets = buckets
 
 

@@ -233,22 +233,28 @@ class SF_Histogram(object):
             if b['merge'] == False:
                 unmergedbuckets.append(b)
         frequencies = [b['frequency'] for b in unmergedbuckets]
-        highfrequencies = nlargest(k, frequencies)
-        totalfreq = sum(highfrequencies)
-        highbuckets = []
-        for b in self.buckets:
-            if b['frequency'] in highfrequencies:
-                highbuckets.append(b)
+        if len(frequencies) > 0 and k > 0:
+            #f = pd.Series(frequencies)
+            print k, frequencies
+            highfrequencies = nlargest(k, frequencies, key=float)
+            #highfrequencies = f.nlargest(k).tolist()
+            totalfreq = sum(highfrequencies)
+            highbuckets = []
+            for b in self.buckets:
+                if b['frequency'] in highfrequencies:
+                    highbuckets.append(b)
+            #for b in highbuckets:
+                #self.splitbucket(b, freebuckets, totalfreq)
 
-        # merging each run that has more than one bucket in it, meaning those buckets should be merged together
-        for l in bucketruns:
-            if len(l) != 1:
-                self.mergebuckets(l)
+            # merging each run that has more than one bucket in it, meaning those buckets should be merged together
+            for l in bucketruns:
+                if len(l) != 1:
+                    self.mergebuckets(l)
 
-        for b in highbuckets:
-            self.splitbucket(b, freebuckets, totalfreq)
+            for b in highbuckets:
+                self.splitbucket(b, freebuckets, totalfreq)
         
-        self.numbuckets = len(self.buckets)
+            self.numbuckets = len(self.buckets)
 
     def splitbucket(self, b, numfree, totalfreq):
         """Splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram.
