@@ -8,6 +8,8 @@ from __future__ import division
 import numpy as np
 import pandas as pd
 import math
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
@@ -41,6 +43,7 @@ class DC_Histogram(object):
                 'regular': False
             })
         self.buckets = buckets
+        self.counter = 0
 
     def create_dc_histogram(self, attr, alpha, batchsize):
         """Reads in data from the file, extending the buckets of the histogram is the values are beyond 
@@ -281,8 +284,13 @@ class DC_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
-        plt.show()
+        plt.title(r'$\mathrm{Dynamic Compressed Histogram\ of\ ' + attr + '}$')
+        #plt.show()
+        path = "dc" + str(self.counter) + ".jpg"
+        #path = 'control' + str(self.counter)
+        #plt.savefig()
+        plt.savefig(path)
+        self.counter += 1
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""

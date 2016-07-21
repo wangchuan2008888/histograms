@@ -168,7 +168,7 @@ class SF_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
+        plt.title(r'$\mathrm{Self-Tuning Histogram\ of\ ' + attr + '}$')
         plt.show()
 
 

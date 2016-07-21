@@ -8,6 +8,8 @@ from __future__ import division
 import numpy as np
 import pandas as pd
 import math
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
@@ -38,6 +40,7 @@ class Control_Histogram(object):
                 'frequency': 0
             })
         self.buckets = buckets
+        self.counter = 0
 
     def create_histogram(self, attr, batchsize):
         """Reads through the file and creates the histogram, adding in data points as they are being read."""
@@ -115,9 +118,13 @@ class Control_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
-        plt.show()
+        plt.title(r'$\mathrm{Control Histogram\ of\ ' + attr + '}$')
+        #plt.show()
+        path = "control" + str(self.counter) + ".jpg"
+        #path = 'control' + str(self.counter)
         #plt.savefig()
+        plt.savefig(path)
+        self.counter += 1
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""

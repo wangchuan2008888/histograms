@@ -8,6 +8,8 @@ from __future__ import division
 import numpy as np
 import pandas as pd
 import math
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
@@ -39,6 +41,7 @@ class DVO_Histogram(object):
                 'rightcounter': 0
             })
         self.buckets = buckets
+        self.counter = 0
 
     def plot_dvo_histogram(self, attr):
         """Plots the histogram."""
@@ -64,8 +67,13 @@ class DVO_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
-        plt.show()
+        plt.title(r'$\mathrm{Dynamic V-Optimal Histogram\ of\ ' + attr + '}$')
+        #plt.show()
+        path = "dvo" + str(self.counter) + ".jpg"
+        #path = 'control' + str(self.counter)
+        #plt.savefig()
+        plt.savefig(path)
+        self.counter += 1
 
     def create_dvo_histogram(self, attr, batchsize):
         """Reads in data from the file, creating a new bucket if the value is beyond it, choosing the best bucket to merge

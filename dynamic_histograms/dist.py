@@ -4,7 +4,7 @@ from pylab import normal, concatenate
 import random
 
 #n = 1000000
-n = 25000
+n = 15000
 s = 1000
 
 norm = np.random.randn(n) * s

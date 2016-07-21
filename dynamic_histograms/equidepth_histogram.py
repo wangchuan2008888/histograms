@@ -8,9 +8,12 @@ from __future__ import division
 import numpy as np
 import pandas as pd
 import math
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
+import random
 
 class Equidepth_Histogram(object):
 
@@ -37,12 +40,16 @@ class Equidepth_Histogram(object):
             })
         self.buckets = buckets
         self.threshold = None
+        self.counter = 0
 
     def create_histogram(self, attr, l, batchsize):
         """l is a tunable parameter (> -1) which influences the upper thresholder of bucket count for all buckets. The appropriate bucket counter is 
         incremented for every record read in. If a bucket counter reaches threshold, the bucket boundaries are recalculated and the threshold is updated."""
         N = 0
         sample = []
+        skipcounter = 0
+        skip = 0
+        initial = False
         with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
@@ -50,20 +57,31 @@ class Equidepth_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                sample.append(float(row[attr_index]))
+                #sample.append(float(row[attr_index]))
                 N += 1
-                if len(set(sample)) == self.numbuckets:
-                    self.create_initial_histogram(N, set(sample), l)
+                if len(set(sample)) < self.numbuckets:
+                    sample.append(float(row[attr_index]))
+                elif len(set(sample)) == self.numbuckets and initial == False:
+                    self.create_initial_histogram(N, list(set(sample)), l)
                     self.plot_histogram(attr)
-                elif len(set(sample)) > self.numbuckets:
+                    skip = self.calculateSkip(len(sample))
+                    initial = True
+                    #sample.append(float(row[attr_index]))
+                    #sample = self.maintainBackingSample(float(row[attr_index]), sample, self.numbuckets)
+                elif initial == True:
+                #elif len(set(sample)) > self.numbuckets:
+                    skipcounter += 1
                     self.add_datapoint(float(row[attr_index]), N, sample, attr, l)
+                    if skipcounter == skip:
+                        sample = self.maintainBackingSample(float(row[attr_index]), sample, self.numbuckets)
+                        skip = self.calculateSkip(len(sample))
+                        skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
                         self.plot_histogram(attr)
 
     def create_initial_histogram(self, N, sample, l):
         """Creates the initial histogram boundaries from the first n distinct values and sets the threshold along with l (lambda)."""
-        sample = list(sample)
         sorted_sample = sorted(sample, key=float)
         for i in range(0, self.numbuckets):
             self.buckets[i]['low'] = sorted_sample[i]
@@ -96,27 +114,57 @@ class Equidepth_Histogram(object):
                     if self.buckets[i]['frequency'] >= self.threshold:
                         self.thresholdReached(self.buckets[i], N, set(sample), attr, l)
 
+    def calculateSkip(self, n):
+        v = random.uniform(0, 1)
+        l = 0
+        t = n + 1
+        num = 1
+        quot = num / t
+        while quot > v:
+            l += 1
+            t += 1
+            num += 1
+            quot = (quot * num) / t
+        return l
+
+    def maintainBackingSample(self, value, sample, upper):
+        if len(sample) + 1 <= upper:
+            sample.append(value)
+        else:
+            rand_index = random.randint(0,len(sample) - 1)
+            # not sure if this would be okay, depends on whether or not sample keeps duplicate values or not
+            #sample = list(set(sample) - set(sample[rand_index]))
+            #sample.append(value)
+            sample[rand_index] = value
+        return sample
+
+
     def thresholdReached(self, bucket, N, sample, attr, l):
         for i in range(0, self.numbuckets - 1):
             if self.buckets[i]['frequency'] + self.buckets[i + 1]['frequency'] < self.threshold:
+                bucket2 = self.buckets[i]
                 self.mergebuckets(self.buckets[i], self.buckets[i + 1])
-                self.splitbucket(bucket)
+                self.splitbucket(bucket, bucket2, sample)
             else:
                 self.computehistogram(sample, N)
                 self.threshold = (2 + l) * (N / self.numbuckets)
+            break
         print "RESTRUCTURING number read in: " + str(N)
         self.plot_histogram(attr)
 
     def computehistogram(self, sample, N):
         sample = list(sample)
         sample = sorted(sample, key=float)
+        frac = math.floor(len(sample) / self.numbuckets)
+        equal = N / self.numbuckets
         for i in range(0, self.numbuckets):
-            self.buckets[i]['low'] = sample[int(round(i * (len(sample) / self.numbuckets)))]
+            self.buckets[i]['low'] = sample[int(i * (frac))]
             if i == self.numbuckets - 1:
-                self.buckets[i]['high'] = sample[int(round(i * (len(sample) / self.numbuckets)))] + 1
+                self.buckets[i]['high'] = sample[int(i * (frac))] + 1
             else:
-                self.buckets[i]['high'] = sample[int(round(i + 1 * (len(sample) / self.numbuckets)))]
-            self.buckets[i]['frequency'] = N / self.numbuckets
+                self.buckets[i]['high'] = sample[int((i + 1) * (frac))]
+            #self.buckets[i]['frequency'] = N / self.numbuckets
+            self.buckets[i]['frequency'] = (i * equal) - ((i - 1) * equal) 
 
     def mergebuckets(self, bucket1, bucket2):
         """Merging two buckets into one bucket in the list of buckets."""
@@ -126,35 +174,47 @@ class Equidepth_Histogram(object):
             'size': bucket2['high'] - bucket1['low'],
             'frequency': bucket1['frequency'] + bucket2['frequency']
         }
+        #return mergedbucket
         buckets = []
         for i in range(0, self.numbuckets):
             if self.buckets[i]['low'] == bucket1['low'] and self.buckets[i]['high'] == bucket1['high']:
                 buckets.append(mergedbucket)
-            elif self.buckets[i]['low'] == bucket2['low'] and self.buckets[i]['high'] == bucket2['high']:
+            if self.buckets[i]['low'] == bucket2['low'] and self.buckets[i]['high'] == bucket2['high']:
                 pass
+                #self.buckets[i] = mergedbucket
             else:
                 buckets.append(self.buckets[i])
         self.buckets = buckets
 
-    def splitbucket(self, bucket):
+    def splitbucket(self, bucket, bucket2, sample):
         """Splits a bucket in the list of buckets of the histogram."""
-        bucket1 = {
-            'low': bucket['low'],
-            'high': bucket['size'] / 2 + bucket['low'],
-            'size': (bucket['size'] / 2 + bucket['low']) - bucket['low'],
-            'frequency': self.threshold / 2
-        }
-        bucket2 = {
-            'low': bucket1['high'], 
-            'high': bucket['high'],
-            'size': bucket['high'] - bucket1['high'],
-            'frequency': self.threshold / 2
-        }
+        s = []
+        for i in range(0, len(sample)):
+            if sample[i] >= bucket['low'] and sample[i] < bucket['high']:
+                s.append(sample[i])
+        m = np.median(s)
+        bucket2['high'] = m
+        bucket2['low'] = bucket['low']
+        bucket['low'] = m
+        bucket['frequency'] = self.threshold / 2
+        bucket2['frequency'] = self.threshold / 2
+        # bucket1 = {
+        #     'low': bucket['low'],
+        #     'high': bucket['size'] / 2 + bucket['low'],
+        #     'size': (bucket['size'] / 2 + bucket['low']) - bucket['low'],
+        #     'frequency': self.threshold / 2
+        # }
+        # bucket2 = {
+        #     'low': bucket1['high'], 
+        #     'high': bucket['high'],
+        #     'size': bucket['high'] - bucket1['high'],
+        #     'frequency': self.threshold / 2
+        # }
         buckets = []
         for i in range(0, self.numbuckets):
             if self.buckets[i]['low'] == bucket['low'] and self.buckets[i]['high'] == bucket['high']:
-                buckets.append(bucket1)
                 buckets.append(bucket2)
+                buckets.append(bucket)
             else:
                 buckets.append(self.buckets[i])
         self.buckets = buckets
@@ -181,8 +241,12 @@ class Equidepth_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Histogram\ of\ ' + attr + '}$')
-        plt.show()
+        plt.title(r'$\mathrm{Equi-Depth\ Histogram\ of\ ' + attr + '}$')
+        #plt.show()
+        path = "equidepth" + str(self.counter) + ".jpg"
+        #plt.savefig()
+        plt.savefig(path)
+        self.counter += 1
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        
