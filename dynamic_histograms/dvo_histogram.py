@@ -81,6 +81,7 @@ class DVO_Histogram(object):
         than the error of splitting it and merging it, then the best bucket is split and the best buckets are merged."""
         N = 0
         sample = []
+        initial = False
         with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
@@ -88,9 +89,10 @@ class DVO_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                sample.append(float(row[attr_index]))
                 N += 1
-                if len(set(sample)) == self.numbuckets:
+                if len(set(sample)) < self.numbuckets:
+                    sample.append(float(row[attr_index]))
+                elif len(set(sample)) == self.numbuckets and initial == False:
                     sorted_sample = sorted(sample, key=float)
                     buckets = sorted(list(set(sample)), key=float)
                     c = Counter(sorted_sample)
@@ -103,7 +105,10 @@ class DVO_Histogram(object):
                         self.buckets[i]['leftcounter'] = c[buckets[i]]
                         self.buckets[i]['rightcounter'] = c[buckets[i]]
                         self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
-                elif len(set(sample)) > self.numbuckets:
+                    self.plot_dvo_histogram(attr)
+                    initial = True
+                elif initial == True:
+                #elif len(set(sample)) > self.numbuckets:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
                         print "number read in: " + str(N)

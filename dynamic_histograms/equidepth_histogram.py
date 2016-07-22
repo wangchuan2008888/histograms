@@ -132,14 +132,13 @@ class Equidepth_Histogram(object):
             sample.append(value)
         else:
             rand_index = random.randint(0,len(sample) - 1)
-            # not sure if this would be okay, depends on whether or not sample keeps duplicate values or not
-            #sample = list(set(sample) - set(sample[rand_index]))
-            #sample.append(value)
             sample[rand_index] = value
         return sample
 
 
     def thresholdReached(self, bucket, N, sample, attr, l):
+        sample = list(sample)
+        self.print_buckets()
         for i in range(0, self.numbuckets - 1):
             if self.buckets[i]['frequency'] + self.buckets[i + 1]['frequency'] < self.threshold:
                 bucket2 = self.buckets[i]
@@ -150,6 +149,7 @@ class Equidepth_Histogram(object):
                 self.threshold = (2 + l) * (N / self.numbuckets)
             break
         print "RESTRUCTURING number read in: " + str(N)
+        self.print_buckets()
         self.plot_histogram(attr)
 
     def computehistogram(self, sample, N):
@@ -198,20 +198,8 @@ class Equidepth_Histogram(object):
         bucket['low'] = m
         bucket['frequency'] = self.threshold / 2
         bucket2['frequency'] = self.threshold / 2
-        # bucket1 = {
-        #     'low': bucket['low'],
-        #     'high': bucket['size'] / 2 + bucket['low'],
-        #     'size': (bucket['size'] / 2 + bucket['low']) - bucket['low'],
-        #     'frequency': self.threshold / 2
-        # }
-        # bucket2 = {
-        #     'low': bucket1['high'], 
-        #     'high': bucket['high'],
-        #     'size': bucket['high'] - bucket1['high'],
-        #     'frequency': self.threshold / 2
-        # }
         buckets = []
-        for i in range(0, self.numbuckets):
+        for i in range(0, len(self.buckets)):
             if self.buckets[i]['low'] == bucket['low'] and self.buckets[i]['high'] == bucket['high']:
                 buckets.append(bucket2)
                 buckets.append(bucket)

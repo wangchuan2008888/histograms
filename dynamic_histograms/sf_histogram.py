@@ -65,6 +65,7 @@ class SF_Histogram(object):
     def create_histogram(self, attr, alpha, m, s, batchsize):
         N = 0
         sample = []
+        initial = False
         with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
@@ -72,16 +73,19 @@ class SF_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                sample.append(float(row[attr_index]))
                 if float(row[attr_index]) < self.min:
                     self.min = float(row[attr_index])
                 if float(row[attr_index]) > self.max:
                     self.max = float(row[attr_index])
                 N += 1
-                if len(set(sample)) == self.numbuckets:
+                if len(set(sample)) < self.numbuckets:
+                    sample.append(float(row[attr_index]))
+                elif len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(len(set(sample)))
                     self.plot_histogram(attr)
-                elif len(set(sample)) > self.numbuckets:
+                    initial = True
+                elif initial == True:
+                #elif len(set(sample)) > self.numbuckets:
                     self.add_datapoint(float(row[attr_index]), sample, alpha)
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
