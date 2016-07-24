@@ -63,11 +63,10 @@ class DC_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                #sample.append(float(row[attr_index]))
                 N += 1
-                if len(set(sample)) < self.numbuckets:
+                if len(set(sample)) < self.numbuckets + 1:
                     sample.append(float(row[attr_index]))
-                elif len(set(sample)) == self.numbuckets and initial == False:
+                elif len(set(sample)) == self.numbuckets + 1 and initial == False:
                     self.compute_histogram(N, sample, gamma, gammam)
                     self.plot_histogram(attr)
                     skip = self.calculateSkip(len(sample))
@@ -81,43 +80,43 @@ class DC_Histogram(object):
                         skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        #self.print_buckets()
                         self.plot_histogram(attr)
 
     def compute_histogram(self, N, sample, gamma, gammam):
         l = N / len(sample)
-        betaprime = self.numbuckets - 1
+        betaprime = self.numbuckets
         mprime = len(sample)
         c = Counter(sample)
-        mostfreq = c.most_common(self.numbuckets)
+        mostfreq = c.most_common(self.numbuckets + 1)
         mostfreq = sorted(mostfreq, key=lambda x: x[0], reverse=True)
-        low = min(sample)
+        low2 = min(sample)
         buckets = self.buckets
+        high = mostfreq[0][0] + 1
+        low = mostfreq[0][0]
         for i in range(0, self.numbuckets - 1):
             if c[mostfreq[i][0]] >= mprime / betaprime:
-                buckets[betaprime]['high'] = mostfreq[i][0]
-                buckets[betaprime]['frequency'] = l * c[mostfreq[i][0]]
-                buckets[betaprime]['regular'] = False
+                buckets[betaprime - 1]['high'] = high
+                buckets[betaprime - 1]['low'] = low
+                buckets[betaprime - 1]['frequency'] = l * c[mostfreq[i][0]]
+                buckets[betaprime - 1]['regular'] = False
                 mprime -= c[mostfreq[i][0]]
                 betaprime -= 1
-        for i in range(0, len(mostfreq)):
+                high = low
+                low = mostfreq[i + 1][0]
+        for i in range(0, len(mostfreq) - 1):
             for j in range(0, c[mostfreq[i][1]]):
                 sample.remove(mostfreq[i][0])
         sample = sorted(sample)
-        for i in range(0, betaprime + 1):
-            buckets[i]['high'] = sample[i * (mprime // betaprime)]
-            buckets[i]['frequency'] = l * (mprime / betaprime)
-        if low == buckets[0]['high']:
-            low -= 20
+        for i in range(1, betaprime + 1):
+            buckets[i - 1]['high'] = sample[i * (mprime // betaprime)]
+            buckets[i - 1]['frequency'] = l * (mprime / betaprime)
         for i in range(0, len(buckets)):
-            buckets[i]['low'] = low
+            buckets[i]['low'] = low2
             buckets[i]['size'] = buckets[i]['high'] - buckets[i]['low']
-            low = buckets[i]['high']
+            low2 = buckets[i]['high']
         self.split = (2 + gamma) * (l * mprime / betaprime)
         self.merge = (l * mprime) / ((2 + gammam) * betaprime)
         self.buckets = buckets
-        print "split: " + str(self.split)
-        #self.print_buckets()
 
     def calculateSkip(self, n):
         v = random.uniform(0, 1)
@@ -168,23 +167,14 @@ class DC_Histogram(object):
             if sample[i] >= bucket['low'] and sample[i] <= bucket['high']:
                 s.append(sample[i])
         m = np.median(s)
-        buckets = self.buckets
-        print "bucket low: " + str(bucket['low'])
-        print "bucket high: " + str(bucket['high'])
-        print "median: " + str(m)
         if prevbucket != None and m != prevbucket['high'] and m != bucket['high']:
-            print "MERGING AND SPLITTING"
             mergepair_index = self.candidateMergePair()
             if mergepair_index != None:
                 buckets = self.mergebuckets(mergepair_index, buckets) # merge the buckets into one bucket
-                #buckets[mergepair_index]['high'] = m
-                #buckets[mergepair_index]['frequency'] = self.split / 2
-                #bucket['frequency'] = self.split / 2
                 buckets = self.splitbucketintwo(bucket, buckets[mergepair_index], sample) # split bucket
             else:
                 self.compute_histogram(N, sample, gamma, gammam)
         elif prevbucket != None and m == prevbucket['high'] and prevbucket != None:
-            print "HERE I GUESS"
             c = Counter(sample)
             bucket['frequency'] = prevbucket['frequency'] + bucket['frequency'] - (c[m] * N / len(sample))
             prevbucket['high'] = m
@@ -204,7 +194,6 @@ class DC_Histogram(object):
                 else:
                     self.compute_histogram(N, sample, gamma, gammam)
         elif m == bucket['high'] and afterbucket != None:
-            print "AND HERE"
             c = Counter(sample)
             bucket['frequency'] = afterbucket['frequency'] + bucket['frequency'] - (c[m] * N / len(sample))
             afterbucket['high'] = m
