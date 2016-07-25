@@ -13,6 +13,7 @@ import matplotlib.mlab as mlab
 import csv
 from collections import Counter
 import heapq
+import random
 
 class PriorityQueueSet(object):
 
@@ -101,6 +102,7 @@ class Spline_Histogram(object):
                 'v': [0, 0, 0]
             })
         self.buckets = buckets
+        self.counter = 0
     
     def create_histogram(self, attr, batchsize):
         """Reads in records from the file, computing the initial histogram and after each batch by using a 
@@ -108,6 +110,9 @@ class Spline_Histogram(object):
         error until there are numbuckets left."""
         N = 0
         sample = []
+        initial = False
+        skip = 0
+        skipcounter = 0
         with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
@@ -115,18 +120,24 @@ class Spline_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                sample.append(float(row[attr_index]))
                 N += 1
-                if len(set(sample)) == self.numbuckets * 2:
-                    self.compute_histogram(list(set(sample)))
-                    #self.print_buckets()
+                if len(set(sample)) < self.numbuckets * 2:
+                    sample.append(float(row[attr_index]))
+                elif len(set(sample)) == self.numbuckets * 2 and initial == False:
+                    self.compute_histogram(sample)
                     self.plot_histogram(attr)
-                elif len(set(sample)) > self.numbuckets * 2:
+                    skip = self.calculateSkip(len(sample))
+                    initial = True
+                elif initial == True:
+                    skipcounter += 1
                     self.add_datapoint(float(row[attr_index]))
+                    if skipcounter == skip:
+                        sample = self.maintainBackingSample(float(row[attr_index]), sample, self.numbuckets)
+                        skip = self.calculateSkip(len(sample))
+                        skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.compute_histogram(list(set(sample)))
-                        #self.print_buckets()
+                        self.compute_histogram(sample)
                         self.plot_histogram(attr)
 
     def add_datapoint(self, value):
@@ -141,6 +152,27 @@ class Spline_Histogram(object):
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
+
+    def calculateSkip(self, n):
+        v = random.uniform(0, 1)
+        l = 0
+        t = n + 1
+        num = 1
+        quot = num / t
+        while quot > v:
+            l += 1
+            t += 1
+            num += 1
+            quot = (quot * num) / t
+        return l
+
+    def maintainBackingSample(self, value, sample, upper):
+        if len(sample) + 1 <= upper:
+            sample.append(value)
+        else:
+            rand_index = random.randint(0,len(sample) - 1)
+            sample[rand_index] = value
+        return sample
 
 
     def compute_histogram(self, sample):
@@ -285,8 +317,10 @@ class Spline_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Spline Histogram\ of\ ' + attr + '}$')
-        plt.show()
+        plt.title(r'$\mathrm{Spline\ Histogram\ of\ ' + attr + '}$')
+        path = "spline" + str(self.counter) + ".jpg"
+        plt.savefig(path)
+        self.counter += 1
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""

@@ -17,11 +17,9 @@ def main():
     parser.add_argument('-batchsize', required=True, type=int, help='The size of the batch')
     parser.add_argument('-buckets', required=True, type=int, help='The number of buckets in the histogram')
     parser.add_argument('-l', type=float, help='The lambda parameter for equidepth histogram')
-    parser.add_argument('-m', type=float, help='Merge threshold for self-tuning histograms')
-    parser.add_argument('-s', type=float, help='Split threshold for self-tuning histograms')
+    parser.add_argument('-m', type=float, help='Merge threshold for self-tuning & compressed histograms')
+    parser.add_argument('-s', type=float, help='Split threshold for self-tuning & compressed histograms')
     parser.add_argument('-alpha', type=float, help='The alpha parameter for some histograms')
-    parser.add_argument('-gamma', type=float, help='The gamma parameter necessary for dc histograms')
-    parser.add_argument('-gammam', type=float, help='The merge gamma parameter necessary for dc histograms')
     opts = parser.parse_args()
 
     if opts.histogram == 'control':
@@ -32,19 +30,16 @@ def main():
         control_time = time.time() - start_time
         print "-------- %f seconds for 3 batches --------" % control_time
     elif opts.histogram == 'dc':
-        if opts.alpha == None:
-            print "Please specify the alpha parameter."
-            sys.exit(0)
-        elif opts.gamma == None:
+        if opts.m == None:
             print "Please specify the gamma parameter."
             sys.exit(0)
-        elif opts.gammam == None:
+        elif opts.s == None:
             print "Please specify the gamma merge parameter."
             sys.exit(0)
         print "### DYNAMIC COMPRESSED HISTOGRAM ###"
         start_time = time.time()
         dc = dynamic_histograms.dc_histogram.DC_Histogram(opts.dataset, opts.buckets)
-        dc.create_histogram(opts.attr, opts.alpha, opts.gamma, opts.gammam, opts.batchsize)
+        dc.create_histogram(opts.attr, opts.s, opts.m, opts.batchsize)
         dc_time = time.time() - start_time
         print "-------- %f seconds for 3 batches --------" %  dc_time
     elif opts.histogram == 'dvo':

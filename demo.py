@@ -17,7 +17,7 @@ import time
 print "### DYNAMIC COMPRESSED HISTOGRAM ###"
 start_time = time.time()
 dc = dynamic_histograms.dc_histogram.DC_Histogram('dynamic_histograms/data/distributions.csv', 500)
-dc.create_histogram('norm', alpha=0.000001, gamma=0.5, gammam=0.5, batchsize=5000)
+dc.create_histogram('norm', , gamma=0.5, gammam=0.5, batchsize=5000)
 dc_time = time.time() - start_time
 print "-------- %f seconds for 3 batches --------" %  dc_time
 

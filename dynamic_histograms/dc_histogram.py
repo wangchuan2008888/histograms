@@ -47,7 +47,7 @@ class DC_Histogram(object):
         self.split = 0
         self.merge = 0
 
-    def create_histogram(self, attr, alpha, gamma, gammam, batchsize):
+    def create_histogram(self, attr, gamma, gammam, batchsize):
         """Reads in data from the file, extending the buckets of the histogram is the values are beyond 
         it, and checks to see if the probability that the counts in the equi-depth buckets are not uniformly 
         distributed is statistically significant (less than alpha) and if so, redistributes the regular buckets."""
@@ -212,7 +212,7 @@ class DC_Histogram(object):
                         self.splitbucket(N, buckets[split_index], buckets[split_index - 1], sample, gamma)
                 else:
                     self.compute_histogram(N, sample, gamma, gammam)
-        self.buckets = buckets
+        #self.buckets = buckets
 
     def splitbucketintwo(self, bucket, bucket2, sample):
         """Splits a bucket in the list of buckets of the histogram."""
