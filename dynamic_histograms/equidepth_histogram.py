@@ -57,19 +57,15 @@ class Equidepth_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                #sample.append(float(row[attr_index]))
                 N += 1
                 if len(set(sample)) < self.numbuckets:
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
-                    self.create_initial_histogram(N, list(set(sample)), l)
+                    self.create_initial_histogram(N, sample, l)
                     self.plot_histogram(attr)
                     skip = self.calculateSkip(len(sample))
                     initial = True
-                    #sample.append(float(row[attr_index]))
-                    #sample = self.maintainBackingSample(float(row[attr_index]), sample, self.numbuckets)
                 elif initial == True:
-                #elif len(set(sample)) > self.numbuckets:
                     skipcounter += 1
                     self.add_datapoint(float(row[attr_index]), N, sample, attr, l)
                     if skipcounter == skip:
@@ -112,7 +108,7 @@ class Equidepth_Histogram(object):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
                     if self.buckets[i]['frequency'] >= self.threshold:
-                        self.thresholdReached(self.buckets[i], N, set(sample), attr, l)
+                        self.thresholdReached(self.buckets[i], N, sample, attr, l)
 
     def calculateSkip(self, n):
         v = random.uniform(0, 1)
@@ -135,35 +131,42 @@ class Equidepth_Histogram(object):
             sample[rand_index] = value
         return sample
 
+    def mergebucketPair(self):
+        minimum = float('-inf')
+        index = None
+        for i in range(0, self.numbuckets - 1):
+            if self.buckets[i]['frequency'] + self.buckets[i + 1]['frequency'] < self.threshold:
+                if self.buckets[i]['frequency'] + self.buckets[i + 1]['frequency'] < minimum:
+                    minimum = self.buckets[i]['frequency'] + self.buckets[i + 1]['frequency']
+                    index = i
+        return index
+
 
     def thresholdReached(self, bucket, N, sample, attr, l):
         sample = list(sample)
-        self.print_buckets()
-        for i in range(0, self.numbuckets - 1):
-            if self.buckets[i]['frequency'] + self.buckets[i + 1]['frequency'] < self.threshold:
-                bucket2 = self.buckets[i]
-                self.mergebuckets(self.buckets[i], self.buckets[i + 1])
-                self.splitbucket(bucket, bucket2, sample)
-            else:
-                self.computehistogram(sample, N)
-                self.threshold = (2 + l) * (N / self.numbuckets)
-            break
-        print "RESTRUCTURING number read in: " + str(N)
-        self.print_buckets()
-        self.plot_histogram(attr)
+        index = self.mergebucketPair()
+        if index != None:
+            bucket2 = self.buckets[index]
+            self.mergebuckets(self.buckets[i], self.buckets[i + 1])
+            self.splitbucket(bucket, bucket['low'], bucket['high'], sample)
+        else:
+            self.computehistogram(sample, N)
+            self.threshold = (2 + l) * (N / self.numbuckets)
+        #print "RESTRUCTURING number read in: " + str(N)
+        #self.plot_histogram(attr)
 
     def computehistogram(self, sample, N):
         sample = list(sample)
         sample = sorted(sample, key=float)
-        frac = math.floor(len(sample) / self.numbuckets)
+        frac = len(sample) / self.numbuckets #math.floor(len(sample) / self.numbuckets)
         equal = N / self.numbuckets
-        for i in range(0, self.numbuckets):
-            self.buckets[i]['low'] = sample[int(i * (frac))]
+        for i in range(1, self.numbuckets):
+            index = int(round(i * frac))
+            self.buckets[i]['low'] = sample[index]
             if i == self.numbuckets - 1:
-                self.buckets[i]['high'] = sample[int(i * (frac))] + 1
+                self.buckets[i]['high'] = sample[index] + 1
             else:
-                self.buckets[i]['high'] = sample[int((i + 1) * (frac))]
-            #self.buckets[i]['frequency'] = N / self.numbuckets
+                self.buckets[i]['high'] = sample[int(round((i + 1) * frac))]
             self.buckets[i]['frequency'] = (i * equal) - ((i - 1) * equal) 
 
     def mergebuckets(self, bucket1, bucket2):
@@ -174,34 +177,39 @@ class Equidepth_Histogram(object):
             'size': bucket2['high'] - bucket1['low'],
             'frequency': bucket1['frequency'] + bucket2['frequency']
         }
-        #return mergedbucket
         buckets = []
         for i in range(0, self.numbuckets):
             if self.buckets[i]['low'] == bucket1['low'] and self.buckets[i]['high'] == bucket1['high']:
                 buckets.append(mergedbucket)
             if self.buckets[i]['low'] == bucket2['low'] and self.buckets[i]['high'] == bucket2['high']:
                 pass
-                #self.buckets[i] = mergedbucket
             else:
                 buckets.append(self.buckets[i])
         self.buckets = buckets
 
-    def splitbucket(self, bucket, bucket2, sample):
+    def splitbucket(self, bucket, low, high, sample):
         """Splits a bucket in the list of buckets of the histogram."""
         s = []
         for i in range(0, len(sample)):
-            if sample[i] >= bucket['low'] and sample[i] < bucket['high']:
+            if sample[i] >= low and sample[i] < high:
                 s.append(sample[i])
         m = np.median(s)
-        bucket2['high'] = m
-        bucket2['low'] = bucket['low']
-        bucket['low'] = m
-        bucket['frequency'] = self.threshold / 2
-        bucket2['frequency'] = self.threshold / 2
+        b = {
+            'low': bucket['low'],
+            'high': sample[int(len(s) // 2)],
+            'size': sample[int(len(s) // 2)] - bucket['low'],
+            'frequency': self.threshold // 2
+        }
+        bucket['low'] = sample[int(len(s) // 2) + 1]
+        #bucket2['low'] = bucket['low']
+        bucket['high'] = high
+        bucket['frequency'] = self.threshold // 2
+        bucket['size'] = high - sample[int(len(s) // 2) + 1]
+        #bucket2['frequency'] = self.threshold / 2
         buckets = []
         for i in range(0, len(self.buckets)):
             if self.buckets[i]['low'] == bucket['low'] and self.buckets[i]['high'] == bucket['high']:
-                buckets.append(bucket2)
+                buckets.append(b)
                 buckets.append(bucket)
             else:
                 buckets.append(self.buckets[i])
@@ -230,9 +238,7 @@ class Equidepth_Histogram(object):
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Equi-Depth\ Histogram\ of\ ' + attr + '}$')
-        #plt.show()
         path = "equidepth" + str(self.counter) + ".jpg"
-        #plt.savefig()
         plt.savefig(path)
         self.counter += 1
 
