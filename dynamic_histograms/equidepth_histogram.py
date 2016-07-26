@@ -152,13 +152,11 @@ class Equidepth_Histogram(object):
         else:
             self.computehistogram(sample, N)
             self.threshold = (2 + l) * (N / self.numbuckets)
-        #print "RESTRUCTURING number read in: " + str(N)
-        #self.plot_histogram(attr)
 
     def computehistogram(self, sample, N):
         sample = list(sample)
         sample = sorted(sample, key=float)
-        frac = len(sample) / self.numbuckets #math.floor(len(sample) / self.numbuckets)
+        frac = len(sample) / self.numbuckets
         equal = N / self.numbuckets
         for i in range(1, self.numbuckets):
             index = int(round(i * frac))
@@ -201,11 +199,9 @@ class Equidepth_Histogram(object):
             'frequency': self.threshold // 2
         }
         bucket['low'] = sample[int(len(s) // 2) + 1]
-        #bucket2['low'] = bucket['low']
         bucket['high'] = high
         bucket['frequency'] = self.threshold // 2
         bucket['size'] = high - sample[int(len(s) // 2) + 1]
-        #bucket2['frequency'] = self.threshold / 2
         buckets = []
         for i in range(0, len(self.buckets)):
             if self.buckets[i]['low'] == bucket['low'] and self.buckets[i]['high'] == bucket['high']:
