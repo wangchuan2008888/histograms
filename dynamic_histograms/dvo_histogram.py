@@ -67,12 +67,10 @@ class DVO_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Dynamic V-Optimal Histogram\ of\ ' + attr + '}$')
-        #plt.show()
+        plt.title(r'$\mathrm{Dynamic\ V-Optimal\ Histogram\ of\ ' + attr + '}$')
         path = "dvo" + str(self.counter) + ".jpg"
-        #path = 'control' + str(self.counter)
-        #plt.savefig()
         plt.savefig(path)
+        plt.clf()
         self.counter += 1
 
     def create_dvo_histogram(self, attr, batchsize):

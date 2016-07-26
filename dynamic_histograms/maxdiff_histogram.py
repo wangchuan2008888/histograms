@@ -88,7 +88,6 @@ class MaxDiff_Histogram(object):
                         self.plot_histogram(attr)
                         self.compute_histogram(sample, N)
                         self.plot_histogram(attr)
-                        self.print_buckets()
 
     def compute_histogram(self, sample, N):
         """Computes the histogram boundaries by finding the numbuckets - 1 largest differences in areas 
@@ -145,15 +144,25 @@ class MaxDiff_Histogram(object):
         values = sorted(values)
         print values
         print counter
+        print sample
         for i in range(0, len(values)):
             self.buckets[i]['low'] = low
             highindex = values[i]
             self.buckets[i]['high'] = sample[highindex]
             self.buckets[i]['size'] = sample[highindex] - low
-            self.buckets[i]['frequency'] = counter[low] * N / len(sample)
+            if sample[highindex] == self.buckets[i]['low']:
+                self.buckets[i]['high'] = sample[highindex + 1]
+                self.buckets[i]['size'] = sample[highindex + 1] - low
+            if low == self.min:
+                self.buckets[i]['frequency'] = counter[sample[0]] * N / len(sample)
+            else:
+                self.buckets[i]['frequency'] = counter[low] * N / len(sample)
             low = self.buckets[i]['high']
         print "index: " + str(i)
+        self.buckets[self.numbuckets - 1]['high'] = self.max + 1
         self.buckets[self.numbuckets - 1]['low'] = self.buckets[self.numbuckets - 2]['high']
+        self.buckets[self.numbuckets - 1]['frequency'] = counter[self.buckets[self.numbuckets - 1]['low']] * N / len(sample)
+        self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
         #self.buckets[self.numbuckets - 1]['frequency'] = counter[self.buckets[self.numbuckets - 1]['low']] * N / len(sample)
         #self.buckets[i]['high'] = self.max + 1
         #self.buckets[i]['size'] = self.max + 1 - self.buckets[self.numbuckets - 1]['low']
@@ -202,6 +211,7 @@ class MaxDiff_Histogram(object):
 
     def plot_histogram(self, attr):
         """Plots the histogram."""
+        self.print_buckets()
         bins = []
         frequency = []
         for i in range(0, self.numbuckets):
@@ -214,17 +224,23 @@ class MaxDiff_Histogram(object):
 
         widths = bins[1:] - bins[:-1]
 
-        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
+        print bins
+        print bins[:-1]
+        print frequency
+        print widths
+
+        plt.bar(bins[:-1], frequency, width=widths)
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim([self.min * 1.5, self.max * 1.5])
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Max-Diff\ Histogram\ of\ ' + attr + '}$')
         path = "maxdiff" + str(self.counter) + ".jpg"
         plt.savefig(path)
+        plt.clf()
         self.counter += 1
 
     def print_buckets(self):

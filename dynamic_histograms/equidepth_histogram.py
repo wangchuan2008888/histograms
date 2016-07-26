@@ -240,6 +240,7 @@ class Equidepth_Histogram(object):
         plt.title(r'$\mathrm{Equi-Depth\ Histogram\ of\ ' + attr + '}$')
         path = "equidepth" + str(self.counter) + ".jpg"
         plt.savefig(path)
+        plt.clf()
         self.counter += 1
 
     def print_buckets(self):

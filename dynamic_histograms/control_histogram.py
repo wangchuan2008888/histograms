@@ -122,12 +122,10 @@ class Control_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Control Histogram\ of\ ' + attr + '}$')
-        #plt.show()
-        path = "control" + str(self.counter) + ".jpg"
-        #path = 'control' + str(self.counter)
-        #plt.savefig()
+        plt.title(r'$\mathrm{Control\ Histogram\ of\ ' + attr + '}$')
+        path = "control" + str(self.counter) + ".jpg
         plt.savefig(path)
+        plt.clf()
         self.counter += 1
 
     def print_buckets(self):

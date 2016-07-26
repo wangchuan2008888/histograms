@@ -1,6 +1,5 @@
 .DS_Store
-venv/*
 *.pyc
-staticfiles
 .env
 *.jpg
+out.txt

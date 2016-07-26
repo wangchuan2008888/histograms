@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
 from collections import Counter
-from scipy.stats import chisquare
 import random
 
 class DC_Histogram(object):
@@ -291,13 +290,14 @@ class DC_Histogram(object):
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim([self.buckets[0]['low'] - abs(self.buckets[0]['size']), self.buckets[self.numbuckets - 1]['high'] * 1.5])
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Dynamic\ Compressed\ Histogram\ of\ ' + attr + '}$')
         path = "dc" + str(self.counter) + ".jpg"
         plt.savefig(path)
+        plt.clf()
         self.counter += 1
 
     def print_buckets(self):

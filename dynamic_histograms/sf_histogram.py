@@ -9,6 +9,8 @@ import numpy as np
 import pandas as pd
 import math
 import csv
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 from heapq import nlargest
@@ -43,6 +45,7 @@ class SF_Histogram(object):
         self.min = float("inf")
         self.max = float("-inf")
         self.buckets = buckets
+        self.counter = 0
 
 
     def create_initial_histogram(self, s):
@@ -172,8 +175,10 @@ class SF_Histogram(object):
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
-        plt.title(r'$\mathrm{Self-Tuning Histogram\ of\ ' + attr + '}$')
-        plt.show()
+        plt.title(r'$\mathrm{Self-Tuning\ Histogram\ of\ ' + attr + '}$')
+        path = "sf" + str(self.counter) + ".jpg"
+        plt.savefig(path)
+        plt.clf()
 
 
     # alpha is a dampening factor in the range 0.5 to 1 to make sure that bucket frequencies are not
