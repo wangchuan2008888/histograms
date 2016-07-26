@@ -177,6 +177,7 @@ class SF_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Self-Tuning\ Histogram\ of\ ' + attr + '}$')
         path = "sf" + str(self.counter) + ".jpg"
+        self.counter += 1
         plt.savefig(path)
         plt.clf()
 
@@ -235,7 +236,7 @@ class SF_Histogram(object):
             else:
                 break
         
-        k = round(s * self.numbuckets)
+        k = int(round(s * self.numbuckets))
 
         unmergedbuckets = []
         for b in self.buckets:
@@ -244,8 +245,12 @@ class SF_Histogram(object):
         frequencies = [b['frequency'] for b in unmergedbuckets]
         if len(frequencies) > 0 and k > 0:
             #f = pd.Series(frequencies)
-            print k, frequencies
-            highfrequencies = nlargest(k, frequencies, key=float)
+            f = pd.Series(frequencies)
+            #print f
+            highfrequencies = list(f.nlargest(k))
+            #print highfrequencies
+            #print k, frequencies
+            #highfrequencies = nlargest(k, frequencies, key=float)
             #highfrequencies = f.nlargest(k).tolist()
             totalfreq = sum(highfrequencies)
             highbuckets = []
