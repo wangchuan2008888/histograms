@@ -123,7 +123,7 @@ class Control_Histogram(object):
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Control\ Histogram\ of\ ' + attr + '}$')
-        path = "control" + str(self.counter) + ".jpg
+        path = "control" + str(self.counter) + ".jpg"
         plt.savefig(path)
         plt.clf()
         self.counter += 1
