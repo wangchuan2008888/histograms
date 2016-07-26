@@ -87,7 +87,6 @@ class MaxDiff_Histogram(object):
                         print "number read in: " + str(N)
                         self.plot_histogram(attr)
                         self.compute_histogram(sample, N)
-                        self.plot_histogram(attr)
 
     def compute_histogram(self, sample, N):
         """Computes the histogram boundaries by finding the numbuckets - 1 largest differences in areas 

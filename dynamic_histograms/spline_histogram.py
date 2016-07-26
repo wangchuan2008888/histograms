@@ -126,7 +126,7 @@ class Spline_Histogram(object):
                 if len(set(sample)) < self.numbuckets * 2:
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets * 2 and initial == False:
-                    self.compute_histogram(sample)
+                    self.compute_histogram(sample, N)
                     self.plot_histogram(attr)
                     skip = self.calculateSkip(len(sample))
                     initial = True
@@ -139,8 +139,8 @@ class Spline_Histogram(object):
                         skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.compute_histogram(sample)
                         self.plot_histogram(attr)
+                        self.compute_histogram(sample, N)
 
     def add_datapoint(self, value):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
@@ -177,14 +177,13 @@ class Spline_Histogram(object):
         return sample
 
 
-    def compute_histogram(self, sample):
+    def compute_histogram(self, sample, N):
         """Computes the histogram using a greedy merge algorithm that creates N / 2 buckets and continually 
         merges buckets with the smallest error until there are numbuckets left."""
         n = len(sample)
         sample = sorted(sample, key=float)
         buckets = []
         c = Counter(sample)
-        #print n
         for i in range(0, n - 1):
             if 2 * (i + 1) == n:
                 sample.append(sample[n - 1] + 1)
@@ -194,7 +193,7 @@ class Spline_Histogram(object):
                 'low': sample[(2 * i)],
                 'high': sample[(2 * (i + 1))],
                 'size': sample[(2 * (i + 1))] - sample[(2 * i)],
-                'frequency': c[sample[(2 * i)]] + c[sample[(2 * i) + 1]],
+                'frequency': (c[sample[(2 * i)]] + c[sample[(2 * i) + 1]]) * N / len(sample),
                 'ff': np.power(c[sample[(2 * i)]], 2) + np.power(c[sample[(2 * i) + 1]], 2),
                 'vv': np.power(sample[(2 * i)], 2) + np.power(sample[(2 * i) + 1], 2),
                 'vf': (c[sample[(2 * i) + 1]] * sample[(2 * i) + 1]) + (c[sample[(2 * i)]] * sample[(2 * i)]),
@@ -229,7 +228,6 @@ class Spline_Histogram(object):
             left = b[minerror][0]
             right = b[minerror][1]
             buckets = self.mergebuckets(buckets, buckets[left], buckets[right])
-            #print len(buckets)
             del b[minerror]
             if left > 0:
                 error = self.spline_error(buckets[left - 1]['low'], buckets[left]['high'], sample, buckets[left - 1], buckets[left])
@@ -239,7 +237,6 @@ class Spline_Histogram(object):
                 error = self.spline_error(buckets[right]['low'], buckets[right + 1]['high'], sample, buckets[right], buckets[right + 1])
                 q.add(error)
                 b[error] = [right, right + 1]
-        #print len(buckets)
         self.buckets = buckets
 
 
@@ -322,6 +319,7 @@ class Spline_Histogram(object):
         plt.title(r'$\mathrm{Spline\ Histogram\ of\ ' + attr + '}$')
         path = "spline" + str(self.counter) + ".jpg"
         plt.savefig(path)
+        plt.clf()
         self.counter += 1
 
     def print_buckets(self):
