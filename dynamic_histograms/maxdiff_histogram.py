@@ -142,9 +142,6 @@ class MaxDiff_Histogram(object):
         values = bucketarea.values()
         values = list(itertools.chain(*values))
         values = sorted(values)
-        print values
-        print counter
-        print sample
         for i in range(0, len(values)):
             self.buckets[i]['low'] = low
             highindex = values[i]
@@ -158,22 +155,10 @@ class MaxDiff_Histogram(object):
             else:
                 self.buckets[i]['frequency'] = counter[low] * N / len(sample)
             low = self.buckets[i]['high']
-        print "index: " + str(i)
         self.buckets[self.numbuckets - 1]['high'] = self.max + 1
         self.buckets[self.numbuckets - 1]['low'] = self.buckets[self.numbuckets - 2]['high']
         self.buckets[self.numbuckets - 1]['frequency'] = counter[self.buckets[self.numbuckets - 1]['low']] * N / len(sample)
         self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
-        #self.buckets[self.numbuckets - 1]['frequency'] = counter[self.buckets[self.numbuckets - 1]['low']] * N / len(sample)
-        #self.buckets[i]['high'] = self.max + 1
-        #self.buckets[i]['size'] = self.max + 1 - self.buckets[self.numbuckets - 1]['low']
-        #index = 0
-        #bucket = self.buckets[index]
-        #for i in range(0, len(sample)):
-        #    if sample[i] >= bucket['high']:
-        #        index += 1
-        #        bucket = self.buckets[index]
-        #    if sample[i] >= bucket['low'] and sample[i] < bucket['high']:
-        #        bucket['frequency'] += counter[sample[i]]
 
     def calculateSkip(self, n):
         v = random.uniform(0, 1)
@@ -211,7 +196,6 @@ class MaxDiff_Histogram(object):
 
     def plot_histogram(self, attr):
         """Plots the histogram."""
-        self.print_buckets()
         bins = []
         frequency = []
         for i in range(0, self.numbuckets):
@@ -223,11 +207,6 @@ class MaxDiff_Histogram(object):
         bins = np.array(bins)
 
         widths = bins[1:] - bins[:-1]
-
-        print bins
-        print bins[:-1]
-        print frequency
-        print widths
 
         plt.bar(bins[:-1], frequency, width=widths)
 
