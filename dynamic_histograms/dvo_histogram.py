@@ -106,7 +106,6 @@ class DVO_Histogram(object):
                     self.plot_dvo_histogram(attr)
                     initial = True
                 elif initial == True:
-                #elif len(set(sample)) > self.numbuckets:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
@@ -122,7 +121,7 @@ class DVO_Histogram(object):
                 'rightcounter': 1,
                 'size': value + 1 - self.buckets[self.numbuckets - 1]['high']
             } # borrow one bucket
-            index = self.findBestToMerge()[1]
+            index = self.findBestToMerge()
             self.mergebuckets(self.buckets[index], self.buckets[index + 1])
         elif value < self.buckets[0]['low']:
             bucket = {
@@ -132,7 +131,7 @@ class DVO_Histogram(object):
                 'rightcounter': 1,
                 'size': self.buckets[0]['low'] - value
             } # borrow one bucket
-            index = self.findBestToMerge()[1]
+            index = self.findBestToMerge()
             self.mergebuckets(self.buckets[index], self.buckets[index + 1])
         else:
             for i in range(0, self.numbuckets):
@@ -141,8 +140,8 @@ class DVO_Histogram(object):
                         self.buckets[i]['leftcounter'] += 1
                     else:
                         self.buckets[i]['rightcounter'] += 1
-            s = self.buckets[self.findBestToSplit()[1]]
-            mindex = self.findBestToMerge()[1]
+            s = self.buckets[self.findBestToSplit()]
+            mindex = self.findBestToMerge()
             if self.bucketError(s) > self.adjacentbucketsError(self.buckets[mindex], self.buckets[mindex + 1]):
                 # split s
                 # merge m and m.next
@@ -155,8 +154,8 @@ class DVO_Histogram(object):
             'low': bucket1['low'],
             'high': bucket2['high'],
             'size': bucket2['high'] - bucket1['low'],
-            'leftcounter': bucket1['leftcounter'] + bucket1['rightcounter'],
-            'rightcounter': bucket2['leftcounter'] + bucket2['rightcounter']
+            'leftcounter': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2,
+            'rightcounter': (bucket2['leftcounter'] + bucket2['rightcounter']) / 2
         }
         buckets = []
         for i in range(0, self.numbuckets):
@@ -172,7 +171,7 @@ class DVO_Histogram(object):
         bucket1 = {
             'low': bucket['low'],
             'high': (bucket['size'] / 2) + bucket['low'],
-            'size': (bucket['size'] / 2) + bucket['low'] - bucket['low'],
+            'size': (bucket['size'] / 2),
             'leftcounter': bucket['leftcounter'],
             'rightcounter': bucket['leftcounter']
         }
@@ -194,8 +193,8 @@ class DVO_Histogram(object):
     def bucketError(self, bucket):
         """Calculates the error of a single bucket and returns it."""
         average = (bucket['leftcounter'] + bucket['rightcounter']) / 2
-        lefterror = np.power(bucket['leftcounter'] - average, 2)
-        righterror = np.power(bucket['rightcounter'] - average, 2)
+        lefterror = math.pow(bucket['leftcounter'] - average, 2)
+        righterror = math.pow(bucket['rightcounter'] - average, 2)
         return lefterror + righterror
 
     def adjacentbucketsError(self, bucket1, bucket2):
@@ -211,7 +210,7 @@ class DVO_Histogram(object):
             if error < minimum:
                 minimum = error
                 index = i
-        return minimum, index
+        return index
     
     def findBestToSplit(self):
         """Returns the index of the bucket with the highest error."""
@@ -222,7 +221,7 @@ class DVO_Histogram(object):
             if error > maximum:
                 maximum = error
                 index = i
-        return maximum, index
+        return index
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        
