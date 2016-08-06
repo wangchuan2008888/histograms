@@ -56,6 +56,13 @@ spline.create_histogram('norm', batchsize=100000)
 spline_time = time.time() - start_time
 print "-------- %f seconds for 3 batches --------" %  spline_time
 
+print "### DYNAMIC V-OPTIMAL HISTOGRAM"
+start_time = time.time()
+dvo = dynamic_histograms.dvo_histogram.DVO_Histogram('dynamic_histograms/data/distributions.csv', 500)
+dvo.create_dvo_histogram('norm', batchsize=100000)
+dvo_time = time.time() - start_time
+print "-------- %f seconds for 3 batches --------" %  dvo_time
+
 print "Control histogram time: %f " % control_time
 print "Dynamic compressed histogram time: %f " % dc_time
 print "Dynamic v-optimal histogram time: %f " % dvo_time

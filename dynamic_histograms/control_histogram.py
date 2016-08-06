@@ -59,14 +59,14 @@ class Control_Histogram(object):
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(N, set(sample))
-                    self.print_buckets()
+                    #self.print_buckets()
                     self.plot_histogram(attr)
                     initial = True
                 elif initial == True:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.print_buckets()
+                        #self.print_buckets()
                         self.plot_histogram(attr)
 
     def create_initial_histogram(self, N, sample):
