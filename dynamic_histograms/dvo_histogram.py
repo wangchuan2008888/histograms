@@ -193,8 +193,8 @@ class DVO_Histogram(object):
     def bucketError(self, bucket):
         """Calculates the error of a single bucket and returns it."""
         average = (bucket['leftcounter'] + bucket['rightcounter']) / 2
-        lefterror = math.pow(bucket['leftcounter'] - average, 2)
-        righterror = math.pow(bucket['rightcounter'] - average, 2)
+        lefterror = abs(bucket['leftcounter'] - average) #math.pow(bucket['leftcounter'] - average, 2)
+        righterror = abs(bucket['rightcounter'] - average) #math.pow(bucket['rightcounter'] - average, 2)
         return lefterror + righterror
 
     def adjacentbucketsError(self, bucket1, bucket2):
