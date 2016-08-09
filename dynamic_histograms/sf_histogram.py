@@ -85,6 +85,7 @@ class SF_Histogram(object):
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(len(set(sample)))
+                    #self.print_buckets()
                     self.plot_histogram(attr)
                     initial = True
                 elif initial == True:
@@ -123,34 +124,6 @@ class SF_Histogram(object):
                     self.buckets[i]['frequency'] += 1
 
 
-    # def add_datapoint(self, value, sample, alpha):
-    #     """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
-    #     if value < self.buckets[0]['low']:
-    #         self.buckets[0]['low'] = value
-    #         #self.buckets[0]['frequency'] += 1
-    #         high = self.buckets[0]['high']
-    #         self.buckets[0]['size'] = high - value
-    #         s = self.sample_on_range(sample, rangelow=value, rangehigh=high)
-    #         size = len(s)
-    #         self.updateFreq(value, high, size, alpha)
-    #     elif value > self.buckets[self.numbuckets - 1]['high']:
-    #         self.buckets[self.numbuckets - 1]['high'] = value
-    #         #self.buckets[self.numbuckets - 1]['frequency'] += 1
-    #         low = self.buckets[self.numbuckets - 1]['low']
-    #         self.buckets[self.numbuckets - 1]['size'] = value - low
-    #         s = self.sample_on_range(sample, rangelow=low, rangehigh=value)
-    #         size = len(s)
-    #         self.updateFreq(low, value, size, alpha)
-    #     else:
-    #         for i in range(0, self.numbuckets):
-    #             if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
-    #                 #self.buckets[i]['frequency'] += 1
-    #                 low = self.buckets[i]['low']
-    #                 high = self.buckets[i]['high']
-    #                 s = self.sample_on_range(sample, rangelow=low, rangehigh=high)
-    #                 size = len(s)
-    #                 self.updateFreq(low, high, size, alpha)
-
     # plots a histogram via matplot.pyplot. this is the intial histogram of the self-tuning histogram which is both equi-depth
     # and equi-width (because the intial histogram does not look at the data frequencies)
     def plot_histogram(self, attr):
@@ -171,7 +144,7 @@ class SF_Histogram(object):
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim([self.buckets[0]['low'] - abs(self.buckets[0]['size']), self.buckets[self.numbuckets - 1]['high'] + abs(self.buckets[0]['size'])])
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.xlabel(attr)
         plt.ylabel('Frequency')
@@ -235,6 +208,9 @@ class SF_Histogram(object):
                 freebuckets += 1
             else:
                 break
+
+        if freebuckets == 0:
+            return
         
         k = int(round(s * self.numbuckets))
 
@@ -269,6 +245,8 @@ class SF_Histogram(object):
                 self.splitbucket(b, freebuckets, totalfreq)
         
             self.numbuckets = len(self.buckets)
+            print "### AFTER RESTRUCTURING ###"
+            self.print_buckets()
 
     def splitbucket(self, b, numfree, totalfreq):
         """Splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram.
@@ -297,8 +275,19 @@ class SF_Histogram(object):
                     else:
                         high = low + size
                     newbuckets.append(newb)
+        print "### BEFORE SPLITTING ###"
+        print b['low']
+        print b['high']
+        print b['frequency']
+        print totalfreq
+        print numfree
+        print self.buckets[self.numbuckets - 1]['high']
+        print "### END BEFORE SPLITTING ###"
         self.buckets = newbuckets
         self.numbuckets = len(newbuckets)
+        print "### SPLITTING ###"
+        print self.buckets[self.numbuckets - 1]['high']
+        print "### END SPLITTING ###"
 
     def mergeruns(self, buckets, b1, b2):
         """Sets the buckets in b1 and b2 to be merged and merges the lists into one list in buckets."""
@@ -373,6 +362,9 @@ class SF_Histogram(object):
                 buckets.append(bucket)
         self.buckets = buckets
         self.numbuckets = len(buckets)
+        print "### MERGING ###"
+        print self.buckets[self.numbuckets - 1]['high']
+        print "### END MERGING ###"
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        

@@ -23,13 +23,6 @@ dc.create_histogram('norm', gamma=0.5, gammam=0.5, batchsize=100000)
 dc_time = time.time() - start_time
 print "-------- %f seconds for 3 batches --------" %  dc_time
 
-# print "### DYNAMIC V-OPTIMAL HISTOGRAM ###"
-# start_time = time.time()
-# dvo = dynamic_histograms.dvo_histogram.DVO_Histogram('dynamic_histograms/data/distributions.csv', buckets)
-# dvo.create_dvo_histogram('norm', batchsize=100000)
-# dvo_time = time.time() - start_time
-# print "-------- %f seconds for 3 batches --------" %  dvo_time
-
 print "### EQUI-DEPTH HISTOGRAM ###"
 start_time = time.time()
 depth = dynamic_histograms.equidepth_histogram.Equidepth_Histogram('dynamic_histograms/data/distributions.csv', buckets)
