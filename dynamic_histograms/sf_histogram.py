@@ -85,18 +85,13 @@ class SF_Histogram(object):
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(len(set(sample)))
-                    #self.print_buckets()
                     self.plot_histogram(attr)
                     initial = True
                 elif initial == True:
-                #elif len(set(sample)) > self.numbuckets:
                     self.add_datapoint(float(row[attr_index]), sample, alpha)
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        #self.print_buckets()
-                        #print "BEFORE"
                         self.restructureHist(m, s, len(set(sample)))
-                        #self.print_buckets()
                         self.plot_histogram(attr)
 
     def sample_on_range(self, sample, rangelow, rangehigh):
@@ -220,21 +215,13 @@ class SF_Histogram(object):
                 unmergedbuckets.append(b)
         frequencies = [b['frequency'] for b in unmergedbuckets]
         if len(frequencies) > 0 and k > 0:
-            #f = pd.Series(frequencies)
             f = pd.Series(frequencies)
-            #print f
             highfrequencies = list(f.nlargest(k))
-            #print highfrequencies
-            #print k, frequencies
-            #highfrequencies = nlargest(k, frequencies, key=float)
-            #highfrequencies = f.nlargest(k).tolist()
             totalfreq = sum(highfrequencies)
             highbuckets = []
             for b in self.buckets:
                 if b['frequency'] in highfrequencies:
                     highbuckets.append(b)
-            #for b in highbuckets:
-                #self.splitbucket(b, freebuckets, totalfreq)
 
             # merging each run that has more than one bucket in it, meaning those buckets should be merged together
             for l in bucketruns:
@@ -245,8 +232,6 @@ class SF_Histogram(object):
                 self.splitbucket(b, freebuckets, totalfreq)
         
             self.numbuckets = len(self.buckets)
-            print "### AFTER RESTRUCTURING ###"
-            self.print_buckets()
 
     def splitbucket(self, b, numfree, totalfreq):
         """Splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram.
@@ -275,19 +260,8 @@ class SF_Histogram(object):
                     else:
                         high = low + size
                     newbuckets.append(newb)
-        print "### BEFORE SPLITTING ###"
-        print b['low']
-        print b['high']
-        print b['frequency']
-        print totalfreq
-        print numfree
-        print self.buckets[self.numbuckets - 1]['high']
-        print "### END BEFORE SPLITTING ###"
         self.buckets = newbuckets
         self.numbuckets = len(newbuckets)
-        print "### SPLITTING ###"
-        print self.buckets[self.numbuckets - 1]['high']
-        print "### END SPLITTING ###"
 
     def mergeruns(self, buckets, b1, b2):
         """Sets the buckets in b1 and b2 to be merged and merges the lists into one list in buckets."""
@@ -362,9 +336,6 @@ class SF_Histogram(object):
                 buckets.append(bucket)
         self.buckets = buckets
         self.numbuckets = len(buckets)
-        print "### MERGING ###"
-        print self.buckets[self.numbuckets - 1]['high']
-        print "### END MERGING ###"
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        
