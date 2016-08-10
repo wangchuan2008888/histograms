@@ -12,7 +12,7 @@ buckets = 35
 print "### CONTROL HISTOGRAM ###"
 start_time = time.time()
 control = dynamic_histograms.control_histogram.Control_Histogram('dynamic_histograms/data/distributions.csv', buckets)
-control.create_histogram('norm', batchsize=100000)
+control.create_histogram('norm', batchsize=100000, userbuckets=25)
 control_time = time.time() - start_time
 print "-------- %f seconds for 3 batches --------" % control_time
 

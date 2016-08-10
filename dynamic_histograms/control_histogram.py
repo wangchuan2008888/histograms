@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
 from collections import Counter
+import user_distribution
 
 class Control_Histogram(object):
 
@@ -41,8 +42,10 @@ class Control_Histogram(object):
             })
         self.buckets = buckets
         self.counter = 0
+        self.min = float('inf')
+        self.max= float('-inf')
 
-    def create_histogram(self, attr, batchsize):
+    def create_histogram(self, attr, batchsize, userbucketsize):
         """Reads through the file and creates the histogram, adding in data points as they are being read."""
         N = 0
         sample = []
@@ -55,19 +58,29 @@ class Control_Histogram(object):
             attr_index = header.index(attr)
             for row in reader:
                 N += 1
+                if float(row[attr_index]) < self.min:
+                    self.min = float(row[attr_index])
+                if float(row[attr_index]) > self.max:
+                    self.max = float(row[attr_index]) 
                 if len(set(sample)) < self.numbuckets:
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(N, set(sample))
-                    #self.print_buckets()
-                    self.plot_histogram(attr)
+                    self.plot_histogram(attr, self.buckets)
+                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                    d.create_distribution(self.buckets)
+                    new_buckets = d.return_distribution()
+                    self.plot_histogram(attr, new_buckets)
                     initial = True
                 elif initial == True:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        #self.print_buckets()
-                        self.plot_histogram(attr)
+                        self.plot_histogram(attr, self.buckets)
+                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        d.create_distribution(self.buckets)
+                        new_buckets = d.return_distribution()
+                        self.plot_histogram(attr, new_buckets)
 
     def create_initial_histogram(self, N, sample):
         """Creates the bucket boundaries based on the first n distinct points present in the sample."""
@@ -93,19 +106,21 @@ class Control_Histogram(object):
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
+            self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
         elif value > self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
+            self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
 
-    def plot_histogram(self, attr):
+    def plot_histogram(self, attr, buckets):
         """It plots the histogram. """
         bins = []
         frequency = []
-        for bucket in self.buckets:
+        for bucket in buckets:
             bins.append(bucket['low'])
             frequency.append(bucket['frequency'])
         bins.append(bucket['high'])
@@ -119,7 +134,7 @@ class Control_Histogram(object):
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim(self.min - abs(buckets[0]['size']), self.max + abs(buckets[0]['size']))
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
         plt.subplot().set_axis_bgcolor('#E5E5E5');
         plt.xlabel(attr)

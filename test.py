@@ -16,6 +16,7 @@ def main():
     parser.add_argument('-histogram', default='control', help='control | dc | dvo | equidepth | maxdiff | sf | spline')
     parser.add_argument('-batchsize', required=True, type=int, help='The size of the batch')
     parser.add_argument('-buckets', required=True, type=int, help='The number of buckets in the histogram')
+    parser.add_argument('-userbuckets', required=True, type=int, help='The number of buckets in the histogram that will be displayed to user')
     parser.add_argument('-l', type=float, help='The lambda parameter for equidepth histogram')
     parser.add_argument('-m', type=float, help='Merge threshold for self-tuning & compressed histograms')
     parser.add_argument('-s', type=float, help='Split threshold for self-tuning & compressed histograms')
@@ -26,9 +27,9 @@ def main():
         print "### CONTROL HISTOGRAM ###"
         start_time = time.time()
         control = dynamic_histograms.control_histogram.Control_Histogram(opts.dataset, opts.buckets)
-        control.create_histogram(opts.attr, opts.batchsize)
+        control.create_histogram(opts.attr, opts.batchsize, opts.userbuckets)
         control_time = time.time() - start_time
-        print "-------- %f seconds for 3 batches --------" % control_time
+        print "-------- %f seconds for whole dataset --------" % control_time
     elif opts.histogram == 'dc':
         if opts.m == None:
             print "Please specify the gamma parameter."
