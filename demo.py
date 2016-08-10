@@ -7,8 +7,6 @@ import dynamic_histograms.sf_histogram
 import dynamic_histograms.spline_histogram
 import time
 
-buckets = 35
-
 print "### CONTROL HISTOGRAM ###"
 start_time = time.time()
 control = dynamic_histograms.control_histogram.Control_Histogram('dynamic_histograms/data/distributions.csv', buckets)
