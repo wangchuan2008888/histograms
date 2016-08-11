@@ -117,7 +117,7 @@ class Equidepth_Histogram(object):
         elif value > self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
-            self.buckets[self.numbuckets - 1]['size'] = value + 1 - self.buckets[self.numbuckets - 1]['high']
+            self.buckets[self.numbuckets - 1]['size'] = value + 1 - self.buckets[self.numbuckets - 1]['low']
             if self.buckets[self.numbuckets - 1]['frequency'] >= self.threshold:
                 self.thresholdReached(self.buckets[self.numbuckets - 1], N, sample, attr, l)
         else:

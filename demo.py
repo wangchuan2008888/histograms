@@ -8,7 +8,7 @@ import dynamic_histograms.spline_histogram
 import time
 
 buckets = 500
-attr = 'chi'
+attr = 'norm'
 
 print "### CONTROL HISTOGRAM ###"
 start_time = time.time()
@@ -55,7 +55,7 @@ print "-------- %f seconds for 3 batches --------" %  spline_time
 print "### DYNAMIC V-OPTIMAL HISTOGRAM"
 start_time = time.time()
 dvo = dynamic_histograms.dvo_histogram.DVO_Histogram('dynamic_histograms/data/distributions.csv', buckets)
-dvo.create_dvo_histogram(attr, batchsize=100000, userbucketsize=25)
+dvo.create_histogram(attr, batchsize=100000, userbucketsize=25)
 dvo_time = time.time() - start_time
 print "-------- %f seconds for 3 batches --------" %  dvo_time
 
