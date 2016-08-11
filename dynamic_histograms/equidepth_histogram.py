@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
 import random
+import user_distribution
 
 class Equidepth_Histogram(object):
 
@@ -41,8 +42,10 @@ class Equidepth_Histogram(object):
         self.buckets = buckets
         self.threshold = None
         self.counter = 0
+        self.min = float('inf')
+        self.max= float('-inf')
 
-    def create_histogram(self, attr, l, batchsize):
+    def create_histogram(self, attr, l, batchsize, userbucketsize):
         """l is a tunable parameter (> -1) which influences the upper thresholder of bucket count for all buckets. The appropriate bucket counter is 
         incremented for every record read in. If a bucket counter reaches threshold, the bucket boundaries are recalculated and the threshold is updated."""
         N = 0
@@ -58,11 +61,19 @@ class Equidepth_Histogram(object):
             attr_index = header.index(attr)
             for row in reader:
                 N += 1
+                if float(row[attr_index]) < self.min:
+                    self.min = float(row[attr_index])
+                if float(row[attr_index]) > self.max:
+                    self.max = float(row[attr_index]) 
                 if len(set(sample)) < self.numbuckets:
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(N, sample, l)
-                    self.plot_histogram(attr)
+                    self.plot_histogram(attr, self.buckets)
+                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                    d.create_distribution(self.buckets)
+                    new_buckets = d.return_distribution()
+                    self.plot_histogram(attr, new_buckets)
                     skip = self.calculateSkip(len(sample))
                     initial = True
                 elif initial == True:
@@ -74,7 +85,11 @@ class Equidepth_Histogram(object):
                         skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.plot_histogram(attr)
+                        self.plot_histogram(attr, self.buckets)
+                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        d.create_distribution(self.buckets)
+                        new_buckets = d.return_distribution()
+                        self.plot_histogram(attr, new_buckets)
 
     def create_initial_histogram(self, N, sample, l):
         """Creates the initial histogram boundaries from the first n distinct values and sets the threshold along with l (lambda)."""
@@ -211,11 +226,11 @@ class Equidepth_Histogram(object):
                 buckets.append(self.buckets[i])
         self.buckets = buckets
 
-    def plot_histogram(self, attr):
+    def plot_histogram(self, attr, buckets):
         """Plots the histogram."""
         bins = []
         frequency = []
-        for bucket in self.buckets:
+        for bucket in buckets:
             bins.append(bucket['low'])
             frequency.append(bucket['frequency'])
         bins.append(bucket['high'])
@@ -225,12 +240,13 @@ class Equidepth_Histogram(object):
 
         widths = bins[1:] - bins[:-1]
 
-        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
+        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'], color='#348ABD')
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim(self.min - abs(buckets[0]['size']), self.max + abs(buckets[0]['size']))
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.subplot().set_axis_bgcolor('#E5E5E5');
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Equi-Depth\ Histogram\ of\ ' + attr + '}$')

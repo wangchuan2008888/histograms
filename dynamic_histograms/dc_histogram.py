@@ -15,6 +15,7 @@ import matplotlib.mlab as mlab
 import csv
 from collections import Counter
 import random
+import user_distribution
 
 class DC_Histogram(object):
 
@@ -45,8 +46,10 @@ class DC_Histogram(object):
         self.counter = 0
         self.split = 0
         self.merge = 0
+        self.min = float('inf')
+        self.max= float('-inf')
 
-    def create_histogram(self, attr, gamma, gammam, batchsize):
+    def create_histogram(self, attr, gamma, gammam, batchsize, userbucketsize):
         """Reads in data from the file, extending the buckets of the histogram is the values are beyond 
         it, and checks to see if the probability that the counts in the equi-depth buckets are not uniformly 
         distributed is statistically significant (less than alpha) and if so, redistributes the regular buckets."""
@@ -63,11 +66,19 @@ class DC_Histogram(object):
             attr_index = header.index(attr)
             for row in reader:
                 N += 1
+                if float(row[attr_index]) < self.min:
+                    self.min = float(row[attr_index])
+                if float(row[attr_index]) > self.max:
+                    self.max = float(row[attr_index]) 
                 if len(set(sample)) < self.numbuckets + 1:
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets + 1 and initial == False:
                     self.compute_histogram(N, sample, gamma, gammam)
-                    self.plot_histogram(attr)
+                    self.plot_histogram(attr, self.buckets)
+                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                    d.create_distribution(self.buckets)
+                    new_buckets = d.return_distribution()
+                    self.plot_histogram(attr, new_buckets)
                     skip = self.calculateSkip(len(sample))
                     initial = True
                 elif initial == True:
@@ -79,7 +90,11 @@ class DC_Histogram(object):
                         skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.plot_histogram(attr)
+                        self.plot_histogram(attr, self.buckets)
+                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        d.create_distribution(self.buckets)
+                        new_buckets = d.return_distribution()
+                        self.plot_histogram(attr, new_buckets)
 
     def compute_histogram(self, N, sample, gamma, gammam):
         l = N / len(sample)
@@ -272,11 +287,11 @@ class DC_Histogram(object):
                     index = i
         return index
 
-    def plot_histogram(self, attr):
+    def plot_histogram(self, attr, buckets):
         """Plots the histogram."""
         bins = []
         frequency = []
-        for bucket in self.buckets:
+        for bucket in buckets:
             bins.append(bucket['low'])
             frequency.append(bucket['frequency'])
         bins.append(bucket['high'])
@@ -286,12 +301,13 @@ class DC_Histogram(object):
 
         widths = bins[1:] - bins[:-1]
 
-        plt.bar(bins[:-1], frequency, width=widths)
+        plt.bar(bins[:-1], frequency, width=widths, color='#348ABD')
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'] - abs(self.buckets[0]['size']), self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim(self.min - abs(buckets[0]['size']), self.max + abs(buckets[0]['size']))
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.subplot().set_axis_bgcolor('#E5E5E5');
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Dynamic\ Compressed\ Histogram\ of\ ' + attr + '}$')

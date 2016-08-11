@@ -40,14 +40,14 @@ def main():
         print "### DYNAMIC COMPRESSED HISTOGRAM ###"
         start_time = time.time()
         dc = dynamic_histograms.dc_histogram.DC_Histogram(opts.dataset, opts.buckets)
-        dc.create_histogram(opts.attr, opts.s, opts.m, opts.batchsize)
+        dc.create_histogram(opts.attr, opts.s, opts.m, opts.batchsize, opts.userbuckets)
         dc_time = time.time() - start_time
         print "-------- %f seconds for 3 batches --------" %  dc_time
     elif opts.histogram == 'dvo':
         print "### DYNAMIC V-OPTIMAL HISTOGRAM ###"
         start_time = time.time()
         dvo = dynamic_histograms.dvo_histogram.DVO_Histogram(opts.dataset, opts.buckets)
-        dvo.create_dvo_histogram(opts.attr, opts.batchsize)
+        dvo.create_histogram(opts.attr, opts.batchsize, opts.userbuckets)
         dvo_time = time.time() - start_time
         print "-------- %f seconds for 3 batches --------" %  dvo_time
     elif opts.histogram == 'equidepth':
@@ -57,14 +57,14 @@ def main():
         print "### EQUI-DEPTH HISTOGRAM ###"
         start_time = time.time()
         depth = dynamic_histograms.equidepth_histogram.Equidepth_Histogram(opts.dataset, opts.buckets)
-        depth.create_histogram(opts.attr, opts.l, opts.batchsize)
+        depth.create_histogram(opts.attr, opts.l, opts.batchsize, opts.userbuckets)
         depth_time = time.time() - start_time
         print "-------- %f seconds for 3 batches --------" %  depth_time
     elif opts.histogram == 'maxdiff':
         print "### MAX-DIFF HISTOGRAM ###"
         start_time = time.time()
         maxdiff = dynamic_histograms.maxdiff_histogram.MaxDiff_Histogram(opts.dataset, opts.buckets)
-        maxdiff.create_histogram(opts.attr, opts.batchsize)
+        maxdiff.create_histogram(opts.attr, opts.batchsize, opts.userbuckets)
         maxdiff_time = time.time() - start_time
         print "-------- %f seconds for 3 batches --------" %  maxdiff_time
     elif opts.histogram == 'sf':
@@ -80,14 +80,14 @@ def main():
         print "### SELF-TUNING HISTOGRAM ###"
         start_time = time.time()
         sf = dynamic_histograms.sf_histogram.SF_Histogram(opts.dataset, opts.buckets)
-        sf.create_histogram(opts.attr, opts.alpha, opts.m, opts.s, opts.batchsize)
+        sf.create_histogram(opts.attr, opts.alpha, opts.m, opts.s, opts.batchsize, opts.userbuckets)
         sf_time = time.time() - start_time
         print "-------- %f seconds for 3 batches --------" %  sf_time
     elif opts.histogram == 'spline':
         print "### SPLINE HISTOGRAM ###"
         start_time = time.time()
         spline = dynamic_histograms.spline_histogram.Spline_Histogram(opts.dataset, opts.buckets)
-        spline.create_histogram(opts.attr, opts.batchsize)
+        spline.create_histogram(opts.attr, opts.batchsize, opts.userbuckets)
         spline_time = time.time() - start_time
         print "-------- %f seconds for 3 batches --------" %  spline_time
 

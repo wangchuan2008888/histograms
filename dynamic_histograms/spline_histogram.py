@@ -16,6 +16,7 @@ import csv
 from collections import Counter
 import heapq
 import random
+import user_distribution
 
 class PriorityQueueSet(object):
 
@@ -105,8 +106,10 @@ class Spline_Histogram(object):
             })
         self.buckets = buckets
         self.counter = 0
+        self.min = float("inf")
+        self.max = float("-inf")
     
-    def create_histogram(self, attr, batchsize):
+    def create_histogram(self, attr, batchsize, userbucketsize):
         """Reads in records from the file, computing the initial histogram and after each batch by using a 
         greedy merge algorithm that creates N / 2 buckets and continually merges buckets with the smallest 
         error until there are numbuckets left."""
@@ -123,11 +126,19 @@ class Spline_Histogram(object):
             attr_index = header.index(attr)
             for row in reader:
                 N += 1
+                if float(row[attr_index]) < self.min:
+                    self.min = float(row[attr_index])
+                if float(row[attr_index]) > self.max:
+                    self.max = float(row[attr_index])
                 if len(set(sample)) < self.numbuckets * 2:
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets * 2 and initial == False:
                     self.compute_histogram(sample, N)
-                    self.plot_histogram(attr)
+                    self.plot_histogram(attr, self.buckets)
+                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                    d.create_distribution(self.buckets)
+                    new_buckets = d.return_distribution()
+                    self.plot_histogram(attr, new_buckets)
                     skip = self.calculateSkip(len(sample))
                     initial = True
                 elif initial == True:
@@ -139,7 +150,11 @@ class Spline_Histogram(object):
                         skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.plot_histogram(attr)
+                        self.plot_histogram(attr, self.buckets)
+                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        d.create_distribution(self.buckets)
+                        new_buckets = d.return_distribution()
+                        self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
 
     def add_datapoint(self, value):
@@ -147,9 +162,11 @@ class Spline_Histogram(object):
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
+            self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
         elif value > self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
+            self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
@@ -294,11 +311,11 @@ class Spline_Histogram(object):
         error2 *= np.average([bucket1['v'][2], bucket2['v'][2]])
         return error * error2
 
-    def plot_histogram(self, attr):
+    def plot_histogram(self, attr, buckets):
         """Plots the histogram."""
         bins = []
         frequency = []
-        for bucket in self.buckets:
+        for bucket in buckets:
             bins.append(bucket['low'])
             frequency.append(bucket['frequency'])
         bins.append(bucket['high'])
@@ -308,12 +325,13 @@ class Spline_Histogram(object):
 
         widths = bins[1:] - bins[:-1]
 
-        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
+        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'], color='#348ABD')
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim(self.min - abs(buckets[0]['size']), self.max + abs(buckets[0]['size']))
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.subplot().set_axis_bgcolor('#E5E5E5')
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Spline\ Histogram\ of\ ' + attr + '}$')

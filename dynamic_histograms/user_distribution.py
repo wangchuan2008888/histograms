@@ -69,6 +69,10 @@ class User_Distribution(object):
         for i in range(0, self.numbuckets):
             frequencies = self.sample_original_distribution(self.buckets[i]['low'], self.buckets[i]['high'], buckets, self.buckets[i]['size'])
             self.buckets[i]['frequency'] = self.sum_freq(frequencies)
+            # print "### BUCKET " + str(i) + " ###"
+            # print self.buckets[i]['low']
+            # print self.buckets[i]['high']
+            # print frequencies
             # print self.buckets[i]['frequency']
     
     def return_distribution(self):

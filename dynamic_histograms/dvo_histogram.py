@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import csv
 from collections import Counter
+import user_distribution
 
 class DVO_Histogram(object):
 
@@ -37,21 +38,29 @@ class DVO_Histogram(object):
                 'low': 0,
                 'high': 0,
                 'size': 0,
+                'frequency': 0,
                 'leftcounter': 0,
                 'rightcounter': 0
             })
         self.buckets = buckets
         self.counter = 0
+        self.min = float('inf')
+        self.max= float('-inf')
 
-    def plot_dvo_histogram(self, attr):
+    def plot_histogram(self, attr, buckets):
         """Plots the histogram."""
         bins = []
         frequency = []
-        for bucket in self.buckets:
+        for bucket in buckets:
             bins.append(bucket['low'])
-            frequency.append(bucket['leftcounter'])
-            bins.append(bucket['low'] + (bucket['size'] / 2))
-            frequency.append(bucket['rightcounter'])
+            frequency.append(bucket['frequency'])
+
+            # MIGHT NEED TO CHANGE THIS BACK FOR ACCURACY PURPOSES, WHEN/IF I DO, USE 250 BUCKETS NOT 500
+
+
+            #frequency.append(bucket['leftcounter'])
+            #bins.append(bucket['low'] + (bucket['size'] / 2))
+            #frequency.append(bucket['rightcounter'])
         bins.append(bucket['high'])
 
         frequency = np.array(frequency)
@@ -59,12 +68,13 @@ class DVO_Histogram(object):
 
         widths = bins[1:] - bins[:-1]
 
-        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
+        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'], color='#348ABD')
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'] - self.buckets[0]['size'], self.buckets[self.numbuckets - 1]['high'] * 1.5])
+        axes.set_xlim(self.min - abs(buckets[0]['size']), self.max + abs(buckets[0]['size']))
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.subplot().set_axis_bgcolor('#E5E5E5');
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Dynamic\ V-Optimal\ Histogram\ of\ ' + attr + '}$')
@@ -73,7 +83,7 @@ class DVO_Histogram(object):
         plt.clf()
         self.counter += 1
 
-    def create_dvo_histogram(self, attr, batchsize):
+    def create_histogram(self, attr, batchsize, userbucketsize):
         """Reads in data from the file, creating a new bucket if the value is beyond it, choosing the best bucket to merge
         and merging those. Otherise it increments the appropriate bucket count and if the error of splitting a bucket is greater
         than the error of splitting it and merging it, then the best bucket is split and the best buckets are merged."""
@@ -88,6 +98,10 @@ class DVO_Histogram(object):
             attr_index = header.index(attr)
             for row in reader:
                 N += 1
+                if float(row[attr_index]) < self.min:
+                    self.min = float(row[attr_index])
+                if float(row[attr_index]) > self.max:
+                    self.max = float(row[attr_index]) 
                 if len(set(sample)) < self.numbuckets:
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
@@ -102,14 +116,23 @@ class DVO_Histogram(object):
                             self.buckets[i]['high'] = buckets[i + 1]
                         self.buckets[i]['leftcounter'] = c[buckets[i]]
                         self.buckets[i]['rightcounter'] = c[buckets[i]]
+                        self.buckets[i]['frequency'] = c[buckets[i]]
                         self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
-                    self.plot_dvo_histogram(attr)
+                    self.plot_histogram(attr, self.buckets)
+                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                    d.create_distribution(self.buckets)
+                    new_buckets = d.return_distribution()
+                    self.plot_histogram(attr, new_buckets)
                     initial = True
                 elif initial == True:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.plot_dvo_histogram(attr)
+                        self.plot_histogram(attr, self.buckets)
+                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        d.create_distribution(self.buckets)
+                        new_buckets = d.return_distribution()
+                        self.plot_histogram(attr, new_buckets)
 
     def add_datapoint(self, value):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
@@ -119,6 +142,7 @@ class DVO_Histogram(object):
                 'high': value + 1,
                 'leftcounter': 1,
                 'rightcounter': 1,
+                'frequency': 1,
                 'size': value + 1 - self.buckets[self.numbuckets - 1]['high']
             } # borrow one bucket
             index = self.findBestToMerge()
@@ -129,6 +153,7 @@ class DVO_Histogram(object):
                 'high': self.buckets[0]['low'],
                 'leftcounter': 1,
                 'rightcounter': 1,
+                'frequency': 1,
                 'size': self.buckets[0]['low'] - value
             } # borrow one bucket
             index = self.findBestToMerge()
@@ -138,8 +163,10 @@ class DVO_Histogram(object):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     if value < self.buckets[i]['low'] + (self.buckets[i]['size'] / 2):
                         self.buckets[i]['leftcounter'] += 1
+                        self.buckets[i]['frequency'] = np.mean([self.buckets[i]['leftcounter'], self.buckets[i]['rightcounter']])
                     else:
                         self.buckets[i]['rightcounter'] += 1
+                        self.buckets[i]['frequency'] = np.mean([self.buckets[i]['leftcounter'], self.buckets[i]['rightcounter']])
             s = self.buckets[self.findBestToSplit()]
             mindex = self.findBestToMerge()
             if self.bucketError(s) > self.adjacentbucketsError(self.buckets[mindex], self.buckets[mindex + 1]):
@@ -155,7 +182,8 @@ class DVO_Histogram(object):
             'high': bucket2['high'],
             'size': bucket2['high'] - bucket1['low'],
             'leftcounter': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2,
-            'rightcounter': (bucket2['leftcounter'] + bucket2['rightcounter']) / 2
+            'rightcounter': (bucket2['leftcounter'] + bucket2['rightcounter']) / 2,
+            'frequency': np.mean([(bucket1['leftcounter'] + bucket1['rightcounter']) / 2, (bucket2['leftcounter'] + bucket2['rightcounter']) / 2])
         }
         buckets = []
         for i in range(0, self.numbuckets):
@@ -173,14 +201,16 @@ class DVO_Histogram(object):
             'high': (bucket['size'] / 2) + bucket['low'],
             'size': (bucket['size'] / 2),
             'leftcounter': bucket['leftcounter'],
-            'rightcounter': bucket['leftcounter']
+            'rightcounter': bucket['leftcounter'],
+            'frequency': bucket['leftcounter']
         }
         bucket2 = {
             'low': bucket1['low'],
             'high': bucket['high'],
             'size': bucket1['size'],
             'leftcounter': bucket['rightcounter'],
-            'rightcounter': bucket['rightcounter']
+            'rightcounter': bucket['rightcounter'],
+            'frequency': bucket['rightcounter']
         }
         buckets = []
         for i in range(0, self.numbuckets):

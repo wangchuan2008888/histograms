@@ -18,6 +18,7 @@ from collections import defaultdict
 import operator
 import itertools
 import random
+import user_distribution
 
 class MaxDiff_Histogram(object):
 
@@ -49,7 +50,7 @@ class MaxDiff_Histogram(object):
         self.max= float('-inf')
 
 
-    def create_histogram(self, attr, batchsize):
+    def create_histogram(self, attr, batchsize, userbucketsize):
         """Reads in records from the file, computing the initial histogram and after each batch by finding numbuckets - 1 
         largest differences in area between each value in the sample and setting the boundaries in between these values."""
         N = 0
@@ -73,7 +74,11 @@ class MaxDiff_Histogram(object):
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets * 2 and initial == False:
                     self.compute_histogram(sample, N)
-                    self.plot_histogram(attr)
+                    self.plot_histogram(attr, self.buckets)
+                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                    d.create_distribution(self.buckets)
+                    new_buckets = d.return_distribution()
+                    self.plot_histogram(attr, new_buckets)
                     skip = self.calculateSkip(len(sample))
                     initial = True
                 elif initial == True:
@@ -85,7 +90,11 @@ class MaxDiff_Histogram(object):
                         skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.plot_histogram(attr)
+                        self.plot_histogram(attr, self.buckets)
+                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        d.create_distribution(self.buckets)
+                        new_buckets = d.return_distribution()
+                        self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
 
     def compute_histogram(self, sample, N):
@@ -193,26 +202,27 @@ class MaxDiff_Histogram(object):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
 
-    def plot_histogram(self, attr):
+    def plot_histogram(self, attr, buckets):
         """Plots the histogram."""
         bins = []
         frequency = []
-        for i in range(0, self.numbuckets):
-            bins.append(self.buckets[i]['low'])
-            frequency.append(self.buckets[i]['frequency'])
-        bins.append(self.buckets[i]['high'])
+        for i in range(0, len(buckets)):
+            bins.append(buckets[i]['low'])
+            frequency.append(buckets[i]['frequency'])
+        bins.append(buckets[i]['high'])
 
         frequency = np.array(frequency)
         bins = np.array(bins)
 
         widths = bins[1:] - bins[:-1]
 
-        plt.bar(bins[:-1], frequency, width=widths)
+        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'], color='#348ABD')
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.min * 1.5, self.max * 1.5])
+        axes.set_xlim(self.min - abs(buckets[0]['size']), self.max + abs(buckets[0]['size']))
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.subplot().set_axis_bgcolor('#E5E5E5')
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Max-Diff\ Histogram\ of\ ' + attr + '}$')

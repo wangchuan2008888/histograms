@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 from heapq import nlargest
 from operator import itemgetter
+import user_distribution
 
 class SF_Histogram(object):
 
@@ -65,7 +66,7 @@ class SF_Histogram(object):
             low = high
             high += size
 
-    def create_histogram(self, attr, alpha, m, s, batchsize):
+    def create_histogram(self, attr, alpha, m, s, batchsize, userbucketsize):
         N = 0
         sample = []
         initial = False
@@ -85,14 +86,22 @@ class SF_Histogram(object):
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(len(set(sample)))
-                    self.plot_histogram(attr)
+                    self.plot_histogram(attr, self.buckets)
+                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                    d.create_distribution(self.buckets)
+                    new_buckets = d.return_distribution()
+                    self.plot_histogram(attr, new_buckets)
                     initial = True
                 elif initial == True:
                     self.add_datapoint(float(row[attr_index]), sample, alpha)
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
                         self.restructureHist(m, s, len(set(sample)))
-                        self.plot_histogram(attr)
+                        self.plot_histogram(attr, self.buckets)
+                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        d.create_distribution(self.buckets)
+                        new_buckets = d.return_distribution()
+                        self.plot_histogram(attr, new_buckets)
 
     def sample_on_range(self, sample, rangelow, rangehigh):
         """Returns the sample over the range rangelow-rangehigh."""
@@ -121,11 +130,11 @@ class SF_Histogram(object):
 
     # plots a histogram via matplot.pyplot. this is the intial histogram of the self-tuning histogram which is both equi-depth
     # and equi-width (because the intial histogram does not look at the data frequencies)
-    def plot_histogram(self, attr):
+    def plot_histogram(self, attr, buckets):
         """Plots the histogram."""
         bins = []
         frequency = []
-        for bucket in self.buckets:
+        for bucket in buckets:
             bins.append(bucket['low'])
             frequency.append(bucket['frequency'])
         bins.append(bucket['high'])
@@ -135,12 +144,13 @@ class SF_Histogram(object):
 
         widths = bins[1:] - bins[:-1]
 
-        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
+        plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'], color='#348ABD')
 
         plt.grid(True)
         axes = plt.gca()
-        axes.set_xlim([self.buckets[0]['low'] - abs(self.buckets[0]['size']), self.buckets[self.numbuckets - 1]['high'] + abs(self.buckets[0]['size'])])
+        axes.set_xlim(self.min - abs(buckets[0]['size']), self.max + abs(buckets[0]['size']))
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
+        plt.subplot().set_axis_bgcolor('#E5E5E5')
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Self-Tuning\ Histogram\ of\ ' + attr + '}$')
