@@ -22,13 +22,13 @@ class Equidepth_Histogram(object):
     This class models an instance of an equi-depth histogram, which is a histogram with all the buckets have the same count.
     """
 
-    def __init__(self, f, numbuckets):
+    def __init__(self, f, numbuckets, outputpath):
 
         """
         Initiates an instance of the class with a csv file containing the dataset and the number 
         of buckets the histogram should have. 
         """
-
+        self.outputpath = outputpath
         self.file = f
         self.numbuckets = numbuckets
         buckets = []
@@ -253,8 +253,8 @@ class Equidepth_Histogram(object):
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Equi-Depth\ Histogram\ of\ ' + attr + '}$')
-        path = "equidepth" + str(self.counter) + ".jpg"
-        plt.savefig(path)
+        
+        plt.savefig(self.outputpath + "//img//equidepth" + str(self.counter) + ".jpg")
         plt.clf()
         self.counter += 1
 

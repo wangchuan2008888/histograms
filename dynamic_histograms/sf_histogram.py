@@ -25,13 +25,13 @@ class SF_Histogram(object):
     between the histogram buckets.
     """
 
-    def __init__(self, file, numbuckets):
+    def __init__(self, file, numbuckets, outputpath):
 
         """
         Initiates an instance of the class with a csv file containing the dataset and the number 
         of buckets the histogram should have. 
         """
-        
+        self.outputpath = outputpath
         self.file = file
         self.numbuckets = numbuckets
         buckets = []
@@ -156,9 +156,9 @@ class SF_Histogram(object):
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Self-Tuning\ Histogram\ of\ ' + attr + '}$')
-        path = "sf" + str(self.counter) + ".jpg"
+        
+        plt.savefig(self.outputpath + "//img//sf" + str(self.counter) + ".jpg")
         self.counter += 1
-        plt.savefig(path)
         plt.clf()
 
 
