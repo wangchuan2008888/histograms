@@ -194,9 +194,11 @@ class MaxDiff_Histogram(object):
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
+            self.buckets[0]['size'] = self.buckets[0]['high'] - value
         elif value > self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
+            self.buckets[self.numbuckets - 1]['size'] = value + 1 - self.buckets[self.numbuckets - 1]['low']
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:

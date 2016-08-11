@@ -111,11 +111,13 @@ class Equidepth_Histogram(object):
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
+            self.buckets[0]['size'] = self.buckets[0]['high'] - value
             if self.buckets[0]['frequency'] >= self.threshold:
                 self.thresholdReached(self.buckets[0], N, sample, attr, l)
         elif value > self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
+            self.buckets[self.numbuckets - 1]['size'] = value + 1 - self.buckets[self.numbuckets - 1]['high']
             if self.buckets[self.numbuckets - 1]['frequency'] >= self.threshold:
                 self.thresholdReached(self.buckets[self.numbuckets - 1], N, sample, attr, l)
         else:
@@ -180,6 +182,7 @@ class Equidepth_Histogram(object):
                 self.buckets[i]['high'] = sample[index] + 1
             else:
                 self.buckets[i]['high'] = sample[int(round((i + 1) * frac))]
+            self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
             self.buckets[i]['frequency'] = (i * equal) - ((i - 1) * equal) 
 
     def mergebuckets(self, bucket1, bucket2):

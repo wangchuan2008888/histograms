@@ -113,6 +113,7 @@ class DC_Histogram(object):
                 buckets[betaprime - 1]['low'] = low
                 buckets[betaprime - 1]['frequency'] = l * c[mostfreq[i][0]]
                 buckets[betaprime - 1]['regular'] = False
+                buckets[betaprime - 1]['size'] = high - low
                 mprime -= c[mostfreq[i][0]]
                 betaprime -= 1
                 high = low
@@ -124,6 +125,7 @@ class DC_Histogram(object):
         for i in range(1, betaprime + 1):
             buckets[i - 1]['high'] = sample[i * (mprime // betaprime)]
             buckets[i - 1]['frequency'] = l * (mprime / betaprime)
+            buckets[i - 1]['size'] = buckets[i - 1]['high'] - buckets[i - 1]['low']
         for i in range(0, len(buckets)):
             buckets[i]['low'] = low2
             buckets[i]['size'] = buckets[i]['high'] - buckets[i]['low']
@@ -158,11 +160,13 @@ class DC_Histogram(object):
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
+            self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
             if self.buckets[0]['frequency'] >= self.split and self.buckets[0]['regular'] == True:
                 self.splitbucket(N, self.buckets[0], None, self.buckets[1], sample, gamma, gammam)
         elif value > self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
+            self.buckets[self.numbuckets - 1]['size'] = value + 1 - self.buckets[self.numbuckets - 1]['low']
             if self.buckets[self.numbuckets - 1]['frequency'] >= self.split and self.buckets[self.numbuckets - 1]['regular'] == True:
                 self.splitbucket(N, self.buckets[self.numbuckets - 1], self.buckets[self.numbuckets - 2], None, sample, gamma, gammam)
         else:
@@ -192,6 +196,7 @@ class DC_Histogram(object):
             c = Counter(sample)
             bucket['frequency'] = prevbucket['frequency'] + bucket['frequency'] - (c[m] * N / len(sample))
             prevbucket['high'] = m
+            prevbucket['size'] = m - prevbucket['low']
             prevbucket['frequency'] = c[m] * N / len(sample)
             if bucket['count'] <= self.split:
                 self.splitbucket(N, bucket, prevbucket, sample)
@@ -211,6 +216,7 @@ class DC_Histogram(object):
             c = Counter(sample)
             bucket['frequency'] = afterbucket['frequency'] + bucket['frequency'] - (c[m] * N / len(sample))
             afterbucket['high'] = m
+            afterbucket['size'] = m - afterbucket['low']
             afterbucket['frequency'] = c[m] * N / len(sample)
             if afterbucket['frequency'] <= self.split:
                 self.splitbucket(N, afterbucket, bucket, sample)
@@ -237,8 +243,10 @@ class DC_Histogram(object):
         m = np.median(s)
         bucket2['high'] = m
         bucket2['low'] = bucket['low']
+        bucket2['size'] = m - bucket['low']
         bucket['low'] = m
         bucket['frequency'] = self.split / 2
+        bucket['size'] = bucket['high'] - m
         bucket2['frequency'] = self.split / 2
         buckets = []
         for i in range(0, len(self.buckets)):

@@ -74,6 +74,6 @@ class User_Distribution(object):
             # print self.buckets[i]['high']
             # print frequencies
             # print self.buckets[i]['frequency']
-    
+
     def return_distribution(self):
         return self.buckets
