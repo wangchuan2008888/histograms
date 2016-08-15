@@ -23,13 +23,13 @@ class Control_Histogram(object):
     its bucket boundaries to include values that are beyond the leftmost and rightmost buckets.
     """
 
-    def __init__(self, file, numbuckets):
-
+    def __init__(self, file, numbuckets, outputpath):
+        
         """
         Initiates an instance of the class with a csv file containing the dataset and the number 
         of buckets the histogram should have. 
         """
-
+        self.outputpath = outputpath
         self.file = file
         self.numbuckets = numbuckets
         buckets = []
@@ -140,8 +140,8 @@ class Control_Histogram(object):
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Control\ Histogram\ of\ ' + attr + '}$')
-        path = "control" + str(self.counter) + ".jpg"
-        plt.savefig(path)
+
+        plt.savefig(self.outputpath + "//img//control" + str(self.counter) + ".jpg")
         plt.clf()
         self.counter += 1
 
