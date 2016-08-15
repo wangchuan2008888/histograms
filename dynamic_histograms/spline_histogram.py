@@ -18,6 +18,8 @@ import heapq
 import random
 import user_distribution
 
+upper_factor = 3
+
 class PriorityQueueSet(object):
 
     """
@@ -108,6 +110,7 @@ class Spline_Histogram(object):
         self.counter = 0
         self.min = float("inf")
         self.max = float("-inf")
+        self.upper = numbuckets * upper_factor
     
     def create_histogram(self, attr, batchsize, userbucketsize):
         """Reads in records from the file, computing the initial histogram and after each batch by using a 
@@ -145,7 +148,7 @@ class Spline_Histogram(object):
                     skipcounter += 1
                     self.add_datapoint(float(row[attr_index]))
                     if skipcounter == skip:
-                        sample = self.maintainBackingSample(float(row[attr_index]), sample, self.numbuckets)
+                        sample = self.maintainBackingSample(float(row[attr_index]), sample)
                         skip = self.calculateSkip(len(sample))
                         skipcounter = 0
                     if N % batchsize == 0:
@@ -185,8 +188,8 @@ class Spline_Histogram(object):
             quot = (quot * num) / t
         return l
 
-    def maintainBackingSample(self, value, sample, upper):
-        if len(sample) + 1 <= upper:
+    def maintainBackingSample(self, value, sample):
+        if len(sample) + 1 <= self.upper:
             sample.append(value)
         else:
             rand_index = random.randint(0,len(sample) - 1)
