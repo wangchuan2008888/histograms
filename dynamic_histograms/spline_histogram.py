@@ -17,6 +17,7 @@ from collections import Counter
 import heapq
 import random
 import user_distribution
+import json
 
 upper_factor = 3
 
@@ -339,6 +340,8 @@ class Spline_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Spline\ Histogram\ of\ ' + attr + '}$')
         
+        with open(self.outputpath + "//data//spline" + str(self.counter) + ".json", 'w') as outfile:
+            json.dump(buckets, outfile)
         plt.savefig(self.outputpath + "//img//spline" + str(self.counter) + ".jpg")
         plt.clf()
         self.counter += 1

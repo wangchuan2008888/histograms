@@ -16,6 +16,7 @@ import matplotlib.mlab as mlab
 from heapq import nlargest
 from operator import itemgetter
 import user_distribution
+import json
 
 class SF_Histogram(object):
 
@@ -157,6 +158,8 @@ class SF_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Self-Tuning\ Histogram\ of\ ' + attr + '}$')
         
+        with open(self.outputpath + "//data//sf" + str(self.counter) + ".json", 'w') as outfile:
+            json.dump(buckets, outfile)
         plt.savefig(self.outputpath + "//img//sf" + str(self.counter) + ".jpg")
         self.counter += 1
         plt.clf()

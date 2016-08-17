@@ -16,6 +16,7 @@ import csv
 from collections import Counter
 import random
 import user_distribution
+import json
 
 upper_factor = 3
 
@@ -323,6 +324,8 @@ class DC_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Dynamic\ Compressed\ Histogram\ of\ ' + attr + '}$')
         
+        with open(self.outputpath + "//data//dc" + str(self.counter) + ".json", 'w') as outfile:
+            json.dump(buckets, outfile)
         plt.savefig(self.outputpath + "//img//dc" + str(self.counter) + ".jpg")
         plt.clf()
         self.counter += 1

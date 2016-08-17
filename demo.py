@@ -9,17 +9,21 @@ import time
 import os
 from shutil import copyfile
 
-buckets = 500
+buckets = 10
 batchsize = 100000
-userbucketsize = 40
-attr = 'bimodal'
+userbucketsize = 5
+attr = 'norm'
 
 # make sure output directory exists
 outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(buckets) + '_' + str(userbucketsize)
 if not os.path.exists(outputpath + '//img'):
     os.makedirs(outputpath + '//img')
+if not os.path.exists(outputpath + '//data'):
+    os.makedirs(outputpath + '//data')
     
 # write index.html by going through the output directory    
+copyfile('template.html', outputpath + '//template.html')
+copyfile('d3.html', outputpath + '//d3.html')
 copyfile('template.html', outputpath + '//template.html')
 with open('output//index.html', 'w') as f:
     f.write('<!DOCTYPE html>\n')

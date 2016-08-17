@@ -15,6 +15,7 @@ import matplotlib.mlab as mlab
 import csv
 from collections import Counter
 import user_distribution
+import json
 
 class Control_Histogram(object):
 
@@ -141,6 +142,8 @@ class Control_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Control\ Histogram\ of\ ' + attr + '}$')
 
+        with open(self.outputpath + "//data//control" + str(self.counter) + ".json", 'w') as outfile:
+            json.dump(buckets, outfile)
         plt.savefig(self.outputpath + "//img//control" + str(self.counter) + ".jpg")
         plt.clf()
         self.counter += 1

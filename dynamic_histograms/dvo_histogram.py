@@ -15,6 +15,7 @@ import matplotlib.mlab as mlab
 import csv
 from collections import Counter
 import user_distribution
+import json
 
 class DVO_Histogram(object):
 
@@ -79,6 +80,8 @@ class DVO_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Dynamic\ V-Optimal\ Histogram\ of\ ' + attr + '}$')
         
+        with open(self.outputpath + "//data//dvo" + str(self.counter) + ".json", 'w') as outfile:
+            json.dump(buckets, outfile)
         plt.savefig(self.outputpath + "//img//dvo" + str(self.counter) + ".jpg")
         plt.clf()
         self.counter += 1

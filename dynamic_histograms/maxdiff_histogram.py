@@ -19,6 +19,7 @@ import operator
 import itertools
 import random
 import user_distribution
+import json
 
 upper_factor = 3
 
@@ -232,6 +233,8 @@ class MaxDiff_Histogram(object):
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Max-Diff\ Histogram\ of\ ' + attr + '}$')
         
+        with open(self.outputpath + "//data//maxdiff" + str(self.counter) + ".json", 'w') as outfile:
+            json.dump(buckets, outfile)
         plt.savefig(self.outputpath + "//img//maxdiff" + str(self.counter) + ".jpg")
         plt.clf()
         self.counter += 1
