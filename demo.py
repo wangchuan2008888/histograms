@@ -11,7 +11,7 @@ from shutil import copyfile
 
 buckets = 10
 batchsize = 100000
-userbucketsize = 5
+userbucketsize = 1
 attr = 'norm'
 
 # make sure output directory exists
