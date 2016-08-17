@@ -166,10 +166,10 @@ class DVO_Histogram(object):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     if value < self.buckets[i]['low'] + (self.buckets[i]['size'] / 2):
                         self.buckets[i]['leftcounter'] += 1
-                        self.buckets[i]['frequency'] = np.mean([self.buckets[i]['leftcounter'], self.buckets[i]['rightcounter']])
+                        self.buckets[i]['frequency'] = self.buckets[i]['leftcounter'] + self.buckets[i]['rightcounter']#np.mean([self.buckets[i]['leftcounter'], self.buckets[i]['rightcounter']])
                     else:
                         self.buckets[i]['rightcounter'] += 1
-                        self.buckets[i]['frequency'] = np.mean([self.buckets[i]['leftcounter'], self.buckets[i]['rightcounter']])
+                        self.buckets[i]['frequency'] = self.buckets[i]['leftcounter'] + self.buckets[i]['rightcounter']#np.mean([self.buckets[i]['leftcounter'], self.buckets[i]['rightcounter']])
             s = self.buckets[self.findBestToSplit()]
             mindex = self.findBestToMerge()
             if self.bucketError(s) > self.adjacentbucketsError(self.buckets[mindex], self.buckets[mindex + 1]):
@@ -186,7 +186,7 @@ class DVO_Histogram(object):
             'size': bucket2['high'] - bucket1['low'],
             'leftcounter': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2,
             'rightcounter': (bucket2['leftcounter'] + bucket2['rightcounter']) / 2,
-            'frequency': np.mean([(bucket1['leftcounter'] + bucket1['rightcounter']) / 2, (bucket2['leftcounter'] + bucket2['rightcounter']) / 2])
+            'frequency': bucket1['leftcounter'] + (bucket1['rightcounter'] / 2) + bucket2['leftcounter'] + (bucket2['rightcounter']) / 2)
         }
         buckets = []
         for i in range(0, self.numbuckets):
@@ -205,7 +205,7 @@ class DVO_Histogram(object):
             'size': (bucket['size'] / 2),
             'leftcounter': bucket['leftcounter'],
             'rightcounter': bucket['leftcounter'],
-            'frequency': bucket['leftcounter']
+            'frequency': bucket['leftcounter'] * 2
         }
         bucket2 = {
             'low': bucket1['low'],
@@ -213,7 +213,7 @@ class DVO_Histogram(object):
             'size': bucket1['size'],
             'leftcounter': bucket['rightcounter'],
             'rightcounter': bucket['rightcounter'],
-            'frequency': bucket['rightcounter']
+            'frequency': bucket['rightcounter'] * 2
         }
         buckets = []
         for i in range(0, self.numbuckets):
