@@ -139,89 +139,109 @@ class DVO_Histogram(object):
 
     def add_datapoint(self, value):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
-        if value > self.buckets[self.numbuckets - 1]['high']:
+        if value >= self.buckets[self.numbuckets - 1]['high']:
             bucket = {
                 'low': self.buckets[self.numbuckets - 1]['high'],
                 'high': value + 1,
-                'leftcounter': 1,
-                'rightcounter': 1,
+                'leftcounter': 0,
+                'rightcounter': 0,
                 'frequency': 1,
                 'size': value + 1 - self.buckets[self.numbuckets - 1]['high']
-            } # borrow one bucket
+            }
+            if value < bucket['low'] + (bucket['size'] / 2):
+                bucket['leftcounter'] += 1
+            else:
+                bucket['rightcounter'] += 1
+            self.buckets.append(bucket) # borrow one bucket
             index = self.findBestToMerge()
-            self.mergebuckets(self.buckets[index], self.buckets[index + 1])
+            self.mergebuckets(index)
         elif value < self.buckets[0]['low']:
             bucket = {
                 'low': value,
                 'high': self.buckets[0]['low'],
                 'leftcounter': 1,
-                'rightcounter': 1,
+                'rightcounter': 0,
                 'frequency': 1,
                 'size': self.buckets[0]['low'] - value
-            } # borrow one bucket
+            } 
+            buckets = [bucket]
+            buckets.extend(self.buckets)
+            self.buckets = buckets # borrow one bucket
             index = self.findBestToMerge()
-            self.mergebuckets(self.buckets[index], self.buckets[index + 1])
+            self.mergebuckets(index)
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     if value < self.buckets[i]['low'] + (self.buckets[i]['size'] / 2):
                         self.buckets[i]['leftcounter'] += 1
-                        self.buckets[i]['frequency'] = self.buckets[i]['leftcounter'] + self.buckets[i]['rightcounter']#np.mean([self.buckets[i]['leftcounter'], self.buckets[i]['rightcounter']])
+                        self.buckets[i]['frequency'] += 1
                     else:
                         self.buckets[i]['rightcounter'] += 1
-                        self.buckets[i]['frequency'] = self.buckets[i]['leftcounter'] + self.buckets[i]['rightcounter']#np.mean([self.buckets[i]['leftcounter'], self.buckets[i]['rightcounter']])
-            s = self.buckets[self.findBestToSplit()]
+                        self.buckets[i]['frequency'] += 1
+            s = self.findBestToSplit()
             mindex = self.findBestToMerge()
-            if self.bucketError(s) > self.adjacentbucketsError(self.buckets[mindex], self.buckets[mindex + 1]):
+            if self.bucketError(self.buckets[s]) > self.adjacentbucketsError(self.buckets[mindex], self.buckets[mindex + 1]):
                 # split s
                 # merge m and m.next
                 self.splitbucket(s)
-                self.mergebuckets(self.buckets[mindex], self.buckets[mindex + 1])
+                self.mergebuckets(mindex)
 
-    def mergebuckets(self, bucket1, bucket2):
+    def mergebuckets(self, index):
         """Merging two buckets into one bucket in the list of buckets."""
-        mergedbucket = {
-            'low': bucket1['low'],
-            'high': bucket2['high'],
-            'size': bucket2['high'] - bucket1['low'],
-            'leftcounter': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2,
-            'rightcounter': (bucket2['leftcounter'] + bucket2['rightcounter']) / 2,
-            'frequency': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2 + (bucket2['leftcounter'] + bucket2['rightcounter']) / 2
-        }
-        buckets = []
-        for i in range(0, self.numbuckets):
-            if self.buckets[i]['low'] < bucket1['low'] or self.buckets[i]['low'] >= bucket2['high']:
-                buckets.append(self.buckets[i])
-            elif self.buckets[i]['low'] == bucket1['low']:
-                buckets.append(mergedbucket)
-            elif self.buckets[i]['low'] == bucket2['low']:
-                pass
+        self.buckets[index]['high'] = self.buckets[index + 1]['high']
+        self.buckets[index]['size'] = self.buckets[index]['high'] - self.buckets[index]['low']
+        self.buckets[index]['leftcounter'] = self.buckets[index]['frequency']
+        self.buckets[index]['rightcounter'] = self.buckets[index + 1]['frequency']
+        self.buckets[index]['frequency'] = self.buckets[index]['leftcounter'] + self.buckets[index]['rightcounter']
+        del self.buckets[index + 1]
+        # mergedbucket = {
+        #     'low': bucket1['low'],
+        #     'high': bucket2['high'],
+        #     'size': bucket2['high'] - bucket1['low'],
+        #     'leftcounter': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2,
+        #     'rightcounter': (bucket2['leftcounter'] + bucket2['rightcounter']) / 2,
+        #     'frequency': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2 + (bucket2['leftcounter'] + bucket2['rightcounter']) / 2
+        # }
+        # buckets = []
+        # for i in range(0, self.numbuckets):
+        #     if self.buckets[i]['low'] < bucket1['low'] or self.buckets[i]['low'] >= bucket2['high']:
+        #         buckets.append(self.buckets[i])
+        #     elif self.buckets[i]['low'] == bucket1['low']:
+        #         buckets.append(mergedbucket)
+        #     elif self.buckets[i]['low'] == bucket2['low']:
+        #         pass
 
-    def splitbucket(self, bucket):
+    def splitbucket(self, index):
         """Splits a bucket in the list of buckets of the histogram."""
-        bucket1 = {
-            'low': bucket['low'],
-            'high': (bucket['size'] / 2) + bucket['low'],
-            'size': (bucket['size'] / 2),
-            'leftcounter': bucket['leftcounter'],
-            'rightcounter': bucket['leftcounter'],
-            'frequency': bucket['leftcounter'] * 2
-        }
+        #bucket1 = {
+        #    'low': self.buckets[index]['low'],
+        #    'high': (self.buckets[index]['size'] / 2) + self.buckets[index]['low'],
+        #    'size': (self.buckets[index]['size'] / 2),
+        #    'leftcounter': self.buckets[index]['leftcounter'],
+        #    'rightcounter': self.buckets[index]['leftcounter'],
+        #    'frequency': self.buckets[index]['leftcounter'] * 2
+        #}
         bucket2 = {
-            'low': bucket1['low'],
-            'high': bucket['high'],
-            'size': bucket1['size'],
-            'leftcounter': bucket['rightcounter'],
-            'rightcounter': bucket['rightcounter'],
-            'frequency': bucket['rightcounter'] * 2
+            'low': (self.buckets[index]['size'] / 2) + self.buckets[index]['low'],
+            'high': self.buckets[index]['high'],
+            'size': self.buckets[index]['size'] / 2,
+            'leftcounter': self.buckets[index]['rightcounter'] / 2,
+            'rightcounter': self.buckets[index]['rightcounter'] / 2,
+            'frequency': self.buckets[index]['rightcounter']
         }
-        buckets = []
-        for i in range(0, self.numbuckets):
-            if self.buckets[i]['low'] < bucket['low'] or self.buckets[i]['low'] >= bucket['high']:
-                buckets.append(self.buckets[i])
-            else:
-                buckets.append(bucket1)
-                buckets.append(bucket2)
+        self.buckets[index]['high'] = (self.buckets[index]['size'] / 2) + self.buckets[index]['low']
+        self.buckets[index]['size'] = self.buckets[index]['size'] / 2
+        self.buckets[index]['leftcounter'] = self.buckets[index]['leftcounter'] / 2
+        self.buckets[index]['rightcounter'] = self.buckets[index]['leftcounter'] / 2
+        self.buckets[index]['frequency'] = self.buckets[index]['leftcounter']
+        self.buckets.insert(index + 1, bucket2)
+        # buckets = []
+        # for i in range(0, self.numbuckets):
+        #     if self.buckets[i]['low'] < bucket['low'] or self.buckets[i]['low'] >= bucket['high']:
+        #         buckets.append(self.buckets[i])
+        #     else:
+        #         buckets.append(bucket1)
+        #         buckets.append(bucket2)
 
     def bucketError(self, bucket):
         """Calculates the error of a single bucket and returns it."""
@@ -258,7 +278,7 @@ class DVO_Histogram(object):
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        
-        for i in range(0, self.numbuckets):
+        for i in range(0, len(self.buckets)):
             print "### bucket " + str(i) + " ###"
             for k, v in self.buckets[i].iteritems():
                 print k, v
