@@ -16,6 +16,7 @@ import csv
 import random
 import user_distribution
 import json
+from scipy import stats
 
 upper_factor = 3
 
@@ -94,6 +95,34 @@ class Equidepth_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
+        frequency = []
+        for bucket in self.buckets:
+            frequency.append(bucket['frequency'])
+        cumfreq = np.cumsum(frequency)
+        print cumfreq
+        #print N
+        self.print_buckets()
+        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+
+    def callable_cdf(self, x, cumfreq):
+        values = []
+        for value in x:
+            v = self.cdf(value, cumfreq)
+            if v == None:
+                print value, v
+                print self.min, self.max
+            values.append(v)
+        return np.array(values)
+    
+    def cdf(self, x, cumfreq):
+        if x < self.min:
+            return 0
+        elif x > self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def create_initial_histogram(self, N, sample, l):
         """Creates the initial histogram boundaries from the first n distinct values and sets the threshold along with l (lambda)."""
@@ -106,6 +135,8 @@ class Equidepth_Histogram(object):
                 self.buckets[i]['high'] = sorted_sample[i + 1]
             self.buckets[i]['frequency'] = N / self.numbuckets
             self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
+        self.buckets[0]['low'] = self.min
+        self.buckets[self.numbuckets - 1]['high'] = self.max + 1
         self.threshold = (2 + l) * (N / self.numbuckets)
 
     # since the pseudocode doesn't mention what to do about values that fall outside of buckets, I extend those bucket
@@ -187,7 +218,9 @@ class Equidepth_Histogram(object):
             else:
                 self.buckets[i]['high'] = sample[int(round((i + 1) * frac))]
             self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
-            self.buckets[i]['frequency'] = (i * equal) - ((i - 1) * equal) 
+            self.buckets[i]['frequency'] = (i * equal) - ((i - 1) * equal)
+        self.buckets[0]['low'] = self.min
+        self.buckets[self.numbuckets - 1]['high'] = self.max + 1 
 
     def mergebuckets(self, bucket1, bucket2):
         """Merging two buckets into one bucket in the list of buckets."""

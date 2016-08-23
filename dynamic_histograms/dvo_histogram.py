@@ -16,6 +16,7 @@ import csv
 from collections import Counter
 import user_distribution
 import json
+from scipy import stats
 
 class DVO_Histogram(object):
 
@@ -136,6 +137,34 @@ class DVO_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
+        frequency = []
+        for bucket in self.buckets:
+            frequency.append(bucket['frequency'])
+        cumfreq = np.cumsum(frequency)
+        print cumfreq
+        #print N
+        self.print_buckets()
+        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+
+    def callable_cdf(self, x, cumfreq):
+        values = []
+        for value in x:
+            v = self.cdf(value, cumfreq)
+            if v == None:
+                print value, v
+                print self.min, self.max
+            values.append(v)
+        return np.array(values)
+    
+    def cdf(self, x, cumfreq):
+        if x < self.min:
+            return 0
+        elif x > self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def add_datapoint(self, value):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
@@ -194,33 +223,9 @@ class DVO_Histogram(object):
         self.buckets[index]['rightcounter'] = self.buckets[index + 1]['frequency']
         self.buckets[index]['frequency'] = self.buckets[index]['leftcounter'] + self.buckets[index]['rightcounter']
         del self.buckets[index + 1]
-        # mergedbucket = {
-        #     'low': bucket1['low'],
-        #     'high': bucket2['high'],
-        #     'size': bucket2['high'] - bucket1['low'],
-        #     'leftcounter': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2,
-        #     'rightcounter': (bucket2['leftcounter'] + bucket2['rightcounter']) / 2,
-        #     'frequency': (bucket1['leftcounter'] + bucket1['rightcounter']) / 2 + (bucket2['leftcounter'] + bucket2['rightcounter']) / 2
-        # }
-        # buckets = []
-        # for i in range(0, self.numbuckets):
-        #     if self.buckets[i]['low'] < bucket1['low'] or self.buckets[i]['low'] >= bucket2['high']:
-        #         buckets.append(self.buckets[i])
-        #     elif self.buckets[i]['low'] == bucket1['low']:
-        #         buckets.append(mergedbucket)
-        #     elif self.buckets[i]['low'] == bucket2['low']:
-        #         pass
 
     def splitbucket(self, index):
         """Splits a bucket in the list of buckets of the histogram."""
-        #bucket1 = {
-        #    'low': self.buckets[index]['low'],
-        #    'high': (self.buckets[index]['size'] / 2) + self.buckets[index]['low'],
-        #    'size': (self.buckets[index]['size'] / 2),
-        #    'leftcounter': self.buckets[index]['leftcounter'],
-        #    'rightcounter': self.buckets[index]['leftcounter'],
-        #    'frequency': self.buckets[index]['leftcounter'] * 2
-        #}
         bucket2 = {
             'low': (self.buckets[index]['size'] / 2) + self.buckets[index]['low'],
             'high': self.buckets[index]['high'],
@@ -235,19 +240,12 @@ class DVO_Histogram(object):
         self.buckets[index]['rightcounter'] = self.buckets[index]['leftcounter'] / 2
         self.buckets[index]['frequency'] = self.buckets[index]['leftcounter']
         self.buckets.insert(index + 1, bucket2)
-        # buckets = []
-        # for i in range(0, self.numbuckets):
-        #     if self.buckets[i]['low'] < bucket['low'] or self.buckets[i]['low'] >= bucket['high']:
-        #         buckets.append(self.buckets[i])
-        #     else:
-        #         buckets.append(bucket1)
-        #         buckets.append(bucket2)
 
     def bucketError(self, bucket):
         """Calculates the error of a single bucket and returns it."""
         average = (bucket['leftcounter'] + bucket['rightcounter']) / 2
-        lefterror = abs(bucket['leftcounter'] - average) #math.pow(bucket['leftcounter'] - average, 2)
-        righterror = abs(bucket['rightcounter'] - average) #math.pow(bucket['rightcounter'] - average, 2)
+        lefterror = abs(bucket['leftcounter'] - average)
+        righterror = abs(bucket['rightcounter'] - average)
         return lefterror + righterror
 
     def adjacentbucketsError(self, bucket1, bucket2):

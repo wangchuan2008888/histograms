@@ -17,6 +17,7 @@ from collections import Counter
 import random
 import user_distribution
 import json
+from scipy import stats
 
 upper_factor = 3
 
@@ -99,6 +100,34 @@ class DC_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
+        frequency = []
+        for bucket in self.buckets:
+            frequency.append(bucket['frequency'])
+        cumfreq = np.cumsum(frequency)
+        print cumfreq
+        #print N
+        self.print_buckets()
+        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+
+    def callable_cdf(self, x, cumfreq):
+        values = []
+        for value in x:
+            v = self.cdf(value, cumfreq)
+            if v == None:
+                print value, v
+                print self.min, self.max
+            values.append(v)
+        return np.array(values)
+    
+    def cdf(self, x, cumfreq):
+        if x < self.min:
+            return 0
+        elif x > self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def compute_histogram(self, N, sample, gamma, gammam):
         l = N / len(sample)
@@ -134,6 +163,8 @@ class DC_Histogram(object):
             buckets[i]['low'] = low2
             buckets[i]['size'] = buckets[i]['high'] - buckets[i]['low']
             low2 = buckets[i]['high']
+        self.buckets[self.numbuckets - 1]['high'] = self.max + 1
+        self.buckets[0]['low'] = self.min
         self.split = (2 + gamma) * (l * mprime / betaprime)
         self.merge = (l * mprime) / ((2 + gammam) * betaprime)
         self.buckets = buckets
@@ -166,105 +197,169 @@ class DC_Histogram(object):
             self.buckets[0]['frequency'] += 1
             self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
             if self.buckets[0]['frequency'] >= self.split and self.buckets[0]['regular'] == True:
-                self.splitbucket(N, self.buckets[0], None, self.buckets[1], sample, gamma, gammam)
-        elif value > self.buckets[self.numbuckets - 1]['high']:
+                #print "### BEFORE MINIMUM ###"
+                #self.print_buckets()
+                self.splitbucket(N, 0, None, 1, sample, gamma, gammam)
+                #print "### AFTER MINIMUM ###"
+                #self.print_buckets()
+                #if self.buckets[0]['low'] != self.min:
+                #    print self.min
+                #    sys.exit(0)
+        elif value >= self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
             self.buckets[self.numbuckets - 1]['size'] = value + 1 - self.buckets[self.numbuckets - 1]['low']
             if self.buckets[self.numbuckets - 1]['frequency'] >= self.split and self.buckets[self.numbuckets - 1]['regular'] == True:
-                self.splitbucket(N, self.buckets[self.numbuckets - 1], self.buckets[self.numbuckets - 2], None, sample, gamma, gammam)
+                self.splitbucket(N, self.numbuckets - 1, self.numbuckets - 2, None, sample, gamma, gammam)
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
                     if self.buckets[i]['frequency'] >= self.split and self.buckets[i]['regular'] == True:
                         if i == 0:
-                            self.splitbucket(N, self.buckets[i], None, self.buckets[1], sample, gamma, gammam)
-                        if i == self.numbuckets - 1:
-                            self.splitbucket(N, self.buckets[i], self.buckets[i - 1], None, sample, gamma, gammam)
+                            #print "### BEFORE ###"
+                            #self.print_buckets()
+                            self.splitbucket(N, 0, None, 1, sample, gamma, gammam)
+                            #print "### AFTER ###"
+                            #self.print_buckets()
+                            #if self.buckets[0]['low'] != self.min:
+                            #    print self.min
+                            #    sys.exit(0)
+                        elif i == self.numbuckets - 1:
+                            self.splitbucket(N, i, i - 1, None, sample, gamma, gammam)
+                        else:
+                            self.splitbucket(N, i, i - 1, i + 1, sample, gamma, gammam)
+                        
 
-    def splitbucket(self, N, bucket, prevbucket, afterbucket, sample, gamma, gammam):
+    def splitbucket(self, N, bucketindex, prevbucketindex, afterbucketindex, sample, gamma, gammam):
         s = []
         for i in range(0, len(sample)):
-            if sample[i] >= bucket['low'] and sample[i] <= bucket['high']:
+            if sample[i] >= self.buckets[bucketindex]['low'] and sample[i] <= self.buckets[bucketindex]['high']:
                 s.append(sample[i])
         m = np.median(s)
-        if prevbucket != None and m != prevbucket['high'] and m != bucket['high']:
+        if prevbucketindex != None and m != self.buckets[prevbucketindex]['high'] and m != self.buckets[bucketindex]['high']:
             mergepair_index = self.candidateMergePair()
+            #if self.buckets[0]['low'] == self.min:
+            #    print "RIGHT!!!!"
             if mergepair_index != None:
-                buckets = self.mergebuckets(mergepair_index, buckets) # merge the buckets into one bucket
-                buckets = self.splitbucketintwo(bucket, buckets[mergepair_index], sample) # split bucket
+                #print mergepair_index
+                self.mergebuckets(mergepair_index) # merge the buckets into one bucket
+                #if self.buckets[0]['low'] == self.min:
+                #    print "RIGHT SO FAR"
+                self.splitbucketintwo(bucketindex, sample) # split bucket
+                #if self.buckets[0]['low'] == self.min:
+                #    print "AND HERE???"
             else:
+                #print "COMPUTING HERE"
                 self.compute_histogram(N, sample, gamma, gammam)
-        elif prevbucket != None and m == prevbucket['high'] and prevbucket != None:
+            #if self.buckets[0]['low'] != self.min:
+            #    print "NOT RIGHT FIRST IF"
+            #    self.print_buckets()
+            #    print self.min
+            #    sys.exit(0)
+        elif prevbucketindex != None and m == self.buckets[prevbucketindex]['high']:
             c = Counter(sample)
-            bucket['frequency'] = prevbucket['frequency'] + bucket['frequency'] - (c[m] * N / len(sample))
-            prevbucket['high'] = m
-            prevbucket['size'] = m - prevbucket['low']
-            prevbucket['frequency'] = c[m] * N / len(sample)
-            if bucket['count'] <= self.split:
-                self.splitbucket(N, bucket, prevbucket, sample)
-            elif bucket['count'] <= self.merge:
+            self.buckets[bucketindex]['frequency'] = self.buckets[prevbucketindex]['frequency'] + self.buckets[bucketindex]['frequency'] - (c[m] * N / len(sample))
+            self.buckets[prevbucketindex]['high'] = m
+            self.buckets[prevbucketindex]['size'] = m - self.buckets[prevbucketindex]['low']
+            self.buckets[prevbucketindex]['frequency'] = c[m] * N / len(sample)
+            if self.buckets[bucketindex]['count'] >= self.split:
+                self.splitbucket(N, bucketindex, prevbucketindex, afterbucketindex, sample)
+            elif self.buckets[bucketindex]['count'] <= self.merge:
                 mergepair_index = self.candidateMergePair()
                 split_index = self.candidatesplitbucket(self, gamma)
                 if mergepair_index != None and split_index != None and split_index > 0:
-                    if bucket['high'] == buckets[mergepair_index]['high'] and bucket['frequency'] == buckets[mergepair_index]['frequency']:
-                        buckets = self.mergebuckets(mergepair_index, buckets)
-                        self.splitbucket(N, buckets[split_index], buckets[split_index - 1], sample, gamma)
-                    elif bucket['high'] == buckets[mergepair_index + 1]['high'] and bucket['frequency'] == buckets[mergepair_index + 1]['frequency']:
-                        buckets = self.mergebuckets(mergepair_index, buckets)
-                        self.splitbucket(N, buckets[split_index], buckets[split_index - 1], sample, gamma)
+                    if self.buckets[bucketindex]['high'] == self.buckets[mergepair_index]['high'] and self.buckets[bucketindex]['frequency'] == self.buckets[mergepair_index]['frequency']:
+                        self.mergebuckets(mergepair_index)
+                        after = None
+                        if split_index < self.numbuckets - 1:
+                            after = split_index + 1
+                        self.splitbucket(N, split_index, split_index - 1, after, sample, gamma)
+                    elif self.buckets[bucketindex]['high'] == self.buckets[mergepair_index + 1]['high'] and self.buckets[bucketindex]['frequency'] == self.buckets[mergepair_index + 1]['frequency']:
+                        self.mergebuckets(mergepair_index)
+                        after = None
+                        if split_index < self.numbuckets - 1:
+                            after = self.buckets[split_index + 1]
+                        self.splitbucket(N, split_index, split_index - 1, after, sample, gamma)
                 else:
                     self.compute_histogram(N, sample, gamma, gammam)
-        elif m == bucket['high'] and afterbucket != None:
+            #if self.buckets[0]['low'] != self.min:
+                #print "NOT RIGHT SECOND IF"
+                #self.print_buckets()
+                #print self.min
+                #sys.exit(0)
+        elif m == self.buckets[bucketindex]['high'] and afterbucketindex != None:
             c = Counter(sample)
-            bucket['frequency'] = afterbucket['frequency'] + bucket['frequency'] - (c[m] * N / len(sample))
-            afterbucket['high'] = m
-            afterbucket['size'] = m - afterbucket['low']
-            afterbucket['frequency'] = c[m] * N / len(sample)
-            if afterbucket['frequency'] <= self.split:
-                self.splitbucket(N, afterbucket, bucket, sample)
-            elif afterbucket['frequency'] <= self.merge:
+            self.buckets[bucketindex]['frequency'] = self.buckets[afterbucketindex]['frequency'] + self.buckets[bucketindex]['frequency'] - (c[m] * N / len(sample))
+            self.buckets[afterbucketindex]['high'] = m
+            self.buckets[afterbucketindex]['size'] = m - self.buckets[afterbucketindex]['low']
+            self.buckets[afterbucketindex]['frequency'] = c[m] * N / len(sample)
+            if self.buckets[afterbucketindex]['frequency'] <= self.split:
+                after = None
+                if afterbucketindex < self.numbuckets - 1:
+                    after = afterbucketindex + 1
+                self.splitbucket(N, afterbucketindex, bucketindex, after, sample)
+            elif self.buckets[afterbucketindex]['frequency'] <= self.merge:
                 mergepair_index = self.candidateMergePair()
                 split_index = self.candidatesplitbucket(self, gamma)
                 if mergepair_index != None and split_index != None and split_index > 0:
-                    if afterbucket['high'] == buckets[mergepair_index]['high'] and bucket['frequency'] == buckets[mergepair_index]['frequency']:
-                        buckets = self.mergebuckets(mergepair_index, buckets)
-                        self.splitbucket(N, buckets[split_index], buckets[split_index - 1], sample, gamma)
-                    elif bucket['high'] == buckets[mergepair_index + 1]['high'] and bucket['frequency'] == buckets[mergepair_index + 1]['frequency']:
-                        buckets = self.mergebuckets(mergepair_index, buckets)
-                        self.splitbucket(N, buckets[split_index], buckets[split_index - 1], sample, gamma)
+                    if self.buckets[afterbucketindex]['high'] == self.buckets[mergepair_index]['high'] and self.buckets[bucketindex]['frequency'] == self.buckets[mergepair_index]['frequency']:
+                        self.mergebuckets(mergepair_index)
+                        after = None
+                        if split_index < self.numbuckets - 1:
+                            after = split_index + 1
+                        self.splitbucket(N, split_index, split_index - 1, after, sample, gamma)
+                    elif self.buckets[bucketindex]['high'] == self.buckets[mergepair_index + 1]['high'] and self.buckets[bucketindex]['frequency'] == self.buckets[mergepair_index + 1]['frequency']:
+                        self.mergebuckets(mergepair_index)
+                        after = None
+                        if split_index < self.numbuckets - 1:
+                            after = split_index + 1
+                        self.splitbucket(N, split_index, split_index - 1, after, sample, gamma)
                 else:
                     self.compute_histogram(N, sample, gamma, gammam)
-        #self.buckets = buckets
+            #if self.buckets[0]['low'] != self.min:
+            #    print "NOT RIGHT THIRD IF"
+            #    self.print_buckets()
+            #    print self.min
+            #    sys.exit(0)
+        
 
-    def splitbucketintwo(self, bucket, bucket2, sample):
+    def splitbucketintwo(self, index, sample):
         """Splits a bucket in the list of buckets of the histogram."""
         s = []
         for i in range(0, len(sample)):
             if sample[i] >= bucket['low'] and sample[i] < bucket['high']:
                 s.append(sample[i])
         m = np.median(s)
-        bucket2['high'] = m
-        bucket2['low'] = bucket['low']
-        bucket2['size'] = m - bucket['low']
-        bucket['low'] = m
-        bucket['frequency'] = self.split / 2
-        bucket['size'] = bucket['high'] - m
-        bucket2['frequency'] = self.split / 2
-        buckets = []
-        for i in range(0, len(self.buckets)):
-            if self.buckets[i]['low'] == bucket['low'] and self.buckets[i]['high'] == bucket['high']:
-                buckets.append(bucket2)
-                buckets.append(bucket)
-            else:
-                buckets.append(self.buckets[i])
-        return buckets
+        s = list(set(s))
+        bucket2 = {
+            'low': s[s.index(m) + 1],
+            'high': self.buckets[index]['high'],
+            'size': self.buckets[index]['high'] - s[s.index(m) + 1],
+            'frequency': self.split / 2
+        }
+        #bucket2['high'] = m
+        #bucket2['low'] = bucket['low']
+        #bucket2['size'] = m - bucket['low']
+        self.buckets[index]['high'] = s[s.index(m) + 1]
+        self.buckets[index]['frequency'] = self.split / 2
+        self.buckets[index]['size'] = self.buckets[index]['high'] - self.buckets[index]['low']
+        self.buckets.insert(index + 1, bucket2)
+        #bucket2['frequency'] = self.split / 2
+        #buckets = []
+        #for i in range(0, len(self.buckets)):
+        #    if self.buckets[i]['low'] == bucket['low'] and self.buckets[i]['high'] == bucket['high']:
+        #        buckets.append(bucket2)
+        #        buckets.append(bucket)
+        #    else:
+        #        buckets.append(self.buckets[i])
+        #return buckets
 
-    def mergebuckets(self, index, buckets):
-        buckets[index + 1]['frequency'] = buckets[index]['frequency'] + buckets[index + 1]['frequency']
-        buckets[index + 1]['low'] = buckets[index]['low']
-        buckets[index + 1]['size'] = buckets[index + 1]['high'] - buckets[index + 1]['low']
+    def mergebuckets(self, index):
+        self.buckets[index]['frequency'] = self.buckets[index]['frequency'] + self.buckets[index + 1]['frequency']
+        self.buckets[index]['high'] = self.buckets[index + 1]['high']
+        self.buckets[index]['size'] = self.buckets[index]['high'] - buckets[index]['low']
+        del self.buckets[index + 1]
         return buckets
 
     def candidateMergePair(self):

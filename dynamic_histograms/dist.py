@@ -3,8 +3,8 @@ import numpy as np
 from pylab import normal, concatenate
 import random
 
-n = 1000000
-#n = 15000
+n = 20
+#n = 1000000
 s = 1000
 
 norm = np.random.randn(n) * s
@@ -16,7 +16,7 @@ bimodal = concatenate((normal(1,.2,n*0.75),normal(2,.2,n*0.25))) * s
 random.shuffle(bimodal)
 uniform = np.random.uniform(0, s, n)
 
-f = open('data/distributions.csv', 'w')
+f = open('data/testdistributions.csv', 'w')
 f.write('norm,chi,logistic,beta,gamma,bimodal,uniform\n')
 
 for i in range(0,n):

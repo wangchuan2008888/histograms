@@ -18,6 +18,7 @@ import heapq
 import random
 import user_distribution
 import json
+from scipy import stats
 
 upper_factor = 3
 
@@ -160,6 +161,34 @@ class Spline_Histogram(object):
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
+        frequency = []
+        for bucket in self.buckets:
+            frequency.append(bucket['frequency'])
+        cumfreq = np.cumsum(frequency)
+        print cumfreq
+        #print N
+        self.print_buckets()
+        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+
+    def callable_cdf(self, x, cumfreq):
+        values = []
+        for value in x:
+            v = self.cdf(value, cumfreq)
+            if v == None:
+                print value, v
+                print self.min, self.max
+            values.append(v)
+        return np.array(values)
+    
+    def cdf(self, x, cumfreq):
+        if x < self.min:
+            return 0
+        elif x > self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def add_datapoint(self, value):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
@@ -258,6 +287,8 @@ class Spline_Histogram(object):
                 error = self.spline_error(buckets[right]['low'], buckets[right + 1]['high'], sample, buckets[right], buckets[right + 1])
                 q.add(error)
                 b[error] = [right, right + 1]
+        buckets[0]['low'] = self.min
+        buckets[len(buckets) - 1]['high'] = self.max + 1
         self.buckets = buckets
 
 

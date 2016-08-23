@@ -16,6 +16,7 @@ import csv
 from collections import Counter
 import user_distribution
 import json
+from scipy import stats
 
 class Control_Histogram(object):
 
@@ -76,12 +77,45 @@ class Control_Histogram(object):
                 elif initial == True:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
-                        print "number read in: " + str(N)
+                        print "afasdfasdfnumber read in: " + str(N)
+                        frequency = []
+                        for bucket in self.buckets:
+                            frequency.append(bucket['frequency'])
+                        cumfreq = np.cumsum(frequency)
+                        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+                        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
                         self.plot_histogram(attr, self.buckets)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
+        frequency = []
+        for bucket in self.buckets:
+            frequency.append(bucket['frequency'])
+        cumfreq = np.cumsum(frequency)
+        print cumfreq
+        #print N
+        self.print_buckets()
+        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+
+    def callable_cdf(self, x, cumfreq):
+        #print list(x)
+        print cumfreq
+        #return None
+        values = []
+        for value in x:
+            values.append(self.cdf(value, cumfreq))
+        return np.array(values)
+    
+    def cdf(self, x, cumfreq):
+        if x < self.min:
+            return 0
+        elif x > self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def create_initial_histogram(self, N, sample):
         """Creates the bucket boundaries based on the first n distinct points present in the sample."""
@@ -98,7 +132,7 @@ class Control_Histogram(object):
             for j in range(0, len(sorted_sample)):
                 if sorted_sample[j] >= low and sorted_sample[j] < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += c[sorted_sample[j]]
-                elif sorted_sample[j] > self.buckets[i]['high']:
+                elif sorted_sample[j] >= self.buckets[i]['high']:
                     break
             low = self.buckets[i]['high']
     
@@ -108,7 +142,7 @@ class Control_Histogram(object):
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
             self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
-        elif value > self.buckets[self.numbuckets - 1]['high']:
+        elif value >= self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
             self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']

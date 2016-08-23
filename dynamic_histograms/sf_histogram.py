@@ -17,6 +17,7 @@ from heapq import nlargest
 from operator import itemgetter
 import user_distribution
 import json
+from scipy import stats
 
 class SF_Histogram(object):
 
@@ -103,6 +104,34 @@ class SF_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
+        frequency = []
+        for bucket in self.buckets:
+            frequency.append(bucket['frequency'])
+        cumfreq = np.cumsum(frequency)
+        print cumfreq
+        #print N
+        self.print_buckets()
+        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+
+    def callable_cdf(self, x, cumfreq):
+        values = []
+        for value in x:
+            v = self.cdf(value, cumfreq)
+            if v == None:
+                print value, v
+                print self.min, self.max
+            values.append(v)
+        return np.array(values)
+    
+    def cdf(self, x, cumfreq):
+        if x < self.min:
+            return 0
+        elif x > self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def sample_on_range(self, sample, rangelow, rangehigh):
         """Returns the sample over the range rangelow-rangehigh."""
