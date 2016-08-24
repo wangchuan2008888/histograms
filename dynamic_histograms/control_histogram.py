@@ -77,32 +77,36 @@ class Control_Histogram(object):
                 elif initial == True:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
-                        print "afasdfasdfnumber read in: " + str(N)
-                        frequency = []
-                        for bucket in self.buckets:
-                            frequency.append(bucket['frequency'])
-                        cumfreq = np.cumsum(frequency)
-                        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
-                        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+                        print "number read in: " + str(N)
                         self.plot_histogram(attr, self.buckets)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
+                        self.compare_histogram(attr)
+
+    def compare_histogram(self, attr):
         frequency = []
+        binedges = []
         for bucket in self.buckets:
             frequency.append(bucket['frequency'])
+            binedges.append(bucket['low'])
+        binedges.append(bucket['high'])
         cumfreq = np.cumsum(frequency)
-        print cumfreq
-        #print N
-        self.print_buckets()
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+        sorted_data = np.sort(realdist)
+        yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
+        plt.plot(sorted_data, yvals)
+        plt.step(binedges[1:], cumfreq / cumfreq[len(cumfreq) - 1])
+        plt.plot(binedges[1:], cumfreq / cumfreq[len(cumfreq) - 1])
+        plt.legend(['CDF of real data', 'CDF of histogram', 'approx CDF of linear approx'], loc='lower right')
+        plt.savefig(self.outputpath + "//img//controlcdf" + str(self.counter) + ".jpg")
+        self.counter += 1
+        plt.clf
+        plt.gca().legend_.remove()
 
     def callable_cdf(self, x, cumfreq):
-        #print list(x)
-        print cumfreq
-        #return None
         values = []
         for value in x:
             values.append(self.cdf(value, cumfreq))
@@ -135,6 +139,8 @@ class Control_Histogram(object):
                 elif sorted_sample[j] >= self.buckets[i]['high']:
                     break
             low = self.buckets[i]['high']
+        self.buckets[0]['low'] = self.min
+        self.buckets[self.numbuckets - 1]['high'] = self.max + 1
     
     def add_datapoint(self, value):
         """Increases the count of the bucket the value belongs in the histogram."""

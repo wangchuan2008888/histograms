@@ -104,15 +104,28 @@ class SF_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
+                        self.compare_histogram(attr)
+        self.compare_histogram(attr)
+
+    def compare_histogram(self, attr):
         frequency = []
+        binedges = []
         for bucket in self.buckets:
             frequency.append(bucket['frequency'])
+            binedges.append(bucket['low'])
+        binedges.append(bucket['high'])
         cumfreq = np.cumsum(frequency)
-        print cumfreq
-        #print N
-        self.print_buckets()
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+        sorted_data = np.sort(realdist)
+        yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
+        plt.plot(sorted_data, yvals)
+        plt.step(binedges[1:], cumfreq / cumfreq[len(cumfreq) - 1])
+        plt.plot(binedges[1:], cumfreq / cumfreq[len(cumfreq) - 1])
+        plt.legend(['CDF of real data', 'CDF of histogram', 'approx CDF of linear approx'], loc='lower right')
+        plt.savefig(self.outputpath + "//img//sfcdf" + str(self.counter) + ".jpg")
+        self.counter += 1
+        plt.clf()
 
     def callable_cdf(self, x, cumfreq):
         values = []
