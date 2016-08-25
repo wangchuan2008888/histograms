@@ -1,0 +1,112 @@
+beta
+bimodal
+chi
+gamma
+logistic
+norm
+uniform
+### CONTROL HISTOGRAM ###
+number read in: 100000
+number read in: 200000
+number read in: 300000
+number read in: 400000
+number read in: 500000
+number read in: 600000
+number read in: 700000
+number read in: 800000
+number read in: 900000
+number read in: 1000000
+KstestResult(statistic=0.084193011168022303, pvalue=0.0)
+KstestResult(statistic=0.084192157255894073, pvalue=0.0)
+-------- 58.546056 seconds for 3 batches --------
+### DYNAMIC COMPRESSED HISTOGRAM ###
+number read in: 100000
+number read in: 200000
+number read in: 300000
+number read in: 400000
+number read in: 500000
+number read in: 600000
+number read in: 700000
+number read in: 800000
+number read in: 900000
+number read in: 1000000
+KstestResult(statistic=0.29124880000000014, pvalue=0.0)
+KstestResult(statistic=14.853629493005677, pvalue=0.0)
+-------- 61.628220 seconds for 3 batches --------
+### EQUI-DEPTH HISTOGRAM ###
+number read in: 100000
+number read in: 200000
+number read in: 300000
+number read in: 400000
+number read in: 500000
+number read in: 600000
+number read in: 700000
+number read in: 800000
+number read in: 900000
+number read in: 1000000
+KstestResult(statistic=0.24610112974433246, pvalue=0.0)
+KstestResult(statistic=0.18992715606471283, pvalue=0.0)
+-------- 64.632126 seconds for 3 batches --------
+### MAX-DIFF HISTOGRAM ###
+number read in: 100000
+number read in: 200000
+number read in: 300000
+number read in: 400000
+number read in: 500000
+number read in: 600000
+number read in: 700000
+number read in: 800000
+number read in: 900000
+number read in: 1000000
+KstestResult(statistic=0.28904400000000002, pvalue=0.0)
+KstestResult(statistic=0.23904400000000003, pvalue=0.0)
+-------- 67.508728 seconds for 3 batches --------
+### SELF-TUNING HISTOGRAM ###
+number read in: 100000
+number read in: 200000
+number read in: 300000
+number read in: 400000
+number read in: 500000
+number read in: 600000
+number read in: 700000
+number read in: 800000
+number read in: 900000
+number read in: 1000000
+KstestResult(statistic=0.084451507029506989, pvalue=0.0)
+KstestResult(statistic=0.084462577445266362, pvalue=0.0)
+-------- 59.717852 seconds for 3 batches --------
+### SPLINE HISTOGRAM ###
+number read in: 100000
+number read in: 200000
+number read in: 300000
+number read in: 400000
+number read in: 500000
+number read in: 600000
+number read in: 700000
+number read in: 800000
+number read in: 900000
+number read in: 1000000
+KstestResult(statistic=0.229136800976801, pvalue=0.0)
+KstestResult(statistic=0.40695444066849451, pvalue=0.0)
+-------- 66.961674 seconds for 3 batches --------
+### DYNAMIC V-OPTIMAL HISTOGRAM
+number read in: 100000
+number read in: 200000
+number read in: 300000
+number read in: 400000
+number read in: 500000
+number read in: 600000
+number read in: 700000
+number read in: 800000
+number read in: 900000
+number read in: 1000000
+KstestResult(statistic=0.5143199403564831, pvalue=0.0)
+KstestResult(statistic=0.4310869403610319, pvalue=0.0)
+-------- 133.805587 seconds for 3 batches --------
+Control histogram time: 58.546056 
+Dynamic compressed histogram time: 61.628220 
+Dynamic v-optimal histogram time: 133.805587 
+Equi-depth histogram time: 64.632126 
+Max-diff histogram time: 67.508728 
+Self-tuning histogram time: 59.717852 
+Spline histogram time: 66.961674 

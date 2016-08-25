@@ -13,7 +13,7 @@ import sys
 buckets = 20
 batchsize = 100000
 userbucketsize = 1
-attr = 'chi'
+attr = 'beta'
 
 # make sure output directory exists
 outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(buckets) + '_' + str(userbucketsize)
@@ -43,7 +43,6 @@ control = dynamic_histograms.control_histogram.Control_Histogram('dynamic_histog
 control.create_histogram(attr, batchsize=batchsize, userbucketsize=userbucketsize)
 control_time = time.time() - start_time
 print "-------- %f seconds for 3 batches --------" % control_time
-sys.exit(0)
 
 print "### DYNAMIC COMPRESSED HISTOGRAM ###"
 start_time = time.time()

@@ -100,10 +100,10 @@ class DC_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
-                        self.compare_histogram(attr)
-        self.compare_histogram(attr)
+                        self.compare_histogram(attr, False)
+        self.compare_histogram(attr, True)
 
-    def compare_histogram(self, attr):
+    def compare_histogram(self, attr, end):
         frequency = []
         binedges = []
         for bucket in self.buckets:
@@ -112,16 +112,21 @@ class DC_Histogram(object):
         binedges.append(bucket['high'])
         cumfreq = np.cumsum(frequency)
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
-        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+        if end:
+            print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            print stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
         sorted_data = np.sort(realdist)
         yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
+        plt.grid(True)
         plt.plot(sorted_data, yvals)
-        plt.step(binedges[1:], cumfreq / cumfreq[len(cumfreq) - 1])
-        plt.plot(binedges[1:], cumfreq / cumfreq[len(cumfreq) - 1])
-        plt.legend(['CDF of real data', 'CDF of histogram', 'approx CDF of linear approx'], loc='lower right')
+        step = [0]
+        step.extend(cumfreq / cumfreq[len(cumfreq) - 1])
+        plt.step(binedges[0:], step)
+        plt.plot(binedges[0:], step)
+        plt.legend(['CDF of real data', 'CDF of histogram', 'CDF of linear approx'], loc='lower right')
         plt.savefig(self.outputpath + "//img//dccdf" + str(self.counter) + ".jpg")
         self.counter += 1
-        plt.clf
+        plt.close()
 
     def callable_cdf(self, x, cumfreq):
         values = []
@@ -132,6 +137,12 @@ class DC_Histogram(object):
                 print self.min, self.max
             values.append(v)
         return np.array(values)
+
+    def callable_linearcdf(self, x, cumfreq):
+        values = []
+        for value in x:
+            values.append(self.linear_cdf(value, cumfreq))
+        return np.array(values)
     
     def cdf(self, x, cumfreq):
         if x < self.min:
@@ -141,6 +152,21 @@ class DC_Histogram(object):
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
                 return cumfreq[i] / cumfreq[len(cumfreq) - 1]
+
+    def linear_cdf(self, x, cumfreq):
+        if x < self.min:
+            return 0
+        elif x > self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                approx = None
+                percentage = (x - self.buckets[i]['low']) / self.buckets[i]['size']
+                if i > 0:
+                    approx = percentage + cumfreq[i - 1]
+                else:
+                    approx = percentage * cumfreq[i]
+                return approx / cumfreq[len(cumfreq) - 1]        
 
     def compute_histogram(self, N, sample, gamma, gammam):
         l = N / len(sample)
@@ -210,14 +236,7 @@ class DC_Histogram(object):
             self.buckets[0]['frequency'] += 1
             self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
             if self.buckets[0]['frequency'] >= self.split and self.buckets[0]['regular'] == True:
-                #print "### BEFORE MINIMUM ###"
-                #self.print_buckets()
                 self.splitbucket(N, 0, None, 1, sample, gamma, gammam)
-                #print "### AFTER MINIMUM ###"
-                #self.print_buckets()
-                #if self.buckets[0]['low'] != self.min:
-                #    print self.min
-                #    sys.exit(0)
         elif value >= self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
@@ -230,14 +249,7 @@ class DC_Histogram(object):
                     self.buckets[i]['frequency'] += 1
                     if self.buckets[i]['frequency'] >= self.split and self.buckets[i]['regular'] == True:
                         if i == 0:
-                            #print "### BEFORE ###"
-                            #self.print_buckets()
                             self.splitbucket(N, 0, None, 1, sample, gamma, gammam)
-                            #print "### AFTER ###"
-                            #self.print_buckets()
-                            #if self.buckets[0]['low'] != self.min:
-                            #    print self.min
-                            #    sys.exit(0)
                         elif i == self.numbuckets - 1:
                             self.splitbucket(N, i, i - 1, None, sample, gamma, gammam)
                         else:
@@ -252,24 +264,11 @@ class DC_Histogram(object):
         m = np.median(s)
         if prevbucketindex != None and m != self.buckets[prevbucketindex]['high'] and m != self.buckets[bucketindex]['high']:
             mergepair_index = self.candidateMergePair()
-            #if self.buckets[0]['low'] == self.min:
-            #    print "RIGHT!!!!"
             if mergepair_index != None:
-                #print mergepair_index
                 self.mergebuckets(mergepair_index) # merge the buckets into one bucket
-                #if self.buckets[0]['low'] == self.min:
-                #    print "RIGHT SO FAR"
                 self.splitbucketintwo(bucketindex, sample) # split bucket
-                #if self.buckets[0]['low'] == self.min:
-                #    print "AND HERE???"
             else:
-                #print "COMPUTING HERE"
                 self.compute_histogram(N, sample, gamma, gammam)
-            #if self.buckets[0]['low'] != self.min:
-            #    print "NOT RIGHT FIRST IF"
-            #    self.print_buckets()
-            #    print self.min
-            #    sys.exit(0)
         elif prevbucketindex != None and m == self.buckets[prevbucketindex]['high']:
             c = Counter(sample)
             self.buckets[bucketindex]['frequency'] = self.buckets[prevbucketindex]['frequency'] + self.buckets[bucketindex]['frequency'] - (c[m] * N / len(sample))
@@ -296,11 +295,6 @@ class DC_Histogram(object):
                         self.splitbucket(N, split_index, split_index - 1, after, sample, gamma)
                 else:
                     self.compute_histogram(N, sample, gamma, gammam)
-            #if self.buckets[0]['low'] != self.min:
-                #print "NOT RIGHT SECOND IF"
-                #self.print_buckets()
-                #print self.min
-                #sys.exit(0)
         elif m == self.buckets[bucketindex]['high'] and afterbucketindex != None:
             c = Counter(sample)
             self.buckets[bucketindex]['frequency'] = self.buckets[afterbucketindex]['frequency'] + self.buckets[bucketindex]['frequency'] - (c[m] * N / len(sample))
@@ -330,11 +324,6 @@ class DC_Histogram(object):
                         self.splitbucket(N, split_index, split_index - 1, after, sample, gamma)
                 else:
                     self.compute_histogram(N, sample, gamma, gammam)
-            #if self.buckets[0]['low'] != self.min:
-            #    print "NOT RIGHT THIRD IF"
-            #    self.print_buckets()
-            #    print self.min
-            #    sys.exit(0)
         
 
     def splitbucketintwo(self, index, sample):
@@ -351,22 +340,10 @@ class DC_Histogram(object):
             'size': self.buckets[index]['high'] - s[s.index(m) + 1],
             'frequency': self.split / 2
         }
-        #bucket2['high'] = m
-        #bucket2['low'] = bucket['low']
-        #bucket2['size'] = m - bucket['low']
         self.buckets[index]['high'] = s[s.index(m) + 1]
         self.buckets[index]['frequency'] = self.split / 2
         self.buckets[index]['size'] = self.buckets[index]['high'] - self.buckets[index]['low']
         self.buckets.insert(index + 1, bucket2)
-        #bucket2['frequency'] = self.split / 2
-        #buckets = []
-        #for i in range(0, len(self.buckets)):
-        #    if self.buckets[i]['low'] == bucket['low'] and self.buckets[i]['high'] == bucket['high']:
-        #        buckets.append(bucket2)
-        #        buckets.append(bucket)
-        #    else:
-        #        buckets.append(self.buckets[i])
-        #return buckets
 
     def mergebuckets(self, index):
         self.buckets[index]['frequency'] = self.buckets[index]['frequency'] + self.buckets[index + 1]['frequency']
@@ -435,7 +412,7 @@ class DC_Histogram(object):
         with open(self.outputpath + "//data//dc" + str(self.counter) + ".json", 'w') as outfile:
             json.dump(buckets, outfile)
         plt.savefig(self.outputpath + "//img//dc" + str(self.counter) + ".jpg")
-        plt.clf()
+        plt.close()
         self.counter += 1
 
     def print_buckets(self):

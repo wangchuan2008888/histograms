@@ -161,10 +161,10 @@ class Spline_Histogram(object):
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
-                        self.compare_histogram(attr)
-        self.compare_histogram(attr)
+                        self.compare_histogram(attr, False)
+        self.compare_histogram(attr, True)
 
-    def compare_histogram(self, attr):
+    def compare_histogram(self, attr, end):
         frequency = []
         binedges = []
         for bucket in self.buckets:
@@ -173,16 +173,21 @@ class Spline_Histogram(object):
         binedges.append(bucket['high'])
         cumfreq = np.cumsum(frequency)
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
-        print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+        if end:
+            print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            print stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
         sorted_data = np.sort(realdist)
         yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
+        plt.grid(True)
         plt.plot(sorted_data, yvals)
-        plt.step(binedges[1:], cumfreq / cumfreq[len(cumfreq) - 1])
-        plt.plot(binedges[1:], cumfreq / cumfreq[len(cumfreq) - 1])
-        plt.legend(['CDF of real data', 'CDF of histogram', 'approx CDF of linear approx'], loc='lower right')
+        step = [0]
+        step.extend(cumfreq / cumfreq[len(cumfreq) - 1])
+        plt.step(binedges[0:], step)
+        plt.plot(binedges[0:], step)
+        plt.legend(['CDF of real data', 'CDF of histogram', 'CDF of linear approx'], loc='lower right')
         plt.savefig(self.outputpath + "//img//splinecdf" + str(self.counter) + ".jpg")  
         self.counter += 1
-        plt.clf
+        plt.close()
 
     def callable_cdf(self, x, cumfreq):
         values = []
@@ -193,6 +198,12 @@ class Spline_Histogram(object):
                 print self.min, self.max
             values.append(v)
         return np.array(values)
+
+    def callable_linearcdf(self, x, cumfreq):
+        values = []
+        for value in x:
+            values.append(self.linear_cdf(value, cumfreq))
+        return np.array(values)
     
     def cdf(self, x, cumfreq):
         if x < self.min:
@@ -202,6 +213,21 @@ class Spline_Histogram(object):
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
                 return cumfreq[i] / cumfreq[len(cumfreq) - 1]
+
+    def linear_cdf(self, x, cumfreq):
+        if x < self.min:
+            return 0
+        elif x > self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                approx = None
+                percentage = (x - self.buckets[i]['low']) / self.buckets[i]['size']
+                if i > 0:
+                    approx = percentage + cumfreq[i - 1]
+                else:
+                    approx = percentage * cumfreq[i]
+                return approx / cumfreq[len(cumfreq) - 1] 
 
     def add_datapoint(self, value):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
@@ -387,7 +413,7 @@ class Spline_Histogram(object):
         with open(self.outputpath + "//data//spline" + str(self.counter) + ".json", 'w') as outfile:
             json.dump(buckets, outfile)
         plt.savefig(self.outputpath + "//img//spline" + str(self.counter) + ".jpg")
-        plt.clf()
+        plt.close()
         self.counter += 1
 
     def print_buckets(self):
