@@ -16,6 +16,7 @@ import csv
 from collections import Counter
 import user_distribution
 import json
+import os
 from scipy import stats
 
 class DVO_Histogram(object):
@@ -94,6 +95,10 @@ class DVO_Histogram(object):
         N = 0
         sample = []
         initial = False
+        try:
+            os.remove(self.outputpath + "//data//dvoksstats" + ".json")
+        except OSError:
+            pass
         with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
@@ -154,8 +159,13 @@ class DVO_Histogram(object):
         cumfreq = np.cumsum(frequency)
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         if end:
-            print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
-            print stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            ksstats = {}
+            ksstats['cdfstats'] = stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            ksstats['linearcdstats'] = stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            with open(self.outputpath + "//data//dvoksstats" + ".json", 'a+') as ks:
+                json.dump(ksstats, ks)
+                ks.write('\n')
+            self.counter += 1     
         sorted_data = np.sort(realdist)
         yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
         plt.grid(True)

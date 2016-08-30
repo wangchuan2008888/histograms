@@ -18,6 +18,7 @@ import heapq
 import random
 import user_distribution
 import json
+import os
 from scipy import stats
 
 upper_factor = 3
@@ -123,6 +124,10 @@ class Spline_Histogram(object):
         initial = False
         skip = 0
         skipcounter = 0
+        try:
+            os.remove(self.outputpath + "//data//splineksstats" + ".json")
+        except OSError:
+            pass
         with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
@@ -174,8 +179,13 @@ class Spline_Histogram(object):
         cumfreq = np.cumsum(frequency)
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         if end:
-            print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
-            print stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            ksstats = {}
+            ksstats['cdfstats'] = stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            ksstats['linearcdfstats'] = stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            with open(self.outputpath + "//data//splineksstats" + ".json", 'a+') as ks:
+                json.dump(ksstats, ks)
+                ks.write('\n')
+            self.counter += 1        
         sorted_data = np.sort(realdist)
         yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
         plt.grid(True)

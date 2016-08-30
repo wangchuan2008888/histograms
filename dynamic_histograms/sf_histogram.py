@@ -17,6 +17,7 @@ from heapq import nlargest
 from operator import itemgetter
 import user_distribution
 import json
+import os
 from scipy import stats
 
 class SF_Histogram(object):
@@ -72,6 +73,10 @@ class SF_Histogram(object):
         N = 0
         sample = []
         initial = False
+        try:
+            os.remove(self.outputpath + "//data//sfksstats" + ".json")
+        except OSError:
+            pass
         with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
@@ -117,9 +122,13 @@ class SF_Histogram(object):
         cumfreq = np.cumsum(frequency)
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         if end:
-            # had issues with the cdf function
-            print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
-            print stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            ksstats = {}
+            ksstats['cdfstats'] = stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            ksstats['linearcdfstats'] = stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            with open(self.outputpath + "//data//sfksstats" + ".json", 'w') as ks:
+                json.dump(ksstats, ks)
+                ks.write('\n')
+            self.counter += 1                
         sorted_data = np.sort(realdist)
         yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
         plt.grid(True)

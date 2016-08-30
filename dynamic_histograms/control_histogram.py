@@ -16,6 +16,7 @@ import csv
 from collections import Counter
 import user_distribution
 import json
+import os
 from scipy import stats
 
 class Control_Histogram(object):
@@ -52,6 +53,10 @@ class Control_Histogram(object):
         N = 0
         sample = []
         initial = False
+        try:
+            os.remove(self.outputpath + "//data//controlksstats" + ".json")
+        except OSError:
+            pass
         with open(self.file) as f:
             reader = csv.reader(f)
             header = reader.next()
@@ -83,7 +88,7 @@ class Control_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
-                        self.compare_histogram(attr, False)
+                        self.compare_histogram(attr, True)
         self.compare_histogram(attr, True)
 
     def compare_histogram(self, attr, end):
@@ -96,13 +101,18 @@ class Control_Histogram(object):
         cumfreq = np.cumsum(frequency)
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         if end:
-            #self.print_buckets()
+            #self.print_buckets()  
+            ksstats = {}          
             x = stats.zipf.rvs(a=1.01,size=100000)
-            print stats.ks_2samp(realdist, x)
+            ksstats['truestats'] = stats.ks_2samp(realdist, x)
 
             # we could be having issues due to the fact that we need the cdf of a discrete distribution not continuous which is probably different
-            print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
-            print stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            ksstats['cdfstats'] = stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            ksstats['linearcdfstats'] = stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            with open(self.outputpath + "//data//controlksstats" + ".json", 'a+') as ks:
+                json.dump(ksstats, ks)
+                ks.write('\n')
+            self.counter += 1        
         sorted_data = np.sort(realdist)
         yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
         plt.grid(True)
