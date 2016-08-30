@@ -122,6 +122,10 @@ class DVO_Histogram(object):
                         self.buckets[i]['rightcounter'] = c[buckets[i]]
                         self.buckets[i]['frequency'] = c[buckets[i]]
                         self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
+                    self.buckets[0]['low'] = self.min
+                    self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
+                    self.buckets[self.numbuckets - 1]['high'] = self.max + 1
+                    self.buckets[self.numbuckets - 1]['size'] = self.max + 1 - self.buckets[self.numbuckets - 1]['low']
                     self.plot_histogram(attr, self.buckets)
                     d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                     d.create_distribution(self.buckets)
@@ -182,18 +186,18 @@ class DVO_Histogram(object):
         return np.array(values)
     
     def cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
                 return cumfreq[i] / cumfreq[len(cumfreq) - 1]
         
     def linear_cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:

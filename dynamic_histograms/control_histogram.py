@@ -96,6 +96,11 @@ class Control_Histogram(object):
         cumfreq = np.cumsum(frequency)
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         if end:
+            #self.print_buckets()
+            x = stats.zipf.rvs(a=1.01,size=100000)
+            print stats.ks_2samp(realdist, x)
+
+            # we could be having issues due to the fact that we need the cdf of a discrete distribution not continuous which is probably different
             print stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
             print stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
         sorted_data = np.sort(realdist)
@@ -114,7 +119,22 @@ class Control_Histogram(object):
     def callable_cdf(self, x, cumfreq):
         values = []
         for value in x:
-            values.append(self.cdf(value, cumfreq))
+            v = self.cdf(value, cumfreq)
+            if v == None:
+                #self.print_buckets()
+                print '{0:.16f}'.format(self.buckets[self.numbuckets - 1]['high'])
+                print value, v
+                print '{0:.16f}'.format(value)
+                print '{0:.16f}'.format(self.max)
+                print self.min, self.max
+                if value > self.min:
+                    print "here"
+                    v = 1
+                else:
+                    print "or here"
+                    v = 0
+                print value, v
+            values.append(v)
         return np.array(values)
 
     def callable_linearcdf(self, x, cumfreq):
@@ -124,18 +144,18 @@ class Control_Histogram(object):
         return np.array(values)
     
     def cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
                 return cumfreq[i] / cumfreq[len(cumfreq) - 1]
-    
+
     def linear_cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
@@ -166,7 +186,9 @@ class Control_Histogram(object):
                     break
             low = self.buckets[i]['high']
         self.buckets[0]['low'] = self.min
+        self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
         self.buckets[self.numbuckets - 1]['high'] = self.max + 1
+        self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
     
     def add_datapoint(self, value):
         """Increases the count of the bucket the value belongs in the histogram."""

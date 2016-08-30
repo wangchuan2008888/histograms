@@ -34,7 +34,7 @@ if len(bimodal) != n:
 loc = 0
 uniform = stats.uniform.rvs(size=n, loc=loc, scale=s)
 
-f = open('data/distributions2.csv', 'w')
+f = open('data/distributions.csv', 'w')
 f.write('norm,chi,logistic,beta,gamma,bimodal,uniform\n')
 
 for i in range(0,n):

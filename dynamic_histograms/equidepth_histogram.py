@@ -140,18 +140,18 @@ class Equidepth_Histogram(object):
         return np.array(values)
     
     def cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
                 return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def linear_cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
@@ -175,7 +175,9 @@ class Equidepth_Histogram(object):
             self.buckets[i]['frequency'] = N / self.numbuckets
             self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
         self.buckets[0]['low'] = self.min
+        self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
         self.buckets[self.numbuckets - 1]['high'] = self.max + 1
+        self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
         self.threshold = (2 + l) * (N / self.numbuckets)
 
     # since the pseudocode doesn't mention what to do about values that fall outside of buckets, I extend those bucket
@@ -259,7 +261,9 @@ class Equidepth_Histogram(object):
             self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
             self.buckets[i]['frequency'] = (i * equal) - ((i - 1) * equal)
         self.buckets[0]['low'] = self.min
-        self.buckets[self.numbuckets - 1]['high'] = self.max + 1 
+        self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
+        self.buckets[self.numbuckets - 1]['high'] = self.max + 1
+        self.buckets[self.numbuckets - 1]['size'] = self.max + 1 - self.buckets[self.numbuckets - 1]['low']
 
     def mergebuckets(self, bucket1, bucket2):
         """Merging two buckets into one bucket in the list of buckets."""

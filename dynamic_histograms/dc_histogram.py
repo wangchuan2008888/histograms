@@ -145,18 +145,18 @@ class DC_Histogram(object):
         return np.array(values)
     
     def cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
                 return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def linear_cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
@@ -179,6 +179,7 @@ class DC_Histogram(object):
         buckets = self.buckets
         high = mostfreq[0][0] + 1
         low = mostfreq[0][0]
+        #print len(sample)
         for i in range(0, self.numbuckets - 1):
             if c[mostfreq[i][0]] >= mprime / betaprime:
                 buckets[betaprime - 1]['high'] = high
@@ -190,11 +191,12 @@ class DC_Histogram(object):
                 betaprime -= 1
                 high = low
                 low = mostfreq[i + 1][0]
-        for i in range(0, len(mostfreq) - 1):
-            for j in range(0, c[mostfreq[i][1]]):
-                sample.remove(mostfreq[i][0])
+        #for i in range(0, len(mostfreq) - 1):
+        #    for j in range(0, c[mostfreq[i][1]]):
+        #        sample.remove(mostfreq[i][0])
         sample = sorted(sample)
-        for i in range(1, betaprime + 1):
+        #print len(sample)
+        for i in range(1, betaprime):
             buckets[i - 1]['high'] = sample[i * (mprime // betaprime)]
             buckets[i - 1]['frequency'] = l * (mprime / betaprime)
             buckets[i - 1]['size'] = buckets[i - 1]['high'] - buckets[i - 1]['low']
@@ -203,7 +205,9 @@ class DC_Histogram(object):
             buckets[i]['size'] = buckets[i]['high'] - buckets[i]['low']
             low2 = buckets[i]['high']
         self.buckets[self.numbuckets - 1]['high'] = self.max + 1
+        self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
         self.buckets[0]['low'] = self.min
+        self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
         self.split = (2 + gamma) * (l * mprime / betaprime)
         self.merge = (l * mprime) / ((2 + gammam) * betaprime)
         self.buckets = buckets

@@ -206,18 +206,18 @@ class Spline_Histogram(object):
         return np.array(values)
     
     def cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
                 return cumfreq[i] / cumfreq[len(cumfreq) - 1]
 
     def linear_cdf(self, x, cumfreq):
-        if x < self.min:
+        if x <= self.min:
             return 0
-        elif x > self.max:
+        elif x >= self.max:
             return 1
         for i in range(0, self.numbuckets):
             if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
@@ -327,7 +327,9 @@ class Spline_Histogram(object):
                 q.add(error)
                 b[error] = [right, right + 1]
         buckets[0]['low'] = self.min
+        buckets[0]['size'] = buckets[0]['high'] - buckets[0]['low']
         buckets[len(buckets) - 1]['high'] = self.max + 1
+        buckets[len(buckets) - 1]['size'] = buckets[len(buckets) - 1]['high'] - buckets[len(buckets) - 1]['low']
         self.buckets = buckets
 
 
