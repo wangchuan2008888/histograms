@@ -10,7 +10,7 @@ import os
 from shutil import copyfile
 import sys
 
-buckets = 20
+buckets = 50
 batchsize = 10000
 userbucketsize = 1
 attr = 'zipf0.01'

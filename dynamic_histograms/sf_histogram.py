@@ -128,7 +128,6 @@ class SF_Histogram(object):
             with open(self.outputpath + "//data//sfksstats" + ".json", 'w') as ks:
                 json.dump(ksstats, ks)
                 ks.write('\n')
-            self.counter += 1                
         sorted_data = np.sort(realdist)
         yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
         plt.grid(True)

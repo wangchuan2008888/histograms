@@ -101,7 +101,6 @@ class Control_Histogram(object):
         cumfreq = np.cumsum(frequency)
         realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         if end:
-            #self.print_buckets()  
             ksstats = {}          
             x = stats.zipf.rvs(a=1.01,size=100000)
             ksstats['truestats'] = stats.ks_2samp(realdist, x)
@@ -112,7 +111,6 @@ class Control_Histogram(object):
             with open(self.outputpath + "//data//controlksstats" + ".json", 'a+') as ks:
                 json.dump(ksstats, ks)
                 ks.write('\n')
-            self.counter += 1        
         sorted_data = np.sort(realdist)
         yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
         plt.grid(True)
