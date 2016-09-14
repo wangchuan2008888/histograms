@@ -296,7 +296,6 @@ class SF_Histogram(object):
         """the algorithm for restructing histograms. m is a parameter that we call the merge threshold. 
         In most of the experiments, m <= 1% was a suitable choice. 
         s is a parameter that we call the split threshold. In the experiments, we used s=10%."""
-        print "starting restructuring"
         freebuckets = 0
         bucketruns = []
         for b in self.buckets:
@@ -313,7 +312,6 @@ class SF_Histogram(object):
                             localmax = diff
                             tuple = [localmax, bucketruns[i], bucketruns[i + 1]]
                 maxfreq.append(tuple)
-            print len(maxfreq)
             if len(maxfreq) > 0:
                 mintuple = min(maxfreq, key=itemgetter(0))
             else:
@@ -352,11 +350,6 @@ class SF_Histogram(object):
                 self.splitbucket(b, freebuckets, totalfreq)
 
         self.numbuckets = len(self.buckets)
-        print "checking restructuring"
-        #self.buckets[0]['low'] = self.min
-        #self.buckets[0]['size'] = self.buckets[0]['high'] - self.min
-        #self.buckets[self.numbuckets - 1]['high'] = self.max + 1
-        #self.buckets[self.numbuckets - 1]['size'] = self.max + 1 - self.buckets[self.numbuckets - 1]['low']
 
     def splitbucket(self, b, numfree, totalfreq):
         """Splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram.
