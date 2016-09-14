@@ -18,6 +18,7 @@ import user_distribution
 import json
 import os
 from scipy import stats
+from shutil import copyfile
 
 upper_factor = 3
 
@@ -50,6 +51,35 @@ class Equidepth_Histogram(object):
         self.min = float('inf')
         self.max= float('-inf')
         self.upper = numbuckets * upper_factor
+
+    def zipfdistributiongraph(self, z, l, batchsize, userbucketsize):
+        ksstatistics = []
+        zipfparameter = []
+        path = self.outputpath
+        for parameter in z:
+            self.counter = 0
+            self.min = float('inf')
+            self.max= float('-inf')
+            print "zipf parameter" + str(parameter)
+            zipfparameter.append(parameter)
+            attr = 'zipf' + str(parameter)
+            outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(self.numbuckets) + '_' + str(userbucketsize)
+            if not os.path.exists(outputpath + '//img'):
+                os.makedirs(outputpath + '//img')
+            if not os.path.exists(outputpath + '//data'):
+                os.makedirs(outputpath + '//data')
+            copyfile('template.html', outputpath + '//template.html')
+            copyfile('d3.html', outputpath + '//d3.html')
+            copyfile('template.html', outputpath + '//template.html')
+            self.outputpath = outputpath
+            self.create_histogram(attr, l, batchsize, userbucketsize)
+            f = open(outputpath + "//data//equidepthksstats.json")
+            d = json.loads(f.readline())
+            ksstatistics.append(d['cdfstats'][0])
+        plt.grid(True)
+        plt.plot(zipfparameter, ksstatistics)
+        plt.savefig(path + "//img//equidepthzipf.jpg")
+        plt.close()
 
     def create_histogram(self, attr, l, batchsize, userbucketsize):
         """l is a tunable parameter (> -1) which influences the upper thresholder of bucket count for all buckets. The appropriate bucket counter is 
@@ -231,6 +261,10 @@ class Equidepth_Histogram(object):
         else:
             rand_index = random.randint(0,len(sample) - 1)
             sample[rand_index] = value
+        if self.min not in sample:
+            sample.append(self.min)
+        if self.max not in sample:
+            sample.append(self.max)
         return sample
 
     def mergebucketPair(self):
@@ -260,7 +294,7 @@ class Equidepth_Histogram(object):
         sample = sorted(sample, key=float)
         frac = len(sample) / self.numbuckets
         equal = N / self.numbuckets
-        for i in range(1, self.numbuckets):
+        for i in range(0, self.numbuckets):
             index = int(round(i * frac))
             self.buckets[i]['low'] = sample[index]
             if i == self.numbuckets - 1:

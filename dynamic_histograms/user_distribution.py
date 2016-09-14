@@ -37,8 +37,6 @@ class User_Distribution(object):
                 frequencies.append((buckets[i]['frequency'], (buckets[i]['high'] - low) / buckets[i]['size']))
             elif buckets[i]['low'] <= low and buckets[i]['high'] >= high:
                 # print "POSSIBLY GREATER THAN BUCKET"
-                # print width
-                # print buckets[i]['size']
                 frequencies.append((buckets[i]['frequency'], width / buckets[i]['size']))
             elif buckets[i]['low'] > low and buckets[i]['high'] < high:
                 # print "SMALLER BUCKET"

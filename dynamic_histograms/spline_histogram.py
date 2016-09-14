@@ -20,6 +20,8 @@ import user_distribution
 import json
 import os
 from scipy import stats
+from shutil import copyfile
+import operator
 
 upper_factor = 3
 
@@ -114,6 +116,35 @@ class Spline_Histogram(object):
         self.min = float("inf")
         self.max = float("-inf")
         self.upper = numbuckets * upper_factor
+
+    def zipfdistributiongraph(self, z, batchsize, userbucketsize):
+        ksstatistics = []
+        zipfparameter = []
+        path = self.outputpath
+        for parameter in z:
+            self.counter = 0
+            self.min = float('inf')
+            self.max= float('-inf')
+            print "zipf parameter" + str(parameter)
+            zipfparameter.append(parameter)
+            attr = 'zipf' + str(parameter)
+            outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(self.numbuckets) + '_' + str(userbucketsize)
+            if not os.path.exists(outputpath + '//img'):
+                os.makedirs(outputpath + '//img')
+            if not os.path.exists(outputpath + '//data'):
+                os.makedirs(outputpath + '//data')
+            copyfile('template.html', outputpath + '//template.html')
+            copyfile('d3.html', outputpath + '//d3.html')
+            copyfile('template.html', outputpath + '//template.html')
+            self.outputpath = outputpath
+            self.create_histogram(attr, batchsize, userbucketsize)
+            f = open(outputpath + "//data//splineksstats.json")
+            d = json.loads(f.readline())
+            ksstatistics.append(d['cdfstats'][0])
+        plt.grid(True)
+        plt.plot(zipfparameter, ksstatistics)
+        plt.savefig(path + "//img//splinezipf.jpg")
+        plt.close()
     
     def create_histogram(self, attr, batchsize, userbucketsize):
         """Reads in records from the file, computing the initial histogram and after each batch by using a 
@@ -153,7 +184,7 @@ class Spline_Histogram(object):
                     initial = True
                 elif initial == True:
                     skipcounter += 1
-                    self.add_datapoint(float(row[attr_index]))
+                    self.add_datapoint(float(row[attr_index]), sample)
                     if skipcounter == skip:
                         sample = self.maintainBackingSample(float(row[attr_index]), sample)
                         skip = self.calculateSkip(len(sample))
@@ -238,16 +269,36 @@ class Spline_Histogram(object):
                     approx = percentage * cumfreq[i]
                 return approx / cumfreq[len(cumfreq) - 1] 
 
-    def add_datapoint(self, value):
+    def add_datapoint(self, value, sample):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
         if value < self.buckets[0]['low']:
-            self.buckets[0]['low'] = value
-            self.buckets[0]['frequency'] += 1
-            self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
+            bucket = {
+                'ff': 1,
+                'vv': np.power(value, 2),
+                'vf': value,
+                'v': [value, value, 1],
+                'low': value,
+                'high': self.buckets[0]['low'],
+                'frequency': 1,
+                'size': value + 1 - self.buckets[self.numbuckets - 1]['high']
+            }
+            self.mergesmallest(sample)
+            self.buckets.append(bucket) # borrow one bucket
+            print "new bucket: " + str(bucket['low']) + ", " + str(bucket['high']) + ", " + str(len(self.buckets))
         elif value > self.buckets[self.numbuckets - 1]['high']:
-            self.buckets[self.numbuckets - 1]['high'] = value + 1
-            self.buckets[self.numbuckets - 1]['frequency'] += 1
-            self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
+            bucket = {
+                'ff': 1,
+                'vv': np.power(value, 2),
+                'vf': value,
+                'v': [value, value, 1],
+                'low': self.buckets[self.numbuckets - 1]['high'],
+                'high': value + 1,
+                'frequency': 1,
+                'size': value + 1 - self.buckets[self.numbuckets - 1]['high']
+            }
+            self.mergesmallest(sample)
+            self.buckets.append(bucket)
+            print "new bucket: " + str(bucket['low']) + ", " + str(bucket['high']) + ", " + str(len(self.buckets))
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
@@ -272,6 +323,10 @@ class Spline_Histogram(object):
         else:
             rand_index = random.randint(0,len(sample) - 1)
             sample[rand_index] = value
+        if self.min not in sample:
+            sample.append(self.min)
+        if self.max not in sample:
+            sample.append(self.max)
         return sample
 
 
@@ -301,68 +356,101 @@ class Spline_Histogram(object):
                 break
         q = PriorityQueueSet()
         b = {}
-        for i in range(0, len(buckets) - 1):
+        self.buckets = buckets
+        for i in range(0, len(self.buckets) - 1):
             if i < len(buckets) - 1:
-                error = self.spline_error(buckets[i]['low'], buckets[i + 1]['high'], sample, buckets[i], buckets[i + 1])
+                error = self.spline_error(self.buckets[i]['low'], self.buckets[i + 1]['high'], sample, self.buckets[i], self.buckets[i + 1])
                 q.add(error)
-                b[error] = [i, i + 1]
+                b[error] = i
         while len(buckets) > self.numbuckets:
+            # NEEDS TO BE FIXED
             minerror = q.pop_smallest()
-            if b[minerror][0] > 0:
-                if b[minerror][0] > len(buckets):
-                    print len(buckets), b[minerror][0]
-                else:
-                    leftbucket = buckets[b[minerror][0] - 1]
-                    lefterror = self.spline_error(leftbucket['low'], buckets[b[minerror][0]]['high'], sample, leftbucket, buckets[b[minerror][0]])
-                    q.remove(lefterror)
-                    if b.has_key(lefterror):
-                        del b[lefterror]
-            if b[minerror][1] < len(buckets) - 1:
-                rightbucket = buckets[b[minerror][1] + 1]
-                righterror = self.spline_error(buckets[b[minerror][1]]['low'], rightbucket['high'], sample, buckets[b[minerror][1]], rightbucket)
-                q.remove(righterror)
+            left = b[minerror]
+            right = left + 1
+            lefterror = None
+            righterror = None
+            if left > 0 and right < len(self.buckets) - 1:
+                lefterror = self.spline_error(self.buckets[left - 1]['low'], self.buckets[left]['high'], sample, self.buckets[left - 1], self.buckets[left])
+                righterror = self.spline_error(self.buckets[right]['low'], self.buckets[right + 1]['high'], sample, self.buckets[right], self.buckets[right + 1])
+                print "left: " + str(left)
+                print "right: " + str(right)
+                if b.has_key(lefterror):
+                    del b[lefterror]
                 if b.has_key(righterror):
                     del b[righterror]
-            left = b[minerror][0]
-            right = b[minerror][1]
-            buckets = self.mergebuckets(buckets, buckets[left], buckets[right])
-            del b[minerror]
-            if left > 0:
-                error = self.spline_error(buckets[left - 1]['low'], buckets[left]['high'], sample, buckets[left - 1], buckets[left])
-                q.add(error)
-                b[error] = [left - 1, left]
-            if right < len(buckets) - 1:
-                error = self.spline_error(buckets[right]['low'], buckets[right + 1]['high'], sample, buckets[right], buckets[right + 1])
-                q.add(error)
-                b[error] = [right, right + 1]
-        buckets[0]['low'] = self.min
-        buckets[0]['size'] = buckets[0]['high'] - buckets[0]['low']
-        buckets[len(buckets) - 1]['high'] = self.max + 1
-        buckets[len(buckets) - 1]['size'] = buckets[len(buckets) - 1]['high'] - buckets[len(buckets) - 1]['low']
-        self.buckets = buckets
+                q.remove(lefterror)
+                q.remove(righterror)
+                self.mergebuckets(left, right)
+                lefterror = self.spline_error(self.buckets[left - 1]['low'], self.buckets[left]['high'], sample, self.buckets[left - 1], self.buckets[left])
+                b[lefterror] = left - 1
+                q.add(lefterror)
+                righterror = self.spline_error(self.buckets[left]['low'], self.buckets[left + 1]['high'], sample, self.buckets[left], self.buckets[left + 1])
+                b[righterror] = left
+                q.add(righterror)
+                b = self.adjustindexes(b, left)
+            elif left == 0:
+                righterror = self.spline_error(self.buckets[right]['low'], self.buckets[right + 1]['high'], sample, self.buckets[right], self.buckets[right + 1])
+                del b[righterror]
+                q.remove(righterror)
+                self.mergebuckets(left, right)
+                righterror = self.spline_error(self.buckets[left]['low'], self.buckets[left + 1]['high'], sample, self.buckets[left], self.buckets[left + 1])
+                b[righterror] = left
+                q.add(righterror)
+                b = self.adjustindexes(b, left)
+            elif right == len(self.buckets) - 1:
+                lefterror = self.spline_error(self.buckets[left - 1]['low'], self.buckets[left]['high'], sample, self.buckets[left - 1], self.buckets[left])
+                del b[lefterror]
+                q.remove(lefterror)
+                self.mergebuckets(left, right)
+                lefterror = self.spline_error(self.buckets[left - 1]['low'], self.buckets[left]['high'], sample, self.buckets[left - 1], self.buckets[left])
+                b[lefterror] = left - 1
+                q.add(lefterror)
+                b = self.adjustindexes(b, left)
+        self.buckets[0]['low'] = self.min
+        self.buckets[0]['size'] = buckets[0]['high'] - buckets[0]['low']
+        self.buckets[len(buckets) - 1]['high'] = self.max + 1
+        self.buckets[len(buckets) - 1]['size'] = buckets[len(buckets) - 1]['high'] - buckets[len(buckets) - 1]['low']
 
+    def adjustindexes(self, bucketindexes, index):
+        #b = dict(sorted(bucketindexes.items(), key=operator.itemgetter(1)))
+        for k,v in bucketindexes.items():
+            if v > index:
+                #print k,v
+                #v -= 1
+                #print k,v
+                bucketindexes[k] -= 1
+        return bucketindexes
 
-    def mergebuckets(self, buckets, bucket1, bucket2):
-        "This merges the two buckets (bucket1, bucket2) in buckets."""
-        mergedbucket = {
-            'low': bucket1['low'],
-            'high': bucket2['high'],
-            'size': bucket2['high'] - bucket1['low'],
-            'frequency': bucket1['frequency'] + bucket2['frequency'],
-            'ff': bucket1['ff'] + bucket2['ff'],
-            'vv': bucket1['vv'] + bucket2['vv'],
-            'vf': bucket1['vf'] + bucket2['vf'],
-            'v': [bucket1['v'][0] + bucket2['v'][0], np.average([bucket1['v'][1], bucket2['v'][1]]), np.average([bucket1['v'][2], bucket2['v'][2]])]
-        }
-        b = []
-        for i in range(0, len(buckets)):
-            if buckets[i]['low'] == bucket1['low'] and buckets[i]['high'] == bucket1['high']:
-                b.append(mergedbucket)
-            elif buckets[i]['low'] == bucket2['low'] and buckets[i]['high'] == bucket2['high']:
-                pass
-            else:
-                b.append(buckets[i])
-        return b
+    def mergebuckets(self, b1, b2):
+        "This merges the two buckets at indexes b1 and b2 in self.buckets."""
+        self.buckets[b1]['frequency'] += self.buckets[b2]['frequency']
+        self.buckets[b1]['high'] = self.buckets[b2]['high']
+        self.buckets[b1]['size'] = self.buckets[b1]['high'] - self.buckets[b1]['low']
+        self.buckets[b1]['ff'] += self.buckets[b2]['ff']
+        self.buckets[b1]['vv'] += self.buckets[b2]['vv']
+        self.buckets[b1]['vf'] += self.buckets[b2]['vf']
+        self.buckets[b1]['v'] = [self.buckets[b1]['v'][0] + self.buckets[b2]['v'][0], np.average([self.buckets[b1]['v'][1], self.buckets[b2]['v'][1]]), np.average([self.buckets[b1]['v'][2], self.buckets[b2]['v'][2]])]
+        del self.buckets[b2]
+
+        # mergedbucket = {
+        #     'low': bucket1['low'],
+        #     'high': bucket2['high'],
+        #     'size': bucket2['high'] - bucket1['low'],
+        #     'frequency': bucket1['frequency'] + bucket2['frequency'],
+        #     'ff': bucket1['ff'] + bucket2['ff'],
+        #     'vv': bucket1['vv'] + bucket2['vv'],
+        #     'vf': bucket1['vf'] + bucket2['vf'],
+        #     'v': [bucket1['v'][0] + bucket2['v'][0], np.average([bucket1['v'][1], bucket2['v'][1]]), np.average([bucket1['v'][2], bucket2['v'][2]])]
+        # }
+        # b = []
+        # for i in range(0, len(buckets)):
+        #     if buckets[i]['low'] == bucket1['low'] and buckets[i]['high'] == bucket1['high']:
+        #         b.append(mergedbucket)
+        #     elif buckets[i]['low'] == bucket2['low'] and buckets[i]['high'] == bucket2['high']:
+        #         pass
+        #     else:
+        #         b.append(buckets[i])
+        # return b
 
 
     def correlation(self, a, c, sample, bucket1, bucket2):
@@ -395,6 +483,16 @@ class Spline_Histogram(object):
         error2 += c - a
         error2 *= np.average([bucket1['v'][2], bucket2['v'][2]])
         return error * error2
+
+    def mergesmallest(self, sample):
+        minimum = float("inf")
+        index = None
+        for i in range(self.numbuckets - 1):
+            err = self.spline_error(self.buckets[i]['low'], self.buckets[i + 1]['high'], sample, self.buckets[i], self.buckets[i + 1])
+            if err < minimum:
+                minimum = err
+                index = i
+        self.mergebuckets(index, index + 1)
 
     def plot_histogram(self, attr, buckets):
         """Plots the histogram."""

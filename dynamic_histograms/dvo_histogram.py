@@ -18,6 +18,7 @@ import user_distribution
 import json
 import os
 from scipy import stats
+from shutil import copyfile
 
 class DVO_Histogram(object):
 
@@ -49,6 +50,35 @@ class DVO_Histogram(object):
         self.counter = 0
         self.min = float('inf')
         self.max= float('-inf')
+
+    def zipfdistributiongraph(self, z, batchsize, userbucketsize):
+        ksstatistics = []
+        zipfparameter = []
+        path = self.outputpath
+        for parameter in z:
+            self.counter = 0
+            self.min = float('inf')
+            self.max= float('-inf')
+            print "zipf parameter" + str(parameter)
+            zipfparameter.append(parameter)
+            attr = 'zipf' + str(parameter)
+            outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(self.numbuckets) + '_' + str(userbucketsize)
+            if not os.path.exists(outputpath + '//img'):
+                os.makedirs(outputpath + '//img')
+            if not os.path.exists(outputpath + '//data'):
+                os.makedirs(outputpath + '//data')
+            copyfile('template.html', outputpath + '//template.html')
+            copyfile('d3.html', outputpath + '//d3.html')
+            copyfile('template.html', outputpath + '//template.html')
+            self.outputpath = outputpath
+            self.create_histogram(attr, batchsize, userbucketsize)
+            f = open(outputpath + "//data//dvoksstats.json")
+            d = json.loads(f.readline())
+            ksstatistics.append(d['cdfstats'][0])
+        plt.grid(True)
+        plt.plot(zipfparameter, ksstatistics)
+        plt.savefig(path + "//img//dvozipf.jpg")
+        plt.close()
 
     def plot_histogram(self, attr, buckets):
         """Plots the histogram."""

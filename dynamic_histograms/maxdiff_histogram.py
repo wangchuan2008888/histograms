@@ -22,6 +22,7 @@ import user_distribution
 import json
 import os
 from scipy import stats
+from shutil import copyfile
 
 upper_factor = 3
 
@@ -54,6 +55,35 @@ class MaxDiff_Histogram(object):
         self.min = float('inf')
         self.max= float('-inf')
         self.upper = numbuckets * upper_factor
+
+    def zipfdistributiongraph(self, z, batchsize, userbucketsize):
+        ksstatistics = []
+        zipfparameter = []
+        path = self.outputpath
+        for parameter in z:
+            self.counter = 0
+            self.min = float('inf')
+            self.max= float('-inf')
+            print "zipf parameter" + str(parameter)
+            zipfparameter.append(parameter)
+            attr = 'zipf' + str(parameter)
+            outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(self.numbuckets) + '_' + str(userbucketsize)
+            if not os.path.exists(outputpath + '//img'):
+                os.makedirs(outputpath + '//img')
+            if not os.path.exists(outputpath + '//data'):
+                os.makedirs(outputpath + '//data')
+            copyfile('template.html', outputpath + '//template.html')
+            copyfile('d3.html', outputpath + '//d3.html')
+            copyfile('template.html', outputpath + '//template.html')
+            self.outputpath = outputpath
+            self.create_histogram(attr, batchsize, userbucketsize)
+            f = open(outputpath + "//data//maxdiffksstats.json")
+            d = json.loads(f.readline())
+            ksstatistics.append(d['cdfstats'][0])
+        plt.grid(True)
+        plt.plot(zipfparameter, ksstatistics)
+        plt.savefig(path + "//img//maxdiffzipf.jpg")
+        plt.close()
 
 
     def create_histogram(self, attr, batchsize, userbucketsize):
@@ -268,6 +298,10 @@ class MaxDiff_Histogram(object):
         else:
             rand_index = random.randint(0,len(sample) - 1)
             sample[rand_index] = value
+        if self.min not in sample:
+            sample.append(self.min)
+        if self.max not in sample:
+            sample.append(self.max)
         return sample
 
     def add_datapoint(self, value):

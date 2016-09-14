@@ -18,6 +18,7 @@ import user_distribution
 import json
 import os
 from scipy import stats
+from shutil import copyfile
 
 class Control_Histogram(object):
 
@@ -47,6 +48,35 @@ class Control_Histogram(object):
         self.counter = 0
         self.min = float('inf')
         self.max= float('-inf')
+
+    def zipfdistributiongraph(self, z, batchsize, userbucketsize):
+        ksstatistics = []
+        zipfparameter = []
+        path = self.outputpath
+        for parameter in z:
+            self.counter = 0
+            self.min = float('inf')
+            self.max= float('-inf')
+            print "zipf parameter" + str(parameter)
+            zipfparameter.append(parameter)
+            attr = 'zipf' + str(parameter)
+            outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(self.numbuckets) + '_' + str(userbucketsize)
+            if not os.path.exists(outputpath + '//img'):
+                os.makedirs(outputpath + '//img')
+            if not os.path.exists(outputpath + '//data'):
+                os.makedirs(outputpath + '//data')
+            copyfile('template.html', outputpath + '//template.html')
+            copyfile('d3.html', outputpath + '//d3.html')
+            copyfile('template.html', outputpath + '//template.html')
+            self.outputpath = outputpath
+            self.create_histogram(attr, batchsize, userbucketsize)
+            f = open(outputpath + "//data//controlksstats.json")
+            d = json.loads(f.readline())
+            ksstatistics.append(d['cdfstats'][0])
+        plt.grid(True)
+        plt.plot(zipfparameter, ksstatistics)
+        plt.savefig(path + "//img//controlzipf.jpg")
+        plt.close()
 
     def create_histogram(self, attr, batchsize, userbucketsize):
         """Reads through the file and creates the histogram, adding in data points as they are being read."""
@@ -88,7 +118,7 @@ class Control_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
-                        self.compare_histogram(attr, True)
+                        self.compare_histogram(attr, False)
         self.compare_histogram(attr, True)
 
     def compare_histogram(self, attr, end):
@@ -236,6 +266,8 @@ class Control_Histogram(object):
         plt.subplot().set_axis_bgcolor('#E5E5E5');
         plt.xlabel(attr)
         plt.ylabel('Frequency')
+        
+        axes.get_yaxis().get_major_formatter().set_useOffset(False)
         plt.title(r'$\mathrm{Control\ Histogram\ of\ ' + attr + '}$')
 
         with open(self.outputpath + "//data//control" + str(self.counter) + ".json", 'w') as outfile:

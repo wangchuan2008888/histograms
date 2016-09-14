@@ -19,6 +19,7 @@ import user_distribution
 import json
 import os
 from scipy import stats
+from shutil import copyfile
 
 class SF_Histogram(object):
 
@@ -51,6 +52,34 @@ class SF_Histogram(object):
         self.buckets = buckets
         self.counter = 0
 
+    def zipfdistributiongraph(self, z, alpha, m, s, batchsize, userbucketsize):
+        ksstatistics = []
+        zipfparameter = []
+        path = self.outputpath
+        for parameter in z:
+            self.counter = 0
+            self.min = float('inf')
+            self.max= float('-inf')
+            print "zipf parameter" + str(parameter)
+            zipfparameter.append(parameter)
+            attr = 'zipf' + str(parameter)
+            outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(self.numbuckets) + '_' + str(userbucketsize)
+            if not os.path.exists(outputpath + '//img'):
+                os.makedirs(outputpath + '//img')
+            if not os.path.exists(outputpath + '//data'):
+                os.makedirs(outputpath + '//data')
+            copyfile('template.html', outputpath + '//template.html')
+            copyfile('d3.html', outputpath + '//d3.html')
+            copyfile('template.html', outputpath + '//template.html')
+            self.outputpath = outputpath
+            self.create_histogram(attr, alpha, m, s, batchsize, userbucketsize)
+            f = open(outputpath + "//data//sfksstats.json")
+            d = json.loads(f.readline())
+            ksstatistics.append(d['cdfstats'][0])
+        plt.grid(True)
+        plt.plot(zipfparameter, ksstatistics)
+        plt.savefig(path + "//img//sfzipf.jpg")
+        plt.close()
 
     def create_initial_histogram(self, s):
         """Creates the initial histogram from the sample on the atttribute, using only the sample's min and max
@@ -103,7 +132,8 @@ class SF_Histogram(object):
                     self.add_datapoint(float(row[attr_index]), sample, alpha)
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
-                        self.restructureHist(m, s, len(set(sample)))
+                        self.restructureHist(m, s, N) # WHAT SAMPLE IS THIS??????? 
+                        # RECHECK THIS ENTIRE THING I THINK YOU SET UP THE ALGORITHM TO WORK WITH AN ENTIRE SAMPLE OF DATA
                         self.plot_histogram(attr, self.buckets)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
@@ -266,6 +296,7 @@ class SF_Histogram(object):
         """the algorithm for restructing histograms. m is a parameter that we call the merge threshold. 
         In most of the experiments, m <= 1% was a suitable choice. 
         s is a parameter that we call the split threshold. In the experiments, we used s=10%."""
+        print "starting restructuring"
         freebuckets = 0
         bucketruns = []
         for b in self.buckets:
@@ -282,6 +313,7 @@ class SF_Histogram(object):
                             localmax = diff
                             tuple = [localmax, bucketruns[i], bucketruns[i + 1]]
                 maxfreq.append(tuple)
+            print len(maxfreq)
             if len(maxfreq) > 0:
                 mintuple = min(maxfreq, key=itemgetter(0))
             else:
@@ -320,8 +352,11 @@ class SF_Histogram(object):
                 self.splitbucket(b, freebuckets, totalfreq)
 
         self.numbuckets = len(self.buckets)
-        self.buckets[0]['low'] = self.min
-        self.buckets[self.numbuckets - 1]['high'] = self.max + 1
+        print "checking restructuring"
+        #self.buckets[0]['low'] = self.min
+        #self.buckets[0]['size'] = self.buckets[0]['high'] - self.min
+        #self.buckets[self.numbuckets - 1]['high'] = self.max + 1
+        #self.buckets[self.numbuckets - 1]['size'] = self.max + 1 - self.buckets[self.numbuckets - 1]['low']
 
     def splitbucket(self, b, numfree, totalfreq):
         """Splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram.

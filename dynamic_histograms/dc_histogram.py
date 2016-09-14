@@ -19,6 +19,7 @@ import user_distribution
 import json
 import os
 from scipy import stats
+from shutil import copyfile
 
 upper_factor = 3
 
@@ -54,6 +55,35 @@ class DC_Histogram(object):
         self.min = float('inf')
         self.max= float('-inf')
         self.upper = numbuckets * upper_factor
+
+    def zipfdistributiongraph(self, z, gamma, gammam, batchsize, userbucketsize):
+        ksstatistics = []
+        zipfparameter = []
+        path = self.outputpath
+        for parameter in z:
+            self.counter = 0
+            self.min = float('inf')
+            self.max= float('-inf')
+            print "zipf parameter" + str(parameter)
+            zipfparameter.append(parameter)
+            attr = 'zipf' + str(parameter)
+            outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(self.numbuckets) + '_' + str(userbucketsize)
+            if not os.path.exists(outputpath + '//img'):
+                os.makedirs(outputpath + '//img')
+            if not os.path.exists(outputpath + '//data'):
+                os.makedirs(outputpath + '//data')
+            copyfile('template.html', outputpath + '//template.html')
+            copyfile('d3.html', outputpath + '//d3.html')
+            copyfile('template.html', outputpath + '//template.html')
+            self.outputpath = outputpath
+            self.create_histogram(attr, gamma, gammam, batchsize, userbucketsize)
+            f = open(outputpath + "//data//dcksstats.json")
+            d = json.loads(f.readline())
+            ksstatistics.append(d['cdfstats'][0])
+        plt.grid(True)
+        plt.plot(zipfparameter, ksstatistics)
+        plt.savefig(path + "//img//dczipf.jpg")
+        plt.close()
 
     def create_histogram(self, attr, gamma, gammam, batchsize, userbucketsize):
         """Reads in data from the file, extending the buckets of the histogram is the values are beyond 
@@ -199,11 +229,7 @@ class DC_Histogram(object):
                 betaprime -= 1
                 high = low
                 low = mostfreq[i + 1][0]
-        #for i in range(0, len(mostfreq) - 1):
-        #    for j in range(0, c[mostfreq[i][1]]):
-        #        sample.remove(mostfreq[i][0])
         sample = sorted(sample)
-        #print len(sample)
         for i in range(1, betaprime):
             buckets[i - 1]['high'] = sample[i * (mprime // betaprime)]
             buckets[i - 1]['frequency'] = l * (mprime / betaprime)
@@ -218,6 +244,9 @@ class DC_Histogram(object):
         self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
         self.split = (2 + gamma) * (l * mprime / betaprime)
         self.merge = (l * mprime) / ((2 + gammam) * betaprime)
+        #print sample
+        #self.print_buckets()
+        #print self.min,self.max
         self.buckets = buckets
 
     def calculateSkip(self, n):
@@ -266,7 +295,62 @@ class DC_Histogram(object):
                             self.splitbucket(N, i, i - 1, None, sample, gamma, gammam)
                         else:
                             self.splitbucket(N, i, i - 1, i + 1, sample, gamma, gammam)
-                        
+
+    def chisquaretest(self, N):
+        observed = []
+        reg = 0
+        for bucket in self.buckets:
+            observed.append(bucket['frequency'])
+            if bucket['regular'] == True:
+                reg += 1
+        avg = N / reg
+        chisquare = stats.chisquare(f_obs=np.array(observed), f_exp=np.full((len(observed),), avg), ddof=self.numbuckets - 1)
+        return chisquare[1]
+
+    def significanceReached(self, N):
+        count = N / self.numbuckets
+        sum = 0
+        numreg = 0
+        ranges = []
+        r = False
+        rangereg = {
+            'low': None, 
+            'high': None
+        }
+        for i in self.numbuckets:
+            if self.buckets[i]['regular'] == False and self.buckets[i]['frequency'] < count:
+                self.buckets[i]['regular'] = True
+            elif bucket['regular'] == True:
+                sum += self.buckets[i]['frequency']
+            elif r == False and self.buckets[i]['regular'] == True:
+                rangereg['low'] = i
+                r = True
+            elif r == True and self.buckets[i]['regular'] == False:
+                rangereg['high'] = i
+                ranges.append(rangereg)
+                rangereg['low'] = None
+                rangereg['high'] = None
+                r = False
+            elif self.buckets[i]['regular'] == True:
+                numreg += 1
+        print ranges
+        threshold = sum / numreg
+        for rang in ranges:
+            numbuckets = rang['high'] - rang['low'] + 1
+            rangesum = 0
+            for i in range(rang['low'], rang['high'] + 1):
+                rangesum += self.buckets[i]['frequency']
+            newnumbuckets = round(rangesum / threshold)
+            for i in range(rang['low'], rang['high'] + 1):
+                if self.buckets[i]['frequency'] < threshold:
+                    pass
+
+        # NEAR END
+        for bucket in self.buckets:
+            if bucket['regular'] == True and bucket['size'] <= 1 and bucket['frequency'] > count:
+                bucket['regular'] == False
+        
+
 
     def splitbucket(self, N, bucketindex, prevbucketindex, afterbucketindex, sample, gamma, gammam):
         s = []
@@ -287,11 +371,11 @@ class DC_Histogram(object):
             self.buckets[prevbucketindex]['high'] = m
             self.buckets[prevbucketindex]['size'] = m - self.buckets[prevbucketindex]['low']
             self.buckets[prevbucketindex]['frequency'] = c[m] * N / len(sample)
-            if self.buckets[bucketindex]['count'] >= self.split:
+            if self.buckets[bucketindex]['frequency'] >= self.split:
                 self.splitbucket(N, bucketindex, prevbucketindex, afterbucketindex, sample)
-            elif self.buckets[bucketindex]['count'] <= self.merge:
+            elif self.buckets[bucketindex]['frequency'] <= self.merge:
                 mergepair_index = self.candidateMergePair()
-                split_index = self.candidatesplitbucket(self, gamma)
+                split_index = self.candidatesplitbucket(gamma)
                 if mergepair_index != None and split_index != None and split_index > 0:
                     if self.buckets[bucketindex]['high'] == self.buckets[mergepair_index]['high'] and self.buckets[bucketindex]['frequency'] == self.buckets[mergepair_index]['frequency']:
                         self.mergebuckets(mergepair_index)
@@ -360,9 +444,8 @@ class DC_Histogram(object):
     def mergebuckets(self, index):
         self.buckets[index]['frequency'] = self.buckets[index]['frequency'] + self.buckets[index + 1]['frequency']
         self.buckets[index]['high'] = self.buckets[index + 1]['high']
-        self.buckets[index]['size'] = self.buckets[index]['high'] - buckets[index]['low']
+        self.buckets[index]['size'] = self.buckets[index]['high'] - self.buckets[index]['low']
         del self.buckets[index + 1]
-        return buckets
 
     def candidateMergePair(self):
         count = 0
@@ -386,7 +469,7 @@ class DC_Histogram(object):
         count = 0
         index = None
         for i in range(0, self.numbuckets):
-            if self.buckets[i]['regular'] == True and self.buckets[i]['frequency'] >= 2(self.merge + 1):
+            if self.buckets[i]['regular'] == True and self.buckets[i]['frequency'] >= 2 * (self.merge + 1):
                 if self.buckets[i]['frequency'] > count:
                     count = self.buckets[i]['frequency']
                     index = i
