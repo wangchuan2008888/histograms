@@ -137,7 +137,7 @@ class MaxDiff_Histogram(object):
                         self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
                         self.compare_histogram(attr, False)
-        self.compare_histogram(attr, True)
+        self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
         frequency = []

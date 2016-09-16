@@ -122,12 +122,12 @@ class DC_Histogram(object):
                     skip = self.calculateSkip(len(sample))
                     initial = True
                 elif initial == True:
-                    skipcounter += 1
+                    #skipcounter += 1
                     self.add_datapoint(float(row[attr_index]), N, sample, attr, gamma, gammam)
-                    if skipcounter == skip:
-                        sample = self.maintainBackingSample(float(row[attr_index]), sample)
-                        skip = self.calculateSkip(len(sample))
-                        skipcounter = 0
+                    #if skipcounter == skip:
+                    #    sample = self.maintainBackingSample(float(row[attr_index]), sample)
+                    #    skip = self.calculateSkip(len(sample))
+                    #    skipcounter = 0
                     if N % batchsize == 0:
                         print "number read in: " + str(N)
                         self.plot_histogram(attr, self.buckets)
@@ -276,25 +276,27 @@ class DC_Histogram(object):
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
             self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
-            if self.buckets[0]['frequency'] >= self.split and self.buckets[0]['regular'] == True:
-                self.splitbucket(N, 0, None, 1, sample, gamma, gammam)
+            #if self.buckets[0]['frequency'] >= self.split and self.buckets[0]['regular'] == True:
+            #    self.splitbucket(N, 0, None, 1, sample, gamma, gammam)
         elif value >= self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
             self.buckets[self.numbuckets - 1]['size'] = value + 1 - self.buckets[self.numbuckets - 1]['low']
-            if self.buckets[self.numbuckets - 1]['frequency'] >= self.split and self.buckets[self.numbuckets - 1]['regular'] == True:
-                self.splitbucket(N, self.numbuckets - 1, self.numbuckets - 2, None, sample, gamma, gammam)
+            #if self.buckets[self.numbuckets - 1]['frequency'] >= self.split and self.buckets[self.numbuckets - 1]['regular'] == True:
+            #    self.splitbucket(N, self.numbuckets - 1, self.numbuckets - 2, None, sample, gamma, gammam)
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
-                    if self.buckets[i]['frequency'] >= self.split and self.buckets[i]['regular'] == True:
-                        if i == 0:
-                            self.splitbucket(N, 0, None, 1, sample, gamma, gammam)
-                        elif i == self.numbuckets - 1:
-                            self.splitbucket(N, i, i - 1, None, sample, gamma, gammam)
-                        else:
-                            self.splitbucket(N, i, i - 1, i + 1, sample, gamma, gammam)
+                    #if self.buckets[i]['frequency'] >= self.split and self.buckets[i]['regular'] == True:
+                    #    if i == 0:
+                    #        self.splitbucket(N, 0, None, 1, sample, gamma, gammam)
+                    #    elif i == self.numbuckets - 1:
+                    #        self.splitbucket(N, i, i - 1, None, sample, gamma, gammam)
+                    #    else:
+                    #        self.splitbucket(N, i, i - 1, i + 1, sample, gamma, gammam)
+        if self.chisquaretest(N) < 0.05:
+            self.significanceReached(N)
 
     def chisquaretest(self, N):
         observed = []
@@ -309,7 +311,7 @@ class DC_Histogram(object):
 
     def significanceReached(self, N):
         count = N / self.numbuckets
-        sum = 0
+        s = 0
         numreg = 0
         ranges = []
         r = False
@@ -321,7 +323,7 @@ class DC_Histogram(object):
             if self.buckets[i]['regular'] == False and self.buckets[i]['frequency'] < count:
                 self.buckets[i]['regular'] = True
             elif bucket['regular'] == True:
-                sum += self.buckets[i]['frequency']
+                s += self.buckets[i]['frequency']
             elif r == False and self.buckets[i]['regular'] == True:
                 rangereg['low'] = i
                 r = True
@@ -334,21 +336,81 @@ class DC_Histogram(object):
             elif self.buckets[i]['regular'] == True:
                 numreg += 1
         print ranges
-        threshold = sum / numreg
+        threshold = s / numreg
         for rang in ranges:
-            numbuckets = rang['high'] - rang['low'] + 1
             rangesum = 0
             for i in range(rang['low'], rang['high'] + 1):
                 rangesum += self.buckets[i]['frequency']
-            newnumbuckets = round(rangesum / threshold)
-            for i in range(rang['low'], rang['high'] + 1):
-                if self.buckets[i]['frequency'] < threshold:
-                    pass
+            self.splitbucketrange(rang['low'], rang['high'], threshold, rangesum)
+
 
         # NEAR END
         for bucket in self.buckets:
             if bucket['regular'] == True and bucket['size'] <= 1 and bucket['frequency'] > count:
-                bucket['regular'] == False
+                bucket['regular'] = False
+
+
+    def splitbucketrange(self, low, high, count, summation):
+        buckets = []
+        bucket = {
+            'low': self.buckets[low]['low'],
+            'high': None, 
+            'frequency': 0,
+            'size': 0,
+            'regular': True
+        }
+        freq = 0
+        for i in range(low, high + 1):
+            if freq == count:
+                bucket['high'] = self.buckets[i]['low']
+                bucket['size'] = bucket['high'] - bucket['low']
+                bucket['frequency'] = count
+                buckets.append(bucket)
+                bucket['low'] = self.buckets[i]['low']
+                bucket['high'] = None
+                bucket['size'] = 0
+                freq = 0
+            if freq + self.buckets[i]['frequency'] == count:
+                freq += self.buckets[i]['frequency']
+                bucket['high'] = self.buckets[i]['high']
+                bucket['frequency'] = count
+                bucket['size'] = bucket['high'] - bucket['low']
+                buckets.append(bucket)
+                bucket['low'] = bucket['high']
+                bucket['high'] = None
+                bucket['size'] = 0
+                freq = 0
+            elif freq + self.buckets[i]['frequency'] > count:
+                diff = count - (freq + self.buckets[i]['frequency'])
+                percentage = diff / self.buckets[i]['size']
+                freq += self.buckets[i]['frequency'] * percentage
+                bucket['high'] = self.buckets[i]['low'] + (self.buckets[i]['size'] * percentage)
+                bucket['size'] = bucket['high'] - bucket['low']
+                bucket['frequency'] = count
+                buckets.append(bucket)
+                bucket['low'] = bucket['high']
+                bucket['high'] = None
+                bucket['size'] = 0
+                freq = self.buckets[i]['frequency'] * (1 - percentage)
+                while freq > count:
+                    diff = count - freq
+                    percentage = diff / (self.buckets[i]['high'] - bucket['low'])
+                    freq += (self.buckets[i]['frequency'] * ((self.buckets[i]['high'] - bucket['low']) / self.buckets[i]['size'])  * percentage)
+                    bucket['high'] = bucket['low'] + ((self.buckets[i]['high'] - bucket['low']) * percentage)
+                    bucket['size'] = bucket['high'] - bucket['low']
+                    bucket['frequency'] = count
+                    buckets.append(bucket)
+                    bucket['low'] = bucket['high']
+                    bucket['high'] = None
+                    bucket['size'] = 0
+                    freq = (self.buckets[i]['frequency'] * ((self.buckets[i]['high'] - bucket['low']) / self.buckets[i]['size']) * (1 - percentage))
+            if summation % threshold != 0:
+                remainder = summation % threshold
+                
+            # else:
+            #     pass
+            # fix buckets that could not be exact
+            # add buckets to self.buckets
         
 
 

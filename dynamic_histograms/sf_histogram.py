@@ -140,7 +140,7 @@ class SF_Histogram(object):
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compare_histogram(attr, False)
-        self.compare_histogram(attr, True)
+        self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
         frequency = []

@@ -198,7 +198,7 @@ class Spline_Histogram(object):
                         self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
                         self.compare_histogram(attr, False)
-        self.compare_histogram(attr, True)
+        self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
         frequency = []
@@ -284,7 +284,7 @@ class Spline_Histogram(object):
             }
             self.mergesmallest(sample)
             self.buckets.append(bucket) # borrow one bucket
-            print "new bucket: " + str(bucket['low']) + ", " + str(bucket['high']) + ", " + str(len(self.buckets))
+            #print "new bucket: " + str(bucket['low']) + ", " + str(bucket['high']) + ", " + str(len(self.buckets))
         elif value > self.buckets[self.numbuckets - 1]['high']:
             bucket = {
                 'ff': 1,
@@ -298,7 +298,7 @@ class Spline_Histogram(object):
             }
             self.mergesmallest(sample)
             self.buckets.append(bucket)
-            print "new bucket: " + str(bucket['low']) + ", " + str(bucket['high']) + ", " + str(len(self.buckets))
+            #print "new bucket: " + str(bucket['low']) + ", " + str(bucket['high']) + ", " + str(len(self.buckets))
         else:
             for i in range(0, self.numbuckets):
                 if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
@@ -372,8 +372,8 @@ class Spline_Histogram(object):
             if left > 0 and right < len(self.buckets) - 1:
                 lefterror = self.spline_error(self.buckets[left - 1]['low'], self.buckets[left]['high'], sample, self.buckets[left - 1], self.buckets[left])
                 righterror = self.spline_error(self.buckets[right]['low'], self.buckets[right + 1]['high'], sample, self.buckets[right], self.buckets[right + 1])
-                print "left: " + str(left)
-                print "right: " + str(right)
+                #print "left: " + str(left)
+                #print "right: " + str(right)
                 if b.has_key(lefterror):
                     del b[lefterror]
                 if b.has_key(righterror):
