@@ -3,3 +3,5 @@
 .env
 output
 out.txt
+*.xml
+*.iml
