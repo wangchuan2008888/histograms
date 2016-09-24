@@ -134,6 +134,8 @@ class DC_Histogram(object):
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compare_histogram(attr, False)
+                else:
+                    print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -207,7 +209,7 @@ class DC_Histogram(object):
 
     def compute_histogram(self, N, sample, gamma, gammam):
         c = Counter(sample)
-        sortedsample = sorted(sample)
+        sortedsample = sorted(list(set(sample)), key=float)
         low = sortedsample[0]
         high = sortedsample[1]
         for i in range(self.numbuckets):

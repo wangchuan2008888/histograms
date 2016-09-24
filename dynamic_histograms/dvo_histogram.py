@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 """
 It constructs a dynamic v-optimal histogram from the dataset given.
 
@@ -59,7 +61,7 @@ class DVO_Histogram(object):
             self.counter = 0
             self.min = float('inf')
             self.max= float('-inf')
-            print "zipf parameter" + str(parameter)
+            print ("zipf parameter" + str(parameter))
             zipfparameter.append(parameter)
             attr = 'zipf' + str(parameter)
             outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(self.numbuckets) + '_' + str(userbucketsize)
@@ -170,13 +172,15 @@ class DVO_Histogram(object):
                 elif initial == True:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
-                        print "number read in: " + str(N)
+                        print ("number read in: " + str(N))
                         self.plot_histogram(attr, self.buckets)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compare_histogram(attr, False)
+                else:
+                    print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -213,8 +217,8 @@ class DVO_Histogram(object):
         for value in x:
             v = self.cdf(value, cumfreq)
             if v == None:
-                print value, v
-                print self.min, self.max
+                print (value, v)
+                print (self.min, self.max)
             values.append(v)
         return np.array(values)
 
@@ -274,10 +278,8 @@ class DVO_Histogram(object):
                 'rightcounter': 0,
                 'frequency': 1,
                 'size': self.buckets[0]['low'] - value
-            } 
-            buckets = [bucket]
-            buckets.extend(self.buckets)
-            self.buckets = buckets # borrow one bucket
+            }
+            self.buckets.insert(0, bucket) # borrow one bucket
             index = self.findBestToMerge()
             self.mergebuckets(index)
         else:
@@ -325,13 +327,13 @@ class DVO_Histogram(object):
 
     def bucketError(self, bucket):
         """Calculates the error of a single bucket and returns it."""
-        average = (bucket['leftcounter'] + bucket['rightcounter']) / 2
+        average = np.average([bucket['leftcounter'] + bucket['rightcounter']])
         lefterror = abs(bucket['leftcounter'] - average)
         righterror = abs(bucket['rightcounter'] - average)
         return lefterror + righterror
 
     def adjacentbucketsError(self, bucket1, bucket2):
-        """Caculates the error of two adjacent buckets and returns it."""
+        """Calculates the error of two adjacent buckets and returns it."""
         return self.bucketError(bucket1) + self.bucketError(bucket2)
 
     def findBestToMerge(self):
@@ -359,7 +361,7 @@ class DVO_Histogram(object):
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        
         for i in range(0, len(self.buckets)):
-            print "### bucket " + str(i) + " ###"
+            print ("### bucket " + str(i) + " ###")
             for k, v in self.buckets[i].iteritems():
-                print k, v
-            print "### END ###"
+                print (k, v)
+            print ("### END ###")

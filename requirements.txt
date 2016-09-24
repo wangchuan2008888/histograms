@@ -1,5 +1,4 @@
 ipython==4.0.3
-ipython-genutils==0.1.0
 jsonschema==2.4.0
 matplotlib==1.5.1
 numpy==1.11.0

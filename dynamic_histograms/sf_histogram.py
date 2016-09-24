@@ -20,6 +20,7 @@ import json
 import os
 from scipy import stats
 from shutil import copyfile
+from collections import Counter
 
 class SF_Histogram(object):
 
@@ -81,22 +82,36 @@ class SF_Histogram(object):
         plt.savefig(path + "//img//sfzipf.jpg")
         plt.close()
 
-    def create_initial_histogram(self, s):
+    def create_initial_histogram(self, sample):
         """Creates the initial histogram from the sample on the atttribute, using only the sample's min and max
         since the intial self-tuning histogram does not look at the data and assumes a frequency of maximum 
         observations / # of buckets for each bucket
         """
-        range = math.ceil(self.max - self.min) # want to make sure we capture the maximum element in the last bucket
-        size = math.ceil(range / self.numbuckets)
-        low = self.min
-        high = self.min + size
-        for bucket in self.buckets:
-            bucket['low'] = low
-            bucket['high'] = high
-            bucket['frequency'] = round(s / self.numbuckets)
-            bucket['size'] = size
+        c = Counter(sample)
+        sortedsample = sorted(list(set(sample)), key=float)
+        low = sortedsample[0]
+        high = sortedsample[1]
+        for i in range(self.numbuckets):
+            self.buckets[i]['low'] = low
+            self.buckets[i]['high'] = high
+            self.buckets[i]['frequency'] = c[low]
             low = high
-            high += size
+            if i >= self.numbuckets - 2:
+                high = sortedsample[len(sortedsample) - 1] + 1
+            else:
+                high = sortedsample[i + 2]
+            self.buckets[i]['size'] = abs(self.buckets[i]['high'] - self.buckets[i]['low'])
+        # range = math.ceil(self.max - self.min) # want to make sure we capture the maximum element in the last bucket
+        # size = math.ceil(range / self.numbuckets)
+        # low = self.min
+        # high = self.min + size
+        # for bucket in self.buckets:
+        #     bucket['low'] = low
+        #     bucket['high'] = high
+        #     bucket['frequency'] = round(len(sample) / self.numbuckets)
+        #     bucket['size'] = size
+        #     low = high
+        #     high += size
 
     def create_histogram(self, attr, alpha, m, s, batchsize, userbucketsize):
         N = 0
@@ -113,15 +128,15 @@ class SF_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
+                N += 1
                 if float(row[attr_index]) < self.min:
                     self.min = float(row[attr_index])
                 if float(row[attr_index]) > self.max:
                     self.max = float(row[attr_index])
-                N += 1
                 if len(set(sample)) < self.numbuckets:
                     sample.append(float(row[attr_index]))
                 elif len(set(sample)) == self.numbuckets and initial == False:
-                    self.create_initial_histogram(len(set(sample)))
+                    self.create_initial_histogram(sample)
                     self.plot_histogram(attr, self.buckets)
                     d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                     d.create_distribution(self.buckets)
@@ -129,17 +144,20 @@ class SF_Histogram(object):
                     self.plot_histogram(attr, new_buckets)
                     initial = True
                 elif initial == True:
-                    self.add_datapoint(float(row[attr_index]), sample, alpha)
+                    self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
+                        # we are choosing not to use updateFreq from the pseudocode as that operates over ranges of data
+                        # that are accessed by SQL queries. instead we are just using restructureHist after every batch.
                         print "number read in: " + str(N)
-                        self.restructureHist(m, s, N) # WHAT SAMPLE IS THIS??????? 
-                        # RECHECK THIS ENTIRE THING I THINK YOU SET UP THE ALGORITHM TO WORK WITH AN ENTIRE SAMPLE OF DATA
+                        self.restructureHist(m, s, N)
                         self.plot_histogram(attr, self.buckets)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compare_histogram(attr, False)
+                else:
+                    print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -218,7 +236,7 @@ class SF_Histogram(object):
                 break
         return s
 
-    def add_datapoint(self, value, sample, alpha):
+    def add_datapoint(self, value):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value

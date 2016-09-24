@@ -137,6 +137,8 @@ class MaxDiff_Histogram(object):
                         self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
                         self.compare_histogram(attr, False)
+                else:
+                    print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -211,7 +213,7 @@ class MaxDiff_Histogram(object):
     def compute_histogram(self, sample, N):
         """Computes the histogram boundaries by finding the numbuckets - 1 largest differences in areas 
         between values in the sample and then arranges the buckets to have the proper frequency."""
-        sorted_sample = sorted(sample, key=float)
+        sorted_sample = sorted(list(set(sample)), key=float)#sorted(sample, key=float)
         c = Counter(sorted_sample)
         a = [-1] * (self.numbuckets - 1)
         bucketarea = defaultdict(list)

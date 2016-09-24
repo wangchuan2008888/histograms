@@ -198,6 +198,8 @@ class Spline_Histogram(object):
                         self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
                         self.compare_histogram(attr, False)
+                else:
+                    print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -334,7 +336,8 @@ class Spline_Histogram(object):
         """Computes the histogram using a greedy merge algorithm that creates N / 2 buckets and continually 
         merges buckets with the smallest error until there are numbuckets left."""
         n = len(sample)
-        sample = sorted(sample, key=float)
+        sample = sorted(list(set(sample)), key=float)
+        #sorted(sample, key=float)
         buckets = []
         c = Counter(sample)
         for i in range(0, n - 1):
