@@ -636,7 +636,7 @@ class DC_Histogram(object):
         regular = []
         low = self.min
         high = None
-        frequency = 0
+        frequency = 0.0
         for i in range(len(self.regular)):
             if frequency == threshold:
                 high = self.regular[i]['low']
@@ -646,7 +646,7 @@ class DC_Histogram(object):
                     'size': high - low,
                     'frequency': threshold
                 }
-                frequency = 0
+                frequency = 0.0
                 low = high
                 high = None
                 regular.append(b.copy())
@@ -766,7 +766,7 @@ class DC_Histogram(object):
         #for i in range(len(self.regular)):
         i = 0
         while i < len(self.regular):
-            if self.regular[i]['frequency'] > count:
+            if round(self.regular[i]['frequency'], 10) > count:
                 self.promotebucket(self.regular[i])
                 i = 0
             else:
