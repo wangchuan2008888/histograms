@@ -51,7 +51,6 @@ dc.create_histogram(attr, gamma=0.5, gammam=0.5, batchsize=batchsize, userbucket
 # dc.zipfdistributiongraph([0.01,1,2,3],0.5, 0.5, batchsize,userbucketsize)
 dc_time = time.time() - start_time
 print "-------- %f seconds to complete all batches --------" %  dc_time
-sys.exit()
 
 print "### EQUI-DEPTH HISTOGRAM ###"
 start_time = time.time()
