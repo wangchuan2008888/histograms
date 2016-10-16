@@ -357,8 +357,10 @@ class SF_Histogram(object):
                 unmergedbuckets.append(b)
         frequencies = [b['frequency'] for b in unmergedbuckets]
         if len(frequencies) > 0 and k > 0:
-            f = pd.Series(frequencies)
-            highfrequencies = list(f.nlargest(k))
+            frequencies = sorted(frequencies, reverse=True)
+            highfrequencies = frequencies[:k]
+            #f = pd.Series(frequencies)
+            #highfrequencies = list(f.nlargest(k))
             totalfreq = sum(highfrequencies)
             highbuckets = []
             for b in self.buckets:

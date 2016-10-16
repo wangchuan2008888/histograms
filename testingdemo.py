@@ -11,7 +11,7 @@ from shutil import copyfile
 import sys
 
 buckets = [20, 50, 100, 500, 1000]
-batchsize = [100, 1000, 10000, 100000]
+batchsize = [10000, 100000]
 userbucketsize = 1
 attributes = ['norm', 'chi', 'logistic', 'beta', 'gamma', 'bimodal', 'uniform']
 
