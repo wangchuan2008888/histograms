@@ -1,5 +1,5 @@
 import dynamic_histograms.control_histogram
-import dynamic_histograms.dc_histogram
+#import dynamic_histograms.dc_histogram
 import dynamic_histograms.dvo_histogram
 import dynamic_histograms.equidepth_histogram
 import dynamic_histograms.maxdiff_histogram

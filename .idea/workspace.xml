@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32eaefd-3a71-48a8-95f8-8342e32b3e1b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testingdemo.py" afterPath="$PROJECT_DIR$/testingdemo.py" />
     </list>
     <ignored path="histograms.iws" />
@@ -41,14 +34,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testingdemo.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="testingdemo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testingdemo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="15">
+              <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dc_histogram.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dc_histogram.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
+            <state relative-caret-position="1065">
               <caret line="703" column="0" selection-start-line="703" selection-start-column="0" selection-end-line="703" selection-end-column="0" />
               <folding>
                 <element signature="e#93#124#0" expanded="true" />
@@ -90,13 +81,13 @@
         <option value="$PROJECT_DIR$/dynamic_histograms/biaseddist.py" />
         <option value="$PROJECT_DIR$/demo.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
-        <option value="$PROJECT_DIR$/testingdemo.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
+        <option value="$PROJECT_DIR$/testingdemo.py" />
       </list>
     </option>
   </component>
@@ -563,9 +554,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -914,16 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testingdemo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/control_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
@@ -982,11 +961,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="1065">
           <caret line="703" column="0" selection-start-line="703" selection-start-column="0" selection-end-line="703" selection-end-column="0" />
           <folding>
             <element signature="e#93#124#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testingdemo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
