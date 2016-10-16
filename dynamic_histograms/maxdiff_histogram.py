@@ -6,12 +6,10 @@ Steffani Gomez
 
 from __future__ import division
 import numpy as np
-import pandas as pd
-import math
+#import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import matplotlib.mlab as mlab
 import csv
 from collections import Counter
 from collections import defaultdict
@@ -149,7 +147,16 @@ class MaxDiff_Histogram(object):
             binedges.append(bucket['low'])
         binedges.append(bucket['high'])
         cumfreq = np.cumsum(frequency)
-        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        realdist = []
+        with open(self.file, 'r') as f:
+            reader = csv.reader(f)
+            header = reader.next()
+            for i in range(0, len(header)):
+                header[i] = unicode(header[i], 'utf-8-sig')
+            attr_index = header.index(attr)
+            for row in reader:
+                realdist.append(float(row[attr_index]))
+        #realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         if end:
             ksstats = {}
             ksstats['cdfstats'] = stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')

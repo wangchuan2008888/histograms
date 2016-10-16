@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32eaefd-3a71-48a8-95f8-8342e32b3e1b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testingdemo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testingdemo.py" afterPath="$PROJECT_DIR$/testingdemo.py" />
     </list>
     <ignored path="histograms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +32,7 @@
       <file leaf-file-name="demo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
+            <state relative-caret-position="1185">
               <caret line="89" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
@@ -36,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testingdemo.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testingdemo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testingdemo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="94" column="51" selection-start-line="94" selection-start-column="51" selection-end-line="94" selection-end-column="51" />
+            <state relative-caret-position="95">
+              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -51,7 +56,7 @@
       <file leaf-file-name="dist.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dynamic_histograms/dist.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
+            <state relative-caret-position="495">
               <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="53" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -60,24 +65,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dc_histogram.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dc_histogram.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-188">
+            <state relative-caret-position="15">
               <caret line="703" column="0" selection-start-line="703" selection-start-column="0" selection-end-line="703" selection-end-column="0" />
               <folding>
                 <element signature="e#93#124#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="control_histogram.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dynamic_histograms/control_histogram.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="220" column="61" selection-start-line="220" selection-start-column="61" selection-end-line="220" selection-end-column="61" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -93,15 +88,15 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/dynamic_histograms/data/biaseddistributions.csv" />
         <option value="$PROJECT_DIR$/dynamic_histograms/biaseddist.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
         <option value="$PROJECT_DIR$/demo.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
         <option value="$PROJECT_DIR$/testingdemo.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
       </list>
     </option>
   </component>
@@ -153,6 +148,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -205,8 +202,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -215,7 +210,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="true" />
   </component>
-  <component name="RunManager" selected="Python.demo">
+  <component name="RunManager" selected="Python.testingdemo">
     <configuration default="false" name="demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -246,6 +241,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="histograms" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dynamic_histograms/biaseddist.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="testingdemo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="histograms" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testingdemo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -384,14 +396,16 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Python.demo" />
       <item index="1" class="java.lang.String" itemvalue="Python.biaseddist" />
+      <item index="2" class="java.lang.String" itemvalue="Python.testingdemo" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.demo" />
-        <item index="1" class="java.lang.String" itemvalue="Python.biaseddist" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.testingdemo" />
+        <item index="1" class="java.lang.String" itemvalue="Python.demo" />
+        <item index="2" class="java.lang.String" itemvalue="Python.biaseddist" />
       </list>
     </recent_temporary>
   </component>
@@ -424,7 +438,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16640624" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -524,12 +538,67 @@
           <line>472</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dynamic_histograms/spline_histogram.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="50" />
+      <option name="time" value="53" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1335">
+          <caret line="89" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testingdemo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10545">
+          <caret line="703" column="0" selection-start-line="703" selection-start-column="0" selection-end-line="703" selection-end-column="0" />
+          <folding>
+            <element signature="e#93#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/control_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3240">
+          <caret line="220" column="61" selection-start-line="220" selection-start-column="61" selection-end-line="220" selection-end-column="61" />
+          <folding>
+            <element signature="e#87#118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -801,31 +870,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="366" column="12" selection-start-line="366" selection-start-column="12" selection-end-line="366" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/user_distribution.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-39">
           <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="45" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/spline_histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2544">
-          <caret line="338" column="53" selection-start-line="338" selection-start-column="53" selection-end-line="338" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/sf_histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5154">
-          <caret line="110" column="53" selection-start-line="110" selection-start-column="53" selection-end-line="110" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -841,23 +889,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1749">
-          <caret line="215" column="60" selection-start-line="215" selection-start-column="60" selection-end-line="215" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="302" column="8" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
+        <state relative-caret-position="1185">
           <caret line="89" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
@@ -872,7 +906,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dist.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="495">
           <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="53" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -880,30 +914,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
+    <entry file="file://$PROJECT_DIR$/testingdemo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-188">
-          <caret line="703" column="0" selection-start-line="703" selection-start-column="0" selection-end-line="703" selection-end-column="0" />
+        <state relative-caret-position="95">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
           <folding>
-            <element signature="e#93#124#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/control_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="220" column="61" selection-start-line="220" selection-start-column="61" selection-end-line="220" selection-end-column="61" />
+        <state relative-caret-position="268">
+          <caret line="141" column="55" selection-start-line="141" selection-start-column="55" selection-end-line="141" selection-end-column="55" />
+          <folding>
+            <element signature="e#87#118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testingdemo.py">
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="94" column="51" selection-start-line="94" selection-start-column="51" selection-end-line="94" selection-end-column="51" />
+        <state relative-caret-position="283">
+          <caret line="151" column="55" selection-start-line="151" selection-start-column="55" selection-end-line="151" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="157" column="55" selection-start-line="157" selection-start-column="55" selection-end-line="157" selection-end-column="55" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#98#129#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/sf_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="175" column="55" selection-start-line="175" selection-start-column="55" selection-end-line="175" selection-end-column="55" />
+          <folding>
+            <element signature="e#95#126#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/spline_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="218" column="55" selection-start-line="218" selection-start-column="55" selection-end-line="218" selection-end-column="55" />
+          <folding>
+            <element signature="e#82#113#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="703" column="0" selection-start-line="703" selection-start-column="0" selection-end-line="703" selection-end-column="0" />
+          <folding>
+            <element signature="e#93#124#0" expanded="true" />
           </folding>
         </state>
       </provider>

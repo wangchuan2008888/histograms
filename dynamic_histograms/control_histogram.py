@@ -6,7 +6,7 @@ Steffani Gomez
 
 from __future__ import division
 import numpy as np
-import pandas as pd
+#import pandas as pd
 import math
 import matplotlib
 matplotlib.use('Agg')
@@ -131,7 +131,16 @@ class Control_Histogram(object):
             binedges.append(bucket['low'])
         binedges.append(bucket['high'])
         cumfreq = np.cumsum(frequency)
-        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        realdist = []
+        with open(self.file, 'r') as f:
+            reader = csv.reader(f)
+            header = reader.next()
+            for i in range(0, len(header)):
+                header[i] = unicode(header[i], 'utf-8-sig')
+            attr_index = header.index(attr)
+            for row in reader:
+                realdist.append(float(row[attr_index]))
+        #realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
         if end:
             ksstats = {}          
             x = stats.zipf.rvs(a=1.01,size=100000)

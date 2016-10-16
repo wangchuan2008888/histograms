@@ -15,31 +15,31 @@ batchsize = [100, 1000, 10000, 100000]
 userbucketsize = 1
 attributes = ['norm', 'chi', 'logistic', 'beta', 'gamma', 'bimodal', 'uniform']
 
-# make sure output directory exists
-outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(buckets) + '_' + str(userbucketsize)
-if not os.path.exists(outputpath + '//img'):
-    os.makedirs(outputpath + '//img')
-if not os.path.exists(outputpath + '//data'):
-    os.makedirs(outputpath + '//data')
-
-# write index.html by going through the output directory
-copyfile('template.html', outputpath + '//template.html')
-copyfile('d3.html', outputpath + '//d3.html')
-copyfile('template.html', outputpath + '//template.html')
-with open('output//index.html', 'w') as f:
-    f.write('<!DOCTYPE html>\n')
-    f.write('<html lang=\"en-US\">\n')
-    for maind in [d for d in os.listdir('output') if not os.path.isfile(os.path.join('output', d))]:
-        print maind
-        f.write('<h2>' + maind + '</h2>\n')
-        for subd in [d for d in os.listdir('output//' + maind) if
-                     not os.path.isfile(os.path.join('output//' + maind, d))]:
-            f.write('<a href=\"' + maind + '//' + subd + '//template.html' + '\">' + subd + '</a><br/>\n')
-    f.write('</html>\n')
-
 for attr in attributes:
     for numbuckets in buckets:
         for batch in batchsize:
+
+            # make sure output directory exists
+            outputpath = 'output//' + attr + '//' + str(batch) + '_' + str(numbuckets) + '_' + str(userbucketsize)
+            if not os.path.exists(outputpath + '//img'):
+                os.makedirs(outputpath + '//img')
+            if not os.path.exists(outputpath + '//data'):
+                os.makedirs(outputpath + '//data')
+
+            # write index.html by going through the output directory
+            copyfile('template.html', outputpath + '//template.html')
+            copyfile('d3.html', outputpath + '//d3.html')
+            copyfile('template.html', outputpath + '//template.html')
+            with open('output//index.html', 'w') as f:
+                f.write('<!DOCTYPE html>\n')
+                f.write('<html lang=\"en-US\">\n')
+                for maind in [d for d in os.listdir('output') if not os.path.isfile(os.path.join('output', d))]:
+                    print maind
+                    f.write('<h2>' + maind + '</h2>\n')
+                    for subd in [d for d in os.listdir('output//' + maind) if
+                                 not os.path.isfile(os.path.join('output//' + maind, d))]:
+                        f.write('<a href=\"' + maind + '//' + subd + '//template.html' + '\">' + subd + '</a><br/>\n')
+                f.write('</html>\n')
 
             print "### CONTROL HISTOGRAM ###"
             start_time = time.time()
