@@ -13,7 +13,7 @@ import sys
 buckets = 20
 batchsize = 100000
 userbucketsize = 1
-attr='norm'
+attr='beta'
 
 # make sure output directory exists
 outputpath = 'output//' + attr + '//' + str(batchsize) + '_' + str(buckets) + '_' + str(userbucketsize)
@@ -47,7 +47,7 @@ with open('output//index.html', 'w') as f:
 print "### DYNAMIC COMPRESSED HISTOGRAM ###"
 start_time = time.time()
 dc = dynamic_histograms.dc_histogram.DC_Histogram('dynamic_histograms/data/distributions.csv', buckets, outputpath)
-dc.create_histogram(attr, gamma=0.5, gammam=0.5, batchsize=batchsize, userbucketsize=userbucketsize)
+dc.create_histogram(attr, batchsize=batchsize, userbucketsize=userbucketsize)
 # dc.zipfdistributiongraph([0.01,1,2,3],0.5, 0.5, batchsize,userbucketsize)
 dc_time = time.time() - start_time
 print "-------- %f seconds to complete all batches --------" %  dc_time

@@ -17,6 +17,7 @@ import json
 import os
 from scipy import stats
 from shutil import copyfile
+import copy
 
 import sys
 
@@ -76,7 +77,7 @@ class DC_Histogram(object):
         plt.savefig(path + "//img//dczipf.jpg")
         plt.close()
 
-    def create_histogram(self, attr, gamma, gammam, batchsize, userbucketsize):
+    def create_histogram(self, attr, batchsize, userbucketsize):
         """Reads in data from the file, extending the buckets of the histogram is the values are beyond 
         it, and checks to see if the probability that the counts in the equi-depth buckets are not uniformly 
         distributed is statistically significant (less than alpha) and if so, redistributes the regular buckets."""
@@ -113,7 +114,7 @@ class DC_Histogram(object):
                     initial = True
                 elif initial == True:
                     #skipcounter += 1
-                    self.add_datapoint(float(row[attr_index]), N, sample, attr, gamma, gammam)
+                    self.add_datapoint(float(row[attr_index]), N, sample, attr)
                     #if skipcounter == skip:
                     #    sample = self.maintainBackingSample(float(row[attr_index]), sample)
                     #    skip = self.calculateSkip(len(sample))
@@ -132,6 +133,7 @@ class DC_Histogram(object):
                         for i in range(len(self.singular)):
                             f += self.singular[i]['frequency']
                         print f, N
+                        assert np.isclose(f, N)
                 else:
                     print("ERROR: There are not enough unique values for the number of specified buckets.")
                 N += 1
@@ -253,7 +255,7 @@ class DC_Histogram(object):
         assert len(self.singular) + len(self.regular) == self.numbuckets
 
 
-    def add_datapoint(self, value, N, sample, attr, gamma, gammam):
+    def add_datapoint(self, value, N, sample, attr):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
         if value == self.min:
             # need to find bucket at end of range
@@ -340,7 +342,9 @@ class DC_Histogram(object):
         else:
             #index = []
             #singlen = len(self.singular)
-            for i in range(len(self.singular)):
+            i = 0
+            #for i in range(len(self.singular)):
+            while i < len(self.singular):
                 if bucket['size'] == 0:
                     break
                 elif self.singular[i]['low'] <= bucket['low'] < self.singular[i]['high'] and self.singular[i]['low'] < bucket['high'] <= self.singular[i]['high']:
@@ -368,6 +372,7 @@ class DC_Histogram(object):
                     bucket['frequency'] -= perc
                     bucket['low'] = self.singular[i]['high']
                     bucket['size'] = bucket['high'] - bucket['low']
+                    i -= 1
                 elif bucket['low'] >= self.singular[i]['high']:
                     if i < len(self.singular) - 1 and bucket['low'] < self.singular[i + 1]['low']:
                         if self.singular[i]['high'] < bucket['high'] <= self.singular[i + 1]['low']:
@@ -399,29 +404,15 @@ class DC_Histogram(object):
                             bucket['low'] = self.singular[i + 1]['low']
                             bucket['size'] = bucket['high'] - bucket['low']
                             self.singular.insert(i + 1, b.copy())
+                            i -= 1
                     elif i >= len(self.singular) - 1:
                         # then this bucket spills over into the end range of the singular buckets and we can just append the bucket
                         self.singular.append(bucket)
                         break
+                i += 1
         # when we remove bucket we must extend the boundaries of the regular buckets
         for i in range(len(self.regular)):
             if self.regular[i]['low'] == low and self.regular[i]['high'] == high:
-                if i == len(self.regular) - 1:
-                    # then we just extend the bucket to the left of it all the way
-                    self.regular[i - 1]['high'] = high
-                    self.regular[i - 1]['size'] = self.regular[i - 1]['high'] - self.regular[i - 1]['low']
-                elif i == 0:
-                    # then we extend the bucket to the right of it all the way
-                    self.regular[1]['low'] = low
-                    self.regular[1]['size'] = self.regular[1]['high'] - self.regular[1]['low']
-                else:
-                    # then we extend the left bucekt all the way, since we know for sure the left bucket is not a bucket
-                    # that could belong to the singular buckets, but we are unsure about the right bucket
-                    # either way, we still redistribute the boundaries of regular buckets after promoting all worthy regular buckets
-                    self.regular[i - 1]['high'] = high#bucket['high']#bucket['low'] + (bucket['size'] / 2)
-                    self.regular[i - 1]['size'] = self.regular[i - 1]['high'] - self.regular[i - 1]['low']
-                    #self.regular[i + 1]['low'] = self.regular[i - 1]['high']
-                    #self.regular[i + 1]['size'] = self.regular[i + 1]['high'] - self.regular[i + 1]['low']
                 del self.regular[i]
                 break
 
@@ -513,59 +504,6 @@ class DC_Histogram(object):
             if j < len(singular):
                 self.singular.insert(i, singular[j])
             j += 1
-
-
-
-    def checkbucketsonright(self, i, bucket):
-        if i != len(self.singular) - 1:
-            # have to check if there are buckets on the right in the range of the bucket to be inserted
-            # if not, then just insert what is left of the bucket next to the bucket it first overlapped with
-            j = i + 1
-            while bucket['frequency'] != 0 and self.singular[j]['high'] >= bucket['high'] and self.singular[j]['low'] < \
-                    bucket['high'] and j < len(self.singular):
-                # going until we find a bucket whose end matches the end of the bucket range to insert or is greater than it
-                if self.singular[j - 1]['high'] == self.singular[j]['low']:
-                    # then there is a bucket directly after the previous bucket and we must add and split if necessary
-                    frac = (self.singular[j]['high'] - bucket['low']) / bucket['size']
-                    perc = bucket['frequency'] * frac
-                    self.singular[j]['frequency'] += perc
-                    bucket['low'] = self.singular[j]['high']
-                    bucket['frequency'] -= perc
-                    bucket['size'] = bucket['high'] - bucket['low']
-                    j += 1
-                else:
-                    # otherwise there is not a bucket directly after the bucket and we must then insert the bucket in
-                    # the appropriate range, but cognizant of the fact that there is still a bucket that overlaps the range
-                    rang = self.singular[j]['low'] - bucket['low']
-                    perc = (rang / bucket['size']) * bucket['frequency']
-                    b = {
-                        'low': bucket['low'],
-                        'high': self.singular[j]['low'],
-                        'frequency': perc,
-                        'size': rang
-                    }
-                    bucket['low'] = self.singular[j]['low']
-                    bucket['frequency'] -= perc
-                    bucket['size'] = bucket['high'] - bucket['low']
-                    leftover = bucket['high'] - self.singular[j]['low']
-                    # in the case that it spills over into another bucket but not completely
-                    if leftover > self.singular[j]['size']:
-                        # then it spills over into the entire bucket and then some
-                        leftover = self.singular[j]['high'] - bucket['low']
-                        bucket['low'] = self.singular[j]['high']
-                    leftoverperc = (leftover / bucket['size']) * bucket['frequency']
-                    self.singular[j]['frequency'] += leftoverperc
-                    bucket['frequency'] -= leftoverperc
-                    bucket['size'] = bucket['high'] - bucket['low']
-                    self.singular.insert(j, b)
-                    j += 2
-            if bucket['frequency'] != 0:
-                # then we add the bucket at self.singular[j] because there is no bucket in which to insert frequencies already
-                self.singular.insert(j, bucket)
-
-        else:
-            # otherwise this is the last bucket in singular and we can just add the remaining bucket to the end of the singular list
-            self.singular.append(bucket)
 
     def checkbucketsandincrement(self, value, N):
         # this method first checks the singular buckets and then the regular buckets, and promotes regular buckets if larger than threshold
@@ -670,22 +608,42 @@ class DC_Histogram(object):
         i = 0
         while i < len(self.regular):
             if round(self.regular[i]['frequency'], 10) > count:
+                #print self.regular[i]['low'], self.regular[i]['high']
+                #print "BEFORE", len(self.regular), len(self.singular)
                 self.promotebucket(self.regular[i].copy())
+                #print len(self.regular), len(self.singular)
+                #assert len(self.regular) + len(self.singular) == self.numbuckets
                 i = 0
             else:
                 i += 1
 
+        if self.regular[0]['low'] != self.min:
+            self.regular[0]['low'] = self.min
+            self.regular[0]['size'] = self.regular[0]['high'] - self.regular[0]['low']
+
+        if self.regular[len(self.regular) - 1]['high'] != self.max + 1:
+            self.regular[len(self.regular) - 1]['high'] = self.max + 1
+            self.regular[len(self.regular) - 1]['size'] = self.regular[len(self.regular) - 1]['high'] - self.regular[len(self.regular) - 1]['low']
+
         for i in range(len(self.regular)):
             s += self.regular[i]['frequency']
+            h = self.regular[i]['high']
+            if i < len(self.regular) - 1 and h != self.regular[i + 1]['low']:
+                rang = self.regular[i + 1]['low'] - h
+                self.regular[i]['high'] += rang / 2
+                self.regular[i]['size'] = self.regular[i]['high'] - self.regular[i]['low']
+                self.regular[i + 1]['low'] -= rang / 2
+                self.regular[i + 1]['size'] = self.regular[i + 1]['high'] - self.regular[i + 1]['low']
+
         threshold = s / len(self.regular)
         # now we need to redistribute the regular buckets and making sure that each bucket has the threshold frequency
         self.redistributebuckets(threshold, False)
-
         # if there are regular buckets whose frequency exceeds count, make that bucket a non-regular bucket
         i = 0
         while i < len(self.singular):
             if round(self.singular[i]['frequency'], 10) < count:
                 self.demotebucket(self.singular[i].copy())
+                assert len(self.regular) + len(self.singular) == self.numbuckets
                 i = 0
             else:
                 i += 1
@@ -694,7 +652,7 @@ class DC_Histogram(object):
     def plot_histogram(self, attr, buckets):
         """Plots the histogram."""
 
-        totalbuckets = self.regular
+        totalbuckets = copy.deepcopy(self.regular)
         for i in range(len(self.singular)):
             bucket = self.singular[i].copy()
             for j in range(len(totalbuckets)):
