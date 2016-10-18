@@ -13,7 +13,7 @@ import sys
 buckets = [20, 50, 100, 500, 1000]
 batchsize = [10000, 100000]
 userbucketsize = 1
-attributes = ['norm', 'chi', 'logistic', 'beta', 'gamma', 'bimodal', 'uniform']
+attributes = ['chi', 'logistic', 'beta', 'gamma', 'bimodal', 'uniform', 'norm']
 
 for attr in attributes:
     for numbuckets in buckets:
