@@ -1,7 +1,6 @@
 .DS_Store
 *.pyc
 .env
-output
 out.txt
 *.xml
 *.iml
