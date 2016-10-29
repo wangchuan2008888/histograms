@@ -129,6 +129,11 @@ class Equidepth_Histogram(object):
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compare_histogram(attr, False)
+                        f = 0
+                        for i in range(len(self.buckets)):
+                            f += self.buckets[i]['frequency']
+                        print f, N
+                        assert np.isclose(f, N)
                 else:
                     print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)

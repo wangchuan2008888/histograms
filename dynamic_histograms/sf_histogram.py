@@ -132,7 +132,7 @@ class SF_Histogram(object):
                     self.max = float(row[attr_index])
                 if len(set(sample)) < self.numbuckets:
                     sample.append(float(row[attr_index]))
-                elif len(set(sample)) == self.numbuckets and initial == False:
+                if len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(sample)
                     self.plot_histogram(attr, self.buckets)
                     d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
@@ -146,15 +146,32 @@ class SF_Histogram(object):
                         # we are choosing not to use updateFreq from the pseudocode as that operates over ranges of data
                         # that are accessed by SQL queries. instead we are just using restructureHist after every batch.
                         print "number read in: " + str(N)
+                        print len(self.buckets), self.numbuckets
+                        f = 0
+                        for i in range(len(self.buckets)):
+                            f += self.buckets[i]['frequency']
+                        print f, N
+                        assert np.isclose(f, N)
                         self.restructureHist(m, s, N)
+                        print len(self.buckets), self.numbuckets
+                        f = 0
+                        for i in range(len(self.buckets)):
+                            f += self.buckets[i]['frequency']
+                        print f, N
+                        assert np.isclose(f, N)
                         self.plot_histogram(attr, self.buckets)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compare_histogram(attr, False)
-                else:
-                    print("ERROR: There are not enough unique values for the number of specified buckets.")
+                        f = 0
+                        for i in range(len(self.buckets)):
+                            f += self.buckets[i]['frequency']
+                        print f, N
+                        assert np.isclose(f, N)
+            if len(set(sample)) < self.numbuckets:
+                print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -316,6 +333,19 @@ class SF_Histogram(object):
             frac = (min(high, self.buckets[i]['high']) - max(low, self.buckets[i]['low']) + 1) / (self.buckets[i]['size'] + 1)
             self.buckets[i]['frequency'] = max(self.buckets[i]['frequency'] + (alpha * esterr * frac * (self.buckets[i]['frequency'] / est)), 0)
     
+    def maxdiffbucketruns(self, b1, b2):
+        minimum = float('-inf')
+        b1index = None
+        b2index = None
+        for i in range(len(b1)):
+            for j in range(len(b2)):
+                if abs(b1[i]['frequency'] - b2[j]['frequency']) > minimum:
+                    minimum = abs(b1[i]['frequency'] - b2[j]['frequency'])
+                    b1index = i
+                    b2index = j
+        return minimum
+
+
     def restructureHist(self, m, s, size):
         """the algorithm for restructing histograms. m is a parameter that we call the merge threshold. 
         In most of the experiments, m <= 1% was a suitable choice. 
@@ -327,14 +357,15 @@ class SF_Histogram(object):
         while True:
             maxfreq = []
             for i in range(0, len(bucketruns) - 1):
-                localmax = float('-inf')
-                tuple = []
-                for b1 in bucketruns[i]:
-                    for b2 in bucketruns[i + 1]:
-                        diff = abs(b2['frequency'] - b1['frequency'])
-                        if diff > localmax:
-                            localmax = diff
-                            tuple = [localmax, bucketruns[i], bucketruns[i + 1]]
+                tuple = (self.maxdiffbucketruns(bucketruns[i], bucketruns[i + 1]), i, i + 1)
+                #localmax = float('-inf')
+                #tuple = []
+                #for b1 in bucketruns[i]:
+                #    for b2 in bucketruns[i + 1]:
+                #        diff = abs(b2['frequency'] - b1['frequency'])
+                #        if diff > localmax:
+                #            localmax = diff
+                #            tuple = [localmax, bucketruns[i], bucketruns[i + 1]]
                 maxfreq.append(tuple)
             if len(maxfreq) > 0:
                 mintuple = min(maxfreq, key=itemgetter(0))
@@ -352,9 +383,9 @@ class SF_Histogram(object):
         k = int(round(s * self.numbuckets))
 
         unmergedbuckets = []
-        for b in self.buckets:
-            if b['merge'] == False:
-                unmergedbuckets.append(b)
+        for i in range(len(self.buckets)):
+            if self.buckets[i]['merge'] == False:
+                unmergedbuckets.append(self.buckets[i])
         frequencies = [b['frequency'] for b in unmergedbuckets]
         if len(frequencies) > 0 and k > 0:
             frequencies = sorted(frequencies, reverse=True)
@@ -363,123 +394,159 @@ class SF_Histogram(object):
             #highfrequencies = list(f.nlargest(k))
             totalfreq = sum(highfrequencies)
             highbuckets = []
-            for b in self.buckets:
-                if b['frequency'] in highfrequencies:
+            for b in unmergedbuckets:
+                if b['frequency'] in highfrequencies and b['merge'] == False:
                     highbuckets.append(b)
+                if len(highbuckets) == len(highfrequencies):
+                    break
 
             # merging each run that has more than one bucket in it, meaning those buckets should be merged together
+            print len(bucketruns)
             for l in bucketruns:
                 if len(l) != 1:
                     self.mergebuckets(l)
 
+            print len(self.buckets), self.numbuckets, freebuckets, len(unmergedbuckets)
+
+            # creating dictionary that keeps track of the number of free buckets each bucket that needs to be split gets
+            allocation = self.allocatefreebuckets(freebuckets, highbuckets, totalfreq)
+
             for b in highbuckets:
-                self.splitbucket(b, freebuckets, totalfreq)
+                self.splitbucket(b, allocation)
 
-        self.numbuckets = len(self.buckets)
+        #self.numbuckets = len(self.buckets)
+        print len(self.buckets), self.numbuckets
+        assert len(self.buckets) == self.numbuckets
 
-    def splitbucket(self, b, numfree, totalfreq):
+    def allocatefreebuckets(self, numfree, highbuckets, totalfreq):
+        # returns a dictionary that defines the number of buckets each bucket in highbuckets should be split into
+        percentages = []
+        percindexes = []
+        allocation = {}
+        initial = 0
+        fraccount = 0.0
+        for i in range(len(highbuckets)):
+            frac = highbuckets[i]['frequency'] / totalfreq#totalfreq / highbuckets[i]['frequency']#highbuckets[i]['frequency'] / totalfreq
+            fraccount += frac
+            percentages.append(frac)
+            percindexes.append(i)
+            allocation[highbuckets[i]['low']] = int(frac)
+            initial += int(frac)
+        if initial <= self.numbuckets * 0.25:
+            initial = 0
+            for i in range(len(highbuckets)):
+                frac = highbuckets[i]['frequency'] / totalfreq
+                allocation[highbuckets[i]['low']] = int(frac * numfree)
+                initial += int(frac * numfree)
+        if initial < numfree:
+            decpercs = []
+            for i in range(len(percentages)):
+                decimal = percentages[i] % 1
+                decpercs.append(decimal)
+            extra = numfree - initial
+            highdecs = sorted(decpercs, reverse=True)[:extra]
+            for j in range(len(highdecs)):
+                index = decpercs.index(highdecs[j])
+                allocation[highbuckets[percindexes[index]]['low']] += 1
+        elif initial > numfree:
+            print "WE FUCKED"
+        sum = 0
+        for k in allocation.keys():
+            sum += allocation[k]
+        print sum, numfree
+        assert sum == numfree
+        return allocation
+
+
+
+    def splitbucket(self, b, allocation):
         """Splits the bucket into the appropriate number and inserts that into the buckets list kept with the histogram.
         numfree - # of free buckets
         totalfreq - total frequency of the buckets that need to be split."""
-        numsplit = round(((b['frequency'] / totalfreq) * numfree) + 1)
+        f = 0
+        reglen = 0
+        for i in range(len(self.buckets)):
+            f += self.buckets[i]['frequency']
+            reglen += 1
+        N = f
+        #print "before split", N
+        numsplit = allocation[b['low']] + 1 # the number of extra buckets
         size = b['size'] / numsplit
         newbuckets = []
-        for bucket in self.buckets:
-            if bucket['low'] != b['low'] and bucket['high'] != b['high'] and bucket['frequency'] != b['frequency']:
-                newbuckets.append(bucket)
-            elif bucket['low'] == b['low'] and bucket['high'] == b['high'] and bucket['frequency'] == b['frequency']:
-                low = b['low']
+        totalfreq = 0.0
+        for i in range(len(self.buckets)):
+            if self.buckets[i]['low'] != b['low'] and self.buckets[i]['high'] != b['high']:
+                newbuckets.append(self.buckets[i])
+                totalfreq += self.buckets[i]['frequency']
+            elif self.buckets[i]['low'] == b['low'] and self.buckets[i]['high'] == b['high'] and self.buckets[i]['frequency'] == b['frequency']:
+                #print self.buckets[i]['frequency'], b['frequency']
+                low = self.buckets[i]['low']
                 high = low + size
-                for i in range(0, int(numsplit)):
+                freq = 0.0
+                for j in range(numsplit):
                     newb = {
                         'low': low,
                         'high': high,
-                        'frequency': b['frequency'] / numsplit,
+                        'frequency': self.buckets[i]['frequency'] / numsplit,
                         'size': high - low,
                         'merge': False
-                    } 
+                    }
+                    freq += newb['frequency']
                     low = high
-                    if (i == numsplit - 2):
-                        high = b['high']
-                    else:
-                        high = low + size
-                    newbuckets.append(newb)
+                    high = low + size
+                    newbuckets.append(newb.copy())
+                #print b['low'], b['high'], low, high, freq, b['frequency'], self.buckets[i]['frequency']
+                totalfreq += freq
         self.buckets = newbuckets
-        self.numbuckets = len(newbuckets)
+        #print reglen, len(self.buckets), numsplit, totalfreq
+        f = 0
+        for i in range(len(self.buckets)):
+            f += self.buckets[i]['frequency']
+        #print f, N
+        assert np.isclose(f, N)
 
     def mergeruns(self, buckets, b1, b2):
         """Sets the buckets in b1 and b2 to be merged and merges the lists into one list in buckets."""
-        for b in b1:
-            b['merge'] = True
-        for b in b2:
-            b['merge'] = True
-        merged = b1 + b2
+        for i in range(len(buckets[b1])):
+            buckets[b1][i]['merge'] = True
+        for i in range(len(buckets[b2])):
+            buckets[b2][i]['merge'] = True
+        merged = buckets[b1] + buckets[b2]
         newbuckets = []
         prev = len(buckets)
-        for b in buckets:
-            if self.checkBucketLists(b, b2) == True:
-                pass
-            elif self.checkBucketLists(b, b1) == False:
-                newbuckets.append(b)
-            elif self.checkBucketLists(b, b1) == True: 
+        for i in range(prev):
+            if i == b1:
                 newbuckets.append(merged)
+            elif i == b2:
+                pass
+            else:
+                newbuckets.append(buckets[i])
         new = len(newbuckets)
         assert new < prev
         return newbuckets
 
-    def checkBucketLists(self, b1, b2):
-        """Checks if two lists of buckets are the same, assuming that the lists of buckets are in order if 
-        they are the same, i.e. b1[0] = b2[0] and so forth if they are the same."""
-        b1length = len(b1)
-        b2length = len(b2)
-        if b1length != b2length:
-            return False
-        else:
-            for i in range(0, b1length):
-                if self.equalBuckets(b1[i], b2[i]) == False:
-                    return False
-        return True
-
-
-    def equalBuckets(self, b1, b2):
-        """Checks if two buckets (which are dicts) are the same."""
-        if b1['low'] != b2['low'] or b1['high'] != b2['high'] or b1['frequency'] != b2['frequency'] or b1['merge'] != b2['merge'] or b1['size'] != b2['size']:
-            return False
-        else:
-            return True
-
     def mergebuckets(self, bucketrun):
         """Merges all the buckets in bucketrun into one bucket and inserting that bucket where all the previous
         unmerged buckets were."""
+        oldlen = len(self.buckets)
+        mergelen = len(bucketrun)
         buckets = []
         totalfreq = 0
         low = bucketrun[0]['low']
         for b in bucketrun:
             totalfreq += b['frequency']
         high = b['high']
-        for bucket in self.buckets:
-            if bucket['low'] < low:
-                buckets.append(bucket)
-            elif bucket['low'] == bucketrun[0]['low'] and bucket['high'] == bucketrun[0]['high']:
-                totalfreq = 0
-                low = bucketrun[0]['low']
-                for b in bucketrun:
-                    totalfreq += b['frequency']
-                high = b['high']
-                newbucket = {
-                    'low': low,
-                    'high': high,
-                    'frequency': totalfreq,
-                    'size': high - low,
-                    'merge': False
-                }
-                buckets.append(newbucket)
-            elif bucket['low'] > low and bucket['low'] < high:
-                pass
-            else:
-                buckets.append(bucket)
-        self.buckets = buckets
-        self.numbuckets = len(buckets)
+        for i in range(oldlen):
+            if self.buckets[i]['low'] == low and self.buckets[i]['high'] == bucketrun[0]['high']:
+                self.buckets[i]['high'] = high
+                self.buckets[i]['frequency'] = totalfreq
+                self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
+                for j in range(mergelen - 1):
+                    del self.buckets[i + 1]
+                if i + 1 < len(self.buckets):
+                    assert np.isclose(self.buckets[i + 1]['low'], self.buckets[i]['high'])
+                break
+        assert len(self.buckets) == oldlen - (mergelen - 1)
 
     def print_buckets(self):
         """Prints the buckets of the histogram, including bucket boundaries and the count of the bucket."""        

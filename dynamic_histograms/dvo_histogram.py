@@ -143,24 +143,33 @@ class DVO_Histogram(object):
                     self.max = float(row[attr_index]) 
                 if len(set(sample)) < self.numbuckets:
                     sample.append(float(row[attr_index]))
-                elif len(set(sample)) == self.numbuckets and initial == False:
-                    sorted_sample = sorted(sample, key=float)
-                    buckets = sorted(list(set(sample)), key=float)
-                    c = Counter(sorted_sample)
+                if len(set(sample)) == self.numbuckets and initial == False:
+                    sorted_sample = sorted(list(set(sample)), key=float)
+                    c = Counter(sample)
                     for i in range(0, self.numbuckets):
-                        self.buckets[i]['low'] = buckets[i]
+                        self.buckets[i]['low'] = sorted_sample[i]
                         if i == self.numbuckets - 1:
-                            self.buckets[i]['high'] = buckets[i] + 1
+                            self.buckets[i]['high'] = sorted_sample[i] + 1
                         else:
-                            self.buckets[i]['high'] = buckets[i + 1]
-                        self.buckets[i]['leftcounter'] = c[buckets[i]]
-                        self.buckets[i]['rightcounter'] = c[buckets[i]]
-                        self.buckets[i]['frequency'] = c[buckets[i]]
+                            self.buckets[i]['high'] = sorted_sample[i + 1]
                         self.buckets[i]['size'] = self.buckets[i]['high'] - self.buckets[i]['low']
+                        for j in range(len(sorted_sample)):
+                            if sorted_sample[j] > self.buckets[i]['high']:
+                                break
+                            elif self.buckets[i]['low'] <= sorted_sample[j] < self.buckets[i]['low'] + (self.buckets[i]['size'] / 2):
+                                self.buckets[i]['leftcounter'] += c[sorted_sample[j]]
+                            elif self.buckets[i]['low'] + (self.buckets[i]['size'] / 2) <= sorted_sample[j] < self.buckets[i]['high']:
+                                self.buckets[i]['rightcounter'] += c[sorted_sample[j]]
+                        self.buckets[i]['frequency'] = self.buckets[i]['leftcounter'] + self.buckets[i]['rightcounter']
                     self.buckets[0]['low'] = self.min
                     self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
                     self.buckets[self.numbuckets - 1]['high'] = self.max + 1
                     self.buckets[self.numbuckets - 1]['size'] = self.max + 1 - self.buckets[self.numbuckets - 1]['low']
+                    f = 0
+                    for i in range(len(self.buckets)):
+                        f += self.buckets[i]['frequency']
+                    print(f, N, "created initial histogram!")
+                    assert np.isclose(f, N)
                     self.plot_histogram(attr, self.buckets)
                     d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                     d.create_distribution(self.buckets)
@@ -177,8 +186,14 @@ class DVO_Histogram(object):
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compare_histogram(attr, False)
-                else:
-                    print("ERROR: There are not enough unique values for the number of specified buckets.")
+                        f = 0
+                        for i in range(len(self.buckets)):
+                            f += self.buckets[i]['frequency']
+                        print(f, N)
+                        assert np.isclose(f, N)
+                        assert len(self.buckets) == self.numbuckets
+            if len(set(sample)) < self.numbuckets:
+                print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -289,17 +304,21 @@ class DVO_Histogram(object):
             self.buckets.insert(0, bucket) # borrow one bucket
             index = self.findBestToMerge()
             self.mergebuckets(index)
+            f = 0
         else:
             for i in range(0, self.numbuckets):
-                if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
+                if self.buckets[i]['low'] <= value < self.buckets[i]['high']:
                     if value < self.buckets[i]['low'] + (self.buckets[i]['size'] / 2):
                         self.buckets[i]['leftcounter'] += 1
                         self.buckets[i]['frequency'] += 1
+                        break
                     else:
                         self.buckets[i]['rightcounter'] += 1
                         self.buckets[i]['frequency'] += 1
+                        break
             s = self.findBestToSplit()
             mindex = self.findBestToMerge()
+            f = 0
             if self.bucketError(self.buckets[s]) > self.adjacentbucketsError(self.buckets[mindex], self.buckets[mindex + 1]):
                 # split s
                 # merge m and m.next
@@ -327,9 +346,9 @@ class DVO_Histogram(object):
         }
         self.buckets[index]['high'] = (self.buckets[index]['size'] / 2) + self.buckets[index]['low']
         self.buckets[index]['size'] = self.buckets[index]['size'] / 2
-        self.buckets[index]['leftcounter'] = self.buckets[index]['leftcounter'] / 2
         self.buckets[index]['rightcounter'] = self.buckets[index]['leftcounter'] / 2
-        self.buckets[index]['frequency'] = self.buckets[index]['leftcounter']
+        self.buckets[index]['leftcounter'] = self.buckets[index]['leftcounter'] / 2
+        self.buckets[index]['frequency'] = self.buckets[index]['leftcounter'] * 2
         self.buckets.insert(index + 1, bucket2)
 
     def bucketError(self, bucket):

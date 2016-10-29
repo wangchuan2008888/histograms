@@ -110,7 +110,7 @@ class MaxDiff_Histogram(object):
                     self.max = float(row[attr_index]) 
                 if len(set(sample)) < self.numbuckets * 2:
                     sample.append(float(row[attr_index]))
-                elif len(set(sample)) == self.numbuckets * 2 and initial == False:
+                if len(set(sample)) == self.numbuckets * 2 and initial == False:
                     self.compute_histogram(sample, N)
                     self.plot_histogram(attr, self.buckets)
                     d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
@@ -135,8 +135,13 @@ class MaxDiff_Histogram(object):
                         self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
                         self.compare_histogram(attr, False)
-                else:
-                    print("ERROR: There are not enough unique values for the number of specified buckets.")
+                        f = 0
+                        for i in range(len(self.buckets)):
+                            f += self.buckets[i]['frequency']
+                        print f, N
+                        assert np.isclose(f, N)
+            if len(set(sample)) < self.numbuckets:
+                print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -235,6 +240,11 @@ class MaxDiff_Histogram(object):
                 a = stats[0]
                 bucketarea = stats[1]
         self.arrangeBuckets(c, a, bucketarea, sorted_sample, N)
+        f = 0
+        for i in range(len(self.buckets)):
+            f += self.buckets[i]['frequency']
+        print f, N
+        assert np.isclose(f, N)
 
     def addArea(self, area, a, bucketarea, index):
         """Adds the area to the list of areas (a) and the dictionary of areas (bucketarea) and the index 
@@ -279,13 +289,13 @@ class MaxDiff_Histogram(object):
                 self.buckets[i]['high'] = sample[highindex + 1]
                 self.buckets[i]['size'] = sample[highindex + 1] - low
             if low == self.min:
-                self.buckets[i]['frequency'] = counter[sample[0]] * N / len(sample)
+                self.buckets[i]['frequency'] = counter[sample[0]] * N / len(sample) * 2
             else:
-                self.buckets[i]['frequency'] = counter[low] * N / len(sample)
+                self.buckets[i]['frequency'] = counter[low] * N / len(sample) * 2
             low = self.buckets[i]['high']
         self.buckets[self.numbuckets - 1]['high'] = self.max + 1
         self.buckets[self.numbuckets - 1]['low'] = self.buckets[self.numbuckets - 2]['high']
-        self.buckets[self.numbuckets - 1]['frequency'] = counter[self.buckets[self.numbuckets - 1]['low']] * N / len(sample)
+        self.buckets[self.numbuckets - 1]['frequency'] = counter[self.buckets[self.numbuckets - 1]['low']] * N / len(sample) * 2
         self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
 
     def calculateSkip(self, n):

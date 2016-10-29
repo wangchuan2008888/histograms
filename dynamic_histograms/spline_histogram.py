@@ -171,7 +171,7 @@ class Spline_Histogram(object):
                     self.max = float(row[attr_index])
                 if len(set(sample)) < self.numbuckets * 2:
                     sample.append(float(row[attr_index]))
-                elif len(set(sample)) == self.numbuckets * 2 and initial == False:
+                if len(set(sample)) == self.numbuckets * 2 and initial == False:
                     self.compute_histogram(sample, N)
                     self.plot_histogram(attr, self.buckets)
                     d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
@@ -180,6 +180,11 @@ class Spline_Histogram(object):
                     self.plot_histogram(attr, new_buckets)
                     skip = self.calculateSkip(len(sample))
                     initial = True
+                    f = 0
+                    for i in range(len(self.buckets)):
+                        f += self.buckets[i]['frequency']
+                    print f, N
+                    assert np.isclose(f, N)
                 elif initial == True:
                     skipcounter += 1
                     self.add_datapoint(float(row[attr_index]), sample)
@@ -196,8 +201,13 @@ class Spline_Histogram(object):
                         self.plot_histogram(attr, new_buckets)
                         self.compute_histogram(sample, N)
                         self.compare_histogram(attr, False)
-                else:
-                    print("ERROR: There are not enough unique values for the number of specified buckets.")
+                        f = 0
+                        for i in range(len(self.buckets)):
+                            f += self.buckets[i]['frequency']
+                        print f, N
+                        assert np.isclose(f, N)
+        if len(set(sample)) < self.numbuckets:
+            print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -344,7 +354,6 @@ class Spline_Histogram(object):
         merges buckets with the smallest error until there are numbuckets left."""
         n = len(sample)
         sample = sorted(list(set(sample)), key=float)
-        #sorted(sample, key=float)
         buckets = []
         c = Counter(sample)
         for i in range(0, n - 1):
@@ -441,27 +450,6 @@ class Spline_Histogram(object):
         self.buckets[b1]['vf'] += self.buckets[b2]['vf']
         self.buckets[b1]['v'] = [self.buckets[b1]['v'][0] + self.buckets[b2]['v'][0], np.average([self.buckets[b1]['v'][1], self.buckets[b2]['v'][1]]), np.average([self.buckets[b1]['v'][2], self.buckets[b2]['v'][2]])]
         del self.buckets[b2]
-
-        # mergedbucket = {
-        #     'low': bucket1['low'],
-        #     'high': bucket2['high'],
-        #     'size': bucket2['high'] - bucket1['low'],
-        #     'frequency': bucket1['frequency'] + bucket2['frequency'],
-        #     'ff': bucket1['ff'] + bucket2['ff'],
-        #     'vv': bucket1['vv'] + bucket2['vv'],
-        #     'vf': bucket1['vf'] + bucket2['vf'],
-        #     'v': [bucket1['v'][0] + bucket2['v'][0], np.average([bucket1['v'][1], bucket2['v'][1]]), np.average([bucket1['v'][2], bucket2['v'][2]])]
-        # }
-        # b = []
-        # for i in range(0, len(buckets)):
-        #     if buckets[i]['low'] == bucket1['low'] and buckets[i]['high'] == bucket1['high']:
-        #         b.append(mergedbucket)
-        #     elif buckets[i]['low'] == bucket2['low'] and buckets[i]['high'] == bucket2['high']:
-        #         pass
-        #     else:
-        #         b.append(buckets[i])
-        # return b
-
 
     def correlation(self, a, c, sample, bucket1, bucket2):
         """Calculates the correlation between two buckets than span the range a-c."""

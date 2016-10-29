@@ -101,7 +101,7 @@ class Control_Histogram(object):
                     self.max = float(row[attr_index]) 
                 if len(set(sample)) < self.numbuckets:
                     sample.append(float(row[attr_index]))
-                elif len(set(sample)) == self.numbuckets and initial == False:
+                if len(set(sample)) == self.numbuckets and initial == False:
                     self.create_initial_histogram(N, sample)
                     self.plot_histogram(attr, self.buckets)
                     d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
@@ -119,8 +119,13 @@ class Control_Histogram(object):
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
                         self.compare_histogram(attr, False)
-                else:
-                    print("ERROR: There are not enough unique values for the number of specified buckets.")
+                        f = 0
+                        for i in range(len(self.buckets)):
+                            f += self.buckets[i]['frequency']
+                        print f, N
+                        assert np.isclose(f, N)
+            if len(set(sample)) < self.numbuckets:
+                print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
 
     def compare_histogram(self, attr, end):
@@ -223,11 +228,15 @@ class Control_Histogram(object):
         r = max(sorted_sample) - min(sorted_sample)
         width = r / self.numbuckets
         low = sorted_sample[0]
-        for i in range(0, self.numbuckets):
+        for i in range(self.numbuckets):
             self.buckets[i]['size'] = width
             self.buckets[i]['low'] = low
             self.buckets[i]['high'] = low + width
-            self.buckets[i]['frequency'] += c[sorted_sample[i]]
+            for j in range(len(sorted_sample)):
+                if sorted_sample[j] > self.buckets[i]['high']:
+                    break
+                elif low <= sorted_sample[j] < self.buckets[i]['high']:
+                    self.buckets[i]['frequency'] += c[sorted_sample[j]]
             low = self.buckets[i]['high']
         self.buckets[0]['low'] = self.min
         self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
