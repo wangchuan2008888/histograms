@@ -2,415 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32eaefd-3a71-48a8-95f8-8342e32b3e1b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc11.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc11.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc12.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc14.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc14.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc15.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc15.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc17.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc17.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc18.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc18.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc2.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc20.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc20.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc21.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc21.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc23.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc23.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc24.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc24.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc26.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc26.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc27.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc27.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc29.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc29.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc3.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc30.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc30.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc5.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc6.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc8.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc9.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dc9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf10.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf13.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf13.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf16.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf16.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf19.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf19.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf22.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf22.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf25.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf25.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf28.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf28.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf31.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf31.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf4.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf7.jpg" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/img/dccdf7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc11.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc11.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc12.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc14.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc14.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc15.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc15.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc17.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc17.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc18.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc18.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc2.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc20.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc20.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc21.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc21.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc23.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc23.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc24.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc24.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc26.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc26.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc27.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc27.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc29.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc29.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc3.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc30.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc30.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc5.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc6.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc8.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc9.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dc9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf10.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf13.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf13.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf16.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf16.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf19.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf19.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf22.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf22.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf25.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf25.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf28.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf28.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf31.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf31.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf4.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf7.jpg" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/img/dccdf7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc11.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc11.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc12.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc14.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc14.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc15.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc15.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc17.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc17.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc18.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc18.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc2.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc20.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc20.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc21.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc21.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc23.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc23.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc24.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc24.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc26.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc26.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc27.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc27.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc29.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc29.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc3.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc30.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc30.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc5.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc6.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc8.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc9.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dc9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf10.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf13.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf13.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf16.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf16.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf19.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf19.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf22.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf22.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf25.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf25.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf28.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf28.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf31.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf31.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf4.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf7.jpg" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/img/dccdf7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc11.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc11.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc12.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc14.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc14.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc15.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc15.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc17.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc17.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc18.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc18.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc2.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc20.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc20.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc21.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc21.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc23.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc23.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc24.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc24.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc26.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc26.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc27.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc27.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc29.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc29.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc3.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc30.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc30.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc5.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc6.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc8.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc9.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dc9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf10.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf13.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf13.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf16.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf16.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf19.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf19.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf22.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf22.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf25.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf25.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf28.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf28.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf31.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf31.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf4.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf7.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/img/dccdf7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc11.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc11.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc12.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc14.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc14.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc15.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc15.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc17.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc17.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc18.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc18.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc2.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc20.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc20.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc21.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc21.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc23.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc23.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc24.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc24.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc26.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc26.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc27.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc27.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc29.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc29.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc3.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc30.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc30.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc5.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc6.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc8.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc9.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dc9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf10.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf13.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf13.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf16.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf16.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf19.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf19.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf22.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf22.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf25.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf25.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf28.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf28.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf31.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf31.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf4.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf7.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/img/dccdf7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc11.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc11.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc12.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc14.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc14.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc15.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc15.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc17.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc17.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc18.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc18.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc2.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc20.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc20.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc21.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc21.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc23.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc23.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc24.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc24.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc26.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc26.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc27.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc27.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc29.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc29.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc3.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc30.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc30.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc5.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc6.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc8.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc9.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dc9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf10.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf13.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf13.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf16.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf16.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf19.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf19.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf22.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf22.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf25.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf25.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf28.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf28.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf31.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf31.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf4.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf7.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/img/dccdf7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc11.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc11.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc12.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc14.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc14.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc15.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc15.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc17.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc17.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc18.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc18.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc2.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc20.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc20.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc21.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc21.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc23.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc23.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc24.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc24.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc26.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc26.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc27.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc27.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc29.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc29.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc3.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc30.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc30.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc5.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc6.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc8.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc9.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dc9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf10.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf13.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf13.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf16.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf16.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf19.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf19.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf22.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf22.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf25.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf25.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf28.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf28.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf31.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf31.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf4.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf7.jpg" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/img/dccdf7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc11.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc11.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc12.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc14.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc14.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc15.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc15.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc17.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc17.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc18.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc18.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc2.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc20.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc20.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc21.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc21.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc23.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc23.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc24.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc24.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc26.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc26.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc27.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc27.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc29.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc29.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc3.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc30.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc30.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc5.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc6.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc8.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc9.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dc9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf10.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf13.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf13.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf16.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf16.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf19.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf19.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf22.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf22.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf25.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf25.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf28.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf28.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf31.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf31.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf4.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf7.jpg" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/img/dccdf7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo.py" afterPath="$PROJECT_DIR$/demo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc11.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc12.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc12.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc14.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc15.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc15.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc17.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc17.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc18.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc18.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc2.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc20.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc20.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc21.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc21.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc23.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc23.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc24.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc24.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc26.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc26.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc27.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc27.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc29.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc29.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc3.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc30.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc30.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc5.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc5.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc6.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc6.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc8.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc8.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc9.json" afterPath="$PROJECT_DIR$/output/beta/100000_500_1/data/dc9.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc11.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc12.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc12.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc14.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc15.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc15.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc17.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc17.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc18.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc18.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc2.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc20.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc20.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc21.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc21.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc23.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc23.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc24.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc24.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc26.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc26.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc27.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc27.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc29.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc29.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc3.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc30.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc30.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc5.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc5.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc6.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc6.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc8.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc8.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc9.json" afterPath="$PROJECT_DIR$/output/bimodal/100000_500_1/data/dc9.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/index.html" afterPath="$PROJECT_DIR$/output/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc11.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc12.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc12.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc14.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc15.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc15.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc17.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc17.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc18.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc18.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc2.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc20.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc20.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc21.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc21.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc23.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc23.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc24.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc24.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc26.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc26.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc27.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc27.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc29.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc29.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc3.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc30.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc30.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc5.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc5.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc6.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc6.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc8.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc8.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc9.json" afterPath="$PROJECT_DIR$/output/logistic/100000_500_1/data/dc9.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc11.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc12.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc12.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc14.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc15.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc15.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc17.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc17.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc18.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc18.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc2.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc20.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc20.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc21.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc21.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc23.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc23.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc24.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc24.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc26.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc26.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc27.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc27.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc29.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc29.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc3.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc30.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc30.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc5.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc5.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc6.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc6.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc8.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc8.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc9.json" afterPath="$PROJECT_DIR$/output/norm/100000_100_1/data/dc9.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc11.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc12.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc12.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc14.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc15.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc15.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc17.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc17.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc18.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc18.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc2.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc20.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc20.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc21.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc21.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc23.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc23.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc24.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc24.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc26.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc26.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc27.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc27.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc29.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc29.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc3.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc30.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc30.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc5.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc5.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc6.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc6.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc8.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc8.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc9.json" afterPath="$PROJECT_DIR$/output/norm/100000_20_1/data/dc9.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc11.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc12.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc12.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc14.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc15.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc15.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc17.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc17.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc18.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc18.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc2.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc20.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc20.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc21.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc21.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc23.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc23.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc24.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc24.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc26.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc26.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc27.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc27.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc29.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc29.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc3.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc30.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc30.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc5.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc5.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc6.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc6.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc8.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc8.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc9.json" afterPath="$PROJECT_DIR$/output/norm/100000_500_1/data/dc9.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc11.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc12.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc12.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc14.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc15.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc15.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc17.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc17.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc18.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc18.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc2.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc20.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc20.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc21.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc21.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc23.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc23.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc24.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc24.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc26.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc26.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc27.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc27.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc29.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc29.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc3.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc30.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc30.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc5.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc5.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc6.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc6.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc8.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc8.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc9.json" afterPath="$PROJECT_DIR$/output/norm/100000_50_1/data/dc9.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc11.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc11.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc12.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc12.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc14.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc14.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc15.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc15.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc17.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc17.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc18.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc18.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc2.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc20.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc20.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc21.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc21.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc23.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc23.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc24.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc24.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc26.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc26.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc27.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc27.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc29.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc29.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc3.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc30.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc30.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc5.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc5.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc6.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc6.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc8.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc8.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc9.json" afterPath="$PROJECT_DIR$/output/uniform/100000_500_1/data/dc9.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testingdemo.py" afterPath="$PROJECT_DIR$/testingdemo.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
     </list>
     <ignored path="histograms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -433,8 +26,8 @@
       <file leaf-file-name="demo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+            <state relative-caret-position="411">
+              <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -452,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testingdemo.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testingdemo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testingdemo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="12" selection-start-line="54" selection-start-column="14" selection-end-line="60" selection-end-column="84" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="53" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -464,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spline_histogram.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="spline_histogram.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dynamic_histograms/spline_histogram.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4749">
-              <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+            <state relative-caret-position="190">
+              <caret line="186" column="27" selection-start-line="186" selection-start-column="21" selection-end-line="186" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -486,14 +79,14 @@
         <option value="$PROJECT_DIR$/dynamic_histograms/data/biaseddistributions.csv" />
         <option value="$PROJECT_DIR$/dynamic_histograms/biaseddist.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
-        <option value="$PROJECT_DIR$/demo.py" />
         <option value="$PROJECT_DIR$/testingdemo.py" />
+        <option value="$PROJECT_DIR$/demo.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
       </list>
     </option>
   </component>
@@ -836,7 +429,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27888447" sideWeight="0.50625" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27755645" sideWeight="0.49375" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27755645" sideWeight="0.49375" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -1250,14 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/spline_histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4749">
-          <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/control_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -1300,23 +885,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
+    <entry file="file://$PROJECT_DIR$/testingdemo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="53" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testingdemo.py">
+    <entry file="file://$PROJECT_DIR$/demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="12" selection-start-line="54" selection-start-column="14" selection-end-line="60" selection-end-column="84" />
+        <state relative-caret-position="411">
+          <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/spline_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="186" column="27" selection-start-line="186" selection-start-column="21" selection-end-line="186" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
