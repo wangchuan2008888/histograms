@@ -4,16 +4,16 @@ import dynamic_histograms.dvo_histogram
 import dynamic_histograms.equidepth_histogram
 import dynamic_histograms.maxdiff_histogram
 import dynamic_histograms.sf_histogram
-#import dynamic_histograms.spline_histogram
+import dynamic_histograms.spline_histogram
 import time
 import os
 from shutil import copyfile
 import sys
 
-buckets = [20, 50, 100, 500]
+buckets = [20, 50, 100]#, 500]
 batchsize = [100000]
 userbucketsize = 1
-attributes = ['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
+attributes = ['uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma'] #['bimodal']
 dataset = 'dynamic_histograms/data/distributions.csv'
 
 for attr in attributes:
