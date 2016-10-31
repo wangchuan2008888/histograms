@@ -133,13 +133,17 @@ class MaxDiff_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
+                        freq = 0
+                        for i in range(len(self.buckets)):
+                            freq += self.buckets[i]['frequency']
+                        assert np.isclose(freq, N)
                         self.compute_histogram(sample, N)
                         self.compare_histogram(attr, False)
-                        f = 0
+                        freq = 0
                         for i in range(len(self.buckets)):
-                            f += self.buckets[i]['frequency']
-                        print f, N
-                        assert np.isclose(f, N)
+                            freq += self.buckets[i]['frequency']
+                        print freq, N
+                        assert np.isclose(freq, N)
             if len(set(sample)) < self.numbuckets:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.compare_histogram(attr, False)
@@ -240,11 +244,6 @@ class MaxDiff_Histogram(object):
                 a = stats[0]
                 bucketarea = stats[1]
         self.arrangeBuckets(c, a, bucketarea, sorted_sample, N)
-        f = 0
-        for i in range(len(self.buckets)):
-            f += self.buckets[i]['frequency']
-        print f, N
-        assert np.isclose(f, N)
 
     def addArea(self, area, a, bucketarea, index):
         """Adds the area to the list of areas (a) and the dictionary of areas (bucketarea) and the index 
@@ -297,6 +296,10 @@ class MaxDiff_Histogram(object):
         self.buckets[self.numbuckets - 1]['low'] = self.buckets[self.numbuckets - 2]['high']
         self.buckets[self.numbuckets - 1]['frequency'] = counter[self.buckets[self.numbuckets - 1]['low']] * N / len(sample) * 2
         self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
+        f = 0
+        for i in range(len(self.buckets)):
+            f += self.buckets[i]['frequency']
+        assert np.isclose(f, N)
 
     def calculateSkip(self, n):
         v = random.uniform(0, 1)

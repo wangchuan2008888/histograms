@@ -507,7 +507,6 @@ class DC_Histogram(object):
         assert np.isclose(f, N)
 
     def redistributesingbuckets(self, low, high, extra, N):
-        print low, high
         lowindex = None # low index
         highindex = None # high index
         for i in range(len(self.singular)):
@@ -532,7 +531,8 @@ class DC_Histogram(object):
         singular = []
         l = self.singular[lowindex]['low']
         h = None
-        frequency = 0.0#((self.singular[lowindex]['high'] - low) / self.singular[lowindex]['size']) * self.singular[lowindex]['frequency']
+        frequency = 0.0
+        totalfreq = 0.0
         for i in range(lowindex, highindex + 1):
             if np.isclose(frequency,eq):
                 h = self.singular[i]['low']
@@ -542,6 +542,7 @@ class DC_Histogram(object):
                     'size': h - l,
                     'frequency': eq
                 }
+                totalfreq += eq
                 frequency = 0.0
                 l = h
                 h = None
@@ -557,6 +558,7 @@ class DC_Histogram(object):
                     'size': h - l
                 }
                 singular.append(b.copy())
+                totalfreq += eq
                 l = h
                 h = None
                 frequency = 0
@@ -574,6 +576,7 @@ class DC_Histogram(object):
                         'frequency': eq,
                         'size': h - l
                     }
+                    totalfreq += eq
                     singular.append(b.copy())
                     l = h
                     h = None
@@ -584,24 +587,26 @@ class DC_Histogram(object):
                 frequency = self.singular[i]['frequency']
         if len(singular) < numbuckets:
             # then there we simply need to add the last bucket
+            leftover = freq - totalfreq
             b = {
                 'low': l,
                 'high': self.singular[highindex]['high'],
-                'frequency': eq,
+                'frequency': leftover,
                 'size': self.singular[highindex]['high'] - l
             }
+            totalfreq += leftover
             singular.append(b.copy())
-        singular[len(singular) - 1]['high'] = self.singular[highindex]['high']
-        singular[len(singular) - 1]['frequency'] = eq
-        singular[len(singular) - 1]['size'] = singular[len(singular) - 1]['high'] - singular[len(singular) - 1]['low']
-        j = 0
+        assert np.isclose(totalfreq, freq)
+        j = lowindex
         for i in range(lowindex, highindex + 1):
-            #del self.singular[i]
-            if j < len(singular):
-                #self.singular.insert(i, singular[j])
-                self.singular[i] = singular[j]
-            else:
-                del self.singular[i]
+            del self.singular[lowindex]
+            #if j < len(singular):
+            #    self.singular[i] = singular[j]
+            #else:
+            #    del self.singular[i]
+            #j += 1
+        for i in range(len(singular)):
+            self.singular.insert(j, singular[i])
             j += 1
         assert len(self.singular) + len(self.regular) == self.numbuckets
         f = 0
@@ -609,7 +614,6 @@ class DC_Histogram(object):
             f += self.regular[j]['frequency']
         for j in range(len(self.singular)):
             f += self.singular[j]['frequency']
-        print f,N
         assert np.isclose(f, N)
 
     def checkbucketsandincrement(self, value, N):

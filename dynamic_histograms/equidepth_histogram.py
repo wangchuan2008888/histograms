@@ -260,6 +260,7 @@ class Equidepth_Histogram(object):
                     self.buckets[i]['frequency'] += 1
                     if self.buckets[i]['frequency'] >= self.threshold:
                         self.thresholdReached(self.buckets[i], N, sample, attr, l)
+                        break
 
     def calculateSkip(self, n):
         v = random.uniform(0, 1)
@@ -342,25 +343,29 @@ class Equidepth_Histogram(object):
         s = []
         sorted_sample = sorted(sample, key=float)
         for i in range(0, len(sorted_sample)):
-            if sorted_sample[i] >= low and sorted_sample[i] < high:
+            if low <= sorted_sample[i] < high:
                 s.append(sorted_sample[i])
-        m = np.median(s)
         medianhigh = None
-        if len(sorted_sample) % 2 != 0:
-            medianindex = sorted_sample.index(m)
-            medianhigh = sorted_sample[medianindex + 1]
+        medianindex = int(len(s) // 2)
+        if len(s) % 2 != 0:
+            medianhigh = s[medianindex]
         else:
-            medianhigh = m
-        self.buckets[index]['high'] = medianhigh
-        self.buckets[index]['size'] = medianhigh - self.buckets[index]['low']
-        self.buckets[index]['frequency'] = self.threshold / 2
+            if len(s) == 1:
+                medianhigh = np.average(s[0])
+            elif medianindex == 0:
+                medianhigh = low + (self.buckets[index]['size'] / 2)
+            else:
+                medianhigh = np.average([s[medianindex], s[medianindex - 1]])
         b = {
             'low': medianhigh,
             'high': high,
             'size': high - medianhigh,
-            'frequency': self.threshold / 2
+            'frequency': self.buckets[index]['frequency'] / 2
         }
-        self.buckets.insert(index + 1, b)
+        self.buckets[index]['high'] = medianhigh
+        self.buckets[index]['size'] = medianhigh - self.buckets[index]['low']
+        self.buckets[index]['frequency'] = self.buckets[index]['frequency'] / 2
+        self.buckets.insert(index + 1, b.copy())
 
     def plot_histogram(self, attr, buckets):
         """Plots the histogram."""

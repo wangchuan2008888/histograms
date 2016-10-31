@@ -225,7 +225,7 @@ class Control_Histogram(object):
         """Creates the bucket boundaries based on the first n distinct points present in the sample."""
         sorted_sample = sorted(list(set(sample)), key=float)
         c = Counter(sample)
-        r = max(sorted_sample) - min(sorted_sample)
+        r = (max(sorted_sample) + 1) - min(sorted_sample)
         width = r / self.numbuckets
         low = sorted_sample[0]
         for i in range(self.numbuckets):
@@ -233,15 +233,18 @@ class Control_Histogram(object):
             self.buckets[i]['low'] = low
             self.buckets[i]['high'] = low + width
             for j in range(len(sorted_sample)):
-                if sorted_sample[j] > self.buckets[i]['high']:
-                    break
-                elif low <= sorted_sample[j] < self.buckets[i]['high']:
+                if low <= sorted_sample[j] < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += c[sorted_sample[j]]
             low = self.buckets[i]['high']
         self.buckets[0]['low'] = self.min
         self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
         self.buckets[self.numbuckets - 1]['high'] = self.max + 1
         self.buckets[self.numbuckets - 1]['size'] = self.buckets[self.numbuckets - 1]['high'] - self.buckets[self.numbuckets - 1]['low']
+        f = 0
+        for i in range(len(self.buckets)):
+            f += self.buckets[i]['frequency']
+        print f, N
+        assert np.isclose(f, N)
     
     def add_datapoint(self, value):
         """Increases the count of the bucket the value belongs in the histogram."""

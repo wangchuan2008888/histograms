@@ -140,24 +140,25 @@ class SF_Histogram(object):
                     new_buckets = d.return_distribution()
                     self.plot_histogram(attr, new_buckets)
                     initial = True
+                    f = 0
+                    for i in range(len(self.buckets)):
+                        f += self.buckets[i]['frequency']
+                    assert np.isclose(f, N)
                 elif initial == True:
-                    self.add_datapoint(float(row[attr_index]))
+                    self.add_datapoint(float(row[attr_index]), N)
                     if N % batchsize == 0:
                         # we are choosing not to use updateFreq from the pseudocode as that operates over ranges of data
                         # that are accessed by SQL queries. instead we are just using restructureHist after every batch.
                         print "number read in: " + str(N)
-                        print len(self.buckets), self.numbuckets
                         f = 0
                         for i in range(len(self.buckets)):
                             f += self.buckets[i]['frequency']
                         print f, N
                         assert np.isclose(f, N)
                         self.restructureHist(m, s, N)
-                        print len(self.buckets), self.numbuckets
                         f = 0
                         for i in range(len(self.buckets)):
                             f += self.buckets[i]['frequency']
-                        print f, N
                         assert np.isclose(f, N)
                         self.plot_histogram(attr, self.buckets)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
@@ -259,20 +260,21 @@ class SF_Histogram(object):
                 break
         return s
 
-    def add_datapoint(self, value):
+    def add_datapoint(self, value, N):
         """Adds data points to the histogram, adjusting the end bucket partitions if necessary."""
         if value < self.buckets[0]['low']:
             self.buckets[0]['low'] = value
             self.buckets[0]['frequency'] += 1
             self.buckets[0]['size'] = self.buckets[0]['high'] - value
-        elif value > self.buckets[self.numbuckets - 1]['high']:
+        elif value >= self.buckets[self.numbuckets - 1]['high']:
             self.buckets[self.numbuckets - 1]['high'] = value + 1
             self.buckets[self.numbuckets - 1]['frequency'] += 1
             self.buckets[self.numbuckets - 1]['size'] = value + 1 - self.buckets[self.numbuckets - 1]['low']
         else:
             for i in range(0, self.numbuckets):
-                if value >= self.buckets[i]['low'] and value < self.buckets[i]['high']:
+                if self.buckets[i]['low'] <= value < self.buckets[i]['high']:
                     self.buckets[i]['frequency'] += 1
+                    break
 
 
     # plots a histogram via matplot.pyplot. this is the intial histogram of the self-tuning histogram which is both equi-depth
@@ -401,12 +403,12 @@ class SF_Histogram(object):
                     break
 
             # merging each run that has more than one bucket in it, meaning those buckets should be merged together
-            print len(bucketruns)
+            #print len(bucketruns)
             for l in bucketruns:
                 if len(l) != 1:
                     self.mergebuckets(l)
 
-            print len(self.buckets), self.numbuckets, freebuckets, len(unmergedbuckets)
+            #print len(self.buckets), self.numbuckets, freebuckets, len(unmergedbuckets)
 
             # creating dictionary that keeps track of the number of free buckets each bucket that needs to be split gets
             allocation = self.allocatefreebuckets(freebuckets, highbuckets, totalfreq)
@@ -415,7 +417,7 @@ class SF_Histogram(object):
                 self.splitbucket(b, allocation)
 
         #self.numbuckets = len(self.buckets)
-        print len(self.buckets), self.numbuckets
+        #print len(self.buckets), self.numbuckets
         assert len(self.buckets) == self.numbuckets
 
     def allocatefreebuckets(self, numfree, highbuckets, totalfreq):
@@ -453,7 +455,7 @@ class SF_Histogram(object):
         sum = 0
         for k in allocation.keys():
             sum += allocation[k]
-        print sum, numfree
+        #print sum, numfree
         assert sum == numfree
         return allocation
 
