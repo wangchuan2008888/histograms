@@ -418,7 +418,7 @@ class DC_Histogram(object):
             while i < len(self.singular):
                 if bucket['size'] == 0:
                     break
-                elif self.singular[i]['low'] <= bucket['low'] < self.singular[i]['high'] and self.singular[i]['low'] < bucket['high'] < self.singular[i]['high']:
+                elif self.singular[i]['low'] <= bucket['low'] < self.singular[i]['high'] and self.singular[i]['low'] < bucket['high'] <= self.singular[i]['high']:
                     # "SPECIAL CASE" when the bucket to insert fits within one bucket that is already present
                     # we need to increment bucket frequency and split the bucket
                     #index.append(i)
@@ -492,6 +492,7 @@ class DC_Histogram(object):
             f += self.regular[j]['frequency']
         for j in range(len(self.singular)):
             f += self.singular[j]['frequency']
+        print f,N
         assert np.isclose(f, N)
 
         if len(self.singular) > singlength + 1:

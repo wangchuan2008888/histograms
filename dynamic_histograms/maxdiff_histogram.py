@@ -119,6 +119,11 @@ class MaxDiff_Histogram(object):
                     self.plot_histogram(attr, new_buckets)
                     skip = self.calculateSkip(len(sample))
                     initial = True
+                    freq = 0
+                    for i in range(len(self.buckets)):
+                        freq += self.buckets[i]['frequency']
+                    print freq, N
+                    assert np.isclose(freq, N)
                 elif initial == True:
                     skipcounter += 1
                     self.add_datapoint(float(row[attr_index]))
@@ -133,10 +138,6 @@ class MaxDiff_Histogram(object):
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
-                        freq = 0
-                        for i in range(len(self.buckets)):
-                            freq += self.buckets[i]['frequency']
-                        assert np.isclose(freq, N)
                         self.compute_histogram(sample, N)
                         self.compare_histogram(attr, False)
                         freq = 0
