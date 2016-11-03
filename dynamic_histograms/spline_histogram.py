@@ -354,12 +354,13 @@ class Spline_Histogram(object):
         merges buckets with the smallest error until there are numbuckets left."""
         n = len(sample)
         sample = sorted(list(set(sample)), key=float)
+        sample.append(sample[len(sample) - 1] + 1)
         buckets = []
         c = Counter(sample)
         for i in range(0, n - 1):
-            if 2 * (i + 1) == n:
-                sample.append(sample[n - 1] + 1)
-            elif 2 * (i + 1) > n: # to fix the indexing issue
+            #if 2 * (i + 1) == n:
+            #    sample.append(sample[n - 1] + 1)
+            if 2 * (i + 1) > n or 2 * (i + 1) > len(sample): # to fix the indexing issue
                 break
             buckets.append({
                 'low': sample[(2 * i)],

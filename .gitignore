@@ -4,4 +4,7 @@
 out.txt
 *.xml
 *.iml
-dynamic_histograms/data/
+dynamic_histograms/data/USCensus1990.csv
+dynamic_histograms/data/HIGGS.csv
+dynamic_histograms/data/kddcup.csv
+dynamic_histograms/data/USCensusThirtySamples.csv
