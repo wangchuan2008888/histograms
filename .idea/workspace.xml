@@ -1,7 +1,1044 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f32eaefd-3a71-48a8-95f8-8342e32b3e1b" name="Default" comment="" />
+    <list default="true" id="f32eaefd-3a71-48a8-95f8-8342e32b3e1b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/control9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dc9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/equidepth9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/maxdiff9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/data/sf9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/control9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/controlcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/controlcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/controlcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/controlcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/controlcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dc9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dccdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dccdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dccdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dccdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepth9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepthcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepthcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepthcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepthcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/equidepthcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiff9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiffcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiffcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiffcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiffcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/maxdiffcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sf9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sfcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sfcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sfcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sfcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/img/sfcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_10_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/control9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dc9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/equidepth9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/maxdiff9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/data/sf9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/control9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/controlcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/controlcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/controlcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/controlcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/controlcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dc9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dccdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dccdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dccdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dccdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepth9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepthcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepthcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepthcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepthcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/equidepthcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiff9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiffcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiffcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiffcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiffcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/maxdiffcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sf9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sfcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sfcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sfcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sfcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/img/sfcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_15_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/control9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dc9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/equidepth9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/maxdiff9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/data/sf9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/control9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/controlcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/controlcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/controlcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/controlcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/controlcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dc9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dccdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dccdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dccdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dccdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepth9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepthcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepthcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepthcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepthcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/equidepthcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiff9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiffcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiffcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiffcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiffcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/maxdiffcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sf9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sfcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sfcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sfcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sfcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/img/sfcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_20_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/control9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dc9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/equidepth9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/maxdiff9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/data/sf9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/control9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/controlcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/controlcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/controlcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/controlcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/controlcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dc9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dccdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dccdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dccdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dccdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepth9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepthcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepthcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepthcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepthcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/equidepthcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiff9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiffcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiffcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiffcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiffcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/maxdiffcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sf9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sfcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sfcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sfcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sfcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/img/sfcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_25_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/control9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dc9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/equidepth9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/maxdiff9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/data/sf9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/control9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/controlcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/controlcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/controlcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/controlcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/controlcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dc9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dccdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dccdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dccdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dccdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepth9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepthcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepthcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepthcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepthcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/equidepthcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiff9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiffcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiffcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiffcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiffcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/maxdiffcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sf9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sfcdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sfcdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sfcdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sfcdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/img/sfcdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/capital-gain/10000_5_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/education-num/5000_20_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/education-num/5000_20_5/img/dvocdf0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/education-num/5000_20_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/education-num/5000_25_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/education-num/5000_25_5/img/dvocdf0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/education-num/5000_25_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_10_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_15_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_20_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_25_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/fnlwgt/10000_5_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_10_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_15_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_20_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_25_5/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/d3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo0.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/data/dvo9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvo9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvocdf10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvocdf13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvocdf14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvocdf4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/img/dvocdf7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/hours-per-week/10000_5_5/template.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo.py" afterPath="$PROJECT_DIR$/demo.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/index.html" afterPath="$PROJECT_DIR$/output/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testingdemo.py" afterPath="$PROJECT_DIR$/testingdemo.py" />
+    </list>
     <ignored path="histograms.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +1056,38 @@
     <favorites_list name="histograms" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="testingdemo.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testingdemo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="52" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dc_histogram.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="757" column="0" selection-start-line="757" selection-start-column="0" selection-end-line="757" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="demo.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,6 +1158,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -108,10 +1177,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="histograms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="histograms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dynamic_histograms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -360,25 +1442,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16484375" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16484375" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27888447" sideWeight="0.50625" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27755645" sideWeight="0.49375" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2735724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27755645" sideWeight="0.49375" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2735724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -433,7 +1515,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="128" />
+      <option name="time" value="130" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -457,31 +1539,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="52" column="71" selection-start-line="52" selection-start-column="71" selection-end-line="52" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py" />
+    <entry file="file://$PROJECT_DIR$/demo.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -490,22 +1551,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="88" column="91" selection-start-line="88" selection-start-column="78" selection-end-line="88" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py" />
+    <entry file="file://$PROJECT_DIR$/demo.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/user_distribution.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -514,73 +1561,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="88" column="91" selection-start-line="88" selection-start-column="78" selection-end-line="88" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="88" column="91" selection-start-line="88" selection-start-column="78" selection-end-line="88" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py" />
+    <entry file="file://$PROJECT_DIR$/demo.py" />
+    <entry file="file://$PROJECT_DIR$/demo.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py" />
+    <entry file="file://$PROJECT_DIR$/demo.py" />
+    <entry file="file://$PROJECT_DIR$/demo.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
     <entry file="file://$PROJECT_DIR$/beta.txt" />
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -717,7 +1708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5685">
           <caret line="379" column="41" selection-start-line="379" selection-start-column="26" selection-end-line="379" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -725,24 +1715,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5340">
           <caret line="359" column="28" selection-start-line="359" selection-start-column="28" selection-end-line="359" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="695">
+          <caret line="124" column="33" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        <state relative-caret-position="75">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
-    <entry file="file://$PROJECT_DIR$/testingdemo.py" />
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py">
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="124" column="33" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
+        <state relative-caret-position="323">
+          <caret line="757" column="0" selection-start-line="757" selection-start-column="0" selection-end-line="757" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testingdemo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="52" selection-end-column="87" />
           <folding />
         </state>
       </provider>

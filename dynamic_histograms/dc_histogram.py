@@ -650,7 +650,7 @@ class DC_Histogram(object):
         high = None
         frequency = 0.0
         for i in range(len(self.regular)):
-            if frequency == threshold:
+            if np.isclose(frequency, threshold):
                 high = self.regular[i]['low']
                 b = {
                     'low': low,
@@ -662,9 +662,9 @@ class DC_Histogram(object):
                 low = high
                 high = None
                 regular.append(b.copy())
-            elif frequency + self.regular[i]['frequency'] < threshold:
+            if frequency + self.regular[i]['frequency'] < threshold:
                 frequency += self.regular[i]['frequency']
-            elif frequency + self.regular[i]['frequency'] == threshold:
+            elif np.isclose(frequency + self.regular[i]['frequency'], threshold):
                 high = self.regular[i]['high']
                 b = {
                     'low': low,

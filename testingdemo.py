@@ -13,7 +13,7 @@ import sys
 buckets = [20, 25]#[20, 25, 50]#[20, 50, 100] #[500]
 batchsize = [5000]#[100000]
 userbucketsize = 5
-attributes = ['age', 'capital-gain']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
+attributes = ['hours-per-week']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
 dataset = 'dynamic_histograms/data/censusincome.csv'
 
 for attr in attributes:
@@ -86,14 +86,14 @@ for attr in attributes:
             sf_time = time.time() - start_time
             print "-------- %f seconds to complete all batches --------" % sf_time
 
-            # print "### SPLINE HISTOGRAM ###"
-            # start_time = time.time()
-            # spline = dynamic_histograms.spline_histogram.Spline_Histogram(dataset, numbuckets,
-            #                                                               outputpath)
-            # spline.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
-            # # spline.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
-            # spline_time = time.time() - start_time
-            # print "-------- %f seconds to complete all batches --------" % spline_time
+            #print "### SPLINE HISTOGRAM ###"
+            #start_time = time.time()
+            #spline = dynamic_histograms.spline_histogram.Spline_Histogram(dataset, numbuckets,
+            #                                                              outputpath)
+            #spline.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
+            # spline.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
+            #spline_time = time.time() - start_time
+            #print "-------- %f seconds to complete all batches --------" % spline_time
 
             # print "### DYNAMIC V-OPTIMAL HISTOGRAM"
             # start_time = time.time()

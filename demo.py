@@ -10,10 +10,10 @@ import os
 from shutil import copyfile
 import sys
 
-buckets = [5, 10, 15, 20, 25]#[20, 25, 50]#[20, 50, 100] #[500]
+buckets = [50]#[20, 25, 50]#[20, 50, 100] #[500]
 batchsize = [5000]#[100000]
 userbucketsize = 5
-attributes = ['education-num']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
+attributes = ['fnlwgt']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
 dataset = 'dynamic_histograms/data/censusincome.csv'
 
 for attr in attributes:
