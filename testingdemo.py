@@ -10,10 +10,10 @@ import os
 from shutil import copyfile
 import sys
 
-buckets = [5, 10, 15, 20, 25]#[20, 25, 50]#[20, 50, 100] #[500]
+buckets = [15, 20, 25]#[20, 25, 50]#[20, 50, 100] #[500]
 batchsize = [50000]#[100000]
 userbucketsize = 5
-attributes = ['src_bytes', 'dst_bytes']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
+attributes = ['dst_bytes']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
 dataset = 'dynamic_histograms/data/kddcupFourtySamplesFiftyK.csv'
 
 for attr in attributes:
