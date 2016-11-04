@@ -10,11 +10,11 @@ import os
 from shutil import copyfile
 import sys
 
-buckets = [5, 10]#[20, 25, 50]#[20, 50, 100] #[500]
-batchsize = [10000]#[100000]
+buckets = [5, 10, 15, 20, 25]#[20, 25, 50]#[20, 50, 100] #[500]
+batchsize = [50000]#[100000]
 userbucketsize = 5
-attributes = ['iRagechld']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
-dataset = 'dynamic_histograms/data/USCensusRagechldSamples.csv'
+attributes = ['src_bytes', 'dst_bytes']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
+dataset = 'dynamic_histograms/data/kddcupFourtySamplesFiftyK.csv'
 
 for attr in attributes:
     for numbuckets in buckets:
@@ -69,14 +69,14 @@ for attr in attributes:
             depth_time = time.time() - start_time
             print "-------- %f seconds to complete all batches --------" % depth_time
 
-            # print "### MAX-DIFF HISTOGRAM ###"
-            # start_time = time.time()
-            # maxdiff = dynamic_histograms.maxdiff_histogram.MaxDiff_Histogram(dataset, numbuckets,
-            #                                                                   outputpath)
-            # maxdiff.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
-            # # maxdiff.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
-            # maxdiff_time = time.time() - start_time
-            # print "-------- %f seconds to complete all batches --------" % maxdiff_time
+            print "### MAX-DIFF HISTOGRAM ###"
+            start_time = time.time()
+            maxdiff = dynamic_histograms.maxdiff_histogram.MaxDiff_Histogram(dataset, numbuckets,
+                                                                              outputpath)
+            maxdiff.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
+            # maxdiff.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
+            maxdiff_time = time.time() - start_time
+            print "-------- %f seconds to complete all batches --------" % maxdiff_time
 
             print "### SELF-TUNING HISTOGRAM ###"
             start_time = time.time()
@@ -86,14 +86,14 @@ for attr in attributes:
             sf_time = time.time() - start_time
             print "-------- %f seconds to complete all batches --------" % sf_time
 
-            # print "### SPLINE HISTOGRAM ###"
-            # start_time = time.time()
-            # spline = dynamic_histograms.spline_histogram.Spline_Histogram(dataset, numbuckets,
-            #                                                               outputpath)
-            # spline.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
-            # # spline.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
-            # spline_time = time.time() - start_time
-            # print "-------- %f seconds to complete all batches --------" % spline_time
+            print "### SPLINE HISTOGRAM ###"
+            start_time = time.time()
+            spline = dynamic_histograms.spline_histogram.Spline_Histogram(dataset, numbuckets,
+                                                                          outputpath)
+            spline.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
+            # spline.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
+            spline_time = time.time() - start_time
+            print "-------- %f seconds to complete all batches --------" % spline_time
 
             print "### DYNAMIC V-OPTIMAL HISTOGRAM"
             start_time = time.time()
@@ -107,6 +107,6 @@ for attr in attributes:
             print "Dynamic compressed histogram time: %f " % dc_time
             print "Dynamic v-optimal histogram time: %f " % dvo_time
             print "Equi-depth histogram time: %f " % depth_time
-            #print "Max-diff histogram time: %f " % maxdiff_time
+            print "Max-diff histogram time: %f " % maxdiff_time
             print "Self-tuning histogram time: %f " % sf_time
-            #print "Spline histogram time: %f " % spline_time
+            print "Spline histogram time: %f " % spline_time

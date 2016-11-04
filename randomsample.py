@@ -2,9 +2,9 @@ import csv
 import random
 import sys
 
-file = 'dynamic_histograms/data/USCensus1990.csv'
+file = 'dynamic_histograms/data/kddcup.csv'
 attr = 'dRpincome'
-output = 'dynamic_histograms/data/USCensusThirtySamples.csv'
+output = 'dynamic_histograms/data/kddcupFourtySamplesTenK.csv'
 
 def calculateSkip(n):
     v = random.uniform(0, 1)
@@ -39,7 +39,7 @@ with open(file) as f:
     #print header
     #sys.exit(0)
     #attr_index = header.index(attr)
-    samplenum = 30
+    samplenum = 40
     samplesize = 10000
     backingsamples = []
     initial = True

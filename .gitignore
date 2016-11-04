@@ -7,4 +7,5 @@ out.txt
 dynamic_histograms/data/USCensus1990.csv
 dynamic_histograms/data/HIGGS.csv
 dynamic_histograms/data/kddcup.csv
-dynamic_histograms/data/USCensusThirtySamples.csv
+dynamic_histograms/data/kddcupFourtySamplesFiftyK.csv
+

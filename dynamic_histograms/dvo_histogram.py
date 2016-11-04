@@ -35,7 +35,7 @@ class DVO_Histogram(object):
         """
         self.outputpath = outputpath
         self.file = file
-        self.numbuckets = numbuckets
+        self.numbuckets = int(numbuckets / 2)
         buckets = []
         for i in range(0, self.numbuckets):
             buckets.append({
@@ -80,13 +80,21 @@ class DVO_Histogram(object):
         plt.savefig(path + "//img//dvozipf.jpg")
         plt.close()
 
-    def plot_histogram(self, attr, buckets):
+    def plot_histogram(self, attr, buckets, voptimal):
         """Plots the histogram."""
         bins = []
         frequency = []
-        for bucket in buckets:
-            bins.append(bucket['low'])
-            frequency.append(bucket['frequency'])
+        if voptimal:
+            for bucket in buckets:
+                bins.append(bucket['low'])
+                frequency.append(bucket['leftcounter'])
+                bins.append(bucket['low'] + (bucket['size'] / 2))
+                frequency.append(bucket['rightcounter'])
+            bins.append(bucket['high'])
+        else:
+            for bucket in buckets:
+                bins.append(bucket['low'])
+                frequency.append(bucket['frequency'])
 
             # MIGHT NEED TO CHANGE THIS BACK FOR ACCURACY PURPOSES, WHEN/IF I DO, USE 250 BUCKETS NOT 500
 
@@ -94,7 +102,7 @@ class DVO_Histogram(object):
             #frequency.append(bucket['leftcounter'])
             #bins.append(bucket['low'] + (bucket['size'] / 2))
             #frequency.append(bucket['rightcounter'])
-        bins.append(bucket['high'])
+            bins.append(bucket['high'])
 
         frequency = np.array(frequency)
         bins = np.array(bins)
@@ -170,21 +178,21 @@ class DVO_Histogram(object):
                         f += self.buckets[i]['frequency']
                     print(f, N, "created initial histogram!")
                     assert np.isclose(f, N)
-                    self.plot_histogram(attr, self.buckets)
+                    self.plot_histogram(attr, self.buckets, True)
                     d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                     d.create_distribution(self.buckets)
                     new_buckets = d.return_distribution()
-                    self.plot_histogram(attr, new_buckets)
+                    self.plot_histogram(attr, new_buckets, False)
                     initial = True
                 elif initial == True:
                     self.add_datapoint(float(row[attr_index]))
                     if N % batchsize == 0:
                         print ("number read in: " + str(N))
-                        self.plot_histogram(attr, self.buckets)
+                        self.plot_histogram(attr, self.buckets, True)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
-                        self.plot_histogram(attr, new_buckets)
+                        self.plot_histogram(attr, new_buckets, False)
                         self.compare_histogram(attr, False)
                         f = 0
                         for i in range(len(self.buckets)):
@@ -200,8 +208,10 @@ class DVO_Histogram(object):
         frequency = []
         binedges = []
         for bucket in self.buckets:
-            frequency.append(bucket['frequency'])
             binedges.append(bucket['low'])
+            frequency.append(bucket['leftcounter'])
+            binedges.append(bucket['low'] + (bucket['size'] / 2))
+            frequency.append(bucket['rightcounter'])
         binedges.append(bucket['high'])
         cumfreq = np.cumsum(frequency)
         realdist = []

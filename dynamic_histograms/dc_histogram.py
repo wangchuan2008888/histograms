@@ -113,21 +113,21 @@ class DC_Histogram(object):
                         for j in range(len(totalbuckets)):
                             if bucket['size'] == 0:
                                 break
-                            elif totalbuckets[i]['low'] <= bucket['low'] < totalbuckets[i]['high'] and totalbuckets[i][
+                            elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and totalbuckets[j][
                                 'low'] < \
-                                    bucket['high'] <= totalbuckets[i]['high']:
-                                totalbuckets[i]['frequency'] += bucket['frequency']
+                                    bucket['high'] <= totalbuckets[j]['high']:
+                                totalbuckets[j]['frequency'] += bucket['frequency']
                                 bucket['size'] = 0
                                 # if the bucket is completely contained within another regular bucket, then split that bucket evenly
                                 # might need to come up with something different because of the last condition
-                            elif totalbuckets[i]['low'] <= bucket['low'] < totalbuckets[i]['high'] and bucket['high'] > \
-                                    totalbuckets[i]['high']:
+                            elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and bucket['high'] > \
+                                    totalbuckets[j]['high']:
                                 # the case when the left boundary overlaps with a bucket but only part of the bucket will be added to this bucket
-                                frac = (totalbuckets[i]['high'] - bucket['low']) / bucket['size']
+                                frac = (totalbuckets[j]['high'] - bucket['low']) / bucket['size']
                                 perc = frac * bucket['frequency']
-                                totalbuckets[i]['frequency'] += perc
+                                totalbuckets[j]['frequency'] += perc
                                 bucket['frequency'] -= perc
-                                bucket['low'] = totalbuckets[i]['high']
+                                bucket['low'] = totalbuckets[j]['high']
                                 bucket['size'] = bucket['high'] - bucket['low']
 
                     self.plot_histogram(attr, totalbuckets)
@@ -307,6 +307,7 @@ class DC_Histogram(object):
         if leftedge:
             # don't see how we could not end up having any regular buckets, so we always have at least one regular
             self.regular[0]['low'] = self.min
+            self.regular[0]['size'] = self.regular[0]['high'] - self.regular[0]['low']
 
         assert len(self.singular) + len(self.regular) == self.numbuckets
 
@@ -709,6 +710,7 @@ class DC_Histogram(object):
         self.regular = regular
 
         if add:
+            print len(self.regular), reglen
             assert len(self.regular) == reglen + 1
         else:
             assert len(self.regular) == reglen

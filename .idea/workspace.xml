@@ -2,210 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32eaefd-3a71-48a8-95f8-8342e32b3e1b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/randomsample.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_20_5/d3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_20_5/template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/d3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control0.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control11.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control12.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control14.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control15.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control17.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control18.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control20.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control21.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control23.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control24.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control26.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control27.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control29.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control3.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control30.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control32.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control33.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control35.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control36.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control5.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control6.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control8.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/control9.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc0.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc11.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc12.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc14.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc15.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc17.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc18.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc20.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc21.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc23.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc24.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc26.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc27.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc29.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc3.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc30.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc32.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc33.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc35.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc36.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc5.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc6.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc8.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/dc9.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth0.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth11.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth12.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth14.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth15.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth17.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth18.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth20.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth21.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth23.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth24.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth26.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth27.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth29.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth3.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth30.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth32.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth33.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth35.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth36.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth5.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth6.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth8.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/data/equidepth9.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control11.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control12.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control14.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control15.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control17.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control18.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control20.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control21.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control23.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control24.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control26.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control27.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control29.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control30.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control32.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control33.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control35.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control36.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/control9.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf10.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf13.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf16.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf19.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf22.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf25.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf28.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf31.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf34.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf37.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf38.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/controlcdf7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc11.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc12.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc14.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc15.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc17.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc18.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc20.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc21.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc23.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc24.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc26.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc27.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc29.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc30.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc32.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc33.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc35.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc36.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dc9.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf10.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf13.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf16.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf19.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf22.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf25.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf28.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf31.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf34.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf37.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/dccdf7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth11.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth12.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth14.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth15.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth17.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth18.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth20.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth21.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth23.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth24.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth26.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth27.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth29.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth30.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth32.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth33.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth35.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth36.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepth9.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf10.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf13.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf16.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf19.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf22.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf25.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf28.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf31.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf34.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf37.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf38.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/img/equidepthcdf7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/dAge/200000_5_5/template.html" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/voptimaldemo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo.py" afterPath="$PROJECT_DIR$/demo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/index.html" afterPath="$PROJECT_DIR$/output/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/randomsample.py" afterPath="$PROJECT_DIR$/randomsample.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testingdemo.py" afterPath="$PROJECT_DIR$/testingdemo.py" />
     </list>
     <ignored path="histograms.iws" />
@@ -229,18 +34,28 @@
       <file leaf-file-name="testingdemo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testingdemo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
+            <state relative-caret-position="60">
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="randomsample.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="voptimaldemo.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/voptimaldemo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="randomsample.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/randomsample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="79" column="48" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
+            <state relative-caret-position="-390">
+              <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -248,51 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="equidepth_histogram.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4110">
-              <caret line="277" column="4" selection-start-line="277" selection-start-column="4" selection-end-line="287" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="maxdiff_histogram.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1815">
-              <caret line="124" column="33" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dc_histogram.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="demo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spline_histogram.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dynamic_histograms/spline_histogram.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3606">
-              <caret line="362" column="58" selection-start-line="362" selection-start-column="58" selection-end-line="362" selection-end-column="58" />
+            <state relative-caret-position="0">
+              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -301,8 +76,8 @@
       <file leaf-file-name="dvo_histogram.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5685">
-              <caret line="379" column="41" selection-start-line="379" selection-start-column="26" selection-end-line="379" selection-end-column="41" />
+            <state relative-caret-position="2169">
+              <caret line="210" column="42" selection-start-line="210" selection-start-column="42" selection-end-line="210" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -319,16 +94,17 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/dynamic_histograms/data/biaseddistributions.csv" />
         <option value="$PROJECT_DIR$/dynamic_histograms/biaseddist.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/spline_histogram.py" />
-        <option value="$PROJECT_DIR$/demo.py" />
-        <option value="$PROJECT_DIR$/testingdemo.py" />
         <option value="$PROJECT_DIR$/randomsample.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
+        <option value="$PROJECT_DIR$/testingdemo.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
+        <option value="$PROJECT_DIR$/demo.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
+        <option value="$PROJECT_DIR$/voptimaldemo.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
@@ -686,23 +462,23 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16484375" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21796875" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27888447" sideWeight="0.50625" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27755645" sideWeight="0.49375" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2735724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27755645" sideWeight="0.49375" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2735724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -757,7 +533,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="130" />
+      <option name="time" value="135" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -766,7 +542,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/control_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3240">
@@ -925,14 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4110">
-          <caret line="277" column="4" selection-start-line="277" selection-start-column="4" selection-end-line="287" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/maxdiff_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1815">
@@ -943,24 +710,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/dc_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="10" />
+        <state relative-caret-position="390">
+          <caret line="128" column="59" selection-start-line="128" selection-start-column="59" selection-end-line="128" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
+    <entry file="file://$PROJECT_DIR$/randomsample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="-390">
+          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py">
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5685">
-          <caret line="379" column="41" selection-start-line="379" selection-start-column="26" selection-end-line="379" selection-end-column="41" />
+        <state relative-caret-position="324">
+          <caret line="238" column="22" selection-start-line="238" selection-start-column="22" selection-end-line="238" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -973,10 +742,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2169">
+          <caret line="210" column="42" selection-start-line="210" selection-start-column="42" selection-end-line="210" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testingdemo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
+        <state relative-caret-position="60">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -984,18 +769,16 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+          <caret line="9" column="53" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/randomsample.py">
+    <entry file="file://$PROJECT_DIR$/voptimaldemo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="79" column="48" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="75">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
