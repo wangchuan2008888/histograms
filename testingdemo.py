@@ -10,7 +10,7 @@ import os
 from shutil import copyfile
 import sys
 
-buckets = [15, 20, 25]#[20, 25, 50]#[20, 50, 100] #[500]
+buckets = [5]#[20, 25, 50]#[20, 50, 100] #[500]
 batchsize = [50000]#[100000]
 userbucketsize = 5
 attributes = ['dst_bytes']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
@@ -44,30 +44,30 @@ for attr in attributes:
                         f.write('<a href=\"' + maind + '//' + subd + '//template.html' + '\">' + subd + '</a><br/>\n')
                 f.write('</html>\n')
 
-            print "### CONTROL HISTOGRAM ###"
-            start_time = time.time()
-            control = dynamic_histograms.control_histogram.Control_Histogram(dataset, numbuckets, outputpath)
-            control.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
-            # control.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
-            control_time = time.time() - start_time
-            print "-------- %f seconds to complete all batches --------" % control_time
-
-            print "### DYNAMIC COMPRESSED HISTOGRAM ###"
-            start_time = time.time()
-            dc = dynamic_histograms.dc_histogram.DC_Histogram(dataset, numbuckets, outputpath)
-            dc.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
-            # dc.zipfdistributiongraph([0.01,1,2,3],0.5, 0.5, batchsize,userbucketsize)
-            dc_time = time.time() - start_time
-            print "-------- %f seconds to complete all batches --------" % dc_time
-
-            print "### EQUI-DEPTH HISTOGRAM ###"
-            start_time = time.time()
-            depth = dynamic_histograms.equidepth_histogram.Equidepth_Histogram(dataset, numbuckets,
-                                                                                outputpath)
-            depth.create_histogram(attr, l=0, batchsize=batch, userbucketsize=userbucketsize)
-            # depth.zipfdistributiongraph([0.01,1,2,3],0,batchsize,userbucketsize)
-            depth_time = time.time() - start_time
-            print "-------- %f seconds to complete all batches --------" % depth_time
+            # print "### CONTROL HISTOGRAM ###"
+            # start_time = time.time()
+            # control = dynamic_histograms.control_histogram.Control_Histogram(dataset, numbuckets, outputpath)
+            # control.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
+            # # control.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
+            # control_time = time.time() - start_time
+            # print "-------- %f seconds to complete all batches --------" % control_time
+            #
+            # print "### DYNAMIC COMPRESSED HISTOGRAM ###"
+            # start_time = time.time()
+            # dc = dynamic_histograms.dc_histogram.DC_Histogram(dataset, numbuckets, outputpath)
+            # dc.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
+            # # dc.zipfdistributiongraph([0.01,1,2,3],0.5, 0.5, batchsize,userbucketsize)
+            # dc_time = time.time() - start_time
+            # print "-------- %f seconds to complete all batches --------" % dc_time
+            #
+            # print "### EQUI-DEPTH HISTOGRAM ###"
+            # start_time = time.time()
+            # depth = dynamic_histograms.equidepth_histogram.Equidepth_Histogram(dataset, numbuckets,
+            #                                                                     outputpath)
+            # depth.create_histogram(attr, l=0, batchsize=batch, userbucketsize=userbucketsize)
+            # # depth.zipfdistributiongraph([0.01,1,2,3],0,batchsize,userbucketsize)
+            # depth_time = time.time() - start_time
+            # print "-------- %f seconds to complete all batches --------" % depth_time
 
             print "### MAX-DIFF HISTOGRAM ###"
             start_time = time.time()
