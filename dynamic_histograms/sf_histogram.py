@@ -6,7 +6,6 @@ Steffani Gomez
 
 from __future__ import division
 import numpy as np
-#import pandas as pd
 import csv
 import matplotlib
 matplotlib.use('Agg')
@@ -16,8 +15,32 @@ import user_distribution
 import json
 import os
 from scipy import stats
+import scipy.interpolate as interpolate
 from shutil import copyfile
 from collections import Counter
+
+class LinearApproxHist(stats.rv_continuous):
+    def __init__(self, minimum, maximum, buckets, numbuckets, cumfreq):
+        super(LinearApproxHist, self).__init__()
+        self.min = minimum
+        self.max = maximum
+        self.numbuckets = numbuckets
+        self.buckets = buckets
+        self.cumfreq = cumfreq
+
+    def _cdf(self, x):
+        if x <= self.min:
+            return 0
+        elif x >= self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                percentage = (x - self.buckets[i]['low']) / self.buckets[i]['size']
+                if i > 0:
+                    approx = percentage + self.cumfreq[i - 1]
+                else:
+                    approx = percentage * self.cumfreq[i]
+                return approx / self.cumfreq[len(self.cumfreq) - 1]
 
 class SF_Histogram(object):
 
@@ -98,17 +121,6 @@ class SF_Histogram(object):
             else:
                 high = sortedsample[i + 2]
             self.buckets[i]['size'] = abs(self.buckets[i]['high'] - self.buckets[i]['low'])
-        # range = math.ceil(self.max - self.min) # want to make sure we capture the maximum element in the last bucket
-        # size = math.ceil(range / self.numbuckets)
-        # low = self.min
-        # high = self.min + size
-        # for bucket in self.buckets:
-        #     bucket['low'] = low
-        #     bucket['high'] = high
-        #     bucket['frequency'] = round(len(sample) / self.numbuckets)
-        #     bucket['size'] = size
-        #     low = high
-        #     high += size
 
     def create_histogram(self, attr, alpha, m, s, batchsize, userbucketsize):
         N = 0
@@ -125,57 +137,63 @@ class SF_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                N += 1
-                if float(row[attr_index]) < self.min:
-                    self.min = float(row[attr_index])
-                if float(row[attr_index]) > self.max:
-                    self.max = float(row[attr_index])
-                if len(set(sample)) < self.numbuckets:
-                    sample.append(float(row[attr_index]))
-                if len(set(sample)) == self.numbuckets and initial == False:
-                    self.create_initial_histogram(sample)
-                    self.plot_histogram(attr, self.buckets)
-                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
-                    d.create_distribution(self.buckets)
-                    new_buckets = d.return_distribution()
-                    self.plot_histogram(attr, new_buckets)
-                    initial = True
-                    f = 0
-                    for i in range(len(self.buckets)):
-                        f += self.buckets[i]['frequency']
-                    assert np.isclose(f, N)
-                elif initial == True:
-                    self.add_datapoint(float(row[attr_index]), N)
-                    if N % batchsize == 0:
-                        # we are choosing not to use updateFreq from the pseudocode as that operates over ranges of data
-                        # that are accessed by SQL queries. instead we are just using restructureHist after every batch.
-                        print "number read in: " + str(N)
-                        f = 0
-                        for i in range(len(self.buckets)):
-                            f += self.buckets[i]['frequency']
-                        print f, N
-                        assert np.isclose(f, N)
-                        self.restructureHist(m, s, N)
-                        f = 0
-                        for i in range(len(self.buckets)):
-                            f += self.buckets[i]['frequency']
-                        assert np.isclose(f, N)
+                try:
+                    value = float(row[attr_index])
+                except ValueError:
+                    value = None
+                if value != None:
+                    N += 1
+                    if value < self.min:
+                        self.min = value
+                    if value > self.max:
+                        self.max = value
+                    if len(set(sample)) < self.numbuckets:
+                        sample.append(value)
+                    if len(set(sample)) == self.numbuckets and initial == False:
+                        self.create_initial_histogram(sample)
                         self.plot_histogram(attr, self.buckets)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
-                        self.compare_histogram(attr, False)
+                        initial = True
                         f = 0
                         for i in range(len(self.buckets)):
                             f += self.buckets[i]['frequency']
-                        print f, N
                         assert np.isclose(f, N)
+                    elif initial == True:
+                        self.add_datapoint(value, N)
+                        if N % batchsize == 0:
+                            # we are choosing not to use updateFreq from the pseudocode as that operates over ranges of data
+                            # that are accessed by SQL queries. instead we are just using restructureHist after every batch.
+                            print "number read in: " + str(N)
+                            f = 0
+                            for i in range(len(self.buckets)):
+                                f += self.buckets[i]['frequency']
+                            print f, N
+                            assert np.isclose(f, N)
+                            self.restructureHist(m, s, N)
+                            f = 0
+                            for i in range(len(self.buckets)):
+                                f += self.buckets[i]['frequency']
+                            assert np.isclose(f, N)
+                            self.plot_histogram(attr, self.buckets)
+                            d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                            d.create_distribution(self.buckets)
+                            new_buckets = d.return_distribution()
+                            self.plot_histogram(attr, new_buckets)
+                            self.compare_histogram(attr, False, N)
+                            f = 0
+                            for i in range(len(self.buckets)):
+                                f += self.buckets[i]['frequency']
+                            print f, N
+                            assert np.isclose(f, N)
             if len(set(sample)) < self.numbuckets:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
-        self.compare_histogram(attr, False)
+        self.plot_histogram(attr, self.buckets)
+        self.compare_histogram(attr, False, N)
 
-    def compare_histogram(self, attr, end):
+    def compare_histogram(self, attr, end, N):
         frequency = []
         binedges = []
         for bucket in self.buckets:
@@ -191,12 +209,19 @@ class SF_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                realdist.append(float(row[attr_index]))
-        #realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+                try:
+                    value = float(row[attr_index])
+                except ValueError:
+                    value = None
+                if value != None:
+                    realdist.append(value)
         if end:
             ksstats = {}
-            ksstats['cdfstats'] = stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq), N=len(realdist), alternative='two-sided')
-            ksstats['linearcdfstats'] = stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq), N=len(realdist), alternative='two-sided')
+            # here we use inverse transform sampling to form a distribution from the histogram
+            ksstats['cdfstats'] = stats.ks_2samp(realdist, self.inverse_transform_sampling(frequency, binedges, N))
+            linear = LinearApproxHist(self.min, self.max, self.buckets, self.numbuckets, cumfreq)
+            # here we use the linear approximation of the cdf to create a sample and then compare that to the true dataset
+            ksstats['linearcdfstats'] = stats.ks_2samp(realdist, linear.rvs(size=N))
             with open(self.outputpath + "//data//sfksstats" + ".json", 'w') as ks:
                 json.dump(ksstats, ks)
                 ks.write('\n')
@@ -213,41 +238,12 @@ class SF_Histogram(object):
         self.counter += 1
         plt.close()
 
-    def callable_cdf(self, x, cumfreq):
-        values = []
-        for value in x:
-            values.append(self.cdf(value, cumfreq))
-        return np.array(values)
-
-    def callable_linearcdf(self, x, cumfreq):
-        values = []
-        for value in x:
-            values.append(self.linear_cdf(value, cumfreq))
-        return np.array(values)
-    
-    def cdf(self, x, cumfreq):
-        if x <= self.min:
-            return 0
-        elif x >= self.max:
-            return 1
-        for i in range(0, self.numbuckets):
-            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
-                return cumfreq[i] / cumfreq[len(cumfreq) - 1]
-
-    def linear_cdf(self, x, cumfreq):
-        if x <= self.min:
-            return 0
-        elif x >= self.max:
-            return 1
-        for i in range(0, self.numbuckets):
-            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
-                approx = None
-                percentage = (x - self.buckets[i]['low']) / self.buckets[i]['size']
-                if i > 0:
-                    approx = percentage + cumfreq[i - 1]
-                else:
-                    approx = percentage * cumfreq[i]
-                return approx / cumfreq[len(cumfreq) - 1]      
+    def inverse_transform_sampling(self, frequency, bin_edges, n_samples):
+        cum_values = np.zeros(len(bin_edges))
+        cum_values[1:] = np.cumsum(frequency) / n_samples
+        inv_cdf = interpolate.interp1d(cum_values, bin_edges)
+        r = np.random.rand(n_samples)
+        return inv_cdf(r)
 
     def sample_on_range(self, sample, rangelow, rangehigh):
         """Returns the sample over the range rangelow-rangehigh."""

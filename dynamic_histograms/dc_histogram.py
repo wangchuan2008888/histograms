@@ -6,7 +6,6 @@ Steffani Gomez
 
 from __future__ import division
 import numpy as np
-import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -16,12 +15,32 @@ import user_distribution
 import json
 import os
 from scipy import stats
+import scipy.interpolate as interpolate
 from shutil import copyfile
 import copy
 
-import sys
+class LinearApproxHist(stats.rv_continuous):
+    def __init__(self, minimum, maximum, buckets, numbuckets, cumfreq):
+        super(LinearApproxHist, self).__init__()
+        self.min = minimum
+        self.max = maximum
+        self.numbuckets = numbuckets
+        self.buckets = buckets
+        self.cumfreq = cumfreq
 
-upper_factor = 3
+    def _cdf(self, x):
+        if x <= self.min:
+            return 0
+        elif x >= self.max:
+            return 1
+        for i in range(0, self.numbuckets):
+            if x >= self.buckets[i]['low'] and x < self.buckets[i]['high']:
+                percentage = (x - self.buckets[i]['low']) / self.buckets[i]['size']
+                if i > 0:
+                    approx = percentage + self.cumfreq[i - 1]
+                else:
+                    approx = percentage * self.cumfreq[i]
+                return approx / self.cumfreq[len(self.cumfreq) - 1]
 
 class DC_Histogram(object):
 
@@ -97,61 +116,20 @@ class DC_Histogram(object):
                 header[i] = unicode(header[i], 'utf-8-sig')
             attr_index = header.index(attr)
             for row in reader:
-                N += 1
-                if float(row[attr_index]) < self.min:
-                    self.min = float(row[attr_index])
-                if float(row[attr_index]) > self.max:
-                    self.max = float(row[attr_index]) 
-                if len(set(sample)) < self.numbuckets:
-                    sample.append(float(row[attr_index]))
-                if len(set(sample)) == self.numbuckets and initial == False:
-                    self.compute_histogram(N, sample)
-
-                    totalbuckets = copy.deepcopy(self.regular)
-                    for i in range(len(self.singular)):
-                        bucket = self.singular[i].copy()
-                        for j in range(len(totalbuckets)):
-                            if bucket['size'] == 0:
-                                break
-                            elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and totalbuckets[j][
-                                'low'] < \
-                                    bucket['high'] <= totalbuckets[j]['high']:
-                                totalbuckets[j]['frequency'] += bucket['frequency']
-                                bucket['size'] = 0
-                                # if the bucket is completely contained within another regular bucket, then split that bucket evenly
-                                # might need to come up with something different because of the last condition
-                            elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and bucket['high'] > \
-                                    totalbuckets[j]['high']:
-                                # the case when the left boundary overlaps with a bucket but only part of the bucket will be added to this bucket
-                                frac = (totalbuckets[j]['high'] - bucket['low']) / bucket['size']
-                                perc = frac * bucket['frequency']
-                                totalbuckets[j]['frequency'] += perc
-                                bucket['frequency'] -= perc
-                                bucket['low'] = totalbuckets[j]['high']
-                                bucket['size'] = bucket['high'] - bucket['low']
-
-                    self.plot_histogram(attr, totalbuckets)
-                    d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
-                    d.create_distribution(totalbuckets)
-                    new_buckets = d.return_distribution()
-                    self.plot_histogram(attr, new_buckets)
-                    #skip = self.calculateSkip(len(sample))
-                    initial = True
-                elif initial == True:
-                    #skipcounter += 1
-                    self.add_datapoint(float(row[attr_index]), N, sample, attr)
-                    #if skipcounter == skip:
-                    #    sample = self.maintainBackingSample(float(row[attr_index]), sample)
-                    #    skip = self.calculateSkip(len(sample))
-                    #    skipcounter = 0
-                    if N % batchsize == 0:
-                        f = 0
-                        for i in range(len(self.regular)):
-                            f += self.regular[i]['frequency']
-                        for i in range(len(self.singular)):
-                            f += self.singular[i]['frequency']
-                        assert np.isclose(f, N)
-                        print "number read in: " + str(N)
+                try:
+                    value = float(row[attr_index])
+                except ValueError:
+                    value = None
+                if value != None:
+                    N += 1
+                    if value < self.min:
+                        self.min = value
+                    if value > self.max:
+                        self.max = value
+                    if len(set(sample)) < self.numbuckets:
+                        sample.append(value)
+                    if len(set(sample)) == self.numbuckets and initial == False:
+                        self.compute_histogram(N, sample)
 
                         totalbuckets = copy.deepcopy(self.regular)
                         for i in range(len(self.singular)):
@@ -159,22 +137,21 @@ class DC_Histogram(object):
                             for j in range(len(totalbuckets)):
                                 if bucket['size'] == 0:
                                     break
-                                elif totalbuckets[i]['low'] <= bucket['low'] < totalbuckets[i]['high'] and \
-                                                        totalbuckets[i]['low'] < \
-                                                        bucket['high'] <= totalbuckets[i]['high']:
-                                    totalbuckets[i]['frequency'] += bucket['frequency']
+                                elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and totalbuckets[j][
+                                    'low'] < \
+                                        bucket['high'] <= totalbuckets[j]['high']:
+                                    totalbuckets[j]['frequency'] += bucket['frequency']
                                     bucket['size'] = 0
                                     # if the bucket is completely contained within another regular bucket, then split that bucket evenly
                                     # might need to come up with something different because of the last condition
-                                elif totalbuckets[i]['low'] <= bucket['low'] < totalbuckets[i]['high'] and bucket[
-                                    'high'] > \
-                                        totalbuckets[i]['high']:
+                                elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and bucket['high'] > \
+                                        totalbuckets[j]['high']:
                                     # the case when the left boundary overlaps with a bucket but only part of the bucket will be added to this bucket
-                                    frac = (totalbuckets[i]['high'] - bucket['low']) / bucket['size']
+                                    frac = (totalbuckets[j]['high'] - bucket['low']) / bucket['size']
                                     perc = frac * bucket['frequency']
-                                    totalbuckets[i]['frequency'] += perc
+                                    totalbuckets[j]['frequency'] += perc
                                     bucket['frequency'] -= perc
-                                    bucket['low'] = totalbuckets[i]['high']
+                                    bucket['low'] = totalbuckets[j]['high']
                                     bucket['size'] = bucket['high'] - bucket['low']
 
                         self.plot_histogram(attr, totalbuckets)
@@ -182,18 +159,89 @@ class DC_Histogram(object):
                         d.create_distribution(totalbuckets)
                         new_buckets = d.return_distribution()
                         self.plot_histogram(attr, new_buckets)
-                        self.compare_histogram(attr, False, totalbuckets)
-                        f = 0
-                        for i in range(len(self.regular)):
-                            f += self.regular[i]['frequency']
-                        for i in range(len(self.singular)):
-                            f += self.singular[i]['frequency']
-                        assert np.isclose(f, N)
+                        #skip = self.calculateSkip(len(sample))
+                        initial = True
+                    elif initial == True:
+                        #skipcounter += 1
+                        self.add_datapoint(value, N, sample, attr)
+                        #if skipcounter == skip:
+                        #    sample = self.maintainBackingSample(float(row[attr_index]), sample)
+                        #    skip = self.calculateSkip(len(sample))
+                        #    skipcounter = 0
+                        if N % batchsize == 0:
+                            f = 0
+                            for i in range(len(self.regular)):
+                                f += self.regular[i]['frequency']
+                            for i in range(len(self.singular)):
+                                f += self.singular[i]['frequency']
+                            assert np.isclose(f, N)
+                            print "number read in: " + str(N)
+
+                            totalbuckets = copy.deepcopy(self.regular)
+                            for i in range(len(self.singular)):
+                                bucket = self.singular[i].copy()
+                                for j in range(len(totalbuckets)):
+                                    if bucket['size'] == 0:
+                                        break
+                                    elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and \
+                                                            totalbuckets[j]['low'] < \
+                                                            bucket['high'] <= totalbuckets[j]['high']:
+                                        totalbuckets[j]['frequency'] += bucket['frequency']
+                                        bucket['size'] = 0
+                                        # if the bucket is completely contained within another regular bucket, then split that bucket evenly
+                                        # might need to come up with something different because of the last condition
+                                    elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and bucket[
+                                        'high'] > \
+                                            totalbuckets[j]['high']:
+                                        # the case when the left boundary overlaps with a bucket but only part of the bucket will be added to this bucket
+                                        frac = (totalbuckets[j]['high'] - bucket['low']) / bucket['size']
+                                        perc = frac * bucket['frequency']
+                                        totalbuckets[j]['frequency'] += perc
+                                        bucket['frequency'] -= perc
+                                        bucket['low'] = totalbuckets[j]['high']
+                                        bucket['size'] = bucket['high'] - bucket['low']
+
+                            self.plot_histogram(attr, totalbuckets)
+                            d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                            d.create_distribution(totalbuckets)
+                            new_buckets = d.return_distribution()
+                            self.plot_histogram(attr, new_buckets)
+                            self.compare_histogram(attr, False, totalbuckets, N)
+                            f = 0
+                            for i in range(len(self.regular)):
+                                f += self.regular[i]['frequency']
+                            for i in range(len(self.singular)):
+                                f += self.singular[i]['frequency']
+                            assert np.isclose(f, N)
             if len(set(sample)) < self.numbuckets:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
-        #self.compare_histogram(attr, False)
+        totalbuckets = copy.deepcopy(self.regular)
+        for i in range(len(self.singular)):
+            bucket = self.singular[i].copy()
+            for j in range(len(totalbuckets)):
+                if bucket['size'] == 0:
+                    break
+                elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and \
+                                        totalbuckets[j]['low'] < \
+                                        bucket['high'] <= totalbuckets[j]['high']:
+                    totalbuckets[j]['frequency'] += bucket['frequency']
+                    bucket['size'] = 0
+                    # if the bucket is completely contained within another regular bucket, then split that bucket evenly
+                    # might need to come up with something different because of the last condition
+                elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and bucket[
+                    'high'] > \
+                        totalbuckets[j]['high']:
+                    # the case when the left boundary overlaps with a bucket but only part of the bucket will be added to this bucket
+                    frac = (totalbuckets[j]['high'] - bucket['low']) / bucket['size']
+                    perc = frac * bucket['frequency']
+                    totalbuckets[j]['frequency'] += perc
+                    bucket['frequency'] -= perc
+                    bucket['low'] = totalbuckets[j]['high']
+                    bucket['size'] = bucket['high'] - bucket['low']
+        self.plot_histogram(attr, totalbuckets)
+        self.compare_histogram(attr, False, totalbuckets, N)
 
-    def compare_histogram(self, attr, end, buckets):
+    def compare_histogram(self, attr, end, buckets, N):
         frequency = []
         binedges = []
         for bucket in buckets:
@@ -201,11 +249,27 @@ class DC_Histogram(object):
             binedges.append(bucket['low'])
         binedges.append(bucket['high'])
         cumfreq = np.cumsum(frequency)
-        realdist = np.array(pd.read_csv(self.file)[attr], dtype=float)
+        realdist = []
+        with open(self.file, 'r') as f:
+            reader = csv.reader(f)
+            header = reader.next()
+            for i in range(0, len(header)):
+                header[i] = unicode(header[i], 'utf-8-sig')
+            attr_index = header.index(attr)
+            for row in reader:
+                try:
+                    value = float(row[attr_index])
+                except ValueError:
+                    value = None
+                if value != None:
+                    realdist.append(value)
         if end:
             ksstats = {}
-            ksstats['cdfstats'] = stats.kstest(realdist, lambda x: self.callable_cdf(x, cumfreq, buckets), N=len(realdist), alternative='two-sided')
-            ksstats['linearcdfstats'] = stats.kstest(realdist, lambda x: self.callable_linearcdf(x, cumfreq, buckets), N=len(realdist), alternative='two-sided')
+            # here we use inverse transform sampling to form a distribution from the histogram
+            ksstats['cdfstats'] = stats.ks_2samp(realdist, self.inverse_transform_sampling(frequency, binedges, N))
+            linear = LinearApproxHist(self.min, self.max, buckets, self.numbuckets, cumfreq)
+            # here we use the linear approximation of the cdf to create a sample and then compare that to the true dataset
+            ksstats['linearcdfstats'] = stats.ks_2samp(realdist, linear.rvs(size=N))
             with open(self.outputpath + "//data//dcksstats" + ".json", 'a+') as ks:
                 json.dump(ksstats, ks)
                 ks.write('\n')
@@ -222,47 +286,12 @@ class DC_Histogram(object):
         self.counter += 1
         plt.close()
 
-    def callable_cdf(self, x, cumfreq, buckets):
-        values = []
-        for value in x:
-            v = self.cdf(value, cumfreq, buckets)
-            if v == None:
-                print value, v
-                print self.min, self.max
-            values.append(v)
-        return np.array(values)
-
-    def callable_linearcdf(self, x, cumfreq, buckets):
-        values = []
-        for value in x:
-            values.append(self.linear_cdf(value, cumfreq, buckets))
-        return np.array(values)
-    
-    def cdf(self, x, cumfreq, buckets):
-        if x <= self.min:
-            return 0
-        elif x >= self.max:
-            return 1
-        #for i in range(0, self.numbuckets):
-        for i in range(len(buckets)):
-            if x >= buckets[i]['low'] and x < buckets[i]['high']:
-                return cumfreq[i] / cumfreq[len(cumfreq) - 1]
-
-    def linear_cdf(self, x, cumfreq, buckets):
-        if x <= self.min:
-            return 0
-        elif x >= self.max:
-            return 1
-        #for i in range(0, self.numbuckets):
-        for i in range(len(buckets)):
-            if x >= buckets[i]['low'] and x < buckets[i]['high']:
-                approx = None
-                percentage = (x - buckets[i]['low']) / buckets[i]['size']
-                if i > 0:
-                    approx = percentage + cumfreq[i - 1]
-                else:
-                    approx = percentage * cumfreq[i]
-                return approx / cumfreq[len(cumfreq) - 1]        
+    def inverse_transform_sampling(self, frequency, bin_edges, n_samples):
+        cum_values = np.zeros(len(bin_edges))
+        cum_values[1:] = np.cumsum(frequency) / n_samples
+        inv_cdf = interpolate.interp1d(cum_values, bin_edges)
+        r = np.random.rand(n_samples)
+        return inv_cdf(r)
 
     def compute_histogram(self, N, sample):
         c = Counter(sample)
@@ -806,31 +835,6 @@ class DC_Histogram(object):
 
     def plot_histogram(self, attr, buckets):
         """Plots the histogram."""
-        #
-        # totalbuckets = copy.deepcopy(self.regular)
-        # for i in range(len(self.singular)):
-        #     bucket = self.singular[i].copy()
-        #     for j in range(len(totalbuckets)):
-        #         if bucket['size'] == 0:
-        #             break
-        #         elif totalbuckets[i]['low'] <= bucket['low'] < totalbuckets[i]['high'] and totalbuckets[i]['low'] < \
-        #                 bucket['high'] <= totalbuckets[i]['high']:
-        #             totalbuckets[i]['frequency'] += bucket['frequency']
-        #             bucket['size'] = 0
-        #             # if the bucket is completely contained within another regular bucket, then split that bucket evenly
-        #             # might need to come up with something different because of the last condition
-        #         elif totalbuckets[i]['low'] <= bucket['low'] < totalbuckets[i]['high'] and bucket['high'] > \
-        #                 totalbuckets[i]['high']:
-        #             # the case when the left boundary overlaps with a bucket but only part of the bucket will be added to this bucket
-        #             frac = (totalbuckets[i]['high'] - bucket['low']) / bucket['size']
-        #             perc = frac * bucket['frequency']
-        #             totalbuckets[i]['frequency'] += perc
-        #             bucket['frequency'] -= perc
-        #             bucket['low'] = totalbuckets[i]['high']
-        #             bucket['size'] = bucket['high'] - bucket['low']
-
-
-
         bins = []
         frequency = []
         for b in buckets:

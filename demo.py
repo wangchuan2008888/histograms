@@ -10,11 +10,11 @@ import os
 from shutil import copyfile
 import sys
 
-buckets = [10, 15]#[10]
-batchsize = [50000, 100000]#[100000]
+buckets = [5]#[10]
+batchsize = [10000, 15000, 30000]
 userbucketsize = 5
-attributes = ['count', 'srv_count']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
-dataset = 'dynamic_histograms/data/kddcupFourtySamplesFiftyK.csv'
+attributes = ['dHours']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
+dataset = 'dynamic_histograms/data/USCensusThirtySamples.csv'
 
 for attr in attributes:
     for numbuckets in buckets:
@@ -68,7 +68,7 @@ for attr in attributes:
             # depth.zipfdistributiongraph([0.01,1,2,3],0,batchsize,userbucketsize)
             depth_time = time.time() - start_time
             print "-------- %f seconds to complete all batches --------" % depth_time
-            # # #
+
             print "### MAX-DIFF HISTOGRAM ###"
             start_time = time.time()
             maxdiff = dynamic_histograms.maxdiff_histogram.MaxDiff_Histogram(dataset, numbuckets,
