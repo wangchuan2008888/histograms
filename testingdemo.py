@@ -10,11 +10,11 @@ import os
 from shutil import copyfile
 import sys
 
-buckets = [500]#[20, 25, 50]#[20, 50, 100] #[500]
-batchsize = [100000]#[100000]
+buckets = [10, 15, 20]#[20, 25, 50]#[20, 50, 100] #[500]
+batchsize = [1000]#[100000]
 userbucketsize = 1
-attributes = ['logistic']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
-dataset = 'dynamic_histograms/data/distributions.csv'
+attributes = ['user_ratings']#['age']#['bimodal', 'uniform', 'norm', 'chi', 'logistic', 'beta', 'gamma']
+dataset = 'dynamic_histograms/data/wine.csv'
 
 for attr in attributes:
     for numbuckets in buckets:
@@ -44,21 +44,21 @@ for attr in attributes:
                         f.write('<a href=\"' + maind + '//' + subd + '//template.html' + '\">' + subd + '</a><br/>\n')
                 f.write('</html>\n')
 
-            #print "### CONTROL HISTOGRAM ###"
-            #start_time = time.time()
-            #control = dynamic_histograms.control_histogram.Control_Histogram(dataset, numbuckets, outputpath)
-            #control.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
-            ## control.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
-            #control_time = time.time() - start_time
-            #print "-------- %f seconds to complete all batches --------" % control_time
+            print "### CONTROL HISTOGRAM ###"
+            start_time = time.time()
+            control = dynamic_histograms.control_histogram.Control_Histogram(dataset, numbuckets, outputpath)
+            control.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
+            # control.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
+            control_time = time.time() - start_time
+            print "-------- %f seconds to complete all batches --------" % control_time
 
-            #print "### DYNAMIC COMPRESSED HISTOGRAM ###"
-            #start_time = time.time()
-            #dc = dynamic_histograms.dc_histogram.DC_Histogram(dataset, numbuckets, outputpath)
-            #dc.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
-            ## dc.zipfdistributiongraph([0.01,1,2,3],0.5, 0.5, batchsize,userbucketsize)
-            #dc_time = time.time() - start_time
-            #print "-------- %f seconds to complete all batches --------" % dc_time
+            print "### DYNAMIC COMPRESSED HISTOGRAM ###"
+            start_time = time.time()
+            dc = dynamic_histograms.dc_histogram.DC_Histogram(dataset, numbuckets, outputpath)
+            dc.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
+            # dc.zipfdistributiongraph([0.01,1,2,3],0.5, 0.5, batchsize,userbucketsize)
+            dc_time = time.time() - start_time
+            print "-------- %f seconds to complete all batches --------" % dc_time
 
             print "### EQUI-DEPTH HISTOGRAM ###"
             start_time = time.time()
@@ -103,8 +103,8 @@ for attr in attributes:
             dvo_time = time.time() - start_time
             print "-------- %f seconds to complete all batches --------" % dvo_time
 
-            #print "Control histogram time: %f " % control_time
-            #print "Dynamic compressed histogram time: %f " % dc_time
+            print "Control histogram time: %f " % control_time
+            print "Dynamic compressed histogram time: %f " % dc_time
             print "Dynamic v-optimal histogram time: %f " % dvo_time
             print "Equi-depth histogram time: %f " % depth_time
             print "Max-diff histogram time: %f " % maxdiff_time
