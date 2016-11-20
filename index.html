@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Data Visualization</title>
+	<meta charset="utf-8">
+  <meta name="description" content="displaying user buckets from json file">
+  <meta name="author" content="Steffani Gomez">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <!--# CSS #}
+  <link rel="stylesheet" type="text/css" href="css/style.css">-->
+
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- D3-tip -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
+  <!--# JAVASCRIPT #}
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/detailcharts.js"></script>-->
+
+  <style>
+
+  	body {
+  		font-family: 'Montserrat', sans-serif;
+  	}
+
+    .bar rect {
+      fill: steelblue;
+      border: 10px solid black;
+    }
+
+    .bar text {
+      font: 10px sans-serif;
+    }
+
+    .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+      }
+  </style>
+
+</head>
+
+<body>
+<h1> User Buckets </h1>
+
+<svg width="960" height="500"></svg>
+<script src="js/userdistribution.js"></script>
+
+</body>
+</html>

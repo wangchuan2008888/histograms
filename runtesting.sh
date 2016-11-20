@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python testingdemo.py
+python demo.py
