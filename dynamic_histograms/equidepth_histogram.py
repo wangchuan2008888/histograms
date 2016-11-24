@@ -359,6 +359,8 @@ class Equidepth_Histogram(object):
                 medianhigh = low + (self.buckets[index]['size'] / 2)
             else:
                 medianhigh = np.average([s[medianindex], s[medianindex - 1]])
+        if medianhigh == self.buckets[index]['low']:
+            medianhigh = low + (self.buckets[index]['size'] / 2)
         b = {
             'low': medianhigh,
             'high': high,

@@ -215,31 +215,32 @@ class DC_Histogram(object):
                             assert np.isclose(f, N)
             if len(set(sample)) < self.numbuckets:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
-        totalbuckets = copy.deepcopy(self.regular)
-        for i in range(len(self.singular)):
-            bucket = self.singular[i].copy()
-            for j in range(len(totalbuckets)):
-                if bucket['size'] == 0:
-                    break
-                elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and \
-                                        totalbuckets[j]['low'] < \
-                                        bucket['high'] <= totalbuckets[j]['high']:
-                    totalbuckets[j]['frequency'] += bucket['frequency']
-                    bucket['size'] = 0
-                    # if the bucket is completely contained within another regular bucket, then split that bucket evenly
-                    # might need to come up with something different because of the last condition
-                elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and bucket[
-                    'high'] > \
-                        totalbuckets[j]['high']:
-                    # the case when the left boundary overlaps with a bucket but only part of the bucket will be added to this bucket
-                    frac = (totalbuckets[j]['high'] - bucket['low']) / bucket['size']
-                    perc = frac * bucket['frequency']
-                    totalbuckets[j]['frequency'] += perc
-                    bucket['frequency'] -= perc
-                    bucket['low'] = totalbuckets[j]['high']
-                    bucket['size'] = bucket['high'] - bucket['low']
-        self.plot_histogram(attr, totalbuckets)
-        self.compare_histogram(attr, False, totalbuckets, N)
+            else:
+                totalbuckets = copy.deepcopy(self.regular)
+                for i in range(len(self.singular)):
+                    bucket = self.singular[i].copy()
+                    for j in range(len(totalbuckets)):
+                        if bucket['size'] == 0:
+                            break
+                        elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and \
+                                                totalbuckets[j]['low'] < \
+                                                bucket['high'] <= totalbuckets[j]['high']:
+                            totalbuckets[j]['frequency'] += bucket['frequency']
+                            bucket['size'] = 0
+                            # if the bucket is completely contained within another regular bucket, then split that bucket evenly
+                            # might need to come up with something different because of the last condition
+                        elif totalbuckets[j]['low'] <= bucket['low'] < totalbuckets[j]['high'] and bucket[
+                            'high'] > \
+                                totalbuckets[j]['high']:
+                            # the case when the left boundary overlaps with a bucket but only part of the bucket will be added to this bucket
+                            frac = (totalbuckets[j]['high'] - bucket['low']) / bucket['size']
+                            perc = frac * bucket['frequency']
+                            totalbuckets[j]['frequency'] += perc
+                            bucket['frequency'] -= perc
+                            bucket['low'] = totalbuckets[j]['high']
+                            bucket['size'] = bucket['high'] - bucket['low']
+                self.plot_histogram(attr, totalbuckets)
+                self.compare_histogram(attr, False, totalbuckets, N)
 
     def compare_histogram(self, attr, end, buckets, N):
         frequency = []

@@ -1,8 +1,6 @@
 function getDistribution(bucketarray, num_userbuckets) {
-    console.log(bucketarray);
     var minimum = bucketarray[0]['low'];
     var maximum = bucketarray[bucketarray.length - 1]['high'];
-    console.log(minimum, maximum);
     var width = (maximum - minimum) / num_userbuckets;
     var newbuckets = [];
     var widthsofar = 0;
@@ -11,8 +9,6 @@ function getDistribution(bucketarray, num_userbuckets) {
     for (var i = 0; i < bucketarray.length; i++) {
         if (widthsofar == width) {
             newbuckets.push({low: pointer, high: pointer+width, frequency: frequency, size: width});
-            //widthsofar = bucketarray[i].size;
-            //frequency = bucketarray[i].frequency;
             widthsofar = 0;
             frequency = 0;
             pointer += width;
@@ -34,7 +30,6 @@ function getDistribution(bucketarray, num_userbuckets) {
                 pointer += width;
                 frequency = 0;
                 widthsofar = 0;
-                //frequency = 0.0
                 bucketarray[i].frequency -= sizeperc * bucketarray[i].frequency;
                 bucketarray[i].low = pointer;
                 bucketarray[i].size = bucketarray[i].high - bucketarray[i].low;
@@ -67,7 +62,6 @@ function loadJSON(callback) {
 loadJSON(function(response) {
   // Parse JSON string into object
     var actual_JSON = JSON.parse(response);
-    console.log(actual_JSON);
     var bucketcopy = actual_JSON.slice();
     newbuckets = getDistribution(bucketcopy, 10);
     console.log(newbuckets);
@@ -85,13 +79,6 @@ var svg = d3.select("svg"),
 var x = d3.scaleLinear()
     .domain([newbuckets[0].low - (newbuckets[0].size / 2), newbuckets[newbuckets.length - 1].high + (newbuckets[0].size / 2)])
     .range([0, width]);
-
-// var bins = d3.histogram()
-//     .domain(x.domain())
-//     .thresholds(x.ticks(20))
-//     (data);
-
-// console.log(bins);
 
 var y = d3.scaleLinear()
     .domain([0, d3.max(newbuckets, function(d) { return d.frequency; })])
@@ -116,18 +103,11 @@ var bar = g.selectAll(".bar")
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
 
-// bar.append("rect")
-//     .attr("x", 1)
-//     .attr("width", x(newbuckets[0].size))
-//     .attr("height", function(d) { return height - y(d.frequency); });
-
 bar.append("rect")
             .attr('x', function(d){console.log(x(d.low)); return x(d.low);})
             .attr('height', function(d){console.log(height - y(d.frequency)); return height - y(d.frequency);})
             .attr('width', x(newbuckets[0].high) - x(newbuckets[0].low))
             .style("stroke", "black")
-            //.attr('height', function(d){return y(d.frequency);})
-            //.attr('fill','steelblue')
 
 bar.append("text")
     .attr("dy", ".75em")

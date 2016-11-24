@@ -222,7 +222,7 @@ class SF_Histogram(object):
             linear = LinearApproxHist(self.min, self.max, self.buckets, self.numbuckets, cumfreq)
             # here we use the linear approximation of the cdf to create a sample and then compare that to the true dataset
             ksstats['linearcdfstats'] = stats.ks_2samp(realdist, linear.rvs(size=N))
-            with open(self.outputpath + "//data//sfksstats" + ".json", 'w') as ks:
+            with open(self.outputpath + "//data//sfksstats" + ".json", 'a+') as ks:
                 json.dump(ksstats, ks)
                 ks.write('\n')
         sorted_data = np.sort(realdist)

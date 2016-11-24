@@ -151,7 +151,7 @@ class Control_Histogram(object):
                             for i in range(len(self.buckets)):
                                 f += self.buckets[i]['frequency']
                             print f, N
-                            assert np.isclose(f, N)
+                            #assert np.isclose(f, N)
             if len(set(sample)) < self.numbuckets:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
         self.plot_histogram(attr, self.buckets)
@@ -232,7 +232,7 @@ class Control_Histogram(object):
         for i in range(len(self.buckets)):
             f += self.buckets[i]['frequency']
         print f, N
-        assert np.isclose(f, N)
+        #assert np.isclose(f, N)
     
     def add_datapoint(self, value):
         """Increases the count of the bucket the value belongs in the histogram."""

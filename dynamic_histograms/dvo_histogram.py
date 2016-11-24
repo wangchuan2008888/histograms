@@ -205,7 +205,7 @@ class DVO_Histogram(object):
                         for i in range(len(self.buckets)):
                             f += self.buckets[i]['frequency']
                         print(f, N, "created initial histogram!")
-                        assert np.isclose(f, N)
+                        #assert np.isclose(f, N)
                         self.plot_histogram(attr, self.buckets, True)
                         d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
                         d.create_distribution(self.buckets)
@@ -226,7 +226,7 @@ class DVO_Histogram(object):
                             for i in range(len(self.buckets)):
                                 f += self.buckets[i]['frequency']
                             print(f, N)
-                            assert np.isclose(f, N)
+                            #assert np.isclose(f, N)
                             assert len(self.buckets) == self.numbuckets
             if len(set(sample)) < self.numbuckets:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
