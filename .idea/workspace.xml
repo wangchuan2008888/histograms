@@ -2,18 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32eaefd-3a71-48a8-95f8-8342e32b3e1b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dynamic_histograms/randomizedatasets.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo.py" afterPath="$PROJECT_DIR$/demo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dc_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/dvo_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" afterPath="$PROJECT_DIR$/dynamic_histograms/sf_histogram.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions3.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions3.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions2.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions2.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions7.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions7.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions6.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions6.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo.py" afterPath="$PROJECT_DIR$/demo.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions8.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions8.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions1.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions1.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions4.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions4.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions9.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions9.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/zipfdist.py" afterPath="$PROJECT_DIR$/dynamic_histograms/zipfdist.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/userdistribution.js" afterPath="$PROJECT_DIR$/js/userdistribution.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions5.csv" afterPath="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions5.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dynamic_histograms/randomizedatasets.py" afterPath="$PROJECT_DIR$/dynamic_histograms/randomizedatasets.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/index.html" afterPath="$PROJECT_DIR$/output/index.html" />
     </list>
     <ignored path="histograms.iws" />
@@ -37,8 +39,8 @@
       <file leaf-file-name="demo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+            <state relative-caret-position="15">
+              <caret line="74" column="106" selection-start-line="74" selection-start-column="106" selection-end-line="74" selection-end-column="106" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -49,8 +51,8 @@
       <file leaf-file-name="randomizedatasets.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dynamic_histograms/randomizedatasets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="6" selection-end-column="125" />
+            <state relative-caret-position="30">
+              <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -61,7 +63,7 @@
       <file leaf-file-name="zipfdist.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dynamic_histograms/zipfdist.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="315">
               <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="66" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -73,8 +75,8 @@
       <file leaf-file-name="generatejsons.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generatejsons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="88" column="58" selection-start-line="88" selection-start-column="58" selection-end-line="88" selection-end-column="58" />
+            <state relative-caret-position="495">
+              <caret line="33" column="65" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -83,7 +85,7 @@
       <file leaf-file-name="equidepth_histogram.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
+            <state relative-caret-position="5400">
               <caret line="362" column="25" selection-start-line="362" selection-start-column="25" selection-end-line="362" selection-end-column="25" />
               <folding />
             </state>
@@ -113,9 +115,9 @@
         <option value="$PROJECT_DIR$/dynamic_histograms/control_histogram.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/data/zipfdistributions.csv" />
         <option value="$PROJECT_DIR$/dynamic_histograms/zipfdist.py" />
-        <option value="$PROJECT_DIR$/dynamic_histograms/randomizedatasets.py" />
         <option value="$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py" />
         <option value="$PROJECT_DIR$/generatejsons.py" />
+        <option value="$PROJECT_DIR$/dynamic_histograms/randomizedatasets.py" />
         <option value="$PROJECT_DIR$/demo.py" />
       </list>
     </option>
@@ -197,6 +199,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="dynamic_histograms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="histograms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="histograms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dynamic_histograms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -453,7 +473,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21796875" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -633,7 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="53" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -739,9 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="242" column="41" selection-start-line="242" selection-start-column="41" selection-end-line="242" selection-end-column="41" />
-          <folding>
-            <element signature="e#93#124#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -749,9 +765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="455">
           <caret line="179" column="49" selection-start-line="179" selection-start-column="49" selection-end-line="179" selection-end-column="49" />
-          <folding>
-            <element signature="e#98#129#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -759,9 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
           <caret line="231" column="61" selection-start-line="231" selection-start-column="61" selection-end-line="231" selection-end-column="61" />
-          <folding>
-            <element signature="e#82#113#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -777,7 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-190">
           <caret line="228" column="29" selection-start-line="228" selection-start-column="29" selection-end-line="228" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -785,7 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -793,7 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -801,7 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="95" selection-start-line="0" selection-start-column="95" selection-end-line="0" selection-end-column="117" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -809,15 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="208" column="37" selection-start-line="208" selection-start-column="37" selection-end-line="208" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/data/occupancytraining.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -825,13 +822,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/zipfdist.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="315">
           <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="66" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -839,36 +835,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/generatejsons.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="65" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5400">
+          <caret line="362" column="25" selection-start-line="362" selection-start-column="25" selection-end-line="362" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic_histograms/data/occupancytraining.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dynamic_histograms/randomizedatasets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="6" selection-end-column="125" />
+        <state relative-caret-position="30">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dynamic_histograms/equidepth_histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="362" column="25" selection-start-line="362" selection-start-column="25" selection-end-line="362" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generatejsons.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="88" column="58" selection-start-line="88" selection-start-column="58" selection-end-line="88" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        <state relative-caret-position="15">
+          <caret line="74" column="106" selection-start-line="74" selection-start-column="106" selection-end-line="74" selection-end-column="106" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>

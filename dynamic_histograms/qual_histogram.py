@@ -13,7 +13,7 @@ bins = np.array(bins)
 
 widths = bins[1:] - bins[:-1]
 
-plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'])
+plt.bar(bins[:-1], frequency, width=widths, edgecolor=['black'], color='#348ABD')
 
 plt.grid(True)
 axes = plt.gca()

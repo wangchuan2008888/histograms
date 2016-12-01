@@ -10,29 +10,27 @@ import os
 from shutil import copyfile
 import sys
 
-datasets = ['dynamic_histograms/data/bikesharingtimeseries',
-            'dynamic_histograms/data/zipfdistributions']
-datasetattributes = {'dynamic_histograms/data/occupancytraining': ["CO2","HumidityRatio"],
-                     'dynamic_histograms/data/bikesharingtimeseries': ['casual','registered','cnt'],
+datasets = ['dynamic_histograms/data/bikesharingtimeseries']
+#['casual', 'registered', 'cnt']
+datasetattributes = {'dynamic_histograms/data/occupancytraining': ["CO2", 'Light'],
+                     'dynamic_histograms/data/bikesharingtimeseries': ['casual'],
                      'dynamic_histograms/data/zipfdistributions':
-                         ['zipf1.01','zipf1.25','zipf1.5','zipf1.75','zipf2','zipf2.25','zipf2.5']}
+                         ['zipf1.01','zipf1.05','zipf1.1','zipf1.15','zipf1.2','zipf1.25','zipf1.3']}
 
 # took out humidity and light
 
-buckets = [100, 50]
-batchsize = [10000, 50000, 5000]
+buckets = [50]
+batchsize = [5000]
 userbucketsize = 1
-attributes = ['zipf1.25','zipf1.5','zipf1.75','zipf2','zipf2.25','zipf2.5', 'zipf1.01']
-#datasets = 'dynamic_histograms/data/zipfdistributions.csv'
 
 for dataset in datasets:
     for attr in datasetattributes[dataset]:
         for numbuckets in buckets:
             for batch in batchsize:
 
-                for i in range(1, 10):
+                for i in range(1, 4):
 
-                    print attr + str(i), numbuckets, batch
+                    print attr + " " + str(i), numbuckets, batch
 
                     # make sure output directory exists
                     outputpath = 'output//' + attr + str(i) + '//' + str(batch) + '_' + str(numbuckets) + '_' + str(userbucketsize)
@@ -58,7 +56,7 @@ for dataset in datasets:
 
                     print "### CONTROL HISTOGRAM ###"
                     start_time = time.time()
-                    control = dynamic_histograms.control_histogram.Control_Histogram(dataset + ".csv", numbuckets, outputpath)
+                    control = dynamic_histograms.control_histogram.Control_Histogram(dataset + str(i) + ".csv", numbuckets, outputpath)
                     control.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
                     # control.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
                     control_time = time.time() - start_time
@@ -66,7 +64,7 @@ for dataset in datasets:
 
                     print "### DYNAMIC COMPRESSED HISTOGRAM ###"
                     start_time = time.time()
-                    dc = dynamic_histograms.dc_histogram.DC_Histogram(dataset + ".csv", numbuckets, outputpath)
+                    dc = dynamic_histograms.dc_histogram.DC_Histogram(dataset + str(i) + ".csv", numbuckets, outputpath)
                     dc.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
                     # dc.zipfdistributiongraph([0.01,1,2,3],0.5, 0.5, batchsize,userbucketsize)
                     dc_time = time.time() - start_time
@@ -74,7 +72,7 @@ for dataset in datasets:
 
                     print "### EQUI-DEPTH HISTOGRAM ###"
                     start_time = time.time()
-                    depth = dynamic_histograms.equidepth_histogram.Equidepth_Histogram(dataset + ".csv", numbuckets,
+                    depth = dynamic_histograms.equidepth_histogram.Equidepth_Histogram(dataset + str(i) + ".csv", numbuckets,
                                                                                         outputpath)
                     depth.create_histogram(attr, l=0, batchsize=batch, userbucketsize=userbucketsize)
                     # depth.zipfdistributiongraph([0.01,1,2,3],0,batchsize,userbucketsize)
@@ -83,7 +81,7 @@ for dataset in datasets:
 
                     print "### MAX-DIFF HISTOGRAM ###"
                     start_time = time.time()
-                    maxdiff = dynamic_histograms.maxdiff_histogram.MaxDiff_Histogram(dataset + ".csv", numbuckets,
+                    maxdiff = dynamic_histograms.maxdiff_histogram.MaxDiff_Histogram(dataset + str(i) + ".csv", numbuckets,
                                                                                       outputpath)
                     maxdiff.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
                     # maxdiff.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
@@ -92,7 +90,7 @@ for dataset in datasets:
 
                     print "### SELF-TUNING HISTOGRAM ###"
                     start_time = time.time()
-                    sf = dynamic_histograms.sf_histogram.SF_Histogram(dataset + ".csv", numbuckets, outputpath)
+                    sf = dynamic_histograms.sf_histogram.SF_Histogram(dataset + str(i) + ".csv", numbuckets, outputpath)
                     sf.create_histogram(attr, alpha=0.5, m=0.0025, s=0.1, batchsize=batch, userbucketsize=userbucketsize)
                     # sf.zipfdistributiongraph([0.01,1,2,3],0.5,0.0025,0.1,batchsize,userbucketsize)
                     sf_time = time.time() - start_time
@@ -100,7 +98,7 @@ for dataset in datasets:
 
                     print "### SPLINE HISTOGRAM ###"
                     start_time = time.time()
-                    spline = dynamic_histograms.spline_histogram.Spline_Histogram(dataset + ".csv", numbuckets,
+                    spline = dynamic_histograms.spline_histogram.Spline_Histogram(dataset + str(i) + ".csv", numbuckets,
                                                                                   outputpath)
                     spline.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
                     #spline.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
@@ -109,7 +107,7 @@ for dataset in datasets:
 
                     print "### DYNAMIC V-OPTIMAL HISTOGRAM"
                     start_time = time.time()
-                    dvo = dynamic_histograms.dvo_histogram.DVO_Histogram(dataset + ".csv", numbuckets, outputpath)
+                    dvo = dynamic_histograms.dvo_histogram.DVO_Histogram(dataset + str(i) + ".csv", numbuckets, outputpath)
                     dvo.create_histogram(attr, batchsize=batch, userbucketsize=userbucketsize)
                     # dvo.zipfdistributiongraph([0.01,1,2,3],batchsize,userbucketsize)
                     dvo_time = time.time() - start_time
