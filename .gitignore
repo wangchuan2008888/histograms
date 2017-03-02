@@ -9,3 +9,4 @@ dynamic_histograms/data/HIGGS.csv
 dynamic_histograms/data/kddcup.csv
 dynamic_histograms/data/kddcupFourtySamplesFiftyK.csv
 .idea/
+output/*
