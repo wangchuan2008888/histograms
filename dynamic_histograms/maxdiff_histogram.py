@@ -140,17 +140,17 @@ class MaxDiff_Histogram(object):
                         sample.append(value)
                     if len(set(sample)) == self.numbuckets * 2 and initial == False:
                         self.compute_histogram(sample, N)
-                        self.plot_histogram(attr, self.buckets)
-                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
-                        d.create_distribution(self.buckets)
-                        new_buckets = d.return_distribution()
-                        self.plot_histogram(attr, new_buckets)
+                        #self.plot_histogram(attr, self.buckets)
+                        #d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        #d.create_distribution(self.buckets)
+                        #new_buckets = d.return_distribution()
+                        #self.plot_histogram(attr, new_buckets)
                         skip = self.calculateSkip(len(sample))
                         initial = True
-                        freq = 0
-                        for i in range(len(self.buckets)):
-                            freq += self.buckets[i]['frequency']
-                        print freq, N
+                        #freq = 0
+                        #for i in range(len(self.buckets)):
+                        #    freq += self.buckets[i]['frequency']
+                        #print freq, N
                         #assert np.isclose(freq, N)
                     elif initial == True:
                         skipcounter += 1
@@ -161,23 +161,23 @@ class MaxDiff_Histogram(object):
                             skipcounter = 0
                         if N % batchsize == 0:
                             print "number read in: " + str(N)
-                            self.plot_histogram(attr, self.buckets)
-                            d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
-                            d.create_distribution(self.buckets)
-                            new_buckets = d.return_distribution()
-                            self.plot_histogram(attr, new_buckets)
+                            #self.plot_histogram(attr, self.buckets)
+                            #d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                            #d.create_distribution(self.buckets)
+                            #new_buckets = d.return_distribution()
+                            #self.plot_histogram(attr, new_buckets)
                             self.compute_histogram(sample, N)
-                            self.compare_histogram(attr, False, N)
-                            freq = 0
-                            for i in range(len(self.buckets)):
-                                freq += self.buckets[i]['frequency']
-                            print freq, N
+                            self.compare_histogram(attr, True, N)
+                            #freq = 0
+                            #for i in range(len(self.buckets)):
+                            #    freq += self.buckets[i]['frequency']
+                            #print freq, N
                             #assert np.isclose(freq, N)
             if len(set(sample)) < self.numbuckets * 2:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
             else:
-                self.plot_histogram(attr, self.buckets)
-                self.compare_histogram(attr, False, N)
+                #self.plot_histogram(attr, self.buckets)
+                self.compare_histogram(attr, True, N)
 
     def compare_histogram(self, attr, end, N):
         frequency = []
@@ -211,18 +211,18 @@ class MaxDiff_Histogram(object):
             with open(self.outputpath + "//data//maxdiffksstats" + ".json", 'a+') as ks:
                 json.dump(ksstats, ks)
                 ks.write('\n')
-        sorted_data = np.sort(realdist)
-        yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
-        plt.grid(True)
-        plt.plot(sorted_data, yvals)
-        step = [0]
-        step.extend(cumfreq / cumfreq[len(cumfreq) - 1])
-        plt.step(binedges[0:], step)
-        plt.plot(binedges[0:], step)
-        plt.legend(['CDF of real data', 'CDF of histogram', 'CDF of linear approx'], loc='lower right')
-        plt.savefig(self.outputpath + "//img//maxdiffcdf" + str(self.counter) + ".jpg")  
-        self.counter += 1
-        plt.close()
+        # sorted_data = np.sort(realdist)
+        # yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
+        # plt.grid(True)
+        # plt.plot(sorted_data, yvals)
+        # step = [0]
+        # step.extend(cumfreq / cumfreq[len(cumfreq) - 1])
+        # plt.step(binedges[0:], step)
+        # plt.plot(binedges[0:], step)
+        # plt.legend(['CDF of real data', 'CDF of histogram', 'CDF of linear approx'], loc='lower right')
+        # plt.savefig(self.outputpath + "//img//maxdiffcdf" + str(self.counter) + ".jpg")
+        # self.counter += 1
+        # plt.close()
         
     def inverse_transform_sampling(self, frequency, bin_edges, n_samples):
         cum_values = np.zeros(len(bin_edges))

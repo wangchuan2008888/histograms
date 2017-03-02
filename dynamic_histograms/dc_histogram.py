@@ -154,11 +154,11 @@ class DC_Histogram(object):
                                     bucket['low'] = totalbuckets[j]['high']
                                     bucket['size'] = bucket['high'] - bucket['low']
 
-                        self.plot_histogram(attr, totalbuckets)
-                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
-                        d.create_distribution(totalbuckets)
-                        new_buckets = d.return_distribution()
-                        self.plot_histogram(attr, new_buckets)
+                        #self.plot_histogram(attr, totalbuckets)
+                        #d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        #d.create_distribution(totalbuckets)
+                        #new_buckets = d.return_distribution()
+                        #self.plot_histogram(attr, new_buckets)
                         #skip = self.calculateSkip(len(sample))
                         initial = True
                     elif initial == True:
@@ -169,11 +169,11 @@ class DC_Histogram(object):
                         #    skip = self.calculateSkip(len(sample))
                         #    skipcounter = 0
                         if N % batchsize == 0:
-                            f = 0
-                            for i in range(len(self.regular)):
-                                f += self.regular[i]['frequency']
-                            for i in range(len(self.singular)):
-                                f += self.singular[i]['frequency']
+                            #f = 0
+                            #for i in range(len(self.regular)):
+                            #    f += self.regular[i]['frequency']
+                            #for i in range(len(self.singular)):
+                            #    f += self.singular[i]['frequency']
                             #assert np.isclose(f, N)
                             print "number read in: " + str(N)
 
@@ -201,18 +201,18 @@ class DC_Histogram(object):
                                         bucket['low'] = totalbuckets[j]['high']
                                         bucket['size'] = bucket['high'] - bucket['low']
 
-                            self.plot_histogram(attr, totalbuckets)
-                            d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
-                            d.create_distribution(totalbuckets)
-                            new_buckets = d.return_distribution()
-                            self.plot_histogram(attr, new_buckets)
-                            self.compare_histogram(attr, False, totalbuckets, N)
-                            f = 0
-                            for i in range(len(self.regular)):
-                                f += self.regular[i]['frequency']
-                            for i in range(len(self.singular)):
-                                f += self.singular[i]['frequency']
-                            print f, N
+                            #self.plot_histogram(attr, totalbuckets)
+                            #d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                            #d.create_distribution(totalbuckets)
+                            #new_buckets = d.return_distribution()
+                            #self.plot_histogram(attr, new_buckets)
+                            self.compare_histogram(attr, True, totalbuckets, N)
+                            #f = 0
+                            #for i in range(len(self.regular)):
+                            #    f += self.regular[i]['frequency']
+                            #for i in range(len(self.singular)):
+                            #    f += self.singular[i]['frequency']
+                            #print f, N
                             #assert np.isclose(f, N)
             if len(set(sample)) < self.numbuckets:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
@@ -240,8 +240,8 @@ class DC_Histogram(object):
                             bucket['frequency'] -= perc
                             bucket['low'] = totalbuckets[j]['high']
                             bucket['size'] = bucket['high'] - bucket['low']
-                self.plot_histogram(attr, totalbuckets)
-                self.compare_histogram(attr, False, totalbuckets, N)
+                #self.plot_histogram(attr, totalbuckets)
+                self.compare_histogram(attr, True, totalbuckets, N)
 
     def compare_histogram(self, attr, end, buckets, N):
         frequency = []
@@ -275,18 +275,18 @@ class DC_Histogram(object):
             with open(self.outputpath + "//data//dcksstats" + ".json", 'a+') as ks:
                 json.dump(ksstats, ks)
                 ks.write('\n')
-        sorted_data = np.sort(realdist)
-        yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
-        plt.grid(True)
-        plt.plot(sorted_data, yvals)
-        step = [0]
-        step.extend(cumfreq / cumfreq[len(cumfreq) - 1])
-        plt.step(binedges[0:], step)
-        plt.plot(binedges[0:], step)
-        plt.legend(['CDF of real data', 'CDF of histogram', 'CDF of linear approx'], loc='lower right')
-        plt.savefig(self.outputpath + "//img//dccdf" + str(self.counter) + ".jpg")
-        self.counter += 1
-        plt.close()
+        # sorted_data = np.sort(realdist)
+        # yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
+        # plt.grid(True)
+        # plt.plot(sorted_data, yvals)
+        # step = [0]
+        # step.extend(cumfreq / cumfreq[len(cumfreq) - 1])
+        # plt.step(binedges[0:], step)
+        # plt.plot(binedges[0:], step)
+        # plt.legend(['CDF of real data', 'CDF of histogram', 'CDF of linear approx'], loc='lower right')
+        # plt.savefig(self.outputpath + "//img//dccdf" + str(self.counter) + ".jpg")
+        # self.counter += 1
+        # plt.close()
 
     def inverse_transform_sampling(self, frequency, bin_edges, n_samples):
         cum_values = np.zeros(len(bin_edges))

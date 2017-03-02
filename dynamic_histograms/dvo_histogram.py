@@ -138,7 +138,7 @@ class DVO_Histogram(object):
         axes = plt.gca()
         axes.set_xlim(self.min - abs(buckets[0]['size']), self.max + abs(buckets[0]['size']))
         axes.set_ylim([0, max(frequency) + max(frequency) / 2])
-        plt.subplot().set_axis_bgcolor('#E5E5E5');
+        plt.subplot().set_axis_bgcolor('#E5E5E5')
         plt.xlabel(attr)
         plt.ylabel('Frequency')
         plt.title(r'$\mathrm{Dynamic\ V-Optimal\ Histogram\ of\ ' + attr + '}$')
@@ -201,37 +201,37 @@ class DVO_Histogram(object):
                         self.buckets[0]['size'] = self.buckets[0]['high'] - self.buckets[0]['low']
                         self.buckets[self.numbuckets - 1]['high'] = self.max + 1
                         self.buckets[self.numbuckets - 1]['size'] = self.max + 1 - self.buckets[self.numbuckets - 1]['low']
-                        f = 0
-                        for i in range(len(self.buckets)):
-                            f += self.buckets[i]['frequency']
-                        print(f, N, "created initial histogram!")
+                        #f = 0
+                        #for i in range(len(self.buckets)):
+                        #    f += self.buckets[i]['frequency']
+                        #print(f, N, "created initial histogram!")
                         #assert np.isclose(f, N)
-                        self.plot_histogram(attr, self.buckets, True)
-                        d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
-                        d.create_distribution(self.buckets)
-                        new_buckets = d.return_distribution()
-                        self.plot_histogram(attr, new_buckets, False)
+                        #self.plot_histogram(attr, self.buckets, True)
+                        #d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                        #d.create_distribution(self.buckets)
+                        #new_buckets = d.return_distribution()
+                        #self.plot_histogram(attr, new_buckets, False)
                         initial = True
                     elif initial == True:
                         self.add_datapoint(value)
                         if N % batchsize == 0:
                             print ("number read in: " + str(N))
-                            self.plot_histogram(attr, self.buckets, True)
-                            d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
-                            d.create_distribution(self.buckets)
-                            new_buckets = d.return_distribution()
-                            self.plot_histogram(attr, new_buckets, False)
-                            self.compare_histogram(attr, False, N)
-                            f = 0
-                            for i in range(len(self.buckets)):
-                                f += self.buckets[i]['frequency']
-                            print(f, N)
+                            #self.plot_histogram(attr, self.buckets, True)
+                            #d = user_distribution.User_Distribution(self.min, self.max, userbucketsize)
+                            #d.create_distribution(self.buckets)
+                            #new_buckets = d.return_distribution()
+                            #self.plot_histogram(attr, new_buckets, False)
+                            self.compare_histogram(attr, True, N)
+                            #f = 0
+                            #for i in range(len(self.buckets)):
+                            #    f += self.buckets[i]['frequency']
+                            #print(f, N)
                             #assert np.isclose(f, N)
-                            assert len(self.buckets) == self.numbuckets
+                            #assert len(self.buckets) == self.numbuckets
             if len(set(sample)) < self.numbuckets:
                 print("ERROR: There are not enough unique values for the number of specified buckets.")
-        self.plot_histogram(attr, self.buckets, True)
-        self.compare_histogram(attr, False, N)
+        #self.plot_histogram(attr, self.buckets, True)
+        self.compare_histogram(attr, True, N)
 
     def compare_histogram(self, attr, end, N):
         frequency = []
@@ -267,18 +267,18 @@ class DVO_Histogram(object):
             with open(self.outputpath + "//data//dvoksstats" + ".json", 'a+') as ks:
                 json.dump(ksstats, ks)
                 ks.write('\n')
-        sorted_data = np.sort(realdist)
-        yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
-        plt.grid(True)
-        plt.plot(sorted_data, yvals)
-        step = [0]
-        step.extend(cumfreq / cumfreq[len(cumfreq) - 1])
-        plt.step(binedges[0:], step)
-        plt.plot(binedges[0:], step)
-        plt.legend(['CDF of real data', 'CDF of histogram', 'CDF of linear approx'], loc='lower right')
-        plt.savefig(self.outputpath + "//img//dvocdf" + str(self.counter) + ".jpg")
-        self.counter += 1
-        plt.close()
+        # sorted_data = np.sort(realdist)
+        # yvals = np.arange(len(sorted_data)) / float(len(sorted_data))
+        # plt.grid(True)
+        # plt.plot(sorted_data, yvals)
+        # step = [0]
+        # step.extend(cumfreq / cumfreq[len(cumfreq) - 1])
+        # plt.step(binedges[0:], step)
+        # plt.plot(binedges[0:], step)
+        # plt.legend(['CDF of real data', 'CDF of histogram', 'CDF of linear approx'], loc='lower right')
+        # plt.savefig(self.outputpath + "//img//dvocdf" + str(self.counter) + ".jpg")
+        # self.counter += 1
+        # plt.close()
 
     def inverse_transform_sampling(self, frequency, bin_edges, n_samples):
         cum_values = np.zeros(len(bin_edges))
